@@ -51,6 +51,10 @@ async function login() {
     }
 }
 
+function registro(){
+    window.location.href= ("RegistrarAdminLib_Lib.html");
+}
+
 function validaCorreo(event) {
 
     if (event.value == "") {
