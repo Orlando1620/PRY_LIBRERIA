@@ -1,8 +1,4 @@
-.search-box{
-    width: 290px;
-    padding: 10px 10px;
-    font-size: 1rem;
-}
+
 
 .table-cont{
     margin: 10px 0 50px 0;
@@ -38,7 +34,7 @@
 }
 
 .main-title{
-    padding-left: 20px;
+    
     color: #022600;
 }
 
@@ -118,6 +114,46 @@
 .submit:hover{
     background-color: #487252;
     color: white;
+}
+
+.infoLibreria{
+    float: left;
+    width: 100%;
+}
+
+.mod-i{
+    float: right;
+    padding: 10px;
+}
+
+.titulo h2{
+    margin:0;
+}
+
+.titulo div{
+    float: left;
+    width: 50%;
+    padding: 10px 0;
+}
+
+.edit{
+    color: #487252;
+}
+
+.del{
+    color: rgb(223, 80, 80);
+}
+
+.search-cont{
+    margin: 10px 0 10px 0;
+}
+
+.search-box{
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
 }
 
 @media(max-width: 920px){
