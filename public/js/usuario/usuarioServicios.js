@@ -129,3 +129,32 @@ function enviarContrasena(contrasena){
         headers:{'Content-Type': 'application/json'}
     })
 }
+
+async function recuperarContrasena(){
+    var contrasena = contrasenaAleatoria();
+    var data = {
+        contrasena: contrasena,
+        correo: document.getElementById("correo").value
+    };
+    
+    var response = await fetch('/usuario/recuperarContrasena', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    
+    var result = await response.json();
+
+    var msg = result['result'];
+
+    switch(msg){
+      case 'exito':
+            document.getElementById("alert").classList.add("oculto");
+            document.getElementById("alert-success").classList.remove("oculto");
+            document.getElementById("msg-success").innerHTML = "Se envió una nueva contraseña a tu correo electrónico.";
+            setTimeout(function () {
+                window.location.href = "login.html";
+            }, 2000);
+            break;
+    }
+}

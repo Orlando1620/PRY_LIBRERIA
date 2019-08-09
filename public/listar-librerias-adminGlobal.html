@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/libro/estilo-listar-libros-admin.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/libreria/estilo-listar-librerias-adminGlobal.css"/>
         <link rel="stylesheet" type="text/css" href="./css/clubes/table.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
@@ -53,18 +53,18 @@
         </nav>
 
         <div class="main-wrapper">
-            <div class="select-side-bar oculto" id="select-sidebar-global">
-                    <select>
-                        <option value="1">Mí Perfil</option>
-                        <option value="2">Librería</option>
-                        <option value="3">Sucursales</option>
-                        <option value="4">Registrar Libro</option>
-                        <option value="4">Registrar Autor</option>
-                        <option value="5">Promociones</option>
-                        <option value="6">Clubes de Lectura</option>
-                    </select>
+            <div class="select-side-bar">
+                <select>
+                    <option value="1">Mí Perfil</option>
+                    <option value="2">Librería</option>
+                    <option value="3">Sucursales</option>
+                    <option value="4">Registrar Libro</option>
+                    <option value="4">Registrar Autor</option>
+                    <option value="5">Promociones</option>
+                    <option value="6">Clubes de Lectura</option>
+                </select>
             </div>
-            <div class="wrapper-side-bar oculto" id="sidebar-global">
+            <div class="wrapper-side-bar">
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-users"></i></div>
                     <div class="side-bar-option"><a href="listar-usuarios.html">Usuarios</a></div>
@@ -73,7 +73,7 @@
                     <div class="side-bar-icon"><i class="fas fa-clipboard"></i></div>
                     <div class="side-bar-option"><a href="inventario-adminGlobal.html">Inventario</a></div>
                 </div>
-                <div class="side-bar-selected">
+                <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-book"></i></div>
                     <div class="side-bar-option"><a href="listar-libros-admin.html">Libros</a></div>
                 </div>
@@ -89,7 +89,7 @@
                     <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
                     <div class="side-bar-option"><a href="#">Promociones</a></div>
                 </div>
-                <div class="side-bar">
+                <div class="side-bar-selected">
                     <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
                     <div class="side-bar-option"><a href="listar-clubes-adminGlobal.html">Clubes de Lectura</a></div>
                 </div>
@@ -107,75 +107,33 @@
                 </div>
             </div>
 
-            <div class="select-side-bar" id="select-sidebar-lib">
-                    <select>
-                        <option value="1">Mí Perfil</option>
-                        <option value="2">Librería</option>
-                        <option value="3">Sucursales</option>
-                        <option value="3">Inventario</option>
-                        <option value="4">Registrar Libro</option>
-                        <option value="4">Registrar Autor</option>
-                        <option value="5">Promociones</option>
-                        <option value="6">Clubes de Lectura</option>
-                    </select>
-            </div>
-            <div class="wrapper-side-bar" id="sidebar-lib">
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-store-alt"></i></div>
-                    <div class="side-bar-option"><a href="perfil-lib-admin.html">Librería</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-store"></i></div>
-                    <div class="side-bar-option"><a href="listar-sucursales-admin.html">Sucursales</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-clipboard"></i></div>
-                    <div class="side-bar-option"><a href="inventario-lib.html">Inventario</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-book"></i></div>
-                    <div class="side-bar-option"><a href="listar-libros-admin.html">Libros</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-feather"></i></div>
-                    <div class="side-bar-option"><a href="listar-autores-admin.html">Autores</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
-                    <div class="side-bar-option"><a href="#">Promociones</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
-                    <div class="side-bar-option"><a href="listar-clubes-adminLib.html">Clubes de Lectura</a></div>
-                </div>
-            </div>
-
             <div class="wrapper-cont">
-                <h1 class="main-title">Libros</h1>
-            
-                <div class="filtros">
-                    <input type="text" placeholder="Buscar libro" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
-                    <select id="generos" class="selectFiltrar" onchange="filtrarGenCat()"><option value="Generos">Géneros</option></select>
-                    <select id="categorias" class="selectFiltrar" onchange="filtrarGenCat()"><option value="Categorias">Categorias</option></select>
+                <h1 class="main-title">Librerías</h1>
+                <div class="mapa-cont">
+                    <div id="map" class="mapa"></div>
                 </div>
-            
-                <!-- <div class="table-cont">
-                    <table class="lista-suc font" id="table">
-                        <tr id="mainTr" class="table-titles">
-                            <td colspan="1"><a>Nombre</a></td>
-                            <td colspan="1"><a>Autor</a></td>
-                            <td colspan="1"><a>Calificación</a></td>
-                        </tr>
-                    </table>
-                </div> -->
-                <div class="cards-cont" id="cards-cont"></div>
+                <div class="filtros">
+                    <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar" onkeyup="filtrarLib()" />
+                </div>
+                <div class="table-cont">
+                    <div class="scrollit">
+                        <table class="lista-suc font" id="lista-suc">
+                            <thead>
+                                <tr class="table-titles">
+                                    <td colspan="1"><a>Nombre</a></td>
+                                    <td colspan="1"><a>Dirección</a></td>
+                                    <td colspan="1"><a>Teléfono</a></td>
+                                </tr>
+                            </thead>
+                        </table>
 
+                    </div>
+                </div>
                 <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     <label id="msg"></label>
                 </div>
                 
-                <div class="form-full"><button class="submit font" onclick="nuevoLibro()">Nuevo libro</button></div>
 
             </div>
         </div>
@@ -210,10 +168,12 @@
 
 
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="js//libro/listar-libros.js"></script>
-        <script src="js/libro/libroServicios.js"></script>    
+        <script src="js/libreria/filtrar-listar/googleMaps.js"></script>
+        <script src="js/libreria/filtrar-listar/controller.filtrar-listar.js"></script>
+        <script src="js/libreria/filtrar-listar/servidor.filtrar-listar.js"></script>
         <script src="./js/log-nav.js"></script>
-        <script src="./js/sidebar.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
+        async defer></script>
         
     </body>
 
