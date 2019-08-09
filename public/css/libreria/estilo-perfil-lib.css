@@ -144,6 +144,13 @@
     }
 }
 
+.search-box{
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
 
 /*cambios para movil*/
 @media(max-width: 750px){

@@ -3,9 +3,11 @@
 }
 
 .search-box{
-    width: 290px;
+    width: 100%;
     padding: 10px 10px;
     font-size: 1rem;
+    border: none;
+    background-color: #48725231;
 }
 
 .search-btn{
