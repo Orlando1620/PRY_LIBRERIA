@@ -1,20 +1,35 @@
 .titulo{
     color: #022600;
     font-size: 100px;
-  }
-  .infoUno{
+}
+
+.titulo_info_libria{
+    color: #487252;
+    font-size: 40px;
+}
+
+.titulo_localizacion{
+    color: #487252;
+    padding-left: 8px;
+}
+
+.infoUno{
     margin-bottom: 10px;
-  }
+}
+
   .infoLibreria{
     padding-bottom: 10px;
-    color: #022600;
-  }
-  .acomodarBoton{
+    text-align: center;
+}
+
+  
+.acomodarBoton{
     float: right;
-  }
-  .acomodarInformacion{
+}
+
+.acomodarInformacion{
     padding-bottom: 15px;
-  }
+}
 
 .button{
     border: none;
@@ -31,13 +46,8 @@
     cursor: pointer;
 }
 
-#map {
-    height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
-}
-
 .search-cont{
-    margin: 10px 20% 10px 20%;
+    margin: 10px -4% 10px 3%;
 }
 
 .search-box{
@@ -46,22 +56,9 @@
     font-size: 1rem;
 }
 
-.search-btn{
-    padding: 12px 20px;
-    font-size: 1rem;
-    border: none;
-    color: black;
-    background-color: #48725231;
-    border-radius: 10px;
-}
-
-.search-btn:hover{
-    background-color: #487252;
-    color: white;
-}
 
 .table-cont{
-    margin: 10px 20% 50px 20%;
+    margin: 10px 7% 50px 5%;
 }
 
 .lista-suc{
@@ -83,4 +80,17 @@
 .table-titles td{
     padding: 10px;
     border-bottom: 1px solid silver;
+}
+
+#container_mapa{
+    padding-top: 15px;
+}
+.scrollit {
+    overflow:scroll;
+    height:64%;
+    width: auto;
+}
+
+@media(max-width: 1000px){
+
 }
