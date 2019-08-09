@@ -56,22 +56,14 @@
 
     <div class="wrapper-form">
 
-        <div class="form-full">
-            <div class="infoLibreria">
+        
+            <div class="form-full">
                 <h1 class="titulo_info_libria">Librerías</h1>
             </div>
-
-            <div class="form-full">
-                <div class="search-cont form-mitad">
-                    <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar"
-                        onkeyup="filtrarLib()" />
-                </div>
-
-                <div class="form-mitad">
-                    <h2 class="titulo_localizacion">Localización</h2>
-                </div>
-            </div>
             <div class="form-mitad">
+                <div class="filtros">
+                    <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar" onkeyup="filtrarLib()" />
+                </div>
                 <div class="table-cont">
                     <div class="scrollit">
                         <table class="lista-suc font" id="lista-suc">
@@ -100,6 +92,9 @@
 
 
             <div id="container_mapa" class="form-mitad">
+                    <div class="titulo_localizacion-cont">
+                        <h2 class="titulo_localizacion">Localización</h2>                        
+                    </div>
                 <div id="map"></div>
             </div>
 
@@ -107,7 +102,6 @@
         </div>
 
 
-    </div>
 
 
 
