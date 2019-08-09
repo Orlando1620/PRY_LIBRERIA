@@ -1,0 +1,52 @@
+
+
+#space_Regist_Admin, #space_Regist_Lib{
+    width: 50%;
+    float: left;
+}
+
+
+
+h1{
+    color: #487252;
+    text-align: center
+}
+
+#location{
+    margin-top: 60px;
+}
+
+#boton{
+    text-align: center;
+}
+
+#contenedorAdmin, #contenedorLibreria{
+    margin: 0 10%;
+    width: 80%;
+}
+
+#botonUsuario{
+    width: 50%;
+    float: left;
+}
+
+#botonLibreria{ 
+    width: 50%;
+    float: left;   
+}
+
+
+
+@media(max-width: 920px){
+    #space_Regist_Admin, #space_Regist_Lib{
+        width: 100%;
+    }
+}
+
+
+/*cambios para movil*/
+@media(max-width: 750px){
+    
+    
+}
+

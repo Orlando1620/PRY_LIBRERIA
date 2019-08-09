@@ -1,0 +1,155 @@
+.titulo{
+  color: #022600;
+}
+.infoUno{
+  margin-bottom: 10px;
+}
+.infoLibreria{
+  padding-bottom: 20px;
+  color: #022600;
+}
+.acomodarBoton{
+  float: right;
+}
+.acomodarInformacion{
+  padding-bottom: 15px;
+}
+.oculto{
+    display: none;
+}
+
+.main-title{
+  color: #022600;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 100%;
+}
+
+.wrapper-form{
+    padding: 20px 20%;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.wrapper-form h3{
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.cards-cont{
+    overflow: auto;
+    padding: 10px 5%;
+}
+
+.card{
+    float: left;
+    margin: 20px 5%;
+    width: 170px;
+    height: 335px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.img-card{
+    height: 260px;
+}
+
+.card a{
+    font-size: 1rem;
+    padding: 1px 0;
+    color: #022600;
+}
+
+.card label{
+    font-size: 0.9rem;
+    padding: 1px 0;
+}
+
+.card-text-cont{
+    text-align: left;
+    padding: 2px 0;
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+}
+
+.card-text-cont i{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.autor{
+    color: #487252;
+}
+
+.mod-cont{
+    text-align: center;
+}
+
+.submit{
+    text-align: center;
+    padding: 10px 30px;
+    margin: 20px 0;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.submit:hover{
+    background-color: #487252;
+    color: white;
+}
+
+
+@media(max-width: 1278px){
+
+    .card{
+        margin: 20px 4%;
+    }
+
+}
+
+@media(max-width: 1130px){
+
+    .card{
+        margin: 20px 3.5%;
+    }
+
+}
+
+@media(max-width: 1070px){
+
+    .card{
+        margin: 20px 2%;
+    }
+
+}
+
+
+@media(max-width: 920px){
+
+    .card{
+        margin: 20px 5%;
+    }
+
+}
+
+
+/*cambios para movil*/
+@media(max-width: 750px){
+    
+    .card{
+        margin: 20px 5%;
+    }
+    
+}

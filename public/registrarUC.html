@@ -1,0 +1,204 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/registroUC/estilo-registrarUC.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
+        <meta charset="utf-8">
+        <title>Registrar usuario</title>
+    
+    </head>
+    <body class="font">
+        <nav>
+                <div class="wrapper-nav1">
+                    <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+                    <div class="usuario-nav">
+                        <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+    
+                        <div class="dropdown" id="dropdown">
+                            <button class="dropbtn" >
+                                <label id="usrName"></label> 
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#" id="perfil">Perfil</a>
+                                <a href="#" id="admin" class="oculto">Administrar</a>
+                                <a href="#" id="c-r">Cerrar Sesión</a>
+                            </div>
+                        </div> 
+    
+                        <div class="wrapper-nav2">
+                            <div><a id="nav-libros">Libros</a></div>
+                            <div><a id="nav-autores">Autores</a></div>
+                            <div><a id="nav-librerias">Librerías</a></div>
+                            <div><a id="nav-club">Clubes de Lectura</a></div>
+                            <div><a id="nav-promo">Promociones</a></div>
+                            
+                        </div>
+                    </div>
+                </div>
+    
+                
+    
+                <div class="select-nav">
+                    <select id="select-nav">
+                        <option>Más</option>
+                        <option value="1">Libros</option>
+                        <option value="2">Autores</option>
+                        <option value="3">Librerías</option>
+                        <option value="4">Clubes de Lectura</option>
+                        <option value="5">Promociones</option>
+                    </select>
+                </div>
+        </nav>
+        
+
+        <div class="main-wrapper">
+            <div class="tab-wrapper">
+                <div class="tab-selected" id="tab-digital"><a href="registrarUC.html">Usuario</a></div>
+                <div class="tab-unselected" id="tab-impreso"><a href="RegistrarAdminLib_Lib.html">Librería</a></div>
+            </div>
+            
+            <form id="form" enctype="multipart/form-data" class="wrapper-form">
+                <div class="form-mitad">
+                    <h3>Nombre</h3>
+                    <input type="text" name="Nombre" class="input" id="nombre" required>
+                </div>
+                <div class="form-mitad">
+                    <h3>Primer Apellido</h3>
+                    <input type="text" name="primer Apellido" class="input" id="primerApellido" required>
+                </div>
+                
+                <div class="form-mitad">
+                    <h3>Segundo Apellido</h3>
+                    <input type="text" name="segundo Apellido" class="input" id="segundoApellido"required>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Correo Electrónico</h3>
+                    <input type="text" name="correo electronico" class="input" id="correo" required>
+                </div>
+                
+                <div class="form-mitad">
+                    <h3>Fecha De Nacimiento</h3>
+                    <input type="date" name="fecha de nacimiento" class="input-date" id="fechaNacimiento" required>
+                </div>
+                <div class="form-mitad">
+                    <h3>Género</h3>
+                    <select id="sexo" class="select-form form-control">
+                        <option>Seleccione un género</option>
+                    </select>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Tipo de Identificación</h3>
+                    <select id="tipoIdentificacion" class="select-form form-control">
+                            <option>Seleccione un tipo de identificación</option>
+                    </select>
+                </div>
+                
+                <div class="form-mitad">
+                    <h3>Número de Identificación</h3>
+                    <input name="Identificación" type="text" class="input" id="identificacion" required>
+                </div>
+                
+                <div class="form-full">
+                    <h3>Dirección</h3>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Provincia</h3>
+                    <select class="select-form form-control" id="provincias"  onchange="llenarCantones()">
+                        <option>Seleccione una provincia</option>
+                    </select>
+                </div>
+                <div class="form-mitad">
+                    <h3>Cantón</h3>
+                    <select class="select-form form-control" id="cantones" >
+                        <option>Seleccione un cantón</option>
+                    </select>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Distrito</h3>
+                    <select class="select-form form-control" id="distritos" >
+                        <option>Seleccione un distrito</option>
+                    </select>
+                </div>
+                <div class="form-mitad">
+                    <h3>Dirección exacta</h3>
+                    <input type="text" id="dirExacta" class="input" required/>
+                </div>
+
+                <div class="form-full">
+                    <h3>Localización</h3>
+                    <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
+                    <div id="map"></div>
+                </div>
+                
+
+                <div class="form-full">
+                    <h3 class="genero">Géneros preferidos</h3>
+                    <span id="genero"></span>
+                </div>
+                
+                <div class="form-full" id="foto-title"><h3>Foto de perfil</h3></div>
+                <div class="form-full" id="foto-file"><input type="file" id="foto" name="foto" accept='.jpg, .png, .jpeg' required/></div> 
+                
+                <div class="form-full"><input type="button" value="Registrar" class="submit" onclick="addUsuario(event)"></div>
+                
+            </form>
+            <!--Alert si no se cumple una validacion en el form-->
+            <div id="alert" class="alert oculto">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <label id="msg"></label>
+            </div>
+            <div id="alert-success" class="alert-success oculto">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <label id="msg-success"></label>
+            </div>
+        </div>
+        
+        
+        
+        <footer>
+            <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
+            <div class="footer-cont">
+                <h4></h4>
+                <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo"/></a><br>
+                <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo"/></a><br>
+            </div>
+            <div class="footer-cont">
+                <h4>Compañia</h4>
+                <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+                <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+                <i class="fab fa-instagram fa-lg"></i>
+                <i class="fab fa-facebook-square fa-lg"></i>
+                <i class="fab fa-twitter-square fa-lg"></i>
+            </div>
+
+            <div class="footer-cont">
+                <h4>Soporte</h4>
+                <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+                <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+            </div>
+
+            <div class="footer-cont">
+                
+            </div>
+        
+        </footer>
+        <script src="js/comun.js"></script>
+        <script src="js/usuario/direccion.js"></script>
+        <script src="js/usuario/googleMaps.js"></script>
+        <script src="js/usuario/paramsRegistrarUsuario.js"></script>
+        <script src="js/usuario/usuarioServicios.js"></script>
+        <script src="js/usuario/usuarioController.js"></script>
+        <script src="js/log-nav.js"></script>
+        <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
+        async defer></script>
+
+    </body>
+</html>

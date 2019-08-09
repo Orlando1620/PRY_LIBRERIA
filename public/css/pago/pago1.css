@@ -1,0 +1,205 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Satisfy|Caveat);
+
+.font{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.oculto{
+	display: none;
+}
+
+.border-error {
+    border: 1px solid red !important;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+}
+
+/*nav bar*/
+nav a{
+    color: black;
+}
+
+nav a:hover{
+    color: black;
+}
+
+.wrapper-nav1{
+    overflow: auto;
+}
+
+.wrapper-nav1 div{
+    float: left;
+    box-sizing: border-box;
+}
+
+/*mitad del logo*/
+.logo-nav{
+    width: 20%;
+    padding: 10px 10px 0 50px;
+}
+
+/*mitad de nombre de usuario y cerrar sesion*/
+.usuario-nav{
+    width: 80%;
+    padding: 20px 50px 0 10px;
+}
+
+.logo-nav-img{
+    width: 150px;
+}
+
+.usuario-nav div{
+    float: right;
+    font-size: 0.9rem;
+}
+
+.cerrar-sesion{
+    width: 150px;
+    padding: 10px 0;
+    text-align: center; 
+}
+
+.usr-name-cont{
+    border-right: solid 1px silver;
+    width: 70%; 
+}
+
+.usr-name{
+    float: right;
+    width: 150px;
+    text-align: left;
+    padding: 10px 0; 
+}
+
+.avatar-cont{
+    float: right;
+    width: 70px;
+    text-align: center;
+    padding-right: 5px;
+}
+
+.avatar-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+/*opciones del nav bar*/
+.wrapper-nav2{
+    overflow: auto;
+}
+
+.wrapper-nav2 div{
+    float: left;
+    width: 20%;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: #000000;
+}
+
+.wrapper-nav2 div:hover{
+    color: #022600;
+}
+
+.wrapper-nav2 a{
+    color: white;
+}
+
+.wrapper-nav2 a:hover{
+    color: #487252;
+}
+
+/*select que sustituye las opciones del nav*/
+.select-nav{
+    display: none;
+    margin-bottom: 10px;
+}
+
+.select-nav select{
+    width: 100%;
+    border: none;
+    background-color: #000000;
+    color: white;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+}
+
+@media(max-width: 920px){
+
+    .wrapper-nav2 div{
+        font-size: 0.9rem;
+    }
+
+}
+
+
+/*cambios para movil*/
+@media(max-width: 750px){
+    /*nav bar*/
+    .wrapper-nav1 div{
+        padding: 5px 5px;
+    }
+
+    .logo-nav-img{
+        width: 100px;
+    }
+
+    .usuario-nav a{ 
+        font-size: 0.9rem;
+    }
+
+    .cerrar-sesion{
+        width: 40%;
+    }
+    
+    .usr-name-cont{
+        width: 60%; 
+    }
+    
+    .usr-name{
+        width: 75%;
+    }
+
+    .avatar-img{
+        display: none;
+    }
+
+    .wrapper-nav2{
+        display: none;
+    }
+
+    .select-nav{
+        display: block;
+    }
+    
+}
+
+.icon-container{
+	font-size: 65px;
+	text-align: center;
+}
+
+.payment-cont{
+	float: left;
+	text-align: center;
+	width: 100%;
+}
+
+.paragraphcenter{
+	text-align: center;
+}

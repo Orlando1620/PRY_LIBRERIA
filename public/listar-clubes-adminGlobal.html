@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/clubes/estilo-listar-clubes-admin.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/clubes/table.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    </head>
+
+    <body class="font">
+        <nav>
+                <div class="wrapper-nav1">
+                    <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+                    <div class="usuario-nav">
+                        <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+    
+                        <div class="dropdown" id="dropdown">
+                            <button class="dropbtn" >
+                                <label id="usrName"></label> 
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#" id="perfil">Perfil</a>
+                                <a href="#" id="admin" class="oculto">Administrar</a>
+                                <a href="#" id="c-r">Cerrar Sesión</a>
+                            </div>
+                        </div> 
+    
+                        <div class="wrapper-nav2">
+                            <div><a id="nav-libros">Libros</a></div>
+                            <div><a id="nav-autores">Autores</a></div>
+                            <div><a id="nav-librerias">Librerías</a></div>
+                            <div><a id="nav-club">Clubes de Lectura</a></div>
+                            <div><a id="nav-promo">Promociones</a></div>
+                            
+                        </div>
+                    </div>
+                </div>
+    
+                
+    
+                <div class="select-nav">
+                    <select id="select-nav">
+                        <option>Más</option>
+                        <option value="1">Libros</option>
+                        <option value="2">Autores</option>
+                        <option value="3">Librerías</option>
+                        <option value="4">Clubes de Lectura</option>
+                        <option value="5">Promociones</option>
+                    </select>
+                </div>
+        </nav>
+
+        <div class="main-wrapper">
+            <div class="select-side-bar">
+                <select>
+                    <option value="1">Mí Perfil</option>
+                    <option value="2">Librería</option>
+                    <option value="3">Sucursales</option>
+                    <option value="4">Registrar Libro</option>
+                    <option value="4">Registrar Autor</option>
+                    <option value="5">Promociones</option>
+                    <option value="6">Clubes de Lectura</option>
+                </select>
+            </div>
+            <div class="wrapper-side-bar">
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-users"></i></div>
+                    <div class="side-bar-option"><a href="listar-usuarios.html">Usuarios</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-clipboard"></i></div>
+                    <div class="side-bar-option"><a href="inventario-adminGlobal.html">Inventario</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-book"></i></div>
+                    <div class="side-bar-option"><a href="listar-libros-admin.html">Libros</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-feather"></i></div>
+                    <div class="side-bar-option"><a href="listar-autores-admin.html">Autores</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="side-bar-option"><a href="#">Promociones</a></div>
+                </div>
+                <div class="side-bar-selected">
+                    <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
+                    <div class="side-bar-option"><a href="listar-clubes-adminGlobal.html">Clubes de Lectura</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="side-bar-option"><a href="parametros.html">Parámetros</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="side-bar-option"><a href="#">Reportes</a></div>
+                </div>
+                <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="side-bar-option"><a href="bitacora.html">Bitácora</a></div>
+                </div>
+            </div>
+
+            <div class="wrapper-cont">
+                <h1 class="main-title">Clubes de Lectura</h1>
+            
+                <div class="filtros">
+                    
+                    <input type="text" placeholder="Nombre del club" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
+                    <select id="generos" onChange="filtrarGenTipo()" class="selectFiltrar"><option value="Generos">Géneros</option></select>
+            
+                    <select id="tipo" onChange="filtrarGenTipo()" class="selectFiltrar"><option value="Tipo">Tipo</option>
+                    <option value="Físico">Físico</option><option value="Virtual">Virtual</option></select>
+                
+                </div>
+            
+                <div class="table-cont">
+                    <table class="lista-suc font" id="table">
+                        <tr id="mainTr" class="table-titles">
+                            <td colspan="1"><a>Nombre</a></td>
+                            <td colspan="1"><a>Género</a></td>
+                            <td colspan="1"><a>Tipo</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="alert" class="alert oculto">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    <label id="msg"></label>
+                </div>
+                
+                <div class="form-full"><button class="submit font" onclick="nuevoClub(event)">Nuevo Club</button></div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
+            <div class="footer-cont">
+                <h4></h4>
+                <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo"/></a><br>
+                <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo"/></a><br>
+            </div>
+            <div class="footer-cont">
+                <h4>Compañia</h4>
+                <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+                <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+                <i class="fab fa-instagram fa-lg"></i>
+                <i class="fab fa-facebook-square fa-lg"></i>
+                <i class="fab fa-twitter-square fa-lg"></i>
+            </div>
+
+            <div class="footer-cont">
+                <h4>Soporte</h4>
+                <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+                <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+            </div>
+
+            <div class="footer-cont">
+                
+            </div>
+            
+        </footer>
+
+
+        <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+        <script src="./js/clubes/listarClubes.js"></script>
+        <script src="./js/clubes/clubController.js"></script>
+        <script src="./js/log-nav.js"></script>
+        
+    </body>
+
+</html>

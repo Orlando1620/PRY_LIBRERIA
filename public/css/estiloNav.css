@@ -1,0 +1,298 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Satisfy|Caveat);
+
+.oculto{
+    display: none !important;
+}
+
+.font{
+    font-family: 'Open Sans', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+}
+
+/*nav bar*/
+nav a{
+    color: black;
+}
+
+.usuario-nav a:hover{
+    color: #487252;
+}
+
+.wrapper-nav1{
+    overflow: auto;
+    background-color: #000000
+}
+
+.wrapper-nav1 div{
+    float: left;
+    box-sizing: border-box;
+}
+
+/*mitad del logo*/
+.logo-nav{
+    width: 20%;
+    padding: 10px 10px 0 50px;
+}
+
+/*mitad de nombre de usuario y cerrar sesion*/
+.usuario-nav{
+    width: 80%;
+    padding: 20px 50px 0 5px;
+}
+
+
+.ppic{
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.logo-nav-img{
+    width: 120px;
+}
+
+.usuario-nav div{
+    float: right;
+    font-size: 0.9rem;
+}
+
+.cerrar-sesion{
+    width: 150px;
+    padding: 10px 0;
+    text-align: center; 
+}
+
+.usr-name-cont{
+    border-right: solid 1px silver;
+    width: 70%; 
+}
+
+.usr-name{
+    float: right;
+    width: 150px;
+    text-align: left;
+    padding: 10px 0; 
+}
+
+.avatar-cont{
+    float: right;
+    width: 70px;
+    text-align: center;
+    padding-right: 5px;
+}
+
+.avatar-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+/*opciones del nav bar*/
+.wrapper-nav2{
+    overflow: auto;
+    width: 80%;
+}
+
+.wrapper-nav2 div{
+    float: right;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 1rem;
+    background-color: #000000;
+}
+
+.wrapper-nav2 div:hover{
+    color: #022600;
+}
+
+.wrapper-nav2 a{
+    color: white;
+}
+
+.wrapper-nav2 a:hover{
+    color: #487252;
+    text-decoration: none;
+}
+
+/*select que sustituye las opciones del nav*/
+.select-nav{
+    display: none;
+    margin-bottom: 10px;
+}
+
+.select-nav select{
+    width: 100%;
+    border: none;
+    background-color: #000000;
+    color: white;
+    padding: 10px 10px;
+    font-size: 1.2rem;
+}
+
+/* Navbar container */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial;
+}
+
+/* Links inside the navbar */
+
+
+.login{
+    float: left;
+    font-size: 1rem;
+    overflow: hidden;
+    color: white;
+    padding: 10px 10px;
+}
+
+
+.login a{
+    color: white;
+    font-size: 1rem;
+}
+
+.login a:hover{
+    color: #487252;
+    
+}
+
+
+/* The dropdown container */
+.dropdown, .dropdown1 {
+    overflow: hidden;
+    float: left;
+    font-size: 1rem;
+    overflow: hidden;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn, .dropdown1 .dropbtn {
+    font-size: 1rem; 
+    border: none;
+    outline: none;
+    color: white;
+    padding: 10px 10px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content, .dropdown1:hover .dropdown-content {
+    display: block;
+}
+
+
+@media(max-width: 930px){
+
+    .wrapper-nav2 div{
+        font-size: 0.9rem;
+    }
+
+    .login a{   
+        font-size: 0.9rem;
+    }
+
+    .dropdown .dropbtn {
+        font-size: 0.9rem; 
+    }
+
+}
+
+
+/*cambios para movil*/
+@media(max-width: 851px){
+    /*nav bar*/
+    .login{   
+        width: 30%;
+    }
+
+    .dropdown{
+        width: 40%;
+    }
+
+    .wrapper-nav1 div{
+        padding: 5px 5px;
+    }
+
+    .logo-nav-img{
+        width: 100px;
+    }
+
+    .usuario-nav a{ 
+        font-size: 0.9rem;
+    }
+
+    .cerrar-sesion{
+        width: 40%;
+    }
+    
+    .usr-name-cont{
+        width: 60%; 
+    }
+    
+    .usr-name{
+        width: 75%;
+    }
+
+    .avatar-img{
+        display: none;
+    }
+
+    .wrapper-nav2{
+        display: none;
+    }
+
+    .select-nav{
+        display: block;
+    }
+    
+}
+
+

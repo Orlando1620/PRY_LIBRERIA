@@ -1,0 +1,86 @@
+.titulo{
+    color: #022600;
+    font-size: 100px;
+  }
+  .infoUno{
+    margin-bottom: 10px;
+  }
+  .infoLibreria{
+    padding-bottom: 10px;
+    color: #022600;
+  }
+  .acomodarBoton{
+    float: right;
+  }
+  .acomodarInformacion{
+    padding-bottom: 15px;
+  }
+
+.button{
+    border: none;
+    padding: 10px;
+    padding: 10px 40px;
+    margin-top: 30px;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+.button:hover{
+    transition: 0.4s;
+    color: white;
+    background-color: 487252;
+    cursor: pointer;
+}
+
+#map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+}
+
+.search-cont{
+    margin: 10px 20% 10px 20%;
+}
+
+.search-box{
+    width: 290px;
+    padding: 10px 10px;
+    font-size: 1rem;
+}
+
+.search-btn{
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    color: black;
+    background-color: #48725231;
+    border-radius: 10px;
+}
+
+.search-btn:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.table-cont{
+    margin: 10px 20% 50px 20%;
+}
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}

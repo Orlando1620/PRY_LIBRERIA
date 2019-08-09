@@ -1,0 +1,26 @@
+.table-cont{
+    margin: 10px 9.5% 50px 9.5%;
+    height: 400px;
+    overflow: scroll;
+}
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}

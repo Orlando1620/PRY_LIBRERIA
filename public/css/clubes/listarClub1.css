@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+.oculto{
+    display: none;
+}
+
+.main-title{
+    padding-left: 9.5%;
+    color: #022600;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+.filtros{
+    padding: 0 9.5%;
+}
+
+.search-box{
+    width: 45%;
+    padding: 10px 10px;
+    margin: 10px 3% 10px 0;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
+
+.selectFiltrar{
+    width: 24%;
+    padding: 10px 10px;
+    margin: 10px 3% 10px 0;
+    font-size: 1rem;
+    
+    border: none;
+    background-color: #48725231;
+}
+
+#tipo{
+    margin: 10px 0 10px 0;
+}
+
+.submit{
+    text-align: center;
+    padding: 10px 30px;
+    margin: 20px 40% 10px 40%;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.submit:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 100%;
+}
+
+

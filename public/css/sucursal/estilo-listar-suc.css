@@ -1,0 +1,48 @@
+.search-cont{
+    margin: 10px 20% 10px 20%;
+}
+
+.search-box{
+    width: 290px;
+    padding: 10px 10px;
+    font-size: 1rem;
+}
+
+.search-btn{
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    color: black;
+    background-color: #48725231;
+    border-radius: 10px;
+}
+
+.search-btn:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.table-cont{
+    margin: 10px 20% 50px 20%;
+}
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}

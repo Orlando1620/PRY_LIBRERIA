@@ -1,0 +1,363 @@
+
+
+#contenedor_img_BookSale{
+    border-bottom: 2px solid #487252;
+}
+
+#contenedor_img_BookSale img{
+    width: 100%;
+    margin: 0 auto;
+    height: 70%;
+}
+
+#title_lmv{
+    padding-bottom: 50px;
+}
+
+#lmv{
+    font-size: 45px;
+    color: #487252;
+    text-align: center;
+}
+
+#number_1{
+    padding-top: 10px;
+    padding-left: 45px;
+    text-align: left;
+    color: #487252;
+}
+
+#librosMasVendidos{
+    height: 65%;
+}
+
+#libroNumberOne{
+    width: 25%;
+    height: 90%;
+    float: left;
+}
+
+#libroNumberOne img{
+    width: 75%;
+    height: 90%;
+    padding-left: 45px;
+    float: left;
+}
+
+#datosLibroNumber1{
+    position: relative;
+    width: 25%;
+    float: left;
+}
+
+#datosLibroNumber1 p{
+    font-size: 25px;
+}
+
+#listaLibros{
+    position: relative;
+    width: 50%;
+    float: left;
+    height: 90%;
+}
+
+#bloque1{
+    float: left;
+    width: 80%;
+}
+
+#bloque2{
+    float: left;
+    width: 20%;
+}
+
+.libro1{
+    float: left;
+    height: 27%;
+    padding-right: 50px;
+}
+
+.libro2{
+    float: right;
+    height: 27%;
+    padding-right: 50px;
+}
+
+.acomodarLibro1{
+    width: 100%;
+    float: left;
+
+}
+
+.acomodarLibro2{
+    padding-top: 20px;
+    width: 100%;
+    float: left;
+}
+
+
+.acomodarLibro3{
+    padding-top: 20px;
+    width: 100%;
+    float: left;
+}
+
+.acomodarLibro4{
+    padding-top: 20px;
+    width: 100%;
+    float: right;
+}
+
+
+.acomodarLibro5{
+    padding-top: 20px;
+    width: 100%;
+    float: right;
+}
+
+.acomodarDatosLibro{
+    padding-top: 35px;
+}
+
+#lista_1, #lista_2{
+    width: 100%;
+    height: 20%;
+    
+}
+
+#lista_1 p, #lista_2 p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+
+.tamaNo_space_div{
+    float: left;
+    padding-left: 50px;
+    width: 20%;
+}
+
+.tamaNo_space_div p{
+    font-size: 11px;
+}
+.tamaNo_space_img{
+    width: 40%;
+    height: 90%;
+}
+
+.video-cont{
+    text-align: center;
+}
+
+.video{
+    width: 500px;
+    height: 350px;
+}
+
+@media(max-width: 1500px){
+    #libroNumberOne img{
+        width: auto;
+    }
+}
+
+@media(max-width: 1250px){
+
+    #libroNumberOne{
+        width: auto;
+    }
+    #libroNumberOne img{
+        width: auto;
+    }
+    #datosLibroNumber1{
+        width: auto;
+        padding-left: 20px;
+    }
+
+    #listaLibros{
+        width: 45%;
+    }
+
+    
+    #lista_1_Libro1, #lista_1_Libro2, #lista_1_Libro3, #lista_1_Libro4, #lista_1_Libro5, #lista_2_Libro6, #lista_2_Libro7, #lista_2_Libro8, #lista_2_Libro9, #lista_2_Libro10{
+        width: 25%;
+    }
+
+    #lista_1_Libro1 img, #lista_1_Libro2 img, #lista_1_Libro3 img, #lista_1_Libro4 img, #lista_1_Libro5 img, #lista_2_Libro6 img, #lista_2_Libro7 img, #lista_2_Libro8 img, #lista_2_Libro9 img, #lista_2_Libro10 img{
+        width: auto;
+        height: 120%;
+    }
+
+    #lista_1_Libro1 p, #lista_1_Libro2 p, #lista_1_Libro3 p, #lista_1_Libro4 p, #lista_1_Libro5 p, #lista_2_Libro6 p, #lista_2_Libro7 p, #lista_2_Libro8 p, #lista_2_Libro9 p, #lista_2_Libro10 p{
+        font-size: 15px;
+    }
+}
+
+@media(max-width: 1100px){
+    #libroNumberOne{
+        width: auto;
+    }
+    #libroNumberOne img{
+        width: auto;
+    }
+    #datosLibroNumber1{
+        width: auto;
+        padding-left: 20px;
+    }
+
+    #listaLibros{
+        width: 45%;
+    }
+}
+
+@media(max-width: 1050px){
+    #libroNumberOne, #datosLibroNumber1{
+        width: 50%;
+    }
+
+    #libroNumberOne img{
+        width: auto;
+        float: right;
+        padding-right: 20%
+    }
+
+    #listaLibros{
+        width: 100%;
+        float: left;
+    }
+
+    #bloque1{
+        width: 50%;
+        height: 150%;
+        padding-right: 70px;
+    }
+
+    #bloque2{
+        width: 50%;
+        height: 150%;
+        padding-left: 70px;
+    }
+
+    #librosMasVendidos{
+        border-bottom: none;
+    }
+
+    #title_lmv{
+        width: 100%;
+        border-top: 2px solid #487252;
+        margin-top: 55%;
+    }
+
+}
+
+
+@media(max-width: 1010px){
+    #libroNumberOne, #datosLibroNumber1{
+        width: 50%;
+    }
+
+    #libroNumberOne img{
+        width: auto;
+        float: right;
+        padding-right: 20%
+    }
+
+    #listaLibros{
+        width: 100%;
+        float: left;
+    }
+
+    #bloque1{
+        width: 50%;
+        height: 150%;
+        padding-right: 70px;
+    }
+
+    #bloque2{
+        width: 50%;
+        height: 150%;
+        padding-left: 70px;
+    }
+
+    #librosMasVendidos{
+        border-bottom: none;
+    }
+
+    #title_lmv{
+        width: 100%;
+        border-top: 2px solid #487252;
+        margin-top: 55%;
+    }
+
+}
+
+
+@media(max-width: 970px){
+    #listaLibros{
+        width: 100%;
+        float: left;
+        height: auto;
+        border-bottom: 2px solid #487252;
+    }
+
+    #bloque1{
+        width: 50%;
+    }
+
+    #bloque2{
+        width: 50%;
+    }
+
+    #title_lmv{
+        border-top: none;
+    }
+}
+
+@media(max-width: 890px){
+    #listaLibros{
+        float: left;
+        width: 100%;
+    }
+
+    #bloque1{
+        width: 50%;
+    }
+
+    #bloque2{
+        width: 50%;
+    }
+
+}
+
+@media(max-width: 800px){
+
+    #lista_1_Libro1, #lista_1_Libro2, #lista_1_Libro3, #lista_1_Libro4, #lista_1_Libro5, #lista_2_Libro6, #lista_2_Libro7, #lista_2_Libro8, #lista_2_Libro9, #lista_2_Libro10{
+        width: 33.3%;
+    }
+
+    #lista_1_Libro1 img, #lista_1_Libro2 img, #lista_1_Libro3 img, #lista_1_Libro4 img, #lista_1_Libro5 img, #lista_2_Libro6 img, #lista_2_Libro7 img, #lista_2_Libro8 img, #lista_2_Libro9 img, #lista_2_Libro10 img{
+        height: 135%;
+        width: auto;
+        padding-left: 20px;
+    }
+
+    #lista_1_Libro1 p, #lista_1_Libro2 p, #lista_1_Libro3 p, #lista_1_Libro4 p, #lista_1_Libro5 p, #lista_2_Libro6 p, #lista_2_Libro7 p, #lista_2_Libro8 p, #lista_2_Libro9 p, #lista_2_Libro10 p{
+        padding-left: 20px;
+    }
+}
+
+@media(max-width: 700px){
+
+    #lista_1_Libro1, #lista_1_Libro2, #lista_1_Libro3, #lista_1_Libro4, #lista_1_Libro5, #lista_2_Libro6, #lista_2_Libro7, #lista_2_Libro8, #lista_2_Libro9, #lista_2_Libro10{
+        width: 50%;
+    }
+
+    #lista_1_Libro1 img, #lista_1_Libro2 img, #lista_1_Libro3 img, #lista_1_Libro4 img, #lista_1_Libro5 img, #lista_2_Libro6 img, #lista_2_Libro7 img, #lista_2_Libro8 img, #lista_2_Libro9 img, #lista_2_Libro10 img{
+        height: 160%;
+        width: auto;
+        padding-left: 50px;
+    }
+
+    #lista_1_Libro1 p, #lista_1_Libro2 p, #lista_1_Libro3 p, #lista_1_Libro4 p, #lista_1_Libro5 p, #lista_2_Libro6 p, #lista_2_Libro7 p, #lista_2_Libro8 p, #lista_2_Libro9 p, #lista_2_Libro10 p{
+        padding-left: 50px;
+        font-size: 18px;
+    }
+}

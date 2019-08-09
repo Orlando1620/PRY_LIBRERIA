@@ -1,0 +1,1 @@
+document.getElementById("sucursales").addEventListener("change", fillInventario);

@@ -1,0 +1,70 @@
+#espacioImagen{
+    width: 25%;
+    float: left;   
+}
+
+#datosAutor{
+    float: left;
+    width: 75%;
+}
+
+#espacioImagen img{
+    padding-top: 35px;
+}
+
+#nomAutor, #fechaNaci, #age{
+    border-bottom: 2px solid #487252;
+}
+
+#bio{
+    width: 90%;
+}
+#bio p{
+    text-align: left;
+    text-align: justify;
+    font-size: 21px;
+}
+
+#librosAutor span{
+    display: block;
+}
+
+.table-cont{
+    margin: 10px 20% 50px 20%;
+}
+
+.table-cont img{
+    width: 200px;
+}
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc span{
+    display: block;
+    font-size: 1.5rem;
+}
+
+.lista-suc i{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
