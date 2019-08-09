@@ -2,7 +2,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
-  <link rel="stylesheet" type="text/css" href="./css/sucursal/estilo-perfilSuc.css" />
+  <link rel="stylesheet" type="text/css" href="./css/sucursal/estilo-perfilSuc.css"/>
   <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
   <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -58,8 +58,14 @@
     <div class="wrapper-cont">
       <!--Form del registro-->
       <div class="wrapper-form">
-        <div class="titulo" id="nombreLibreria">
-          <h2 id="titulo"></h2>
+        <div class="titulo infoLibreria" id="nombreLibreria">
+          <div>
+            <h2 id="titulo"></h2>
+          </div>
+          <div>
+            <a onclick="eliminar()"><i class="fas fa-trash-alt fa-lg mod-i del"></i></a>
+            <a><i class="fas fa-pencil-alt fa-lg mod-i edit"></i></a>
+          </div>
         </div>
 
         <div class="infoLibreria">
@@ -79,7 +85,7 @@
           <h1 class="main-title">Libros</h1>
         </div>
 
-        <div>
+        <div class="search-cont">
           <input type="text" placeholder="Nombre del libro" class="search-box" id="buscar" onkeyup="filtrar()" />
         </div>
 
@@ -134,6 +140,8 @@
   <script src="js/sucursal/perfil/googleMaps.js"></script>
   <script src="js/libro/listarLibrosSuc.js" charset="utf-8"></script>
   <script src="js/sucursal/perfil/perfilSucursal.js"></script>
+  <script src="js/sucursal/sucursalServicios.js"></script>
+  <script src="js/sucursal/sucursalController.js"></script>
   <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap" async defer></script>
   <script src="js/log-nav.js"></script>
