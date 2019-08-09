@@ -4,98 +4,112 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./css/libreria/listar/listar-filtrarLibreria.css" />
     <link rel="stylesheet" type="text/css" href="./css/libreria/listar/estiloCont.css" />
-    <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 
 <body class="font">
     <nav>
-            <div class="wrapper-nav1">
-                <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
-                <div class="usuario-nav">
-                    <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+        <div class="wrapper-nav1">
+            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
+            <div class="usuario-nav">
+                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
 
-                    <div class="dropdown" id="dropdown">
-                        <button class="dropbtn" >
-                            <label id="usrName"></label> 
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="#" id="perfil">Perfil</a>
-                            <a href="#" id="admin" class="oculto">Administrar</a>
-                            <a href="#" id="c-r">Cerrar Sesión</a>
-                        </div>
-                    </div> 
+                <div class="dropdown" id="dropdown">
+                    <button class="dropbtn">
+                        <label id="usrName"></label>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="perfil">Perfil</a>
+                        <a href="#" id="c-r">Cerrar Sesión</a>
+                    </div>
+                </div>
 
-                    <div class="wrapper-nav2">
-                        <div><a id="nav-libros">Libros</a></div>
-                        <div><a id="nav-autores">Autores</a></div>
-                        <div><a id="nav-librerias">Librerías</a></div>
-                        <div><a id="nav-club">Clubes de Lectura</a></div>
-                        <div><a id="nav-promo">Promociones</a></div>
-                        
+                <div class="wrapper-nav2">
+                    <div><a id="nav-libros">Libros</a></div>
+                    <div><a id="nav-autores">Autores</a></div>
+                    <div><a id="nav-librerias">Librerías</a></div>
+                    <div><a id="nav-club">Clubes de Lectura</a></div>
+                    <div><a id="nav-promo">Promociones</a></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="select-nav">
+            <select id="select-nav">
+                <option>Más</option>
+                <option value="1">Libros</option>
+                <option value="2">Autores</option>
+                <option value="3">Librerías</option>
+                <option value="4">Clubes de Lectura</option>
+                <option value="5">Promociones</option>
+            </select>
+        </div>
+    </nav>
+
+    <div class="wrapper-form">
+
+        <div class="form-full">
+            <div class="infoLibreria">
+                <h1 class="titulo_info_libria">Librerías</h1>
+            </div>
+
+            <div class="form-full">
+                <div class="search-cont form-mitad">
+                    <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar"
+                        onkeyup="filtrarLib()" />
+                </div>
+
+                <div class="form-mitad">
+                    <h2 class="titulo_localizacion">Localización</h2>
+                </div>
+            </div>
+            <div class="form-mitad">
+                <div class="table-cont">
+                    <div class="scrollit">
+                        <table class="lista-suc font" id="lista-suc">
+                            <thead>
+                                <tr class="table-titles">
+                                    <td colspan="1"><a>Nombre</a></td>
+                                    <td colspan="1"><a>Dirección</a></td>
+                                    <td colspan="1"><a>Teléfono</a></td>
+                                </tr>
+                            </thead>
+                        </table>
+
                     </div>
                 </div>
             </div>
 
-            
 
-            <div class="select-nav">
-                <select id="select-nav">
-                    <option>Más</option>
-                    <option value="1">Libros</option>
-                    <option value="2">Autores</option>
-                    <option value="3">Librerías</option>
-                    <option value="4">Clubes de Lectura</option>
-                    <option value="5">Promociones</option>
-                </select>
+            <div class="infoUno" id="numeroLibreria">
+                <h3 id="numeroLibreria"></h3>
             </div>
-    </nav>
 
-    <div class="wrapper-form">
-        <div class="infoLibreria">
-            <h1>Librerías</h1>
-        </div>
-        <div class="infoUno" id="numeroLibreria">
-            <h3 id="numeroLibreria"></h3>
-        </div>
-
-        <div class="infoLibreria" id="direccionLibreria">
-            <h3 id="direccionLibreria"></h3>
-        </div>
+            <div class="infoLibreria" id="direccionLibreria">
+                <h3 id="direccionLibreria"></h3>
+            </div>
 
 
-        <div class="form-full">
-            <h3>Localización</h3>
-            <div id="map"></div>
+
+            <div id="container_mapa" class="form-mitad">
+                <div id="map"></div>
+            </div>
+
+
         </div>
+
+
     </div>
 
-    <div class="wrapper-form">
-        <div class="form-full">
-            <h3>Librerías</h3>
-        </div>
-    </div>
 
-    <div class="search-cont">
-        <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar" onkeyup="filtrarLib()" />
-    </div>
-
-    <div class="table-cont">
-        <table class="lista-suc font" id="lista-suc">
-            <thead>
-                <tr class="table-titles">
-                    <td colspan="1"><a>Nombre</a></td>
-                    <td colspan="1"><a>Dirección</a></td>
-                    <td colspan="1"><a>Teléfono</a></td>
-                </tr>
-            </thead>
-        </table>
-
-    </div>
 
     </div>
 
