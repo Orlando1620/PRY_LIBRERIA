@@ -1,54 +1,74 @@
 var Libreria = require('./libreria.model');
 var mongoose = require('mongoose');
 
-module.exports.listarLibrerias = function(req, res){
-  Libreria.find().sort({nombreComercial: 'asc'}).then(
-      function(libreria){
-          res.send(libreria);
-      }
+module.exports.listarLibrerias = function (req, res) {
+  Libreria.find().sort({ nombreComercial: 'asc' }).then(
+    function (libreria) {
+      res.send(libreria);
+    }
   )
 };
 
-module.exports.obtener_libreria = function(req, res){
-  Libreria.find({nombreComercial : new RegExp(req.body.nombreComercial, "i")}).then(function(libreria){
-      if(libreria){
-          res.send(libreria);
-      }else{
-          res.send(false); 
-      }
+module.exports.obtener_libreria = function (req, res) {
+  Libreria.find({ nombreComercial: new RegExp(req.body.nombreComercial, "i") }).then(function (libreria) {
+    if (libreria) {
+      res.send(libreria);
+    } else {
+      res.send(false);
+    }
   })
 };
 
-module.exports.libById = function(req, res) {
+module.exports.libById = function (req, res) {
   var admin_id = req.body.admin_id;
-  Libreria.findOne({admin_id: admin_id}).exec()
+  Libreria.findOne({ admin_id: admin_id }).exec()
     .then(
-      function(result){
+      function (result) {
         console.log(result);
         res.send(result);
       }
     )
     .catch(
-      function(err){
+      function (err) {
         console.log(err);
       }
     );
 }
 
-module.exports.buscarLibreria = function(req, res) {
+module.exports.buscarLibreria = function (req, res) {
   var nombreComercial = req.body.nombreLibreria;
-  Libreria.findOne({nombreComercial:nombreComercial}).exec()
-  .then(
-    function(result){
-      console.log("lib"+result);
-      res.send(result);
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
-} 
+  Libreria.findOne({ nombreComercial: nombreComercial }).exec()
+    .then(
+      function (result) {
+        console.log("lib" + result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+}
 
-  
+
+
+//terminar el modificar
+module.exports.modificarLibreria = function (req, res) {
+  libreria.find({nombreComercial: nombreComercial, nombreFantasia: nombreFantasia,
+    latitud: latitud, longitud: longitud, provincia: provincia, canton: canton, distrito: distrito,
+    direccion: direccion
+  })
+
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+}

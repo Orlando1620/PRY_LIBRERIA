@@ -1,14 +1,14 @@
 'use strict';
 
-if(sessionStorage.getItem("nombre") == null){
-    document.getElementById("usrName").innerHTML = "Iniciar Sesión";
-    document.getElementById("c-r").innerHTML = "Registrarse";
+// if(sessionStorage.getItem("nombre") == null){
+//     document.getElementById("usrName").innerHTML = "Iniciar Sesión";
+//     document.getElementById("c-r").innerHTML = "Registrarse";
 
-    document.getElementById("usrName").href = "index.html";
-    document.getElementById("c-r").href = "registrarUC.html";
-} else {
-    window.location.href = "homePage.html";
-}
+//     document.getElementById("usrName").href = "index.html";
+//     document.getElementById("c-r").href = "registrarUC.html";
+// } else {
+//     window.location.href = "homePage.html";
+// }
 
 var id_alert_error = "alert";
 var id_alert_long = "alert_long";
@@ -29,7 +29,18 @@ async function login() {
                 sessionStorage.setItem("nombre", user.nombre);
                 sessionStorage.setItem("id", user._id);
 
-                window.location.href = ("homePage.html");
+                switch(sessionStorage.getItem("tipo")){
+                    case "usuarioCliente":
+                        window.location.href = ("homePage.html");
+                        break;
+                    case "AdminLib":
+                        window.location.href = ("perfil-lib-admin.html");
+                        break;
+                    case "adminGlobal":
+                        window.location.href = ("listar-usuarios.html");
+                        break;
+                }
+                
             } else {
                 mostrarMsg(id_alert_cred);
             }
@@ -38,6 +49,10 @@ async function login() {
         validaContrasena(document.getElementById('contraseNa'));
         //mostrarMsg("Los campos son requeridos");
     }
+}
+
+function registro(){
+    window.location.href= ("RegistrarAdminLib_Lib.html");
 }
 
 function validaCorreo(event) {

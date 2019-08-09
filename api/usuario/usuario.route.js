@@ -18,6 +18,10 @@ router.post('/filtrarTipo', function (req, res) {
     usuarioApi.filtrarTipo(req, res);
 });
 
+router.post('/recuperarContrasena', function (req, res) {
+    usuarioApi.recuperarContrasena(req, res);
+});
+
 
 
 module.exports = router;

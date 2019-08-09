@@ -2,13 +2,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./css/libreria/listar/listar-filtrarLibreria.css" />
-    <link rel="stylesheet" type="text/css" href="./css/libreria/listar/estiloCont.css" />
+
+    <link rel="stylesheet" type="text/css" href="./css/usuario/recuperar-contrasena.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 </head>
 
 <body class="font">
@@ -53,57 +54,30 @@
             </select>
         </div>
     </nav>
+    
+    <div class="main-wrapper">
 
-    <div class="wrapper-form">
-
-        
-            <div class="form-full">
-                <h1 class="titulo_info_libria">Librerías</h1>
-            </div>
-            <div class="form-mitad">
-                <div class="filtros">
-                    <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar" onkeyup="filtrarLib()" />
+        <div class="wrapper-cont">
+            <h1 class="main-title">Recuperar contraseña</h1>
+            <form class="wrapper-form" id="form">
+                <div class="form-full">
+                    <h3>Correo electrónico</h3>
+                    <p>Ingrese el correo electrónico asociado a su cuenta de Lee+.</p>
+                    <input type="text" id="correo" class="input" required>
                 </div>
-                <div class="table-cont">
-                    <div class="scrollit">
-                        <table class="lista-suc font" id="lista-suc">
-                            <thead>
-                                <tr class="table-titles">
-                                    <td colspan="1"><a>Nombre</a></td>
-                                    <td colspan="1"><a>Dirección</a></td>
-                                    <td colspan="1"><a>Teléfono</a></td>
-                                </tr>
-                            </thead>
-                        </table>
-
-                    </div>
+                <div class="form-btn">
+                    <button class="submit" onclick="recCont(event)">Enviar</button>
                 </div>
+            </form>
+            <div id="alert" class="alert oculto">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <label id="msg"></label>
             </div>
-
-
-            <div class="infoUno" id="numeroLibreria">
-                <h3 id="numeroLibreria"></h3>
+            <div id="alert-success" class="alert-success oculto">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <label id="msg-success"></label>
             </div>
-
-            <div class="infoLibreria" id="direccionLibreria">
-                <h3 id="direccionLibreria"></h3>
-            </div>
-
-
-
-            <div id="container_mapa" class="form-mitad">
-                    <div class="titulo_localizacion-cont">
-                        <h2 class="titulo_localizacion">Localización</h2>                        
-                    </div>
-                <div id="map"></div>
-            </div>
-
-
         </div>
-
-
-
-
 
     </div>
 
@@ -136,13 +110,13 @@
         </div>
 
     </footer>
-    <script src="js/libreria/filtrar-listar/googleMaps.js"></script>
-    <script src="js/libreria/filtrar-listar/controller.filtrar-listar.js"></script>
-    <script src="js/libreria/filtrar-listar/servidor.filtrar-listar.js"></script>
+
+    <script src="js/comun.js"></script>
+    <script src="js/usuario/usuarioServicios.js"></script>
+    <script src="js/usuario/usuarioController.js"></script>
     <script src="js/log-nav.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
-        async defer></script>
+
+
 </body>
 
 </html>
