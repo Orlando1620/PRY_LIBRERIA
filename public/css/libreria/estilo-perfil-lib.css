@@ -8,6 +8,22 @@
   padding-bottom: 20px;
 }
 
+#icons{
+    padding-top: 35px;
+}
+
+#pencil, #trash{
+    float: right;
+}
+#trash{
+    color: rgb(223, 80, 80);
+}
+
+#pencil{
+    color: #487252;
+    padding-right: 20px;
+}
+
 .lib-icon{
     padding-right: 10px;
     color: #487252;
