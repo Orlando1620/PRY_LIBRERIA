@@ -1,11 +1,6 @@
 var Inventario = require('./inventario.model');
 var mongoose = require('mongoose');
 
-
-
-/**
- * Extrae todos los autores de la base de datos
- */
 module.exports.listarInventario = function(req, res) {
   var nombreSuc = req.body.nombreSuc;
   Inventario.find({nombreSuc: nombreSuc}).sort({libro: 'asc'})
@@ -22,9 +17,6 @@ module.exports.listarInventario = function(req, res) {
     );
 }
   
-/**
- * Registra un nuevo autor en la base de datos
- */
 module.exports.registrarInventario = function(req, res) {
   var nombreSuc = req.body.nombreSuc;
   var isbn = req.body.isbn;
@@ -70,4 +62,11 @@ module.exports.listarPerfilLibro = function(req, res) {
         console.log(err);
       }
     );
+}
+
+module.exports.eliminarInventario = async function(req, res) {
+  await Inventario.deleteMany(
+    { nombreSuc: req.body.nombreSuc }
+  );
+  res.json({result: "exito"});
 }

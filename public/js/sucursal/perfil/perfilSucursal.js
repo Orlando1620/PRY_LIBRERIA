@@ -1,4 +1,5 @@
-//Fetch para listar autores
+var idSuc;
+var nombreSuc;
 function perfilSucursal(pnombreSucursal){
   var data ={
     nombreSucursal : pnombreSucursal
@@ -18,6 +19,8 @@ fetch('/sucursal/visualizar', {
   )
   .then(
       function(json){
+        idSuc = json['_id'];
+        nombreSuc = json['nombreSucursal'];
         document.getElementById('titulo').innerHTML = json['nombreSucursal'];
         document.getElementById('numeroLibreria').innerHTML += json['telefono'];
         document.getElementById('direccionLibreria').innerHTML += json['provincia'] + ", " + json['canton'] + ", "+ json['distrito'] + ", "+ json['direccion'] + ".";

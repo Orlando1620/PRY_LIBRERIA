@@ -121,3 +121,10 @@ module.exports.listarSucursalTodo = function(req, res) {
     }
   );
 }
+
+module.exports.eliminarSucursal = async function(req, res) {
+  await Sucursal.deleteOne(
+    { _id: req.body.id }
+  )
+  res.json({result: "exito"});
+}
