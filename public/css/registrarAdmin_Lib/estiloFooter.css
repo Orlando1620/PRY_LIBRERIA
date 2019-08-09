@@ -1,0 +1,55 @@
+footer{
+    background-color: #48725231;
+    padding: 10px 50px;
+    overflow: auto;
+}
+
+h4{
+    margin: 0;
+    color: #022600;
+}
+
+p{
+    margin: 0;
+    margin-top: 5px;
+}
+
+footer i{
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+footer a{
+    margin-top: 10px;
+    color: black;
+}
+
+footer a:hover{
+    margin-top: 10px;
+    color: #022600;
+}
+
+.logo{
+    width: 150px;
+    padding: 10px 0;
+}
+
+.redes{
+    margin-top: 50px;
+    padding: 10px 5px 0 0;
+}
+
+.footer-cont{
+    float: left;
+    width: 15%;
+    margin: 0 50px;
+    padding: 20px 0;
+}
+
+@media(max-width: 750px){
+
+    .footer-cont{
+        width: 100%;
+    }
+    
+}

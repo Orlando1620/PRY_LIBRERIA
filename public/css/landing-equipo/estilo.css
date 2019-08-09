@@ -1,0 +1,312 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Satisfy|Caveat);
+
+.font{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.font-title{
+    font-family: 'Caveat', cursive;
+}
+
+.titles{
+    padding-top: 140px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.titles h1{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #47458C;
+}
+
+p{
+    margin: 0;
+}
+
+.no-margin{
+    margin: 0;
+}
+
+.nav{
+    padding: 15px 0;
+    overflow: auto;
+    background-color: #F2C335;
+}
+
+.logo-nav-cont{
+    float: left;
+    width: 25%;
+    box-sizing: border-box;
+}
+
+.logo-nav{
+    width: 140px;
+    padding-left: 50px;
+}
+
+.proyectos{
+    padding-top: 10px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.logo-proyectos{
+    width: 300px;
+}
+
+.nav-menu{
+    float: left;
+    width: 75%;
+    padding-top: 20px;
+    padding-right: 50px;
+    text-align: right;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+
+}
+
+.nav-menu ul{
+    list-style-type: none;
+}
+
+.nav-menu li{
+    display: inline;
+    padding-left: 20px;
+}
+
+.wrapper-mv{
+    overflow: auto;
+}
+
+.wrapper-mv div{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.wrapper-mv h1{
+    text-align: center;
+}
+
+.wrapper-mv h1{
+    font-size: 3rem;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.wrapper-mv p{
+    font-size: 1.8rem;
+}
+
+.mv-hl{
+    padding-top: 100px;
+    padding-left: 70px;
+}
+
+.mv-hr{
+    padding-top: 100px;
+    padding-right: 70px;
+}
+
+.mv-pr{
+    padding-top: 50px;
+    padding-right: 80px;
+    padding-left: 80px;
+    text-align: justify;
+}
+
+.wrapper-v{
+    overflow: auto;
+}
+
+.sub-wrapper-v{
+    float: left;
+    width: 100%;
+}
+
+.sub-wrapper-v p{
+    font-size: 1rem;
+    
+}
+
+.sub-wrapper-v div{
+    float: left;
+    width: 20%;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.i-cont{
+    float: left;
+    width: 100% !important;
+}
+
+.sub-wrapper-v i{
+    margin-top: 20px;
+    color: #47458C;
+}
+
+.wrapper-equipo{
+    overflow: auto;
+}
+
+.sub-wrapper-info{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.sub-wrapper-info i{
+    padding-right: 10px; 
+    padding-top: 10px;
+    color: #47458C; 
+}
+
+.info-cont-trio{
+    float: left;
+    width: 23.33%;
+    box-sizing: border-box;
+    margin: 0 5%;
+    box-shadow: 5px 10px 8px rgb(199, 199, 199);
+    text-align: left;
+    padding: 10px 10px;
+}
+
+.info-cont-pareja1{
+    float: left;
+    width: 23.33%;
+    box-sizing: border-box;
+    margin: 50px 7.5% 0 16.665%;
+    box-shadow: 5px 10px 8px rgb(199, 199, 199);
+    text-align: left;
+    padding: 10px 10px;
+}
+
+.info-cont-pareja2{
+    float: left;
+    width: 23.33%;
+    box-sizing: border-box;
+    margin: 50px 16.665% 0 7.5%;
+    box-shadow: 5px 10px 8px rgb(199, 199, 199);
+    text-align: left;
+    padding: 10px 10px;
+}
+
+.info-nombre{
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0;
+    font-size: 1.2rem;
+}
+
+footer{
+    background-color: #F2C335;
+    padding: 10px 50px;
+    overflow: auto;
+}
+
+h4{
+    margin: 0;
+    color: #000000;
+}
+
+p{
+    margin: 0;
+    margin-top: 5px;
+}
+
+footer i{
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+footer i:hover{
+    color: #47458C;
+
+}
+
+footer a{
+    margin-top: 10px;
+    color: black;
+}
+
+footer a:hover{
+    margin-top: 10px;
+    color: #47458C;
+}
+
+.logo{
+    width: 150px;
+    padding: 10px 0;
+}
+
+.redes{
+    margin-top: 50px;
+    padding: 10px 5px 0 0;
+}
+
+.footer-cont{
+    float: left;
+    width: 15%;
+    margin: 0 50px;
+    padding: 20px 0;
+}
+
+
+@media(max-width: 1000px){
+
+    .info-cont-trio{
+        width: 40%;
+        margin: 0 5%;
+    }
+
+    .info-cont-pareja1{
+        width: 40%;
+        margin: 0 5%;
+    }
+    
+    .info-cont-pareja2{
+        width: 40%;
+        margin: 0 5%;
+    }
+
+    
+    .sub-wrapper-v div{
+        width: 100%;
+    }
+    
+}
+
+
+@media(max-width: 750px){
+
+    .info-cont-trio{
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .info-cont-pareja1{
+        width: 90%;
+        margin: 0 5%;
+    }
+    
+    .info-cont-pareja2{
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .footer-cont{
+        width: 100%;
+    }
+    
+}

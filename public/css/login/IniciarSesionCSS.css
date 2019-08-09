@@ -1,0 +1,145 @@
+body{
+    margin: 0%;
+}
+#container{
+    overflow: auto;
+}
+
+#Contenedor1, #Contenedor2{
+    float: left;
+    width: 50%;
+}
+
+#loginCaja{
+    width: 60%;
+    padding-left: 20%;
+}
+
+#loginCaja h1{
+    color: #487252;
+}
+
+#Contenedor3{
+    text-align: center;
+    padding-top: 50px;
+    margin-top: 8px;
+}
+
+.label_1{    
+    float: left;
+    padding-top: 35px;
+    padding-right: 8.5%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.label_2{
+    float: left;
+    padding-top: 60px;
+    padding-right: 12%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.Correo{
+    width: 100%;
+    
+    border: 1px #487252 solid;
+    padding: 10px 10px;
+    font-size: 1rem;
+}
+
+#info{
+    width: 60%;
+    padding-top: 1%;
+    padding-left: 20%;
+    text-align: justify;
+}
+
+#info h3{
+    color: #487252;
+}
+
+
+.ContraseNa{
+    width: 100%;
+    
+    border: 1px #487252 solid;
+    padding: 10px 10px;
+    font-size: 1rem;
+}
+
+
+.button{
+    border: none;
+    padding: 10px;
+    padding: 10px 40px;
+    margin-top: 30px;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+.button:hover{
+    transition: 0.4s;
+    color: white;
+    background-color: 487252;
+    cursor: pointer;
+}
+
+#botonReg{
+    width: 98%;
+    text-align: center;
+}
+
+#IniSe:hover{
+    text-decoration: underline;
+}
+
+
+#Reg:hover{
+    text-decoration: underline;
+}
+
+
+
+::placeholder{
+    font-size: 18px; 
+}
+
+.a_Olv{
+    display: block;
+    padding-top: 10px;
+}
+.a_Olv:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+@media(max-width: 1050px){
+    #Caja{
+        width: 70%;
+        padding: 0 15%;
+    }
+    #Contenedor1, #Contenedor2{
+        width: 100%;
+    }
+    #info{
+        padding-top: 7%;
+        width: 60%;
+    }
+}
+
+
+@media(max-width: 750px){
+    #Caja{
+        width: 70%;
+        padding: 0 15%;
+    }
+    .button{
+        margin: 0 25px 30px 25px;
+        
+    }
+    #botonReg{
+        padding-top: 7%;
+    }
+}
+
+

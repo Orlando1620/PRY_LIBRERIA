@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/autor/perfilAutor/estiloCont.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
+    <link rel="stylesheet" href="./css/autor/perfilAutor/visualizaePerfilAutor.css">
+    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body class="font">
+    <nav>
+        <div class="wrapper-nav1">
+            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+            <div class="usuario-nav">
+                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                <div class="dropdown" id="dropdown">
+                    <button class="dropbtn" >
+                        <label id="usrName"></label> 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="perfil">Perfil</a>
+                        <a href="#" id="admin" class="oculto">Administrar</a>
+                        <a href="#" id="c-r">Cerrar Sesión</a>
+                    </div>
+                </div> 
+
+                <div class="wrapper-nav2">
+                    <div><a id="nav-libros">Libros</a></div>
+                    <div><a id="nav-autores">Autores</a></div>
+                    <div><a id="nav-librerias">Librerías</a></div>
+                    <div><a id="nav-club">Clubes de Lectura</a></div>
+                    <div><a id="nav-promo">Promociones</a></div>
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="select-nav">
+            <select id="select-nav">
+                <option>Más</option>
+                <option value="1">Libros</option>
+                <option value="2">Autores</option>
+                <option value="3">Librerías</option>
+                <option value="4">Clubes de Lectura</option>
+                <option value="5">Promociones</option>
+            </select>
+        </div>
+    </nav>
+
+    <div id="contenedor">
+        <!--Div que va a contener la imagen del autor-->
+        <div id="espacioImagen" class="mod-cont">
+            <img id="imagenAutor">
+            <div class="mod-cont">
+                <button class="submit" id="mod" onclick="modificar()">Modificar</button>
+            </div>
+        </div>
+
+        <!--Div que va a contener la informacion del autor-->
+        <div id="datosAutor">
+            <div id="nomAutor">
+                <h1 id="nombreCompletoAutor"></h1>
+            </div>
+            <div id="fechaNaci">
+                <h2 id="fechaDeNacimiento"></h2>
+            </div>
+
+            <div id="age">
+                <h2 id="edad">Edad: </h2>
+            </div>
+
+            <div id="bio">
+                <h1>Biografía:</h1>
+                <p id="infoAutor"></p>
+            </div>
+            
+            <!-- <div id="librosAutor"></div> -->
+            <div id="bio">
+                <h1>Libros</h1>
+            </div>
+            <!-- <div class="table-cont">
+                <table class="lista-suc font" id="librosAutor">
+                    
+                </table>
+            </div> -->
+            <div class="cards-cont" id="cards-cont">
+                        
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-cont"><a href="#"><img src="img/logo.png" class="logo" /></a></div>
+        <div class="footer-cont">
+            <h4></h4>
+            <a href="https://www.barnesandnoble.com/" target="_blank"><img src="img/Barnes_&_Noble_logo.png"
+                    class="logo" /></a><br>
+            <a href="https://www.booksforkids.org/" target="_blank"><img src="img/bfk-logo-clear.png"
+                    class="logo" /></a><br>
+        </div>
+        <div class="footer-cont">
+            <h4>Compañia</h4>
+            <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+            <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+            <i class="fab fa-instagram fa-lg"></i>
+            <i class="fab fa-facebook-square fa-lg"></i>
+            <i class="fab fa-twitter-square fa-lg"></i>
+        </div>
+
+        <div class="footer-cont">
+            <h4>Soporte</h4>
+            <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+            <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+        </div>
+
+        <div class="footer-cont">
+
+        </div>
+
+    </footer>
+
+    <script src="js/autor/perfilAutor/controller.perfilAutor.js"></script>
+    <script src="js/autor/perfilAutor/servidor.perfilAutor.js"></script>
+    <script src="js/log-nav.js"></script>
+</body>
+
+</html>

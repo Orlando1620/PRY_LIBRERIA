@@ -1,0 +1,86 @@
+
+.filtros{
+    padding: 10px 7% 10px 5%;
+}
+
+.search-box{
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
+
+.titulo{
+    color: #022600;
+    font-size: 100px;
+}
+
+.titulo_info_libria{
+    color: #487252;
+    font-size: 40px;
+    margin-left: 2.5%;
+}
+
+.titulo_localizacion{
+    color: #487252;
+}
+
+.titulo_localizacion-cont{
+    padding-bottom: 10px;
+}
+
+.infoUno{
+    margin-bottom: 10px;
+}
+  
+.acomodarBoton{
+    float: right;
+}
+
+.acomodarInformacion{
+    padding-bottom: 15px;
+}
+
+.search-cont{
+    margin: 10px -4% 10px 3%;
+}
+
+.table-cont{
+    margin: 10px 7% 50px 5%;
+}
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+#container_mapa{
+    padding-top: 15px;
+}
+
+.scrollit {
+    overflow:scroll;
+    height: 485px;
+    width: auto;
+}
+
+@media(max-width: 1000px){
+
+}

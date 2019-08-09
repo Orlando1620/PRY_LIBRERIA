@@ -1,0 +1,216 @@
+.oculto{
+    display: none;
+}
+
+.main-title{
+    padding-left: 20px;
+    color: #022600;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+.wrapper-cont{
+    overflow: auto;
+}
+
+.wrapper-cont h1{
+    padding: 10px 50px;
+    margin: 0;
+}
+
+.wrapper-cont h3{
+    margin: 0;
+    padding: 10px 50px;
+    font-size: 1.2rem;
+}
+
+.filtro{
+    float: left;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 350px;
+}
+
+.filtro-lib{
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    padding: 10px;
+    width: 350px;
+}
+
+.titles-inv{
+    float: left;
+    width: 40%;
+    padding: 10px 0px;
+    margin: 0 5%;   
+    box-sizing: border-box;
+}
+
+.titles-inv h3{
+    padding: 0;
+}
+
+.cards-wrapper{
+    overflow: auto;
+    width: 100%;
+}
+
+.cards-cont{
+    float: left;
+    overflow: scroll;
+    width: 40%;
+    padding: 10px 5px;
+    margin: 10px 5%;   
+    border: solid 1px silver;
+    height: 500px;
+    box-sizing: border-box;
+}
+
+.card{
+    float: left;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: solid 1px silver;
+}
+
+.card button{
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+
+.card button:hover{
+    padding: 10px;
+    background-color: #487252;
+    color: white;
+    border: none;
+}
+
+.cantidad{
+    width: 100px;
+    padding: 5px;
+    border: none;
+    border-bottom: solid 1px silver;
+}
+
+.inv-list-div{
+    float: left;
+    width: 50%;
+}
+
+.card h4{
+    padding: 10px 0;
+}
+
+.search-box{
+    width: 290px;
+    padding: 10px 10px;
+    margin: 10px 5px 10px 50px;
+    font-size: 1rem;
+}
+
+.search-btn{
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    background-color: #487252;
+    border-radius: 10px;
+}
+
+/*cambios para movil*/
+@media(max-width: 1080px){
+
+    .card{
+        float: left;
+        margin: 20px 0;
+        width: 50%;
+        box-shadow: 5px 10px 8px rgb(199, 199, 199);
+        text-align: center;
+    }
+}
+
+@media(max-width: 750px){
+    
+    .card{
+        float: left;
+        margin: 20px 0;
+        width: 100%;
+        box-shadow: 5px 10px 8px rgb(199, 199, 199);
+        text-align: center;
+    }
+}
+
+
+/*sidebar*/
+.wrapper-side-bar{
+    float: left;
+    width: 20%;
+}
+
+.wrapper-side-bar div{
+    font-size: 1.2rem;
+}
+
+.side-bar{
+    overflow: auto;
+    padding: 20px 0;
+}
+
+.side-bar-icon{
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.side-bar-option{
+    float: left;
+    width: 75%;
+    text-align: left;
+}
+
+.side-bar-selected{
+    overflow: auto;
+    padding: 20px 0;
+    background-color: #487252;
+}
+
+.side-bar-selected a{
+    color: white;
+}
+
+.side-bar a{
+    color: black;
+}
+
+.side-bar:hover{
+    background-color: #48725231;
+}
+
+/*select que sustituye el sidebar en movil*/
+.select-side-bar{
+    display: none;
+}
+
+.select-side-bar select{
+    width: 90%;
+    border: solid 1px #487252;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 1rem;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 80%;
+}
