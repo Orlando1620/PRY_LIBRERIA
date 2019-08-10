@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var libreriaApi = require('./libreria.api');
+var sucursalesApi = require('../sucursal/sucursal.api');
 
 /**
  * Extrae todas las librerias de la base de datos
@@ -19,6 +20,11 @@ router.post('/buscar', function(req, res) {
 
 router.post('/obtener_libreria', function(req, res) {
     libreriaApi.obtener_libreria(req,res);
+})
+
+router.put('/modificar', function(req, res){
+    libreriaApi.modificarLibreria(req, res);
+    
 })
 
 module.exports = router;

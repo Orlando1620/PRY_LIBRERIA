@@ -102,47 +102,48 @@
                 <h3>Dirección exacta</h3>
                 <input type="text" id="dirExacta" class="input" required>
             </div>
-
-            <div id="location" class="form-full">
+            <form id="form">
+                <div id="location" class="form-full">
                     <h1>Localización de la Librería</h1>
                     <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
                     <div id="map"></div>
                 </div>
-        
+
                 <div id="boton">
-                    <input type="button" class="submit font" id="botonEnviar" value="Enviar" onclick="obtener_datos()">
+                    <input type="button" class="submit font" id="botonEnviar" value="Guardar" onclick="guardarLib()">
                 </div>
-                </form>
-                <div id="alert" class="alert oculto">
-                    <p id="msg" class="pAlert">Complete los espacios requeridos</p>
-                </div>
-        
-                <div id="alert_correo" class="alert oculto">
-                    <p id="msg_cred" class="pAlert"></p>Ya hay un administrador con el mismo correo.</p>
-                </div>
-        
-                <div id="alert_mapa" class="alert oculto">
-                    <p id="msg_cred" class="pAlert"></p>Debe indicar su ubicación en el mapa.</p>
-                </div>
-        
-                <div id="alert_correo_form" class="alert oculto">
-                    <p id="msg_cred" class="pAlert"></p>El formato del correo no es válido.</p>
-                </div>
-        
-                <div id="alert_tel" class="alert oculto">
-                    <p id="msg_cred" class="pAlert"></p>El formato del teléfono no es válido.</p>
-                </div>
-        
-                <div id="alert_fecha" class="alert oculto">
-                    <p id="msg_cred" class="pAlert"></p>Fecha actual o en el futuro no es válida.</p>
-                </div>
-    
+
+            </form>
+            <div id="alert" class="alert oculto">
+                <p id="msg" class="pAlert">Complete los espacios requeridos</p>
+            </div>
+
+            <div id="alert_correo" class="alert oculto">
+                <p id="msg_cred" class="pAlert"></p>Ya hay un administrador con el mismo correo.</p>
+            </div>
+
+            <div id="alert_mapa" class="alert oculto">
+                <p id="msg_cred" class="pAlert"></p>Debe indicar su ubicación en el mapa.</p>
+            </div>
+
+            <div id="alert_correo_form" class="alert oculto">
+                <p id="msg_cred" class="pAlert"></p>El formato del correo no es válido.</p>
+            </div>
+
+            <div id="alert_tel" class="alert oculto">
+                <p id="msg_cred" class="pAlert"></p>El formato del teléfono no es válido.</p>
+            </div>
+
+            <div id="alert_fecha" class="alert oculto">
+                <p id="msg_cred" class="pAlert"></p>Fecha actual o en el futuro no es válida.</p>
+            </div>
+
         </div>
 
 
-       
+
     </div>
-        
+
 
 
 
@@ -176,13 +177,15 @@
 
     </footer>
 
+    <script src="js/libreria/modificar-libreria/controller-modificar.js"></script>
+    <script src="js/libreria/filtrar-listar/servidor.filtrar-listar.js"></script>
     <script src="js/libreria/modificar-libreria/googleMaps.js"></script>
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
     <script src="js/comun.js"></script>
-
+    <script src="js/registrarAdminLib_Lib/RegistrarAdmin_Lib/googleMaps.js"></script>
     <script src="js/log-nav.js"></script>
-    
-    <script src="js/libreria/modificar-libreria/direccion.js"></script>
+
+    <script src="js/direccion.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
         async defer></script>

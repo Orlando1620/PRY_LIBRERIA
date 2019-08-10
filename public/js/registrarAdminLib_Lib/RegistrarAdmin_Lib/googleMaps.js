@@ -9,7 +9,7 @@ var lng = 0;
 function initMap(){
     //Configuracion del mapa
     var options = {
-        zoom:10,
+        zoom:8,
         center:{lat: 9.934739, lng: -84.087502}
     } 
 
