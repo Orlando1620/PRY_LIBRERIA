@@ -61,14 +61,23 @@
     width: 100%;
 }
 
+.wrapper{
+    overflow: auto;
+    width: 100%;
+}
+
 .cards-cont{
     float: left;
     overflow: scroll;
     width: 90%;
-    padding: 10px 5px;
+    padding: 5px 0;
     margin: 10px 5%;   
     max-height: 500px;
     box-sizing: border-box;
+}
+
+.cards-cont i{
+    padding-right: 20px; 
 }
 
 .card{
@@ -126,6 +135,18 @@
     color: white;
     background-color: #487252;
     border-radius: 10px;
+}
+
+.fa-trash-alt{
+    color: rgb(230,80,80);
+}
+
+.fa-plus{
+    color: #487252;
+}
+
+.fa-save{
+    color: #487252;
 }
 
 /*cambios para movil*/

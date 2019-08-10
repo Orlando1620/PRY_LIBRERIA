@@ -9,6 +9,23 @@
     margin: 0 30% 20px 30%;
 }
 
+.alert-inv {
+    padding: 10px;
+    background-color: #487252; 
+    color: white;
+    width: 90%;
+    margin: 5px 5%;
+    box-sizing: border-box;
+}
+
+.alert-inv-del {
+    padding: 10px;
+    background-color: #f44336; 
+    color: white;
+    width: 90%;
+    margin: 5px 5%;
+    box-sizing: border-box;
+}
 
 .alert-success {
     padding: 20px;

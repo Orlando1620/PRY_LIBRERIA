@@ -62,6 +62,7 @@ async function fillInventario(){
       var autorTd = document.createElement("td");
       var precioTd = document.createElement("td");
       var cantidadTd = document.createElement("td");
+      var saveDelTd = document.createElement("td");
 
       var libro = document.createElement('Label');
       var textLibro = document.createTextNode(json[i]['libro']);
@@ -94,7 +95,7 @@ async function fillInventario(){
       cant.type = 'number';
       cant.value = json[i]['cantidad'];
       cant.min = 1;
-      cant.id = json[i]['_id'] + "cant";
+      cant.id = json[i]['libro'] + "cant";
       cantidadTd.appendChild(cantInd);
       cantidadTd.appendChild(cant);
 
@@ -106,17 +107,36 @@ async function fillInventario(){
       precio.type = 'number';
       precio.min = 1;
       precio.value = json[i]['precio'];
-      precio.id = json[i]['_id'] + "precio";
+      precio.id = json[i]['libro'] + "precio";
       precioTd.appendChild(precioInd);
       precioTd.appendChild(precio);
       
       cant.classList.add("cantidad");
       precio.classList.add("cantidad");
 
+      var aSave = document.createElement('a');
+      var save = document.createElement("i");
+      save.classList.add('fas');
+      save.classList.add('fa-save');
+      save.id = json[i]['libro'];
+      aSave.addEventListener('click', modInv);
+      aSave.appendChild(save);
+      saveDelTd.appendChild(aSave);
+
+      var aDel = document.createElement('a');
+      var del = document.createElement("i");
+      del.classList.add('fas');
+      del.classList.add('fa-trash-alt');
+      del.id = json[i]['libro'];
+      aDel.addEventListener('click', delInv);
+      aDel.appendChild(del);
+      saveDelTd.appendChild(aDel);
+
       tr.appendChild(libroTd);
       tr.appendChild(autorTd);
       tr.appendChild(precioTd);
       tr.appendChild(cantidadTd);
+      tr.appendChild(saveDelTd);
 
       document.getElementById("inv-cont").appendChild(tr);
       inventario.push(json[i]['libro']);
@@ -201,12 +221,21 @@ async function fillLibros(){
             precioTd.appendChild(precioInd);
             precioTd.appendChild(precio);
 
-            var button = document.createElement('button');
+            /*var button = document.createElement('button');
             button.id = libros[i]['_id'];
             button.innerText = 'Agregar';
             button.addEventListener('click', addInv);
             button.classList.add('submit');
-            agregarTd.appendChild(button);
+            agregarTd.appendChild(button);*/
+
+            var a = document.createElement('a');
+            var add = document.createElement("i");
+            add.classList.add('fas');
+            add.classList.add('fa-plus');
+            add.id = libros[i]['_id'];
+            a.addEventListener('click', addInv);
+            a.appendChild(add);
+            agregarTd.appendChild(a);
             
             
             cant.classList.add("cantidad");
@@ -220,36 +249,6 @@ async function fillLibros(){
 
             document.getElementById("lib-cont").appendChild(tr);
         }
-    }
-}
-
-function removeElements(list){
-    
-    console.log(list);
-    while (list.hasChildNodes()) {   
-    list.removeChild(list.firstChild);
-    }
-}
-
-async function addInv(e){
-    try{
-        var button = e.target;
-        var id = button.id;
-    
-        var data = {
-            idSuc: document.getElementById('sucursales').value,
-            libro: id,
-            cantidad: document.getElementById(id+"cant").value,
-            precio: document.getElementById(id+"precio").value
-        }
-        await fetch('/inventario/add', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers:{'Content-Type': 'application/json'}
-        });
-        fillInventario();
-    } catch(err){
-        console.log('Ocurrió un error con la ejecución', err);
     }
 }
 
@@ -291,6 +290,97 @@ function fillSucursales(){
       console.log('Ocurrió un error con la ejecución', err);
     }
   );
+}
+
+function removeElements(list){
+    
+    console.log(list);
+    while (list.hasChildNodes()) {   
+    list.removeChild(list.firstChild);
+    }
+}
+
+async function addInv(e){
+    try{
+        var button = e.target;
+        var id = button.id;
+    
+        var data = {
+            idSuc: document.getElementById('sucursales').value,
+            libro: id,
+            cantidad: document.getElementById(id+"cant").value,
+            precio: document.getElementById(id+"precio").value
+        }
+        await fetch('/inventario/add', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+        fillInventario();
+        document.getElementById("alert-inv-add").classList.remove("oculto");
+        document.getElementById("msg-inv-add").innerHTML = "Libro agregado al inventario";
+        
+        setTimeout(function () {
+          document.getElementById("alert-inv-add").classList.add("oculto");
+        }, 2000);
+    } catch(err){
+        console.log('Ocurrió un error con la ejecución', err);
+    }
+}
+
+async function modInv(e){
+  try{
+    var button = e.target;
+    var id = button.id;
+
+    var data = {
+        idSuc: document.getElementById('sucursales').value,
+        libro: id,
+        cantidad: document.getElementById(id+"cant").value,
+        precio: document.getElementById(id+"precio").value
+    }
+    await fetch('/inventario/mod', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    });
+    fillInventario();
+    document.getElementById("alert-inv").classList.remove("oculto");
+    document.getElementById("msg-inv").innerHTML = "Cambios guardados";
+    
+    setTimeout(function () {
+      document.getElementById("alert-inv").classList.add("oculto");
+    }, 2000);
+    
+  } catch(err){
+      console.log('Ocurrió un error con la ejecución', err);
+  }
+}
+
+async function delInv(e){
+  try{
+    var button = e.target;
+    var id = button.id;
+
+    var data = {
+        idSuc: document.getElementById('sucursales').value,
+        idLibro: id
+    }
+    await fetch('/inventario/del', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    });
+    fillInventario();
+    document.getElementById("alert-inv-del").classList.remove("oculto");
+    document.getElementById("msg-inv-del").innerHTML = "Libro eliminado del inventario";
+    
+    setTimeout(function () {
+      document.getElementById("alert-inv-del").classList.add("oculto");
+    }, 2000);
+  } catch(err){
+      console.log('Ocurrió un error con la ejecución', err);
+  }
 }
 
 fetch('/libreria/listar', {

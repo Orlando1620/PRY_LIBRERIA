@@ -16,8 +16,16 @@ router.post('/add', function(req, res) {
     inventarioApi.registrarInventario(req,res);
 })
 
-router.post('/eliminarTodo', function(req, res) {
+router.post('/del', function(req, res) {
     inventarioApi.eliminarInventario(req,res);
+})
+
+router.post('/mod', function(req, res) {
+    inventarioApi.modificarInventario(req,res);
+})
+
+router.post('/eliminarTodo', function(req, res) {
+    inventarioApi.eliminarInventarioTodo(req,res);
 })
 
 router.post('/listarPerfilLibro', function(req, res) {

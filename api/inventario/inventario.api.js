@@ -6,7 +6,6 @@ module.exports.listarInventario = function(req, res) {
   Inventario.find({sucursal: sucursal}).sort({libro: 'asc'})
     .then(
       function(result){
-        console.log(result);
         res.send(result);
       }
     )
@@ -45,6 +44,44 @@ module.exports.registrarInventario = function(req, res) {
       }
   );
 }
+
+module.exports.modificarInventario = function(req, res) {
+
+  var idSuc = req.body.idSuc;
+  var idLibro = req.body.libro;
+  var cantidad = req.body.cantidad;
+  var precio = req.body.precio;
+  Inventario.updateOne(
+    { sucursal: idSuc, libro: idLibro },
+    {
+      $set: { 
+        sucursal: idSuc,
+        libro: idLibro,
+        cantidad: cantidad,
+        precio: precio
+      },
+      $currentDate: { lastModified: true }
+    }
+  )
+  .then(
+      function(result){
+      res.json(result);
+      }
+  )
+  .catch(
+      function(err){
+      console.log(err);
+      }
+  );
+}
+
+module.exports.eliminarInventario = async function(req, res) {
+  
+  await Inventario.deleteOne(
+    { sucursal: req.body.idSuc, libro: req.body.idLibro }
+  )
+  res.json({result: "exito"});
+}
   
 module.exports.listarPerfilLibro = function(req, res) {
   var isbn = req.body.isbn;
@@ -62,7 +99,7 @@ module.exports.listarPerfilLibro = function(req, res) {
     );
 }
 
-module.exports.eliminarInventario = async function(req, res) {
+module.exports.eliminarInventarioTodo = async function(req, res) {
   await Inventario.deleteMany(
     { nombreSuc: req.body.nombreSuc }
   );
