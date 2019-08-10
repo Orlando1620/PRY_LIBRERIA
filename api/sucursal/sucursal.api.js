@@ -107,6 +107,18 @@ module.exports.listarSucursal = function(req, res) {
   );
 }
 
+module.exports.actualizaNombreSucursal = function(nombreNuevo, nombreAnterior)  {
+
+Sucursal.update({ nombreLibreria: nombreAnterior }, { $set: {nombreLibreria: nombreNuevo } }, function (err, result) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log(result);
+  }
+});
+}
+
 module.exports.listarSucursalTodo = function(req, res) {
   Sucursal.find().exec()
   .then(
