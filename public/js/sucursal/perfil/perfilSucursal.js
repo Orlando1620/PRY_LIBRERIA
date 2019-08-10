@@ -1,8 +1,8 @@
 var idSuc;
 var nombreSuc;
-function perfilSucursal(pnombreSucursal){
+function perfilSucursal(sucursal){
   var data ={
-    nombreSucursal : pnombreSucursal
+    sucursal : sucursal
   }
 fetch('/sucursal/visualizar', {
     method: 'POST',
@@ -38,4 +38,4 @@ fetch('/sucursal/visualizar', {
   );
 }
 
-perfilSucursal(sessionStorage.getItem("nombreSucursal"));
+perfilSucursal(sessionStorage.getItem("idSuc"));

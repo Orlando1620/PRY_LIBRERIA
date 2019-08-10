@@ -2,8 +2,7 @@ var mongoose = require('mongoose');
 
 var inventarioSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId, 
-  nombreSuc: String,
-  isbn: String,
+  sucursal: String,
   libro: String,
   cantidad: Number,
   precio: Number,

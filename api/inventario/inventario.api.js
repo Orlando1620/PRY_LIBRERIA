@@ -2,8 +2,8 @@ var Inventario = require('./inventario.model');
 var mongoose = require('mongoose');
 
 module.exports.listarInventario = function(req, res) {
-  var nombreSuc = req.body.nombreSuc;
-  Inventario.find({nombreSuc: nombreSuc}).sort({libro: 'asc'})
+  var sucursal = req.body.sucursal;
+  Inventario.find({sucursal: sucursal}).sort({libro: 'asc'})
     .then(
       function(result){
         console.log(result);
@@ -18,17 +18,15 @@ module.exports.listarInventario = function(req, res) {
 }
   
 module.exports.registrarInventario = function(req, res) {
-  var nombreSuc = req.body.nombreSuc;
-  var isbn = req.body.isbn;
-  var libro = req.body.libro;
+  var idSuc = req.body.idSuc;
+  var idLibro = req.body.libro;
   var cantidad = req.body.cantidad;
   var precio = req.body.precio;
   
   var nuevoInventario = new Inventario({
       _id: new mongoose.Types.ObjectId(),
-      nombreSuc: nombreSuc,
-      isbn: isbn,
-      libro: libro,
+      sucursal: idSuc,
+      libro: idLibro,
       cantidad: cantidad,
       precio: precio,
       fechaReg: new Date()
