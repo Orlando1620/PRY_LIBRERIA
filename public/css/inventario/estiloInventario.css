@@ -36,6 +36,7 @@
     background-color: #48725231;
 }
 
+
 .filtro-lib{
     float: left;
     margin-bottom: 20px;
@@ -52,7 +53,19 @@
     box-sizing: border-box;
 }
 
+.titles-inv-full{
+    float: left;
+    width: 95%;
+    padding: 10px 0px;
+    padding-left: 5%;   
+    box-sizing: border-box;
+}
+
 .titles-inv h3{
+    padding: 0;
+}
+
+.titles-inv-full h3{
     padding: 0;
 }
 

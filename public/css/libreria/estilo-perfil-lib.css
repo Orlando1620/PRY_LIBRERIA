@@ -101,10 +101,20 @@
 }
 
 
+.form-btn{
+    float: left;
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
 .submit{
     text-align: center;
     padding: 10px 30px;
-    margin: 20px 40% 10px 40%;
+    margin: 10px 0;
     background-color: #48725231;
     color: black;
     border: none;
