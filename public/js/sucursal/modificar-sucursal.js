@@ -20,3 +20,17 @@ async function eliminar(){
 
     window.location.href = "perfil-libreria.html";
 }
+
+function popDel(){
+    document.getElementById("pop-up").classList.remove("oculto");
+    document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta sucursal?";
+}
+  
+function aceptar(){
+    document.getElementById("pop-up").classList.add("oculto");
+    eliminar();
+}
+
+function cancelar(){
+    document.getElementById("pop-up").classList.add("oculto");
+}

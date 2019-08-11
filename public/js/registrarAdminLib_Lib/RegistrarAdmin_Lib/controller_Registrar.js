@@ -24,7 +24,8 @@ var telefono = document.getElementById('telefono');
 async function obtener_datos() {
     
     var esValido = validarCamposFormulario("form");
-    if (esValido == false) {
+    if (esValido == false || validarForm() == false) {
+        validarForm();
         mostrarMensaje({codigo: id_alert});
         return false;
     }
@@ -57,7 +58,7 @@ function mostrarMensaje(respuesta, contrasena) {
         case 'exitoso':
             enviarContrasena(contrasena);
             registrarBitacora(correo.value,'registro libreria: '+nombreComercial);
-            window.location.href = "perfil-lib-admin.html";
+            window.location.href = "login.html";
             break;
 
         case 'CORREO_DUPLI':
@@ -162,3 +163,51 @@ function validarTel(tel){
         return false;
     }
 }
+
+function validarForm(){
+    var espaciosVacios = [];
+    var sexo = document.getElementById('sexo').value;
+    var tipoIdentificacion = document.getElementById('tipo_identificacion').value;
+    var provincias = document.getElementById('provincias').value;
+    var cantones = document.getElementById('cantones').value;
+    var distritos = document.getElementById('distritos').value;
+  
+    if(sexo == "Seleccione un género"){
+        espaciosVacios.push('sexo');
+    } else {
+        document.getElementById("sexo").classList.remove('invalid');
+    }
+    if(tipoIdentificacion == "Seleccione un tipo de identificación"){
+        espaciosVacios.push('tipo_identificacion');
+    } else {
+        document.getElementById("tipo_identificacion").classList.remove('invalid');
+    }
+    if(provincias == "Seleccione una provincia"){
+        espaciosVacios.push('provincias');
+    } else {
+        document.getElementById("provincias").classList.remove('invalid');
+    }
+    if(cantones == "Seleccione un cantón"){
+        espaciosVacios.push('cantones');
+    } else {
+        document.getElementById("cantones").classList.remove('invalid');
+    }
+    if(distritos == "Seleccione un distrito"){
+      espaciosVacios.push('distritos');
+    } else {
+      document.getElementById("distritos").classList.remove('invalid');
+    }
+    if(espaciosVacios.length > 0){
+        for(var i=0;i<espaciosVacios.length;i++){
+            document.getElementById(espaciosVacios[i]).classList.add('invalid');
+        }
+        return false;
+    } else {
+        var elements = document.getElementsByClassName('form-control');
+        for(var i=0;i<elements.length;i++){
+            document.getElementById(elements[i].id).classList.remove('invalid');
+        }
+        return true;
+    }
+    
+  }

@@ -38,7 +38,7 @@ async function listarSucursal(){
                 var textTd1 = document.createTextNode(json[i]['nombreSucursal']);
                 a.appendChild(textTd1);
                 a.href = "#";
-                a.id = json[i]['nombreSucursal'];
+                a.id = json[i]['_id'];
                 a.addEventListener('click', perfil);
 
                 var textTd2 = document.createTextNode(json[i]['provincia']+", "+json[i]['canton']+", "+json[i]['distrito']);
@@ -91,7 +91,7 @@ if(sucursales.length>0){
             var textTd1 = document.createTextNode(sucursales[i]['nombreSucursal']);
             a.appendChild(textTd1);
             a.href = "#";
-            a.id = sucursales[i]['nombreSucursal'];
+            a.id = json[i]['_id'];
             a.addEventListener('click', perfil);
 
             var textTd2 = document.createTextNode(sucursales[i]['provincia']+", "+sucursales[i]['canton']+", "+sucursales[i]['distrito']);
@@ -187,9 +187,9 @@ return fetch('/libreria/libById', {
 
 function perfil(e){
     var a = e.target;
-    var nombreSucursal = a.id;
-    sessionStorage.setItem("nombreSucursal",nombreSucursal);
+    var sucursal = a.id;
+    sessionStorage.setItem("idSuc",sucursal);
     window.location.href = "perfil-sucursal.html";
-}
+  }
   
 listarSucursal();

@@ -69,16 +69,23 @@
       </div>
 
       <div class="form-mitad">
-        <h3>Provincia</h3>
-        <select class="select-form" id="provincias" required></select>
+          <h3>Provincia</h3>
+          <select class="select-form form-control" id="provincias"  onchange="llenarCantones()">
+              <option>Seleccione una provincia</option>
+          </select>
       </div>
       <div class="form-mitad">
-        <h3>Cantón</h3>
-        <select class="select-form" id="cantones" required></select>
+          <h3>Cantón</h3>
+          <select class="select-form form-control" id="cantones" >
+              <option>Seleccione un cantón</option>
+          </select>
       </div>
+
       <div class="form-mitad">
-        <h3>Distrito</h3>
-        <select class="select-form" id="distritos" required></select>
+          <h3>Distrito</h3>
+          <select class="select-form form-control" id="distritos" >
+              <option>Seleccione un distrito</option>
+          </select>
       </div>
       <div class="form-mitad">
         <h3>Dirección exacta</h3>

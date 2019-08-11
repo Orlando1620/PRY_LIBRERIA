@@ -52,7 +52,7 @@ async function login() {
 }
 
 function registro(){
-    window.location.href= ("RegistrarAdminLib_Lib.html");
+    window.location.href= ("registrarUC.html");
 }
 
 function validaCorreo(event) {

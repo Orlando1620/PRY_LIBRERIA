@@ -71,3 +71,35 @@
 .oculto{
     display: none;
 }
+
+.pop-up-cont{
+    position: absolute;
+    top: 300px;
+    left: 40%;
+    right: 30%; 
+    border: 1px solid silver;
+    z-index: 99999999;
+}
+
+.pop-up{
+    overflow: auto;
+    background-color: white;
+    padding: 10px;
+}
+
+.pop-up-btn{
+    float: right;
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 0.7rem;
+}
+
+.pop-up-btn:hover{
+    padding: 10px;
+    background-color: #487252;
+    color: white;
+    border: none;
+}

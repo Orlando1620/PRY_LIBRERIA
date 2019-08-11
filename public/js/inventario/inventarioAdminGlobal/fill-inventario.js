@@ -1,6 +1,7 @@
 var inventario = [];
 var libros = [];
 var autores = [];
+var idLibro;
 
 async function fillInventario(){
     var responseAutor = await fetch('/autor/listar', {
@@ -128,7 +129,7 @@ async function fillInventario(){
       del.classList.add('fas');
       del.classList.add('fa-trash-alt');
       del.id = json[i]['libro'];
-      aDel.addEventListener('click', delInv);
+      aDel.addEventListener('click', popDel);
       aDel.appendChild(del);
       saveDelTd.appendChild(aDel);
 
@@ -357,14 +358,12 @@ async function modInv(e){
   }
 }
 
-async function delInv(e){
+async function delInv(){
   try{
-    var button = e.target;
-    var id = button.id;
 
     var data = {
         idSuc: document.getElementById('sucursales').value,
-        idLibro: id
+        idLibro: idLibro
     }
     await fetch('/inventario/del', {
         method: 'POST',
@@ -381,6 +380,25 @@ async function delInv(e){
   } catch(err){
       console.log('Ocurrió un error con la ejecución', err);
   }
+}
+
+
+function popDel(e){
+  var button = e.target;
+  idLibro = button.id;
+
+  
+  document.getElementById("pop-up").classList.remove("oculto");
+  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar este libro de su inventario?";
+}
+
+function aceptar(){
+  document.getElementById("pop-up").classList.add("oculto");
+  delInv();
+}
+
+function cancelar(){
+  document.getElementById("pop-up").classList.add("oculto");
 }
 
 fetch('/libreria/listar', {

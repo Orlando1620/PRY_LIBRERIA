@@ -89,5 +89,18 @@ async function delLib(){
   }
 }
 
+function popDel(){
+  document.getElementById("pop-up").classList.remove("oculto");
+  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta librería?";
+}
+
+function aceptar(){
+  document.getElementById("pop-up").classList.add("oculto");
+  delLib();
+}
+
+function cancelar(){
+  document.getElementById("pop-up").classList.add("oculto");
+}
 
 perfilLibreria(sessionStorage.getItem("nombreLibreria"));
