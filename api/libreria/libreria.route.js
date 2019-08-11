@@ -23,8 +23,11 @@ router.post('/obtener_libreria', function(req, res) {
 })
 
 router.put('/modificar', function(req, res){
-    libreriaApi.modificarLibreria(req, res);
-    
+    libreriaApi.modificarLibreria(req, res); 
+})
+
+router.post('/eliminar', function(req, res){
+    libreriaApi.eliminarLibreria(req, res); 
 })
 
 module.exports = router;

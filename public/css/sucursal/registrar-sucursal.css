@@ -3,7 +3,7 @@
 }
 
 .main-title{
-    padding-left: 20px;
+    padding-left: 27%;
     color: #022600;
 }
 
@@ -15,39 +15,6 @@
 .wrapper-cont{
     padding-left: 150px;
     width: 80%;
-}
-
-/*tabs*/
-.tab-wrapper{
-    overflow: auto;
-    text-align: center;
-    padding: 10px 30%;
-}
-
-.tab-wrapper div{
-    float: left;
-    width: 50%;
-    padding: 15px 10px;
-    box-sizing: border-box;
-    font-size: 1.2rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.tab-selected{
-    background-color: #487252;
-}
-
-.tab-selected a{
-    color: white;
-}
-
-.tab-unselected{
-    background-color: #48725231;
-}
-
-.tab-unselected a{
-    color: black;
 }
 
 .wrapper-form{
