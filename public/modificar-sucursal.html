@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/libreria/modificar/estiloCont.css">
+</head>
+
+<body class="font">
+
+    <nav>
+        <div class="wrapper-nav1">
+            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
+            <div class="usuario-nav">
+                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                <div class="dropdown" id="dropdown">
+
+                    <button class="dropbtn">
+                        <label id="usrName"></label>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div class="dropdown-content">
+                        <a href="#" id="perfil">Perfil</a>
+                        <a href="#" id="admin" class="oculto">Administrar</a>
+                        <a href="#" id="c-r">Cerrar Sesión</a>
+                    </div>
+
+                </div>
+
+                <div class="wrapper-nav2">
+
+                    <div><a id="nav-libros">Libros</a></div>
+                    <div><a id="nav-autores">Autores</a></div>
+                    <div><a id="nav-librerias">Librerías</a></div>
+                    <div><a id="nav-club">Clubes de Lectura</a></div>
+                    <div><a id="nav-promo">Promociones</a></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="select-nav">
+
+            <select id="select-nav">
+                <option>Más</option>
+                <option value="1">Libros</option>
+                <option value="2">Autores</option>
+                <option value="3">Librerías</option>
+                <option value="4">Clubes de Lectura</option>
+                <option value="5">Promociones</option>
+            </select>
+
+        </div>
+    </nav>
+
+    <div class="titulo">
+        <h1 class="main-title">Registrar Sucursal</h1>
+    </div>
+
+    <div class="wrapper-cont">
+        <!--Form del registro-->
+        <form class="wrapper-form" id="form">
+            <div>
+                <h3>Nombre de la sucursal</h3>
+                <input id="nombreSucursal" type="text" class="input" required>
+            </div>
+            <div class="">
+                <h3>Número de teléfono</h3>
+                <input id="numeroSucursal" class="input" type="text" required>
+            </div>
+
+            <div class="form-mitad">
+                <h3>Provincia</h3>
+                <select class="select-form" id="provincias" required></select>
+            </div>
+            <div class="form-mitad">
+                <h3>Cantón</h3>
+                <select class="select-form" id="cantones" required></select>
+            </div>
+            <div class="form-mitad">
+                <h3>Distrito</h3>
+                <select class="select-form" id="distritos" required></select>
+            </div>
+            <div class="form-mitad">
+                <h3>Dirección exacta</h3>
+                <input type="text" id="dirExacta" class="input" required />
+            </div>
+            <div class="form-full">
+                <h3>Localización</h3>
+                <p>Indique su localización con un marcador en el mapa</p>
+                <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
+                <div id="map"></div>
+            </div>
+            <div class="form-full oculto" id="librerias">
+                <h3>Librería</h3>
+                <select id="libreria" class="select-form"></select>
+            </div>
+            <button id="btnRegistrarGlobal" type="submit" class="submit font oculto"
+                onclick="registrarSucursalGlobal(event)">Registrar</button>
+            <button id="btnRegistrarLib" type="submit" class="submit font"
+                onclick="registrarSucursalLib(event)">Registrar</button>
+        </form>
+        <!--Alert si no se cumple una validacion en el form-->
+        <div id="alert" class="alert oculto">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <label id="msg"></label>
+        </div>
+
+    </div>
+</body>
+
+</html>

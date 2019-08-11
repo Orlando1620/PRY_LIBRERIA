@@ -1,3 +1,6 @@
+var msgError = document.getElementById("alert");
+var msgCorrecto = document.getElementById("alert_correct");
+
 window.onload = function () {
     cargarDatos();
 }
@@ -38,16 +41,35 @@ function seleccionarDirecciones(s, v) {
 }
 
 function guardarLib() {
-    lib.nombreComercial = document.getElementById("nomComercial").value;
-    lib.nombreFantasia = document.getElementById("nomFantasia").value;
-    lib.provincia = document.getElementById("provincias");
-    lib.canton = document.getElementById("cantones");
-    lib.distrito = document.getElementById("distritos");
-    lib.telefono = document.getElementById("telefono").value;
-    lib.direccion = document.getElementById("dirExacta").value;
-    lib.latitud = lat;
-    lib.longitud = lng;
+    var esValido = validarCamposFormulario("form");
+    if (esValido == false) {
+        mostrarMsg("alert");
+        return false;
+    } else {
+        lib.nombreComercial = document.getElementById("nomComercial").value;
+        lib.nombreFantasia = document.getElementById("nomFantasia").value;
+        lib.provincia = document.getElementById("provincias").value;
+        lib.canton = document.getElementById("cantones").value;
+        lib.distrito = document.getElementById("distritos").value;
+        lib.telefono = document.getElementById("telefono").value;
+        lib.direccion = document.getElementById("dirExacta").value;
+        lib.latitud = lat;
+        lib.longitud = lng;
 
-    actualizarLibreria(lib);
-    sessionStorage.setItem('nombreLibreria', lib.nombreComercial);
+        actualizarLibreria(lib);
+        sessionStorage.setItem('nombreLibreria', lib.nombreComercial);
+        mostrarMsg("alert_correct");
+
+    }
+    setTimeout(function () {
+        window.location.href = ("perfil-libreria.html");
+    }, 3000);
+}
+
+function mostrarMsg(id_clase_error) {
+    setTimeout(function () {
+        document.getElementById(id_clase_error).classList.add("oculto");
+    }, 3000);
+
+    document.getElementById(id_clase_error).classList.remove("oculto");
 }
