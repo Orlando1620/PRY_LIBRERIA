@@ -1,9 +1,15 @@
 //Fetch para listar autores
-var libros = [];
-async function listarLibro(nombreSucursal){
+var librosInv = [];
+async function listarLibro(sucursal){
+  var response = await fetch('/libro/listar', {
+    method: 'GET',
+    headers:{'Content-Type': 'application/json'}
+  })
+  var librosJson = await response.json();
+  var libros = librosJson;
 
   var data = {
-      nombreSuc: nombreSucursal
+    sucursal: sucursal
   }
   fetch('/inventario/listar', {
       method: 'POST',
@@ -22,14 +28,22 @@ async function listarLibro(nombreSucursal){
         function(json){
           console.log(json);
           for(var i=0;i<json.length;i++){
-              libros.push(json[i]);
               var tr = document.createElement("tr");
               var td1 = document.createElement("td");
               var td2 = document.createElement("td");
               var td3 = document.createElement("td");
 
-
-              var textTd1 = document.createTextNode(json[i]['libro']);
+              var textTd1;
+              for(var j=0;j<libros.length;j++){
+                if(libros[j]['_id'] == json[i]['libro']){
+                  textTd1 = document.createTextNode(libros[j]['nombre']);
+                  librosInv.push({
+                    libro:libros[j]['nombre'],
+                    cantidad:json[i]['cantidad'],
+                    precio:json[i]['precio']
+                  });
+                }
+              }
               var textTd2 = document.createTextNode(json[i]['cantidad']);
               var textTd3 = document.createTextNode(json[i]['precio'].toLocaleString());
 
@@ -60,9 +74,9 @@ async function filtrar(){
   var nombreReq = document.getElementById('buscar').value;
   nombreReq = nombreReq.toLowerCase();
   var resultados = 0;
-    for(var i=0;i<libros.length;i++){
+    for(var i=0;i<librosInv.length;i++){
 
-        var nombreRes = libros[i]['libro'];
+        var nombreRes = librosInv[i]['libro'];
         nombreRes  = nombreRes.toLowerCase();
 
         if(nombreRes.includes(nombreReq)){
@@ -74,9 +88,9 @@ async function filtrar(){
             var td3 = document.createElement("td");
 
 
-            var textTd1 = document.createTextNode(libros[i]['libro']);
-            var textTd2 = document.createTextNode(libros[i]['cantidad']);
-            var textTd3 = document.createTextNode(libros[i]['precio']);
+            var textTd1 = document.createTextNode(librosInv[i]['libro']);
+            var textTd2 = document.createTextNode(librosInv[i]['cantidad']);
+            var textTd3 = document.createTextNode((librosInv[i]['precio'].toLocaleString()));
 
             td1.appendChild(textTd1);
             td2.appendChild(textTd2);
@@ -130,4 +144,4 @@ function removeElements(list){
   document.getElementById("lista-lib").appendChild(titles);
 }
 
-listarLibro(sessionStorage.getItem("nombreSucursal"));
+listarLibro(sessionStorage.getItem("idSuc"));

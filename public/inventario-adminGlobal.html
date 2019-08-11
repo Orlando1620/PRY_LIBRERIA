@@ -108,9 +108,8 @@
 
             <div class="wrapper-cont">
                 <h1 class="main-title">Inventario</h1>
-                
 
-                <div class="cards-wrapper">
+                <div class="wrapper">
                     <div class="titles-inv">
                         <h3>Librería</h3>
                         <select id="librerias" class="filtro"></select>
@@ -119,37 +118,58 @@
                         <h3>Sucursal</h3>
                         <select id="sucursales" class="filtro"></select>
                     </div>
-                    <div class="titles-inv"><h3>Libros</h3></div>
+                    
                     <div class="titles-inv"><h3>Inventario</h3></div>
-                    <div class="cards-cont" id="lib-cont">
-                        
-                        <!-- <div class="card">
-                            <label>Libro 1</label>
-                            <input type="number" class="cantidad">
-                        </div> -->
-    
-                    </div>
-    
-                    <div class="cards-cont" id="inv-cont">
-                        
-                        <!-- <div class="card">
-                            <label>Libro 1</label>
-                            <input type="number" class="cantidad">
-                        </div> -->
-    
-                    </div>
-
-                </div>
-                
-                
-                <!--Alert si no se cumple una validacion en el form-->
-                <div id="alert" class="alert oculto">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    <label id="msg"></label>
                 </div>
 
+                <div class="wrapper">
+                    <div id="alert-inv" class="alert-inv oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg-inv"></label>
+                    </div>
+                    <div id="alert-inv-del" class="alert-inv-del oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg-inv-del"></label>
+                    </div>
+                </div>
+                <div class="wrapper"> 
+                    <div class="cards-cont">
+                        <table class="lista-suc font" id="inv-cont"></table>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="titles-inv"><h3>Libros disponibles</h3></div>
+                </div>
+                <div class="wrapper">
+                    <div id="alert-inv-add" class="alert-inv oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg-inv-add"></label>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="cards-cont">
+                        <table class="lista-suc font" id="lib-cont">
+                        </table>
+                    </div>
+                </div>
+                    
+
+                <div class="pop-up-cont oculto" id="pop-up">
+                    <div class="pop-up">
+                        <p id="msg-pop"></p>
+                        <div class="btn-cont">
+                            <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
+                            <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
+                
+
         </div>
+        
 
         <footer>
             <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
