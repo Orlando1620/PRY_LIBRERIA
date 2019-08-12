@@ -3,7 +3,7 @@ if(sessionStorage.getItem("tipo") == "adminGlobal" || sessionStorage.getItem("ti
   document.getElementById("info").classList.add("full");
 }
 
-if(sessionStorage.getItem("tipo") == "usuarioCliente"){
+if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
   document.getElementById("mod").classList.add("oculto");
 }
 
