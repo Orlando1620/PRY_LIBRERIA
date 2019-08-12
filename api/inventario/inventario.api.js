@@ -84,8 +84,8 @@ module.exports.eliminarInventario = async function(req, res) {
 }
   
 module.exports.listarPerfilLibro = function(req, res) {
-  var isbn = req.body.isbn;
-  Inventario.find({isbn: isbn}).exec()
+  var libro = req.body.libro;
+  Inventario.find({libro: libro}).exec()
     .then(
       function(result){
         console.log(result);

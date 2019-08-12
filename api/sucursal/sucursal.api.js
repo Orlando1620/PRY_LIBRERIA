@@ -103,6 +103,20 @@ module.exports.listarSucursal = function(req, res) {
   );
 }
 
+module.exports.listarSucursalTodo = function(req, res) {
+  Sucursal.find().sort({nombreSucursal: 'asc'})
+  .then(
+    function(result){
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
+}
+
 module.exports.actualizaNombreSucursal = function(nombreNuevo, nombreAnterior)  {
 
 Sucursal.update({ nombreLibreria: nombreAnterior }, { $set: {nombreLibreria: nombreNuevo } }, function (err, result) {

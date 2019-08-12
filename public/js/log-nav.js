@@ -1,6 +1,7 @@
 //document.getElementById("nav-promo").classList.add('oculto');
 if(sessionStorage.getItem("nombre") == null){
     document.getElementById("dropdown").classList.add("oculto");
+    document.getElementById("nav-cart").classList.add("oculto");
     document.getElementById("nav-login").classList.remove("oculto");
 
     document.getElementById("nav-login").href = "login.html";
