@@ -51,3 +51,26 @@ async function obtener_libreria(pnombre) {
         .catch(err => console.log('Error:', err));
     return librerias;
 };
+
+
+async function actualizarLibreria(libreria) {
+
+    return await fetch('/libreria/modificar', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(libreria)
+    })
+    
+        .then(function (response) {
+            if (response.status != 200)
+                console.log('Error en el servicio: ' + response.status);
+            else
+                return response.json();
+        })
+        .then(function (response) {
+            return response;
+        })
+        .catch(err => console.log('Error:', err));
+};

@@ -1,6 +1,6 @@
 .table-cont{
     margin: 10px 9.5% 50px 9.5%;
-    height: 400px;
+    max-height: 400px;
     overflow: scroll;
 }
 

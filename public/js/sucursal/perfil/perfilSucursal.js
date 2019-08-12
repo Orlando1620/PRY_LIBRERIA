@@ -1,7 +1,8 @@
-//Fetch para listar autores
-function perfilSucursal(pnombreSucursal){
+var idSuc;
+var nombreSuc;
+function perfilSucursal(sucursal){
   var data ={
-    nombreSucursal : pnombreSucursal
+    sucursal : sucursal
   }
 fetch('/sucursal/visualizar', {
     method: 'POST',
@@ -18,6 +19,8 @@ fetch('/sucursal/visualizar', {
   )
   .then(
       function(json){
+        idSuc = json['_id'];
+        nombreSuc = json['nombreSucursal'];
         document.getElementById('titulo').innerHTML = json['nombreSucursal'];
         document.getElementById('numeroLibreria').innerHTML += json['telefono'];
         document.getElementById('direccionLibreria').innerHTML += json['provincia'] + ", " + json['canton'] + ", "+ json['distrito'] + ", "+ json['direccion'] + ".";
@@ -35,4 +38,4 @@ fetch('/sucursal/visualizar', {
   );
 }
 
-perfilSucursal(sessionStorage.getItem("nombreSucursal"));
+perfilSucursal(sessionStorage.getItem("idSuc"));
