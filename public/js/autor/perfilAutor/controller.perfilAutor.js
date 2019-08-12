@@ -1,5 +1,5 @@
 'use strict';
-if(sessionStorage.getItem("tipo") == "usuarioCliente"){
+if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
     document.getElementById("mod").classList.add("oculto");
 }
 

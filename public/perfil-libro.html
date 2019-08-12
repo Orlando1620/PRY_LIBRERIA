@@ -31,9 +31,12 @@
                             <div><a id="nav-autores">Autores</a></div>
                             <div><a id="nav-librerias">Librerías</a></div>
                             <div><a id="nav-club">Clubes de Lectura</a></div>
-                            <div><a id="nav-promo">Promociones</a></div>
+                          
                             
                         </div>
+                        <div class="wrapper-nav2">
+                                <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a></div>
+                            </div>
                     </div>
                 </div>
     
@@ -72,21 +75,14 @@
                     </div>
                     
                     <div class="libro-cont-mitad" id="opciones-cont">
-                        <div class="tab-wrapper">
-                            <div class="tab-selected"><a href="#/">Comprar</a></div>
-                            <div class="tab-unselected"><a href="#/">Intercambiar</a></div>
+                        <div class="filtros">
+                            <select id="select-opciones" class="selectFiltrar">
+                                <option>Comprar</option>
+                                <option>Intercambiar</option>
+                            </select>
                         </div>
-                        <div class="opciones" id="opciones">
-                            <!-- <div class="opcion">
-                                <div class="div-opcion">
-                                    <label>Sucursal</label>
-                                    <p>Precio: ₡2500</p>
-                                </div>
-                                <div class="div-opcion">
-                                    <button>Agregar al Carrito</button>
-                                </div>
-                                
-                            </div> -->
+                        <div class="opciones">
+                            <table class="lista-suc font" id="opciones"></table>
                         </div>
                     </div>
                 </div>

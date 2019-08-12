@@ -42,4 +42,65 @@ function perfilLibreria(pnombreLibreria){
     );
 }
 
+async function delLib(){
+  try{
+    var sucursal;
+    var id;
+  
+    for(var i=0;i<sucursales.length;i++){
+      sucursal = sucursales[i]["nombreSucursal"];
+      id = sucursales[i]["_id"];
+      
+      var dataInv = {
+        nombreSuc:sucursal
+      }
+      var inv = await fetch('/inventario/eliminarTodo', {
+          method: 'POST',
+          body: JSON.stringify(dataInv),
+          headers:{'Content-Type': 'application/json'}
+      });
+  
+      var dataSuc = {
+          id:id
+      }
+      var suc = await fetch('/sucursal/eliminar', {
+          method: 'POST',
+          body: JSON.stringify(dataSuc),
+          headers:{'Content-Type': 'application/json'}
+      });
+    }  
+  
+
+    var data = {
+        libreria: sessionStorage.getItem("nombreLibreria")
+    }
+
+    await fetch('/libreria/eliminar', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    });
+
+    window.location.href = "listar-librerias-adminGlobal.html";
+
+
+  } catch(err){
+      console.log('Ocurrió un error con la ejecución', err);
+  }
+}
+
+function popDel(){
+  document.getElementById("pop-up").classList.remove("oculto");
+  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta librería?";
+}
+
+function aceptar(){
+  document.getElementById("pop-up").classList.add("oculto");
+  delLib();
+}
+
+function cancelar(){
+  document.getElementById("pop-up").classList.add("oculto");
+}
+
 perfilLibreria(sessionStorage.getItem("nombreLibreria"));

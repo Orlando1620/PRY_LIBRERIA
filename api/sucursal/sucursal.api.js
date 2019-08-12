@@ -2,8 +2,8 @@ var Sucursal = require('./sucursal.model');
 var mongoose = require('mongoose');
 
 module.exports.perfilSucursal = function(req, res) {
-  var nombreSucursal = req.body.nombreSucursal;
-  Sucursal.findOne({nombreSucursal:nombreSucursal}).exec()
+  var sucursal = req.body.sucursal;
+  Sucursal.findOne({_id:sucursal}).exec()
   .then(
     function(result){
       console.log(result);
@@ -16,15 +16,12 @@ module.exports.perfilSucursal = function(req, res) {
     }
   );
 }
-/**
- * Extrae todos los autores de la base de datos
- */
+
 module.exports.listarSucursalInv = function(req, res) {
   var nombreLibreria = req.body.nombreLibreria;
   Sucursal.find({nombreLibreria: nombreLibreria}).exec()
     .then(
       function(result){
-        console.log(result);
         res.send(result);
       }
     )
@@ -96,7 +93,6 @@ module.exports.listarSucursal = function(req, res) {
   Sucursal.find({nombreLibreria:nombreLibreria}).sort({nombreSucursal: 'asc'})
   .then(
     function(result){
-      console.log(result);
       res.send(result);
     }
   )
@@ -105,6 +101,32 @@ module.exports.listarSucursal = function(req, res) {
       console.log(err);
     }
   );
+}
+
+module.exports.listarSucursalTodo = function(req, res) {
+  Sucursal.find().sort({nombreSucursal: 'asc'})
+  .then(
+    function(result){
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
+}
+
+module.exports.actualizaNombreSucursal = function(nombreNuevo, nombreAnterior)  {
+
+Sucursal.update({ nombreLibreria: nombreAnterior }, { $set: {nombreLibreria: nombreNuevo } }, function (err, result) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log(result);
+  }
+});
 }
 
 module.exports.listarSucursalTodo = function(req, res) {
@@ -120,4 +142,11 @@ module.exports.listarSucursalTodo = function(req, res) {
       console.log(err);
     }
   );
+}
+
+module.exports.eliminarSucursal = async function(req, res) {
+  await Sucursal.deleteOne(
+    { _id: req.body.id }
+  )
+  res.json({result: "exito"});
 }

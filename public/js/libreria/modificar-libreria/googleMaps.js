@@ -6,7 +6,7 @@ function initMap() {
   var location = { lat: 9.934739, lng: -84.087502 };
   // MAPA
   map = new google.maps.Map(
-    document.getElementById('map'), { zoom: 8, center: location });
+    document.getElementById('map'), { zoom: 16, center: location });
 }
 
 function addMarker(coords) {
