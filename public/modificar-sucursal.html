@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/libreria/modificar/estiloCont.css">
+    <link rel="stylesheet" href="css/estiloAlerts.css">
+    <link rel="stylesheet" href="css/estiloNav.css">
+    <link rel="stylesheet" href="css/estiloFooter.css">
+    <link rel="stylesheet" href="css/sucursal/modificar/modificar-sucursal.css">
 </head>
 
 <body class="font">
@@ -60,16 +64,18 @@
     </nav>
 
     <div class="titulo">
-        <h1 class="main-title">Registrar Sucursal</h1>
+        <h1 class="main-title">Modificar Sucursal</h1>
     </div>
 
     <div class="wrapper-cont">
         <!--Form del registro-->
         <form class="wrapper-form" id="form">
+
             <div>
                 <h3>Nombre de la sucursal</h3>
                 <input id="nombreSucursal" type="text" class="input" required>
             </div>
+
             <div class="">
                 <h3>Número de teléfono</h3>
                 <input id="numeroSucursal" class="input" type="text" required>
@@ -79,40 +85,89 @@
                 <h3>Provincia</h3>
                 <select class="select-form" id="provincias" required></select>
             </div>
+
             <div class="form-mitad">
                 <h3>Cantón</h3>
                 <select class="select-form" id="cantones" required></select>
             </div>
+
             <div class="form-mitad">
                 <h3>Distrito</h3>
                 <select class="select-form" id="distritos" required></select>
             </div>
+
             <div class="form-mitad">
                 <h3>Dirección exacta</h3>
                 <input type="text" id="dirExacta" class="input" required />
             </div>
+
             <div class="form-full">
                 <h3>Localización</h3>
-                <p>Indique su localización con un marcador en el mapa</p>
                 <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
                 <div id="map"></div>
             </div>
+
             <div class="form-full oculto" id="librerias">
                 <h3>Librería</h3>
                 <select id="libreria" class="select-form"></select>
             </div>
-            <button id="btnRegistrarGlobal" type="submit" class="submit font oculto"
-                onclick="registrarSucursalGlobal(event)">Registrar</button>
-            <button id="btnRegistrarLib" type="submit" class="submit font"
-                onclick="registrarSucursalLib(event)">Registrar</button>
+
+            <div id="boton">
+                <input type="button" class="submit font" id="botonEnviar" value="Guardar" onclick="guardarSucursal()">
+            </div>
         </form>
         <!--Alert si no se cumple una validacion en el form-->
         <div id="alert" class="alert oculto">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <label id="msg"></label>
+            <p id="msg" class="pAlert">Complete los espacios requeridos</p>
+        </div>
+
+        <div id="alert_correct" class="alertCorrect oculto">
+            <p id="msg" class="pAlert">Datos guardados correctamente.</p>
         </div>
 
     </div>
+
+    <footer>
+        <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
+        <div class="footer-cont">
+            <h4></h4>
+            <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png"
+                    class="logo" /></a><br>
+            <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png"
+                    class="logo" /></a><br>
+        </div>
+        <div class="footer-cont">
+            <h4>Compañia</h4>
+            <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+            <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+            <i class="fab fa-instagram fa-lg"></i>
+            <i class="fab fa-facebook-square fa-lg"></i>
+            <i class="fab fa-twitter-square fa-lg"></i>
+        </div>
+
+        <div class="footer-cont">
+            <h4>Soporte</h4>
+            <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+            <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+        </div>
+
+        <div class="footer-cont">
+
+        </div>
+
+    </footer>
+
+
+    
+    <script src="js/sucursal/sucursalServicios.js"></script>
+    <script src="js/comun.js"></script>
+    <script src="js/registrarAdminLib_Lib/RegistrarAdmin_Lib/googleMaps.js"></script>
+    <script src="js/log-nav.js"></script>
+    <script src="js/direccion.js"></script>
+    <script src="js/sucursal/modificar-sucursal/controller-modificar.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
+        async defer></script>
 </body>
 
 </html>

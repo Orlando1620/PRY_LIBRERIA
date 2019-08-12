@@ -136,3 +136,23 @@ module.exports.eliminarSucursal = async function(req, res) {
   )
   res.json({result: "exito"});
 }
+
+
+module.exports.modificarSucursal = function (req, res) {
+  let id = req.body._id;
+  let sucursal = req.body;
+
+  Sucursal.findOne({ _id: id }, function (err,) {
+    if (err) {
+      console.log("errr", err);
+    } else {
+      Sucursal.updateOne({ _id: id }, { $set: sucursal }, function (err, result) {
+        if (err) {
+          console.log(err);
+        }
+      });
+      res.send(sucursal);
+    }
+  })
+
+};
