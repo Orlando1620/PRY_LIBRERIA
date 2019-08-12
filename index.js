@@ -8,9 +8,9 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://leerPlusUser:Fgo96t34RUHxmCaH@cluster0-qswzu.mongodb.net/LeePlusDB?retryWrites=true&w=majority',{useNewUrlParser: true});
 
 var cloudinary = require('cloudinary');
-cloudinary.config({ 
-  cloud_name: 'imgproyecto1', 
-  api_key: '821889526661252', 
+cloudinary.config({
+  cloud_name: 'imgproyecto1',
+  api_key: '821889526661252',
   api_secret: 't3pggGZsvRaomrQD0v2bpq4ZTVg',
   upload_preset: 'proyecto1'
 });
@@ -38,6 +38,8 @@ app.use('/sexo', require('./api/parametros/sexo/sexo.route'));
 app.use('/bitacora', require('./api/bitacora/bitacora.route'));
 app.use('/inventario', require('./api/inventario/inventario.route'));
 app.use('/pago', require('./api/pago/pago.route'));
+app.use('/promocion', require('./api/promocion/promocion.route'));
+
 
 app.listen(8080, function() {
   console.log('Servidor corriendo en puerto 8080...')
