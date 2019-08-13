@@ -397,3 +397,20 @@ module.exports.perfilLibro = function(req, res){
     }
   );
 }
+
+
+module.exports.verificarAsosiacionLibro = function(req, res){
+  var nombreLibro = req.body.nombre;
+  Libro.find({nombre: nombreLibro}).exec()
+  .then(
+    function(result){
+      console.log(result);
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
+}
