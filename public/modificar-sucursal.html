@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/estiloAlerts.css" />
-    <link rel="stylesheet" type="text/css" href="css/estiloFooter.css" />
-    <link rel="stylesheet" type="text/css" href="css/estiloNav.css" />
     <link rel="stylesheet" href="css/libreria/modificar/estiloCont.css">
+    <link rel="stylesheet" href="css/estiloAlerts.css">
+    <link rel="stylesheet" href="css/estiloNav.css">
+    <link rel="stylesheet" href="css/estiloFooter.css">
+    <link rel="stylesheet" href="css/sucursal/modificar/modificar-sucursal.css">
 </head>
 
 <body class="font">
+
     <nav>
         <div class="wrapper-nav1">
             <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
@@ -61,76 +63,70 @@
         </div>
     </nav>
 
-    <div class="main-wrapper">
-        <div id="space_Regist_Lib" class="wrapper-form">
-            <h1>Modificar librería</h1>
-
-            <form id="form"></form>
-                <div id="nomFant" class="form-full">
-                    <h3>Nombre Comercial</h3>
-                    <input class="input" type="text" id="nomComercial" required>
-                </div>
-
-                <div class="form-full">
-                    <h3>Nombre de Fantasia</h3>
-                    <input class="input" type="text" id="nomFantasia" required>
-                </div>
-
-                <div class="form-full">
-                    <h3>Dirección</h3>
-                </div>
-
-                <div class="form-mitad">
-                    <h3>Provincia</h3>
-                    <select class="select-form" id="provincias" required></select>
-                </div>
-                <div class="form-mitad">
-                    <h3>Cantón</h3>
-                    <select class="select-form" id="cantones" required></select>
-                </div>
-
-                <div class="form-mitad">
-                    <h3>Distrito</h3>
-                    <select class="select-form" id="distritos" required></select>
-                </div>
-                <div class="form-mitad">
-                    <h3>Teléfono</h3>
-                    <input type="text" id="telefono" class="input_telefono" required />
-                </div>
-
-                <div class="form-full">
-                    <h3>Dirección exacta</h3>
-                    <input type="text" id="dirExacta" class="input" required>
-                </div>
-
-                <div id="location" class="form-full">
-                    <h1>Localización de la Librería</h1>
-                    <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
-                    <div id="map"></div>
-                </div>
-
-                <div id="boton">
-                    <input type="button" class="submit font" id="botonEnviar" value="Guardar" onclick="guardarLib()">
-                </div>
-
-            </form>
-            <div id="alert" class="alert oculto">
-                <p id="msg" class="pAlert">Complete los espacios requeridos</p>
-            </div>
-
-            <div id="alert_correct" class="alertCorrect oculto">
-                <p id="msg" class="pAlert">Datos guardados correctamente.</p>
-            </div>
-
-            <div id="alert_copy" class="alert oculto">
-                <p id="msg" class="pAlert">El existe una librería con este nombre</p>
-            </div>
-
-        </div>
+    <div class="titulo">
+        <h1 class="main-title">Modificar Sucursal</h1>
     </div>
 
+    <div class="wrapper-cont">
+        <!--Form del registro-->
+        <form class="wrapper-form" id="form">
 
+            <div>
+                <h3>Nombre de la sucursal</h3>
+                <input id="nombreSucursal" type="text" class="input" required>
+            </div>
 
+            <div>
+                <h3>Dirección exacta</h3>
+                <input type="text" id="dirExacta" class="input" required />
+
+            </div>
+
+            <div class="form-mitad">
+                <h3>Provincia</h3>
+                <select class="select-form" id="provincias" required></select>
+            </div>
+
+            <div class="form-mitad">
+                <h3>Cantón</h3>
+                <select class="select-form" id="cantones" required></select>
+            </div>
+
+            <div class="form-mitad">
+                <h3>Distrito</h3>
+                <select class="select-form" id="distritos" required></select>
+            </div>
+
+            <div class="form-mitad">
+                <h3>Número de teléfono</h3>
+                <input id="numeroSucursal" class="input" type="text" required>
+            </div>
+
+            <div class="form-full">
+                <h3>Localización</h3>
+                <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
+                <div id="map"></div>
+            </div>
+
+            <div class="form-full oculto" id="librerias">
+                <h3>Librería</h3>
+                <select id="libreria" class="select-form"></select>
+            </div>
+
+            <div id="boton">
+                <input type="button" class="submit font" id="botonEnviar" value="Guardar" onclick="guardarSucursal()">
+            </div>
+        </form>
+        <!--Alert si no se cumple una validacion en el form-->
+        <div id="alert" class="alert oculto">
+            <p id="msg" class="pAlert">Complete los espacios requeridos</p>
+        </div>
+
+        <div id="alert_correct" class="alertCorrect oculto">
+            <p id="msg" class="pAlert">Datos guardados correctamente.</p>
+        </div>
+
+    </div>
 
     <footer>
         <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
@@ -162,16 +158,17 @@
 
     </footer>
 
-    <script src="js/libreria/modificar-libreria/controller-modificar.js"></script>
-    <script src="js/libreria/filtrar-listar/servidor.filtrar-listar.js"></script>
-    <script src="js/libreria/modificar-libreria/googleMaps.js"></script>
-    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-    <script src="js/comun.js"></script>
-    <script src="js/registrarAdminLib_Lib/RegistrarAdmin_Lib/googleMaps.js"></script>
-    <script src="js/log-nav.js"></script>
 
+
+    <script src="js/sucursal/sucursalServicios.js"></script>
+    <script src="js/comun.js"></script>
+    <script src="js/libreria/modificar-libreria/googleMaps.js"></script>
+    <script src="js/log-nav.js"></script>
     <script src="js/direccion.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap" async defer></script>
+    <script src="js/sucursal/modificar-sucursal/controller-modificar.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
+        async defer></script>
 </body>
 
 </html>
