@@ -36,7 +36,7 @@ async function listarLibros(){
 
         title.href = "#";
         title.id = json[i]["_id"];
-        title.addEventListener('click', perfil);
+        title.addEventListener('click', perfil);    
 
         var cardTextCont2 = document.createElement("div");
         cardTextCont2.classList.add("card-text-cont");
@@ -147,8 +147,8 @@ fetch('/categoria/listar', {
 
 function perfil(e){
     var a = e.target;
-    var isbn = a.id;
-    sessionStorage.setItem("idLibro",isbn);
+    var id = a.id;
+    sessionStorage.setItem("idLibro",id);
     window.location.href = "perfil-libro.html";
 }
 
