@@ -4,7 +4,7 @@ if(sessionStorage.getItem("tipo") == "adminGlobal" || sessionStorage.getItem("ti
 }
 
 if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
-  document.getElementById("mod").classList.add("oculto");
+  document.getElementById("icons").classList.add("oculto");
 }
 
 document.getElementById("usrName").innerHTML = sessionStorage.getItem("correo");
