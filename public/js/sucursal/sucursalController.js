@@ -39,7 +39,7 @@ async function registrarSucursalLib(e) {
   e.preventDefault();
   var nombreLibreria = await datosUsuario();
   var esValido = validarCamposFormulario("form");
-  if (esValido == false) {
+  if (esValido == false ||validarForm() == false) {
       document.getElementById("alert").classList.remove("oculto");
       document.getElementById("msg").innerHTML = "Complete los espacios requeridos";
       return false;
@@ -65,7 +65,7 @@ async function registrarSucursalGlobal(e) {
   e.preventDefault();
   var nombreLibreria = document.getElementById("libreria").value;
   var esValido = validarCamposFormulario("form");
-  if (esValido == false) {
+  if (esValido == false ||validarForm() == false) {
       document.getElementById("alert").classList.remove("oculto");
       document.getElementById("msg").innerHTML = "Complete los espacios requeridos";
       return false;
@@ -95,4 +95,40 @@ function validarTel(tel){
   } else {
       return false;
   }
+}
+
+function validarForm(){
+  var espaciosVacios = [];
+  var provincias = document.getElementById('provincias').value;
+  var cantones = document.getElementById('cantones').value;
+  var distritos = document.getElementById('distritos').value;
+
+  if(provincias == "Seleccione una provincia"){
+      espaciosVacios.push('provincias');
+  } else {
+      document.getElementById("provincias").classList.remove('invalid');
+  }
+  if(cantones == "Seleccione un cantón"){
+      espaciosVacios.push('cantones');
+  } else {
+      document.getElementById("cantones").classList.remove('invalid');
+  }
+  if(distritos == "Seleccione un distrito"){
+    espaciosVacios.push('distritos');
+  } else {
+    document.getElementById("distritos").classList.remove('invalid');
+  }
+  if(espaciosVacios.length > 0){
+      for(var i=0;i<espaciosVacios.length;i++){
+          document.getElementById(espaciosVacios[i]).classList.add('invalid');
+      }
+      return false;
+  } else {
+      var elements = document.getElementsByClassName('form-control');
+      for(var i=0;i<elements.length;i++){
+          document.getElementById(elements[i].id).classList.remove('invalid');
+      }
+      return true;
+  }
+  
 }
