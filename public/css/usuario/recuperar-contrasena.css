@@ -1,44 +1,6 @@
-.titulo{
-  color: #022600;
-  padding: 5px 0 !important;
-}
-.infoUno{
-  margin-bottom: 10px;
-}
-.infoLibreria{
-  padding: 0 0 20px 5px;
-}
-
-#icons{
-    padding-top: 35px;
-}
-
-#pencil, #trash{
-    float: right;
-}
-#trash{
-    color: rgb(223, 80, 80);
-}
-
-#pencil{
-    color: #487252;
-    padding-right: 20px;
-}
-
-.lib-icon{
-    padding-right: 10px;
-    color: #487252;
-}
-
-.acomodarInformacion{
-  padding-bottom: 15px;
-}
-.oculto{
-    display: none;
-}
-
 .main-title{
-  color: #022600;
+    padding-left: 20%;
+    color: #022600;
 }
 
 /*content*/
@@ -46,10 +8,12 @@
     overflow: auto;
 }
 
+
 .wrapper-cont{
     float: left;
     width: 100%;
 }
+
 
 .wrapper-form{
     padding: 20px 20%;
@@ -69,21 +33,6 @@
     font-size: 1.2rem;
 }
 
-.wrapper-form textarea{
-    float: left;
-    width: 100%;
-    padding: 10px 10px;
-    margin: 10px 0;
-    font-size: 1.2rem;
-}
-
-.select-form{
-    width: 100%;
-    padding: 10px 5px;
-    margin: 10px 0 10px 0;
-    font-size: 1.2rem;
-}
-
 .form-mitad{
     float: left;
     width: 50%;
@@ -100,7 +49,6 @@
     box-sizing: border-box;
 }
 
-
 .form-btn{
     float: left;
     width: 100%;
@@ -110,11 +58,10 @@
     text-align: center;
 }
 
-
 .submit{
     text-align: center;
     padding: 10px 30px;
-    margin: 10px 0;
+    margin: 20px 0 50px 0;
     background-color: #48725231;
     color: black;
     border: none;
@@ -143,22 +90,17 @@
         font-size: 1rem;
     }
 
-    .select-form{
-        font-size: 1rem;
-    }
-
     .wrapper-form{
         padding: 20px 10%;
+    }
+
+    .main-title{
+        padding-left: 10%;
     }
 
     .submit{
         padding: 5px 20px;
         margin: 20px 40%;
     }
-
-}
-
-#map{
-    width: 100%;
-    height: 300px;
+    
 }

@@ -97,3 +97,15 @@ function validarForm(){
     }
     
   }
+
+function recCont(e){
+    var esValido = validarCamposFormulario("form");
+    if (esValido == false) {
+        document.getElementById("alert").classList.remove("oculto");
+        document.getElementById("msg").innerHTML = "Complete los espacios requeridos.";
+        return false;
+    } else {
+        e.preventDefault();
+        recuperarContrasena(); 
+    }
+}

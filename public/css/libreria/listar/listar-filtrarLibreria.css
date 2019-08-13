@@ -1,3 +1,16 @@
+
+.filtros{
+    padding: 10px 7% 10px 5%;
+}
+
+.search-box{
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
+
 .titulo{
     color: #022600;
     font-size: 100px;
@@ -6,22 +19,20 @@
 .titulo_info_libria{
     color: #487252;
     font-size: 40px;
+    margin-left: 2.5%;
 }
 
 .titulo_localizacion{
     color: #487252;
-    padding-left: 8px;
+}
+
+.titulo_localizacion-cont{
+    padding-bottom: 10px;
 }
 
 .infoUno{
     margin-bottom: 10px;
 }
-
-  .infoLibreria{
-    padding-bottom: 10px;
-    text-align: center;
-}
-
   
 .acomodarBoton{
     float: right;
@@ -31,31 +42,9 @@
     padding-bottom: 15px;
 }
 
-.button{
-    border: none;
-    padding: 10px;
-    padding: 10px 40px;
-    margin-top: 30px;
-    font-size: 1rem;
-    border-radius: 10px;
-}
-.button:hover{
-    transition: 0.4s;
-    color: white;
-    background-color: 487252;
-    cursor: pointer;
-}
-
 .search-cont{
     margin: 10px -4% 10px 3%;
 }
-
-.search-box{
-    width: 290px;
-    padding: 10px 10px;
-    font-size: 1rem;
-}
-
 
 .table-cont{
     margin: 10px 7% 50px 5%;
@@ -85,9 +74,10 @@
 #container_mapa{
     padding-top: 15px;
 }
+
 .scrollit {
     overflow:scroll;
-    height:64%;
+    height: 485px;
     width: auto;
 }
 

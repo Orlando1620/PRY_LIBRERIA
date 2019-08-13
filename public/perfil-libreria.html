@@ -10,53 +10,64 @@
 </head>
 
 <body class="font">
-    <nav>
-        <div class="wrapper-nav1">
-            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
-            <div class="usuario-nav">
-                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+  <nav>
+    <div class="wrapper-nav1">
+      <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
+      <div class="usuario-nav">
+        <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
 
-                <div class="dropdown" id="dropdown">
-                    <button class="dropbtn" >
-                        <label id="usrName"></label> 
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" id="perfil">Perfil</a>
-                        <a href="#" id="admin" class="oculto">Administrar</a>
-                        <a href="#" id="c-r">Cerrar Sesión</a>
-                    </div>
-                </div> 
-
-                <div class="wrapper-nav2">
-                    <div><a id="nav-libros">Libros</a></div>
-                    <div><a id="nav-autores">Autores</a></div>
-                    <div><a id="nav-librerias">Librerías</a></div>
-                    <div><a id="nav-club">Clubes de Lectura</a></div>
-                    <div><a id="nav-promo">Promociones</a></div>
-                    
-                </div>
-            </div>
+        <div class="dropdown" id="dropdown">
+          <button class="dropbtn">
+            <label id="usrName"></label>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" id="perfil">Perfil</a>
+            <a href="#" id="admin" class="oculto">Administrar</a>
+            <a href="#" id="c-r">Cerrar Sesión</a>
+          </div>
         </div>
 
-        
+        <div class="wrapper-nav2">
+          <div><a id="nav-libros">Libros</a></div>
+          <div><a id="nav-autores">Autores</a></div>
+          <div><a id="nav-librerias">Librerías</a></div>
+          <div><a id="nav-club">Clubes de Lectura</a></div>
+          <div><a id="nav-promo">Promociones</a></div>
 
-        <div class="select-nav">
-            <select id="select-nav">
-                <option>Más</option>
-                <option value="1">Libros</option>
-                <option value="2">Autores</option>
-                <option value="3">Librerías</option>
-                <option value="4">Clubes de Lectura</option>
-                <option value="5">Promociones</option>
-            </select>
         </div>
-    </nav>
+      </div>
+    </div>
+
+
+
+    <div class="select-nav">
+      <select id="select-nav">
+        <option>Más</option>
+        <option value="1">Libros</option>
+        <option value="2">Autores</option>
+        <option value="3">Librerías</option>
+        <option value="4">Clubes de Lectura</option>
+        <option value="5">Promociones</option>
+      </select>
+    </div>
+  </nav>
 
   <div class="wrapper-cont">
     <div class="wrapper-form">
-      <div class="titulo" id="nombreLibreria">
-        <h2 id="titulo"></h2>
+
+      <div class="form-full">
+
+        <div class="titulo form-mitad" id="nombreLibreria">
+          <h2 id="titulo"></h2>
+        </div>
+
+        <div id="icons" class="form-mitad">
+          <a onclick="popDel()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
+          <a href="modificar-libreria.html"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
+
+        </div>
+
       </div>
       <div class="infoLibreria">
         <h3 id="numeroLibreria"><i class="fas fa-phone-square fa-lg lib-icon"></i></h3>
@@ -73,34 +84,45 @@
     </div>
 
     <div class="wrapper-form">
-        <div class="form-full">
-          <h3>Sucursales</h3>
-        </div>
+      <div class="form-full">
+        <h3>Sucursales</h3>
+      </div>
     </div>
 
     <div class="search-cont">
-      <input type="text" placeholder="Nombre de la sucursal" class="search-box" id="buscar" onkeyup="filtrar()"/>
+      <input type="text" placeholder="Nombre de la sucursal" class="search-box" id="buscar" onkeyup="filtrar()" />
     </div>
 
     <div class="table-cont">
-        <table class="lista-suc font" id="lista-suc">
-            <tr class="table-titles">
-                <td colspan="1"><a>Nombre</a></td>
-                <td colspan="2"><a>Dirección</a></td>
-                <td colspan="1"><a>Teléfono</a></td>
-            </tr>
-        </table>
+      <table class="lista-suc font" id="lista-suc">
+        <tr class="table-titles">
+          <td colspan="1"><a>Nombre</a></td>
+          <td colspan="2"><a>Dirección</a></td>
+          <td colspan="1"><a>Teléfono</a></td>
+        </tr>
+      </table>
     </div>
-    
+
     <div id="alert" class="alert oculto">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
       <label id="msg"></label>
     </div>
 
-    <div class="form-full oculto" id="nuevaSuc"><button class="submit font" onclick="nuevaSucursal(event)">Nueva Sucursal</button></div>
+    <div class="form-btn oculto" id="nuevaSuc">
+      <button class="submit font" onclick="nuevaSucursal()">Nueva Sucursal</button>
+    </div>
+
+    <div class="pop-up-cont oculto" id="pop-up">
+        <div class="pop-up">
+            <p id="msg-pop"></p>
+            <div class="btn-cont">
+                <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
+                <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
 
-    
 
   </div>
 
@@ -108,8 +130,10 @@
     <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
     <div class="footer-cont">
       <h4></h4>
-      <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo" /></a><br>
-      <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo" /></a><br>
+      <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png"
+          class="logo" /></a><br>
+      <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png"
+          class="logo" /></a><br>
     </div>
     <div class="footer-cont">
       <h4>Compañia</h4>
@@ -133,12 +157,14 @@
   </footer>
 
   <script src="js/libreria/mapa-libreria.js"></script>
-  <script src="js/libreria/perfilLibreria.js"></script>
   <script src="js/sucursal/listarSucursales.js"></script>
-  <script src="js/log-nav.js"></script>  
+  <script src="js/libreria/perfilLibreria.js"></script>
+  <script src="js/log-nav.js"></script>
   <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap" async defer></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
+    async defer></script>
 </body>
 
 </html>

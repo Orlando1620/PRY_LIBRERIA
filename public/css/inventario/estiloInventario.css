@@ -28,11 +28,14 @@
 }
 
 .filtro{
-    float: left;
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 350px;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 3% 10px 0;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
 }
+
 
 .filtro-lib{
     float: left;
@@ -44,13 +47,25 @@
 
 .titles-inv{
     float: left;
-    width: 40%;
+    width: 42.5%;
     padding: 10px 0px;
-    margin: 0 5%;   
+    margin-left: 5%;   
+    box-sizing: border-box;
+}
+
+.titles-inv-full{
+    float: left;
+    width: 95%;
+    padding: 10px 0px;
+    padding-left: 5%;   
     box-sizing: border-box;
 }
 
 .titles-inv h3{
+    padding: 0;
+}
+
+.titles-inv-full h3{
     padding: 0;
 }
 
@@ -59,15 +74,23 @@
     width: 100%;
 }
 
+.wrapper{
+    overflow: auto;
+    width: 100%;
+}
+
 .cards-cont{
     float: left;
     overflow: scroll;
-    width: 40%;
-    padding: 10px 5px;
+    width: 90%;
+    padding: 5px 0;
     margin: 10px 5%;   
-    border: solid 1px silver;
-    height: 500px;
+    max-height: 500px;
     box-sizing: border-box;
+}
+
+.cards-cont i{
+    padding-right: 20px; 
 }
 
 .card{
@@ -78,7 +101,7 @@
     border-bottom: solid 1px silver;
 }
 
-.card button{
+.submit{
     padding: 10px;
     margin-left: 10px;
     background-color: #48725231;
@@ -88,7 +111,7 @@
     font-size: 0.7rem;
 }
 
-.card button:hover{
+.submit:hover{
     padding: 10px;
     background-color: #487252;
     color: white;
@@ -127,6 +150,18 @@
     border-radius: 10px;
 }
 
+.fa-trash-alt{
+    color: rgb(230,80,80);
+}
+
+.fa-plus{
+    color: #487252;
+}
+
+.fa-save{
+    color: #487252;
+}
+
 /*cambios para movil*/
 @media(max-width: 1080px){
 
@@ -150,6 +185,26 @@
     }
 }
 
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
 
 /*sidebar*/
 .wrapper-side-bar{

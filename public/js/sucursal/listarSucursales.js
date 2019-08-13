@@ -32,7 +32,7 @@ async function listarSucursal(nombreLibreria){
               var textTd1 = document.createTextNode(json[i]['nombreSucursal']);
               a.appendChild(textTd1);
               a.href = "#";
-              a.id = json[i]['nombreSucursal'];
+              a.id = json[i]['_id'];
               a.addEventListener('click', perfil);
 
               var textTd2 = document.createTextNode(json[i]['provincia']+", "+json[i]['canton']+", "+json[i]['distrito']);
@@ -60,7 +60,6 @@ async function listarSucursal(nombreLibreria){
 }
 
 async function filtrar(){
-  nombreLibreria = "Libreria Internacional Com";
   var list = document.getElementById("lista-suc");
   removeElements(list);
   var nombreReq = document.getElementById("buscar").value;
@@ -85,7 +84,7 @@ async function filtrar(){
               var textTd1 = document.createTextNode(sucursales[i]['nombreSucursal']);
               a.appendChild(textTd1);
               a.href = "#";
-              a.id = sucursales[i]['nombreSucursal'];
+              a.id = sucursales[i]['_id'];
               a.addEventListener('click', perfil);
 
               var textTd2 = document.createTextNode(sucursales[i]['provincia']+", "+sucursales[i]['canton']+", "+sucursales[i]['distrito']);
@@ -150,8 +149,8 @@ function removeElements(list){
 
 function perfil(e){
   var a = e.target;
-  var nombreSucursal = a.id;
-  sessionStorage.setItem("nombreSucursal",nombreSucursal);
+  var sucursal = a.id;
+  sessionStorage.setItem("idSuc",sucursal);
   window.location.href = "perfil-sucursal.html";
 }
 
