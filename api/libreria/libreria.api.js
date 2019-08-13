@@ -70,7 +70,6 @@ module.exports.buscarPorId = function (req, res) {
 }
 
 
-//terminar el modificar
 module.exports.modificarLibreria = function (req, res) {
   let id = req.body._id;
   let lib = req.body;

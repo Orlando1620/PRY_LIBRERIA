@@ -1,3 +1,12 @@
+.alertCorrect{
+    padding: 20px;
+    background-color: #487252; 
+    color: white;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    width: 40%;
+    margin: 0 30% 20px 30%;
+}
 
 .alert {
     padding: 20px;

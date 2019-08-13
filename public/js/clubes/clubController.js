@@ -7,6 +7,7 @@ if(sessionStorage.getItem("nombre") == null){
 
 async function registroVirtual(){
   try{
+    
     var horaInicio = document.getElementById('horaInicio').value;
     var horaFinal = document.getElementById('horaFinal').value;
 
@@ -41,7 +42,23 @@ async function registroVirtual(){
           case 'exito':
               document.getElementById("alert").classList.add("oculto");
               registrarBitacora(sessionStorage.getItem("correo"),'registro club de lectura: '+document.getElementById("nombre").value);
-              window.location.href = "listar-clubes.html";
+
+              document.getElementById("alert-success").classList.remove("oculto");
+              document.getElementById("msg-success").innerHTML = "Club registrado";
+              setTimeout(function () {
+                switch(sessionStorage.getItem("tipo")){
+                  case "usuarioCliente":
+                      window.location.href = "listar-clubes-UC.html";
+                      break;
+                  case "AdminLib":
+                      window.location.href = "listar--clubes-adminLib.html";
+                      break;
+                  case "adminGlobal":
+                      window.location.href = "listar-clubes-adminGlobal.html";
+                      break;
+                }
+                
+              }, 2000);
               break;
       }
     } else {

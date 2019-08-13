@@ -65,44 +65,44 @@
         <div id="space_Regist_Lib" class="wrapper-form">
             <h1>Modificar librería</h1>
 
+            <form id="form"></form>
+                <div id="nomFant" class="form-full">
+                    <h3>Nombre Comercial</h3>
+                    <input class="input" type="text" id="nomComercial" required>
+                </div>
 
-            <div id="nomFant" class="form-full">
-                <h3>Nombre Comercial</h3>
-                <input class="input" type="text" id="nomComercial" required>
-            </div>
+                <div class="form-full">
+                    <h3>Nombre de Fantasia</h3>
+                    <input class="input" type="text" id="nomFantasia" required>
+                </div>
 
-            <div class="form-full">
-                <h3>Nombre de Fantasia</h3>
-                <input class="input" type="text" id="nomFantasia" required>
-            </div>
+                <div class="form-full">
+                    <h3>Dirección</h3>
+                </div>
 
-            <div class="form-full">
-                <h3>Dirección</h3>
-            </div>
+                <div class="form-mitad">
+                    <h3>Provincia</h3>
+                    <select class="select-form" id="provincias" required></select>
+                </div>
+                <div class="form-mitad">
+                    <h3>Cantón</h3>
+                    <select class="select-form" id="cantones" required></select>
+                </div>
 
-            <div class="form-mitad">
-                <h3>Provincia</h3>
-                <select class="select-form" id="provincias" required></select>
-            </div>
-            <div class="form-mitad">
-                <h3>Cantón</h3>
-                <select class="select-form" id="cantones" required></select>
-            </div>
+                <div class="form-mitad">
+                    <h3>Distrito</h3>
+                    <select class="select-form" id="distritos" required></select>
+                </div>
+                <div class="form-mitad">
+                    <h3>Teléfono</h3>
+                    <input type="text" id="telefono" class="input_telefono" required />
+                </div>
 
-            <div class="form-mitad">
-                <h3>Distrito</h3>
-                <select class="select-form" id="distritos" required></select>
-            </div>
-            <div class="form-mitad">
-                <h3>Teléfono</h3>
-                <input type="text" id="telefono" class="input_telefono" required />
-            </div>
+                <div class="form-full">
+                    <h3>Dirección exacta</h3>
+                    <input type="text" id="dirExacta" class="input" required>
+                </div>
 
-            <div class="form-full">
-                <h3>Dirección exacta</h3>
-                <input type="text" id="dirExacta" class="input" required>
-            </div>
-            <form id="form">
                 <div id="location" class="form-full">
                     <h1>Localización de la Librería</h1>
                     <input id="pac-input" class="controls" type="text" placeholder="Busqueda">
@@ -118,30 +118,15 @@
                 <p id="msg" class="pAlert">Complete los espacios requeridos</p>
             </div>
 
-            <div id="alert_correo" class="alert oculto">
-                <p id="msg_cred" class="pAlert"></p>Ya hay un administrador con el mismo correo.</p>
+            <div id="alert_correct" class="alertCorrect oculto">
+                <p id="msg" class="pAlert">Datos guardados correctamente.</p>
             </div>
 
-            <div id="alert_mapa" class="alert oculto">
-                <p id="msg_cred" class="pAlert"></p>Debe indicar su ubicación en el mapa.</p>
-            </div>
-
-            <div id="alert_correo_form" class="alert oculto">
-                <p id="msg_cred" class="pAlert"></p>El formato del correo no es válido.</p>
-            </div>
-
-            <div id="alert_tel" class="alert oculto">
-                <p id="msg_cred" class="pAlert"></p>El formato del teléfono no es válido.</p>
-            </div>
-
-            <div id="alert_fecha" class="alert oculto">
-                <p id="msg_cred" class="pAlert"></p>Fecha actual o en el futuro no es válida.</p>
+            <div id="alert_copy" class="alert oculto">
+                <p id="msg" class="pAlert">El existe una librería con este nombre</p>
             </div>
 
         </div>
-
-
-
     </div>
 
 
@@ -186,9 +171,7 @@
     <script src="js/log-nav.js"></script>
 
     <script src="js/direccion.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap" async defer></script>
 </body>
 
 </html>

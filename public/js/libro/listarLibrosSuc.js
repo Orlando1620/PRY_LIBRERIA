@@ -144,4 +144,4 @@ function removeElements(list){
   document.getElementById("lista-lib").appendChild(titles);
 }
 
-listarLibro(sessionStorage.getItem("idSuc"));
+//listarLibro(sessionStorage.getItem("idSuc"));

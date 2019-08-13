@@ -3,13 +3,13 @@ if(sessionStorage.getItem("tipo") == "adminGlobal" || sessionStorage.getItem("ti
   document.getElementById("info").classList.add("full");
 }
 
-if(sessionStorage.getItem("tipo") == "usuarioCliente"){
+if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
   document.getElementById("mod").classList.add("oculto");
 }
 
 document.getElementById("usrName").innerHTML = sessionStorage.getItem("correo");
 var autores = [];
-async function fillPerfil(isbn){
+async function fillPerfil(id){
 
     var responseAutor = await fetch('/autor/listar', {
       method: 'GET',
@@ -18,7 +18,7 @@ async function fillPerfil(isbn){
     var autorJson = await responseAutor.json();
     autores = autorJson;
     var data = {
-        isbn: isbn
+        id: id
     }
     fetch('/libro/perfil', {
         method: 'POST',
@@ -50,7 +50,7 @@ async function fillPerfil(isbn){
             document.getElementById('genero').innerHTML += json['genero']; 
             document.getElementById('categoria').innerHTML += json['categoria'];
             document.getElementById('desc').innerHTML += json['descripcion']; 
-            fillInventario(isbn);
+            fillInventario(id);
           }
       )
       .catch(
@@ -60,11 +60,20 @@ async function fillPerfil(isbn){
       );
 }
 
-function fillInventario(isbn){
+var sucursales = [];
+async function fillInventario(id){
+
+    var response = await fetch('/sucursal/listarTodo', {
+      method: 'GET',
+      headers:{'Content-Type': 'application/json'}
+    })
+    var sucursalesJson = await response.json();
+    sucursales = sucursalesJson;
     //inventario = [];
     var data = {
-        isbn: isbn
+        libro: id
     }
+
     fetch('/inventario/listarPerfilLibro', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -82,39 +91,49 @@ function fillInventario(isbn){
           function(json){
             var list = document.getElementById("opciones");
             removeElements(list);
+            
             for(var i=0;i<json.length;i++){
                 
-                var opcion = document.createElement("div");
-                var div1 = document.createElement("div");
-                var div2 = document.createElement("div");
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
 
                 var sucursal = document.createElement("label");
-                var precio = document.createElement("p");
-                var button = document.createElement("button");
+                var precio = document.createElement("label");
+                var button = document.createElement("i");
 
     
-                var textSuc = document.createTextNode(json[i]['nombreSuc']);
+                var textSuc;
+                for(var j=0;j<sucursales.length;j++){
+                  if(sucursales[j]['_id'] == json[i]['sucursal']){
+                    textSuc = document.createTextNode(sucursales[j]['nombreSucursal']);
+                  }
+                }
                 sucursal.appendChild(textSuc);
     
                 var textPrecio = document.createTextNode("Precio: ₡"+json[i]['precio'].toLocaleString());
                 precio.appendChild(textPrecio);
 
-                button.id = json[i]['sucursal'];
-                button.innerText = 'Agregar al Carrito';
+                
                 //button.addEventListener('click', addInv);
                 
-                opcion.classList.add("opcion");
-                div1.classList.add("div-opcion");
-                div2.classList.add("div-opcion");
-    
-                div1.appendChild(sucursal);
-                div1.appendChild(precio);
-                div2.appendChild(button);
+                var aAdd = document.createElement('a');
+                button.classList.add('fas');
+                button.classList.add('fa-cart-plus');
+                button.id = json[i]['sucursal'];
+                //aAdd.addEventListener('click', popDel);
+                aAdd.appendChild(button);
+                
+                td1.appendChild(sucursal);
+                td2.appendChild(precio);
+                td3.appendChild(aAdd);
 
-                opcion.appendChild(div1);
-                opcion.appendChild(div2);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
     
-                document.getElementById("opciones").appendChild(opcion);
+                document.getElementById("opciones").appendChild(tr);
                 //inventario.push(json[i]['isbn']);
             }
           }
