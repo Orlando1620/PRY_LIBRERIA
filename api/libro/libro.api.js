@@ -382,7 +382,6 @@ module.exports.filtrarLibrosGenCat = function (req, res) {
 
 }
 
-<<<<<<< HEAD
 module.exports.perfilLibro = function(req, res){
   var id = req.body.id;
   Libro.findOne({_id: id}).exec()
@@ -390,7 +389,7 @@ module.exports.perfilLibro = function(req, res){
     function(result){
       console.log(result);
       res.send(result);
-=======
+
 module.exports.perfilLibro = function (req, res) {
   var isbn = req.body.isbn;
   Libro.findOne({ isbn: isbn }).exec()
@@ -415,7 +414,6 @@ module.exports.verificarAsosiacionLibro = function (req, res) {
       res.send(libreria);
     } else {
       res.send(false);
->>>>>>> Dev_Orlando
     }
   }
   )
