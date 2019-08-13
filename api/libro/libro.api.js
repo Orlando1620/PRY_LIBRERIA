@@ -382,28 +382,15 @@ module.exports.filtrarLibrosGenCat = function (req, res) {
 
 }
 
-module.exports.perfilLibro = function(req, res){
-  var id = req.body.id;
-  Libro.findOne({_id: id}).exec()
-  .then(
-    function(result){
-      console.log(result);
-      res.send(result);
-
 module.exports.perfilLibro = function (req, res) {
-  var isbn = req.body.isbn;
-  Libro.findOne({ isbn: isbn }).exec()
+  var id = req.body.id;
+  Libro.findOne({ _id: id }).exec()
     .then(
       function (result) {
         console.log(result);
         res.send(result);
       }
     )
-    .catch(
-      function (err) {
-        console.log(err);
-      }
-    );
 }
 
 
