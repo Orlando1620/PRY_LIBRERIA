@@ -50,7 +50,7 @@ module.exports.registrarPromocion = async function(req, res) {
         fechaFinaliza: fechaFinaliza,
         imgUrl:image['url']
       });
-    
+
       await nuevaPromocion.save()
       res.json({result: "exito"});
       console.log(result);
@@ -62,4 +62,19 @@ module.exports.registrarPromocion = async function(req, res) {
   } catch(err){
     console.log(err);
   }
+}
+
+module.exports.listarPromo = function (req, res) {
+  Promocion.find().exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 }
