@@ -30,7 +30,12 @@ async function registro(nombreLibreria){
       case "exito":
         registrarBitacora(sessionStorage.getItem("correo"),'registro sucursal: '+document.getElementById("nombreSucursal").value);
         sessionStorage.setItem("nombreLibreria", nombreLibreria);
-        window.location.href = "perfil-libreria.html";
+        document.getElementById("alert-success").classList.remove("oculto");
+        document.getElementById("msg-success").innerHTML = "Sucursal registrada";
+        setTimeout(function () {
+          window.location.href = "listar-sucursales-admin.html";
+        }, 2000);
+        
         break;
     }
       

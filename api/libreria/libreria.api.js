@@ -108,3 +108,11 @@ module.exports.modificarLibreria = function (req, res) {
   })
 
 };
+
+module.exports.eliminarLibreria = async function (req, res) {
+  await Libreria.deleteOne(
+    { nombreComercial: req.body.libreria }
+  )
+  res.json({result: "exito"});
+
+};

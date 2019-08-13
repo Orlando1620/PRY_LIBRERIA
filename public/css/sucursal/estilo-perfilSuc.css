@@ -132,8 +132,11 @@
 
 .titulo div{
     float: left;
-    width: 50%;
     padding: 10px 0;
+}
+
+.del-mod{
+    float: right !important; 
 }
 
 .edit{
@@ -156,37 +159,12 @@
     background-color: #48725231;
 }
 
-@media(max-width: 920px){
-
-    .side-bar a{
-        font-size: 1rem;
-    }
-
-    .side-bar-selected a{
-        font-size: 1rem;
-    }
-}
-
 
 /*cambios para movil*/
 @media(max-width: 750px){
 
-    /*side bar*/
-    .wrapper-side-bar{
-        display: none;
-    }
-
-    .select-side-bar{
-        display: block;
-        text-align: center;
-    }
-
     .wrapper-cont{
         width: 100%;
-    }
-
-    .tab-wrapper div{
-        font-size: 1rem;
     }
 
     .form-mitad h3{

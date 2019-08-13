@@ -14,8 +14,16 @@ router.post('/add', function(req, res) {
     sucursalApi.registrarSucursal(req,res);
 })
 
+router.post('/eliminar', function(req, res) {
+    sucursalApi.eliminarSucursal(req,res);
+})
+
 router.post('/listar', function(req, res) {
     sucursalApi.listarSucursal(req,res);
+})
+
+router.get('/listarTodo', function(req, res) {
+    sucursalApi.listarSucursalTodo(req,res);
 })
 
 router.get('/listarTodo', function(req, res) {
