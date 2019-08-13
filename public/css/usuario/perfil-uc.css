@@ -8,9 +8,11 @@
 }
 
 .main-title{
-    padding-left: 20px;
+    padding-left: 17%;
     color: #022600;
 }
+
+
 
 /*content*/
 .main-wrapper{
@@ -262,13 +264,47 @@ table{
 }
 
 .ppic{
-    margin: 0 auto;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
+    margin-left: auto;
 }
+
+.wrapper{
+    overflow: auto;
+    padding-left: 17%;
+    width: 65%;
+}
+
+.ppic-cont{
+    float: left;
+    width: 60%;
+    text-align: right;
+}
+
+.icons{
+    float: right;
+}
+
+
+#icons{
+    padding-top: 10px;
+}
+
+#pencil, #trash{
+    float: right;
+}
+#trash{
+    color: rgb(223, 80, 80);
+}
+
+#pencil{
+    color: #487252;
+    padding-right: 20px;
+}
+
 
 select{
 	font-size: 1rem;

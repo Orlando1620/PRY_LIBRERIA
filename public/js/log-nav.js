@@ -1,5 +1,7 @@
+//document.getElementById("nav-promo").classList.add('oculto');
 if(sessionStorage.getItem("nombre") == null){
     document.getElementById("dropdown").classList.add("oculto");
+    document.getElementById("nav-cart").classList.add("oculto");
     document.getElementById("nav-login").classList.remove("oculto");
 
     document.getElementById("nav-login").href = "login.html";
@@ -25,6 +27,9 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("home").href = "perfil-adminLib.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
+            if(document.getElementById("nav-cart") != null){
+                document.getElementById("nav-cart").classList.add("oculto");
+            }
             break;
         case "adminGlobal":
             document.getElementById("perfil").href = "perfil-adminGlobal.html";
@@ -33,6 +38,9 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("home").href = "perfil-adminGlobal.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
+            if(document.getElementById("nav-cart") != null){
+                document.getElementById("nav-cart").classList.add("oculto");
+            }
             break;
     }
 }
@@ -41,7 +49,7 @@ document.getElementById("nav-libros").href = "listar-libros.html";
 document.getElementById("nav-autores").href = "listar-autores.html";
 document.getElementById("nav-librerias").href = "listar-librerias.html";
 document.getElementById("nav-club").href = "listar-clubes.html";
-document.getElementById("nav-promo").href = "#";
+
 
 
 document.getElementById("select-nav").addEventListener('change', opcionesNav);
