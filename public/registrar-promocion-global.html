@@ -1,0 +1,156 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./css/promocion/promocion.css" />
+  <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
+  <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
+  <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body class="font">
+    <nav>
+        <div class="wrapper-nav1">
+            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+            <div class="usuario-nav">
+                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                <div class="dropdown" id="dropdown">
+                    <button class="dropbtn" >
+                        <label id="usrName"></label> 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="perfil">Perfil</a>
+                        <a href="#" id="admin" class="oculto">Administrar</a>
+                        <a href="#" id="c-r">Cerrar Sesión</a>
+                    </div>
+                </div> 
+
+                <div class="wrapper-nav2">
+                    <div><a id="nav-libros">Libros</a></div>
+                    <div><a id="nav-autores">Autores</a></div>
+                    <div><a id="nav-librerias">Librerías</a></div>
+                    <div><a id="nav-club">Clubes de Lectura</a></div>
+                    <div><a id="nav-promo">Promociones</a></div>
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="select-nav">
+            <select id="select-nav">
+                <option>Más</option>
+                <option value="1">Libros</option>
+                <option value="2">Autores</option>
+                <option value="3">Librerías</option>
+                <option value="4">Clubes de Lectura</option>
+                <option value="5">Promociones</option>
+            </select>
+        </div>
+    </nav>
+
+  <div class="titulo">
+    <h1 class="main-title">Registrar Promoción</h1>
+  </div>
+
+  <div class="wrapper-cont">
+    <!--Form del registro-->
+    <form class="wrapper-form" id="form">
+      <div class="form-mitad">
+        <h3>Librería </h3>
+        <select id="librerias" class="input" onchange="fillSucursales()" required>
+          <option>Seleccione una librería</option>
+        </select>
+      </div>
+      <div class="form-mitad">
+          <h3>Sucursal </h3>
+          <select id="sucursales" class="input" onchange="fillInventario()" required>
+            <option>Seleccione una sucursal</option>
+          </select>
+      </div>
+      <div class="form-mitad">
+          <h3>Libro en promoción</h3>
+          <select id="libroPromo" class="input" required>
+              <option>Seleccione un libro</option>
+          </select>
+        </div>
+      <div class="form-mitad">
+        <h3>Porcentaje de descuento</h3>
+        <input id="porcentaje" class="input" type="number" max="100" min="1" required>
+      </div>
+
+      <div class="form-mitad">
+        <h3>Fecha de inicio</h3>
+        <input type="date" class="select-form" id="fechaInicio" required>
+        </select>
+      </div>
+      <div class="form-mitad">
+        <h3>Fecha de finalización</h3>
+        <input type="date" class="select-form" id="fechaFinaliza" required></select>
+      </div>
+      <div class="form-mitad">
+        <h3>Banner de promoción</h3>
+        <input type="file" id="foto" name="foto" accept='.jpg, .png, .jpeg' required>
+      </div>
+      
+      <div class="form-btn">
+          <button id="btnRegistrar" type="button" class="submit font" onclick="registrarPromocion(event)">Registrar</button>
+      </div>
+        
+    </form>
+    <!--Alert si no se cumple una validacion en el form-->
+    <div id="alert" class="alert oculto">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <label id="msg"></label>
+    </div>
+    <div id="alert-porcentaje" class="alert oculto">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <label id="msg-porcentaje"></label>
+    </div>
+    <div id="alert-fecha" class="alert oculto">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <label id="msg-fecha"></label>
+    </div>
+    <div id="alert-success" class="alert-success oculto">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <label id="msg-success"></label>
+      </div>
+
+  </div>
+
+
+  <footer>
+    <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
+    <div class="footer-cont">
+
+      <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo" /></a><br>
+      <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo" /></a><br>
+    </div>
+    <div class="footer-cont">
+      <h4>Compañia</h4>
+      <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+      <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+      <i class="fab fa-instagram fa-lg"></i>
+      <i class="fab fa-facebook-square fa-lg"></i>
+      <i class="fab fa-twitter-square fa-lg"></i>
+    </div>
+
+    <div class="footer-cont">
+      <h4>Soporte</h4>
+      <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+      <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+    </div>
+
+  </footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/promocion/promocion-controller.js"></script>
+  <script src="js/promocion/promocionServicios.js"></script>
+  <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+  <script src="js/log-nav.js"></script>
+</body>
+
+</html>
