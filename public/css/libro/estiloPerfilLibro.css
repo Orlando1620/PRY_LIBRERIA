@@ -2,6 +2,27 @@
     display: none;
 }
 
+.acomodar{
+    display: flex;
+}
+
+#icons{
+    padding-left: 47%;
+    padding-top: 19px;
+}
+
+#pencil, #trash{
+    float: right;
+}
+#trash{
+    color: rgb(223, 80, 80);
+}
+
+#pencil{
+    color: #487252;
+    padding-right: 20px;
+}
+
 .main-title{
     color: #022600;
     margin: 0;
