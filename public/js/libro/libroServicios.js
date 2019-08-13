@@ -130,7 +130,7 @@ function filtrarNombre(){
                 card.appendChild(cardTextCont);
 
                 title.href = "#";
-                title.id = libros[i]["isbn"];
+                title.id = libros[i]["_id"];
                 title.addEventListener('click', perfil);
 
                 var cardTextCont2 = document.createElement("div");
@@ -218,7 +218,7 @@ function filtrarGenCat(){
                 card.appendChild(cardTextCont);
 
                 title.href = "#";
-                title.id = json[i]["isbn"];
+                title.id = json[i]["_id"];
                 title.addEventListener('click', perfil);
 
                 var cardTextCont2 = document.createElement("div");

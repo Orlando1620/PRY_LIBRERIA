@@ -2,6 +2,27 @@
     display: none;
 }
 
+.acomodar{
+    display: flex;
+}
+
+#icons{
+    padding-left: 47%;
+    padding-top: 19px;
+}
+
+#pencil, #trash{
+    float: right;
+}
+#trash{
+    color: rgb(223, 80, 80);
+}
+
+#pencil{
+    color: #487252;
+    padding-right: 20px;
+}
+
 .main-title{
     color: #022600;
     margin: 0;
@@ -61,7 +82,7 @@
 }
 
 .opciones{
-    height: 400px;
+    max-height: 400px;
     overflow: scroll;
 }
 
@@ -73,76 +94,51 @@
     border: none;
     border-bottom: solid 1px silver;
 }
+
 .div-opcion{
     float: left;
     width: 50%;
 }
 
-.opciones button{
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #48725231;
-    color: black;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    float: right;
+.table-cont{
+    margin: 10px 9.5% 50px 9.5%;
+    max-height: 400px;
+    overflow: scroll;
 }
 
-.opciones button:hover{
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
     padding: 10px;
-    background-color: #487252;
+    border-bottom: 1px solid silver;
+}
+
+.lista-suc i{
+    color: #487252;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
     color: white;
-    border: none;
 }
 
-/*tabs*/
-.tab-wrapper{
-    overflow: auto;
-    text-align: center;
-    padding: 10px 10%;
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
 }
 
-.tab-wrapper div{
-    float: left;
-    width: 50%;
+.selectFiltrar{
+    width: 100%;
     padding: 10px 10px;
-    box-sizing: border-box;
+    margin: 10px 3% 10px 0;
     font-size: 1rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.tab-selected{
-    background-color: #487252;
-}
-
-.tab-selected a{
-    color: white;
-}
-
-.tab-unselected{
-    background-color: #48725231;
-}
-
-.tab-unselected a{
-    color: black;
-}
-
-.submit{
-    text-align: center;
-    padding: 10px 30px;
-    margin: 20px 0;
-    background-color: #48725231;
-    color: black;
+    
     border: none;
-    font-size: 1rem;
-    border-radius: 10px;
-}
-
-.submit:hover{
-    background-color: #487252;
-    color: white;
+    background-color: #48725231;
 }
 
 @media(max-width: 1278px){
