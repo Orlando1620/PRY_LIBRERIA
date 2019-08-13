@@ -113,7 +113,25 @@ module.exports.listarSucursal = function (req, res) {
     );
 }
 
+<<<<<<< HEAD
+module.exports.listarSucursalTodo = function(req, res) {
+  Sucursal.find().sort({nombreSucursal: 'asc'})
+  .then(
+    function(result){
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
+}
+
+module.exports.actualizaNombreSucursal = function(nombreNuevo, nombreAnterior)  {
+=======
 module.exports.actualizaNombreSucursal = function (nombreNuevo, nombreAnterior) {
+>>>>>>> Dev_Orlando
 
   Sucursal.update({ nombreLibreria: nombreAnterior }, { $set: { nombreLibreria: nombreNuevo } }, function (err, result) {
     if (err) {

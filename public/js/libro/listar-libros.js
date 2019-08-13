@@ -35,7 +35,7 @@ async function listarLibros(){
         card.appendChild(cardTextCont);
 
         title.href = "#";
-        title.id = json[i]["isbn"];
+        title.id = json[i]["_id"];
         title.addEventListener('click', perfil);
 
         var cardTextCont2 = document.createElement("div");

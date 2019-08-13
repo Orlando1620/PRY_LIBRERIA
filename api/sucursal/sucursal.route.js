@@ -26,6 +26,14 @@ router.get('/listarTodo', function (req, res) {
     sucursalApi.listarSucursalTodo(req, res);
 })
 
+<<<<<<< HEAD
+router.get('/listarTodo', function(req, res) {
+    sucursalApi.listarSucursalTodo(req,res);
+})
+  
+router.post('/filtrar', function(req, res) {
+    sucursalApi.filtrarSucursal(req,res);
+=======
 router.post('/obtener_Sucursal', function(req, res) {
     sucursalApi.obtener_Sucursal(req,res);
 })
@@ -36,5 +44,6 @@ router.post('/filtrar', function (req, res) {
 
 router.put('/modificar', function (req, res) {
     sucursalApi.modificarSucursal(req, res);
+>>>>>>> Dev_Orlando
 })
 module.exports = router;

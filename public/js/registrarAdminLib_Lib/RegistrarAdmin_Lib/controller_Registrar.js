@@ -58,7 +58,6 @@ function mostrarMensaje(respuesta, contrasena) {
         case 'exitoso':
             enviarContrasena(contrasena);
             registrarBitacora(correo.value,'registro libreria: '+nombreComercial);
-            window.location.href = "login.html";
             break;
 
         case 'CORREO_DUPLI':
