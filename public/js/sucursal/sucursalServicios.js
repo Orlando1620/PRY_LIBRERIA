@@ -45,6 +45,34 @@ async function registro(nombreLibreria) {
 
 }
 
+async function obtener_Sucursal(id) {
+
+  let Sucursal = {};
+
+  let datos = {
+    id: id
+  }
+
+  Sucursal = await fetch('/sucursal/obtener_Sucursal', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  })
+    .then(function (response) {
+      if (response.status != 200)
+        console.log('Error en el servicio: ' + response.status);
+      else
+        return response.json();
+    })
+    .then(function (response) {
+      return response;
+    })
+    .catch(err => console.log('Error:', err));
+  return Sucursal;
+};
+
 async function datosUsuario() {
   var data = {
     admin_id: sessionStorage.getItem("id")

@@ -62,7 +62,7 @@ async function actualizarLibreria(libreria) {
         },
         body: JSON.stringify(libreria)
     })
-    
+
         .then(function (response) {
             if (response.status != 200)
                 console.log('Error en el servicio: ' + response.status);

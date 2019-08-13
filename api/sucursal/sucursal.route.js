@@ -26,6 +26,10 @@ router.get('/listarTodo', function (req, res) {
     sucursalApi.listarSucursalTodo(req, res);
 })
 
+router.post('/obtener_Sucursal', function(req, res) {
+    sucursalApi.obtener_Sucursal(req,res);
+})
+
 router.post('/filtrar', function (req, res) {
     sucursalApi.filtrarSucursal(req, res);
 })

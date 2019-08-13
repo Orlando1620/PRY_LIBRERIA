@@ -70,7 +70,6 @@ module.exports.buscarPorId = function (req, res) {
 }
 
 
-//terminar el modificar
 module.exports.modificarLibreria = function (req, res) {
   let id = req.body._id;
   let lib = req.body;
@@ -88,6 +87,9 @@ module.exports.modificarLibreria = function (req, res) {
         }
         else {
           if (nombreComercialAnterior !== lib.nombreComercial){
+            findOne({nombreComercial: req.body.nombreComercial}, function (err){
+              if()
+            })
             Sucursal.updateMany({ nombreLibreria: nombreComercialAnterior }, { $set: {nombreLibreria: lib.nombreComercial} },
                function (err, actualizacionSucursal) {
               if (err) {

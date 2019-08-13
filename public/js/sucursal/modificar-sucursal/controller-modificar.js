@@ -1,44 +1,58 @@
 var msgError = document.getElementById("alert");
 var msgCorrecto = document.getElementById("alert_correct");
 
-// window.onload = function () {
-//     cargarDatos();
-// }
+window.onload = function () {
+    cargarDatos();
+}
 
-var sucursal;
+var suc;
+async function cargarDatos() {
+    var idSuc = sessionStorage.getItem('idSuc');
+    suc = await obtener_Sucursal(idSuc);
+    document.getElementById("nombreSucursal").value = suc.nombreSucursal;
+    document.getElementById("dirExacta").value = suc.direccion;
+    seleccionarDirecciones(document.getElementById("provincias"), suc.provincia);
+    llenarCantones();
+    setTimeout(function () {
+        seleccionarDirecciones(document.getElementById("cantones"), suc.canton);
+        llenarDistritos();
+        setTimeout(function () {
+            seleccionarDirecciones(document.getElementById("distritos"), suc.distrito);
+        }, 1000);
 
-//mofocar para la sucursal
-// async function cargarDatos() {
-//     var nombreSucursal = sessionStorage.getItem('idSuc');
-//     sucursal = await datosUsuario(nombreLibreria);
-//     document.getElementById("nomComercial").value = sucursal.nombreComercial;
-//     document.getElementById("nomFantasia").value = sucursal.nombreFantasia;
-//     seleccionarDirecciones(document.getElementById("provincias"), sucursal.provincia);
-//     llenarCantones();
-//     setTimeout(function () {
-//         seleccionarDirecciones(document.getElementById("cantones"), sucursal.canton);
-//         llenarDistritos();
-//         setTimeout(function () {
-//             seleccionarDirecciones(document.getElementById("distritos"), sucursal.distrito);
-//         }, 1000);
+    }, 1000);
 
-//     }, 1000);
+    document.getElementById("numeroSucursal").value = suc.telefono;
+    lat = suc.latitud;
+    lng = suc.longitud;
+    cords = { lat: suc.latitud, lng: suc.longitud };
+    addNameCustomMarker(cords, suc.nombreSucursal);
+}
 
-//     document.getElementById("telefono").value = sucursal.telefono;
-//     document.getElementById("dirExacta").value = sucursal.direccion;
-//     lat = sucursal.latitud;
-//     lng = sucursal.longitud;
-//     cords = { lat: sucursal.latitud, lng: sucursal.longitud };
-//     addNameCustomMarker(cords, sucursal.nombreSucursal);
-// }
+function seleccionarDirecciones(s, v) {
+    for (var i = 0; i < s.options.length; i++) {
+        if (s.options[i].value == v) {
+            s.options[i].selected = true;
+            return;
+        }
+    }
+}
 
-function guardarSucursal(){
+function guardarSucursal() {
     var esValido = validarCamposFormulario("form");
     if (esValido == false) {
         mostrarMsg("alert");
         return false;
     } else {
-        actualizarSucursal(sucursal);
+        suc.nombreSucursal = document.getElementById('nombreSucursal').value;
+        suc.direccion = document.getElementById('dirExacta').value;
+        suc.provincia = document.getElementById('provincias').value;
+        suc.canton = document.getElementById('cantones').value;
+        suc.distrito = document.getElementById('distritos').value;
+        suc.telefono = document.getElementById('numeroSucursal').value;
+        suc.latitud = lat;
+        suc.longitud = lng;
+        actualizarSucursal(suc);
         mostrarMsg("alert_correct");
 
     }
