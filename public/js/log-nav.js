@@ -27,6 +27,7 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("home").href = "perfil-adminLib.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
+            document.getElementById("nav-cart").classList.add("oculto");
             break;
         case "adminGlobal":
             document.getElementById("perfil").href = "perfil-adminGlobal.html";
@@ -35,6 +36,7 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("home").href = "perfil-adminGlobal.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
+            document.getElementById("nav-cart").classList.add("oculto");
             break;
     }
 }
