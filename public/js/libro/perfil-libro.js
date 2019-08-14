@@ -121,8 +121,8 @@ async function fillInventario(id){
                 var aAdd = document.createElement('a');
                 button.classList.add('fas');
                 button.classList.add('fa-cart-plus');
-                button.id = json[i]['sucursal'];
-                //aAdd.addEventListener('click', popDel);
+                button.id = json[i]['_id'];
+                aAdd.addEventListener('click', addCart);
                 aAdd.appendChild(button);
                 
                 td1.appendChild(sucursal);
@@ -135,6 +135,17 @@ async function fillInventario(id){
     
                 document.getElementById("opciones").appendChild(tr);
                 //inventario.push(json[i]['isbn']);
+            }
+
+            if(json.length == 0){
+              var tr = document.createElement("tr");
+              var td = document.createElement("td");
+              var text = document.createTextNode("Este libro no está disponible");
+              td.colSpan = 3;
+              td.appendChild(text);
+              td.style.textAlign = 'center'; 
+              tr.appendChild(td);
+              document.getElementById("opciones").appendChild(tr);
             }
           }
       )
@@ -150,3 +161,51 @@ function modificar(){
 }
 
 fillPerfil(sessionStorage.getItem("idLibro"));
+
+
+function addCart(e){
+
+  var a = e.target;
+  var id = a.id;
+
+  if(localStorage.getItem("carrito") != null){
+    var carrito = JSON.parse(localStorage.getItem("carrito"));
+    console.log(carrito);
+    var existe = false;
+    for(var i=0;i<carrito.length;i++){
+      if(carrito[i]['inventario'] == id){
+        existe = true;
+        carrito[i] = {
+          inventario:id,
+          cantidad: carrito[i]['cantidad']+1
+        }
+      }
+    }
+    if(!existe){
+      carrito.push({
+        inventario:id,
+        cantidad:1
+      });
+    }
+    
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+  } else {
+    var carrito = [];
+    carrito.push({
+      inventario:id,
+      cantidad:1
+    });
+    
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+  }
+  document.getElementById('pop-up').classList.remove('oculto');
+  document.getElementById('msg-pop').innerHTML = "Libro añadido al carrito";
+}
+
+function seguir(){
+  window.location.href = "listar-libros.html";
+}
+
+function carrito(){
+  window.location.href = "carrito.html";
+}

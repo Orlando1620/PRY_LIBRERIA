@@ -1,7 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/clubes/estilo-listar-clubes-admin.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/clubes/table.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/carrito/estilo-carrito.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
@@ -32,7 +31,7 @@
                             <div><a id="nav-autores">Autores</a></div>
                             <div><a id="nav-librerias">Librerías</a></div>
                             <div><a id="nav-club">Clubes de Lectura</a></div>
-                           
+                          
                             
                         </div>
                         <div class="wrapper-nav2">
@@ -56,73 +55,48 @@
         </nav>
 
         <div class="main-wrapper">
-            <div class="select-side-bar">
-                <select>
-                    <option value="1">Mí Perfil</option>
-                    <option value="2">Librería</option>
-                    <option value="3">Sucursales</option>
-                    <option value="4">Clubes de Lectura</option>
-                    <option value="5">Promociones</option>
-                </select>
-            </div>
-            <div class="wrapper-side-bar">
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-user"></i></div>
-                    <div class="side-bar-option"><a href="perfil-uc.html">Mi Perfil</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-user-edit"></i></div>
-                    <div class="side-bar-option"><a href="#">Editar Perfil</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-credit-card"></i></div>
-                    <div class="side-bar-option"><a href="registrar-metPago.html">Método de Pago</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-book"></i></div>
-                    <div class="side-bar-option"><a href="#">Mis Libros</a></div>
-                </div>
-                <div class="side-bar-selected">
-                    <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
-                    <div class="side-bar-option"><a href="listar-clubes-UC.html">Clubes de Lectura</a></div>
-                </div>
-                <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-exchange-alt"></i></div>
-                    <div class="side-bar-option"><a href="#">Intercambios</a></div>
-                </div>
-            </div>
-
+            
             <div class="wrapper-cont">
-                <h1 class="main-title">Clubes de Lectura</h1>
-            
-                <div class="filtros">
-                    
-                    <input type="text" placeholder="Nombre del club" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
-                    <select id="generos" onChange="filtrarGenCat()" class="selectFiltrar"><option value="Generos">Géneros</option></select>
-            
-                    <select id="tipo" onChange="filtrarTipo()" class="selectFiltrar"><option value="Tipo">Tipo</option>
-                    <option value="Físico">Físico</option><option value="Virtual">Virtual</option></select>
-                
-                </div>
-            
+                <h1 class="main-title">Carrito de compras</h1>
                 <div class="table-cont">
-                    <table class="lista-suc font" id="table">
+                    <table class="carrito font" id="table">
                         <tr id="mainTr" class="table-titles">
-                            <td colspan="1"><a>Nombre</a></td>
-                            <td colspan="1"><a>Género</a></td>
-                            <td colspan="1"><a>Tipo</a></td>
+                            <td colspan="2"><a>Libro</a></td>
+                            <td colspan="1"><a>Cantidad</a></td>
+                            <td colspan="1"><a>Precio</a></td>
                         </tr>
                     </table>
                 </div>
+
+                <div class="total-cont">
+                    <div class="total-text-value-cont">
+                        <div class="total-text"><h3>Total de la orden</h3></div>
+                        
+                        <div class="total-value"><h2 id='total'></h2></div>
+                        <div class="total-imp"><p id='imp'>IVA: </p></div>
+                    </div>
+                    
+                    <div class="btn-cont"><button class='submit'>Proceder al pago</button></div>
+                </div>
+
+
+
+
+
 
                 <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     <label id="msg"></label>
                 </div>
-                
-                <div class="form-full"><button class="submit font" onclick="nuevoClub(event)">Nuevo Club</button></div>
-                
-                
+                <div class="pop-up-cont oculto" id="pop-up">
+                    <div class="pop-up">
+                        <p id="msg-pop"></p>
+                        <div class="btn-cont">
+                            <button class="pop-up-btn" onclick="seguir()" id="aceptar">Seguir comprando</button>
+                            <button class="pop-up-btn" onclick="carrito()">Ver carrito</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -157,10 +131,11 @@
 
 
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="./js/clubes/listarClubesById.js"></script>
-        <script src="./js/clubes/clubController.js"></script>
-        <script src="./js/log-nav.js"></script>
-        
+        <script src="js/carrito/carrito.js"></script>
+        <script src="js/log-nav.js"></script>
     </body>
 
 </html>
+
+
+

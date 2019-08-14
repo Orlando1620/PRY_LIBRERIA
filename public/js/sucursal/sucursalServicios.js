@@ -33,7 +33,12 @@ async function registro(nombreLibreria) {
         document.getElementById("alert-success").classList.remove("oculto");
         document.getElementById("msg-success").innerHTML = "Sucursal registrada";
         setTimeout(function () {
-          window.location.href = "listar-sucursales-admin.html";
+          if(sessionStorage.getItem('tipo') == "adminGlobal"){
+            window.location.href = "perfil-libreria.html";
+          } else {
+            window.location.href = "listar-sucursales-admin.html";
+          }
+          
         }, 2000);
 
         break;

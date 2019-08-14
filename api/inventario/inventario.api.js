@@ -15,6 +15,20 @@ module.exports.listarInventario = function(req, res) {
       }
     );
 }
+
+module.exports.listarInventarioTodo = function(req, res) {
+  Inventario.find().exec()
+    .then(
+      function(result){
+        res.send(result);
+      }
+    )
+    .catch(
+      function(err){
+        console.log(err);
+      }
+    );
+}
   
 module.exports.registrarInventario = function(req, res) {
   var idSuc = req.body.idSuc;

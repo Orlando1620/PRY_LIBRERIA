@@ -39,6 +39,7 @@ app.use('/bitacora', require('./api/bitacora/bitacora.route'));
 app.use('/inventario', require('./api/inventario/inventario.route'));
 app.use('/pago', require('./api/pago/pago.route'));
 app.use('/promocion', require('./api/promocion/promocion.route'));
+app.use('/impuesto', require('./api/impuesto/impuesto.route'));
 
 
 app.listen(8080, function() {
