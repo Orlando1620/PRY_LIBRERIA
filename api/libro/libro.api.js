@@ -1,4 +1,6 @@
 var Libro = require('./libro.model');
+var ClubLectura = require('../clubes/clubes.model');
+var Promociones = require('../promocion/promocion.model');
 var ISBN = require('isbn-validate');
 var mongoose = require('mongoose');
 var cloudinary = require('cloudinary');
@@ -394,13 +396,20 @@ module.exports.perfilLibro = function (req, res) {
 }
 
 
-module.exports.verificarAsosiacionLibro = function (req, res) {
+module.exports.verificarAsociacionLibro = function (req, res) {
   var nombreLibro = req.body.nombre;
-  Libro.find({ nombre: nombreLibro }).then(function (libreria) {
-    if (libreria) {
-      res.send(libreria);
+  var idLibro = req.body._id;
+  ClubLectura.find({ libro: nombreLibro }).then(function (club) {
+    if (club) {
+      res.send(true);
     } else {
-      res.send(false);
+      Promociones.find({ libro: idLibro }).then(function (promo) {
+        if (promo) {
+          res.send(true);
+        } else {
+          res.send(false);
+        }
+      })
     }
   }
   )

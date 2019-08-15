@@ -8,7 +8,6 @@
 
 #icons{
     padding-right: 47%;
-    padding-bottom: 19px;
 }
 
 #pencil, #trash{
@@ -48,6 +47,7 @@
     box-sizing: border-box;
     padding: 20px;
     text-align: center;
+    margin-bottom: 45px;
 }
 
 .portada{
@@ -67,7 +67,7 @@
     float: left;
     width: 50%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .libro-info-list{
