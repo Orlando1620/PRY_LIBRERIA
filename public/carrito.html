@@ -76,7 +76,16 @@
                         <div class="total-imp"><p id='imp'>IVA: </p></div>
                     </div>
                     
-                    <div class="btn-cont"><button class='submit'>Proceder al pago</button></div>
+                    <div class="btn-cont"><button class='submit' onclick="verificarPago()">Proceder al pago</button></div>
+
+                    <div id="alert" class="alert-carrito oculto alert-cont">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg"></label>
+                    </div>
+                    <div id="alert-success" class="alert-success-carrito alert-cont oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg-success"></label>
+                    </div>
                 </div>
 
 
@@ -84,16 +93,13 @@
 
 
 
-                <div id="alert" class="alert oculto">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    <label id="msg"></label>
-                </div>
+                
                 <div class="pop-up-cont oculto" id="pop-up">
                     <div class="pop-up">
                         <p id="msg-pop"></p>
                         <div class="btn-cont">
-                            <button class="pop-up-btn" onclick="seguir()" id="aceptar">Seguir comprando</button>
-                            <button class="pop-up-btn" onclick="carrito()">Ver carrito</button>
+                            <button class="pop-up-btn" onclick="finalizarCompra()" id="aceptar">Aceptar</button>
+                            <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
                         </div>
                     </div>
                 </div>

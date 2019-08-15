@@ -257,5 +257,27 @@ module.exports.perfil = function(req, res) {
   );
 }
 
-
+module.exports.compra = async function(req, res) {
+  try{
+      var usuario = req.body.usuario;
+      var libro = req.body.libro;
+    
+      var result = await Usuario.findOne({_id:usuario}).exec(); 
+      var libros = result['libros'];
+      libros.push(libro);
+      
+      await Usuario.updateOne(
+        { _id: usuario },
+        {
+          $set: { 
+            libros:libros
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+      res.json({result: 'exito'});
+  } catch(err){
+    console.log(err);
+  }
+}
 

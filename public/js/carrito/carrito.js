@@ -3,6 +3,7 @@ var libros = [];
 var sucursales = [];
 var carrito;
 var impuesto;
+var total;
 
 window.onload = function () {
     fillCarrito();
@@ -32,7 +33,7 @@ async function fillCarrito(){
 
     var list = document.getElementById("table");
     removeElements(list);
-    var total = 0;
+    total = 0;
     for(var i=0;i<carrito.length;i++){
         var tr = document.createElement("tr");
 
@@ -141,7 +142,6 @@ function removeElements(list){
     document.getElementById("table").appendChild(tr);
 }
 
-
 function mod(e){
     
     var a = e.target;
@@ -187,4 +187,129 @@ function perfil(e){
     var id = a.id;
     sessionStorage.setItem("idLibro",id);
     window.location.href = "perfil-libro.html";
+}
+
+function verificarPago(){
+    document.getElementById("pop-up").classList.remove("oculto");
+    document.getElementById("msg-pop").innerHTML = "El cobro se realizará al método de pago asociado a su cuenta. ¿Desea realizar la compra?";
+}
+
+async function finalizarCompra(){
+
+    document.getElementById("pop-up").classList.add("oculto");
+
+    var data = {
+        id: sessionStorage.getItem("id")
+    };
+	var response = await fetch('/pago/checkMetPago', {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'Content-Type': 'application/json'}
+    });
+    var metodo = await response.json();
+
+    if(metodo.length == 0){
+        
+        document.getElementById("alert").classList.remove("oculto");
+        document.getElementById("msg").innerHTML = "Aún no ha registrado un método de pago";
+        setTimeout(function () {
+            window.location.href = "registrar-metPago.html";
+        }, 3000);
+        return false;
+    } 
+
+    
+    document.getElementById("alert-success").classList.remove("oculto");
+    document.getElementById("msg-success").innerHTML = "Se está procesando la compra";
+
+    var data = {
+        carrito: carrito,
+        usuario: sessionStorage.getItem('id'),
+        monto: total
+    };
+	var response = await fetch('/compra/add', {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'Content-Type': 'application/json'}
+    });
+
+    for(var i=0;i<carrito.length;i++){
+
+        var inventario;
+        for(var j=0;j<inventarios.length;j++){
+            if(inventarios[j]['_id'] == carrito[i]['inventario']){
+                inventario = inventarios[j];
+            }
+        }
+
+        var data = {
+            sucursal: inventario['sucursal'],
+            libro: inventario['libro'],
+            cantidad: carrito[i]['cantidad']
+        };
+        var response = await fetch('/venta/add', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+    }
+
+    for(var i=0;i<carrito.length;i++){
+
+        var inventario;
+        for(var j=0;j<inventarios.length;j++){
+            if(inventarios[j]['_id'] == carrito[i]['inventario']){
+                inventario = inventarios[j];
+            }
+        }
+
+        var data = {
+            usuario: sessionStorage.getItem('id'),
+            libro: inventario['libro']
+        };
+        var response = await fetch('/usuarioCliente/compra', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+    }
+
+    registrarBitacora(sessionStorage.getItem("correo"),'compra de libros');
+    document.getElementById("msg-success").innerHTML = "Compra finalizada";
+    setTimeout(function () {
+        localStorage.setItem('carrito','');
+        window.location.href = "homePage.html";
+    }, 3000);
+
+}
+
+function cancelar(){
+    document.getElementById("pop-up").classList.add("oculto");
+}
+
+
+function registrarBitacora(correo,accion){
+    var data = {
+        correo: correo,
+        accion: accion,
+        fecha: new Date()
+    };
+    fetch('/bitacora/add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    .then(
+        function(response) {
+        if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+        else
+            return response.json();
+        }
+    )
+    .catch(
+        function(err) {
+        console.log('Ocurrió un error con la ejecución', err);
+        }
+    );
 }

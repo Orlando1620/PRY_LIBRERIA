@@ -20,6 +20,10 @@ router.post('/enviarContrasena', function (req, res){
 router.post('/perfil', function (req, res){
     usuarioApi.perfil(req,res);
 })
+
+router.post('/compra', function (req, res){
+    usuarioApi.compra(req,res);
+})
   
 
 module.exports = router;

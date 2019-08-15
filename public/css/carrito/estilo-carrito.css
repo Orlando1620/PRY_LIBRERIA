@@ -51,6 +51,11 @@
     text-align: center;
 }
 
+.alert-cont{
+    float: left;
+    width: 100%;
+}
+
 .submit{
     text-align: center;
     padding: 10px 20px;
