@@ -278,7 +278,7 @@ async function finalizarCompra(){
     registrarBitacora(sessionStorage.getItem("correo"),'compra de libros');
     document.getElementById("msg-success").innerHTML = "Compra finalizada";
     setTimeout(function () {
-        localStorage.setItem('carrito','');
+        //localStorage.setItem('carrito','');
         window.location.href = "homePage.html";
     }, 3000);
 
