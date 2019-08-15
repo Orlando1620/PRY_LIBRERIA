@@ -1,8 +1,8 @@
 <html>
 
 <head>
+  <link rel="stylesheet" type="text/css" href="./css/promocion/promocion.css" />
   <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
-  <link rel="stylesheet" type="text/css" href="./css/sucursal/estilo-perfilSuc.css"/>
   <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
   <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -32,7 +32,7 @@
                     <div><a id="nav-autores">Autores</a></div>
                     <div><a id="nav-librerias">Librerías</a></div>
                     <div><a id="nav-club">Clubes de Lectura</a></div>
-                   
+                    <div><a id="nav-promo">Promociones</a></div>
                     
                 </div>
             </div>
@@ -52,83 +52,75 @@
         </div>
     </nav>
 
-  <div class="main-wrapper">
-    
-
-    <div class="wrapper-cont">
-      <!--Form del registro-->
-      <div class="wrapper-form">
-        <div class="titulo infoLibreria" id="nombreLibreria">
-          <div>
-            <h2 id="titulo"></h2>
-          </div>
-          <div class="del-mod">
-            <a onclick="popDel()"><i class="fas fa-trash-alt fa-lg mod-i del"></i></a>
-            <a href="modificar-sucursal.html"><i class="fas fa-pencil-alt fa-lg mod-i edit"></i></a>
-          </div>
-        </div>
-
-        <div class="infoLibreria">
-          <h3 id="numeroLibreria"><i class="fas fa-phone-square fa-lg lib-icon"></i></h3>
-        </div>
-        <div class="infoLibreria">
-          <h3 id="direccionLibreria"><i class="fas fa-map-marker-alt fa-lg lib-icon"></i></h3>
-        </div>
-
-        <div class="form-full">
-          <h3>Dirección</h3>
-        </div>
-
-        <div id="map"></div>
-
-        <!-- <div class="titulo">
-          <h1 class="main-title">Libros</h1>
-        </div>
-
-        <div class="search-cont">
-          <input type="text" placeholder="Nombre del libro" class="search-box" id="buscar" onkeyup="filtrar()" />
-        </div>
-
-        <div class="table-cont">
-          <table class="lista-suc font" id="lista-lib">
-            <tr class="table-titles">
-              <td colspan="1"><a>Nombre</a></td>
-              <td colspan="2"><a>Cantidad</a></td>
-              <td colspan="1"><a>Precio (₡)</a></td>
-            </tr>
-          </table>
-        </div>
-
-
-
-        <div id="alert" class="alert oculto">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          <label id="msg"></label>
-        </div> -->
-
-        <div class="pop-up-cont oculto" id="pop-up">
-            <div class="pop-up">
-                <p id="msg-pop"></p>
-                <div class="btn-cont">
-                    <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
-                    <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
-                </div>
-            </div>
-            
-        </div>
-
-      </div>
-    </div>
-
+  <div class="titulo">
+    <h1 class="main-title">Registrar Promoción</h1>
   </div>
 
+  <div class="wrapper-cont">
+    <!--Form del registro-->
+    <form class="wrapper-form" id="form">
+      
+      <div class="form-full">
+          <h3>Sucursal </h3>
+          <select id="sucursales" class="input" onchange="fillInventario()" required>
+            <option>Seleccione una sucursal</option>
+          </select>
+      </div>
+      <div class="form-mitad">
+          <h3>Libro en promoción</h3>
+          <select id="libroPromo" class="input" required>
+              <option>Seleccione un libro</option>
+          </select>
+        </div>
+      <div class="form-mitad">
+        <h3>Porcentaje de descuento</h3>
+        <input id="porcentaje" class="input" type="number" max="100" min="1" required>
+      </div>
 
+      <div class="form-mitad">
+        <h3>Fecha de inicio</h3>
+        <input type="date" class="select-form" id="fechaInicio" required>
+        </select>
+      </div>
+      <div class="form-mitad">
+        <h3>Fecha de finalización</h3>
+        <input type="date" class="select-form" id="fechaFinaliza" required></select>
+      </div>
+      <div class="form-mitad">
+        <h3>Banner de promoción</h3>
+        <input type="file" id="foto" name="foto" accept='.jpg, .png, .jpeg' required>
+      </div>
+      
+      <div class="form-btn">
+          <button id="btnRegistrar" type="button" class="submit font" onclick="registrarPromocion(event)">Registrar</button>
+      </div>
+        
+    </form>
+    <!--Alert si no se cumple una validacion en el form-->
+    <div id="alert" class="alert oculto">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <label id="msg"></label>
+    </div>
+    <div id="alert-porcentaje" class="alert oculto">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <label id="msg-porcentaje"></label>
+    </div>
+    <div id="alert-fecha" class="alert oculto">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <label id="msg-fecha"></label>
+    </div>
+    <div id="alert-success" class="alert-success oculto">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <label id="msg-success"></label>
+      </div>
+
+  </div>
 
 
   <footer>
     <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
     <div class="footer-cont">
-      <h4></h4>
+
       <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo" /></a><br>
       <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo" /></a><br>
     </div>
@@ -147,15 +139,12 @@
       <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
     </div>
 
-
   </footer>
-  
-  <script src="js/sucursal/perfil/googleMaps.js"></script>
-  <script src="js/libro/listarLibrosSuc.js" charset="utf-8"></script>
-  <script src="js/sucursal/perfil/perfilSucursal.js"></script>
-  <script src="js/sucursal/modificar-sucursal.js"></script>
+
+  <script src="js/comun.js"></script>
+  <script src="js/promocion/promocion-controller-lib.js"></script>
+  <script src="js/promocion/promocionServicios.js"></script>
   <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap" async defer></script>
   <script src="js/log-nav.js"></script>
 </body>
 

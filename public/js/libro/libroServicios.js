@@ -130,7 +130,7 @@ function filtrarNombre(){
                 card.appendChild(cardTextCont);
 
                 title.href = "#";
-                title.id = libros[i]["isbn"];
+                title.id = libros[i]["_id"];
                 title.addEventListener('click', perfil);
 
                 var cardTextCont2 = document.createElement("div");
@@ -218,7 +218,7 @@ function filtrarGenCat(){
                 card.appendChild(cardTextCont);
 
                 title.href = "#";
-                title.id = json[i]["isbn"];
+                title.id = json[i]["_id"];
                 title.addEventListener('click', perfil);
 
                 var cardTextCont2 = document.createElement("div");
@@ -500,5 +500,31 @@ async function modImpreso(){
     }   
 }
 
+async function obtenerDatoAsociacionLibro(nombreLibro, idLibro) {
 
+    let dato = [];
 
+    let datos = {
+        nombreLibro: nombreLibro,
+        id: idLibro
+    }
+
+    await fetch('/libro/verificarAsociacionLibro', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(function (response) {
+            if (response.status != 200)
+                console.log('Error en el servicio: ' + response.status);
+            else
+                return response.json();
+        })
+        .then(function (response) {
+            dato = response;
+        })
+        .catch(err => console.log('Error:', err));
+
+    return dato;
+};

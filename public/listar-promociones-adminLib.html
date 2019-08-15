@@ -1,6 +1,7 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/libreria/estilo-perfil-lib-admin.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/promocion/estilo-listar-promociones.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/clubes/table.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
@@ -64,11 +65,11 @@
                 </select>
             </div>
             <div class="wrapper-side-bar">
-                <div class="side-bar-selected">
+                <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-store-alt"></i></div>
                     <div class="side-bar-option"><a href="perfil-lib-admin.html">Librería</a></div>
                 </div>
-                <div class="side-bar">
+                <div class="side-bar-selected">
                     <div class="side-bar-icon"><i class="fas fa-store"></i></div>
                     <div class="side-bar-option"><a href="listar-sucursales-admin.html">Sucursales</a></div>
                 </div>
@@ -78,15 +79,15 @@
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-book"></i></div>
-                    <div class="side-bar-option"><a href="listar-libros-admin.html">Libros</a></div>
+                    <div class="side-bar-option"><a href="listar-libros-admin.html">Registrar Libro</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-feather"></i></div>
-                    <div class="side-bar-option"><a href="listar-autores-admin.html">Autores</a></div>
+                    <div class="side-bar-option"><a href="listar-autores-admin.html">Registrar Autor</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
-                    <div class="side-bar-option"><a href="listar-promociones-adminLib.html">Promociones</a></div>
+                    <div class="side-bar-option"><a href="#">Promociones</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
@@ -95,27 +96,31 @@
             </div>
 
             <div class="wrapper-cont">
+                <h1 class="main-title">Promociones</h1>
                 
-                <div class="wrapper-form">
-                    <h2 class="main-title" id="nombreComercial">Nombre Comercial: </h2>
-                    <h2 class="main-title" id="nombreFantasia">Nombre Fantasía: </h2>
-                    <div class="infoLibreria">
-                        <h3 id="numeroLibreria"><i class="fas fa-phone-square fa-lg lib-icon"></i></h3>
-                    </div>
-                    <div class="infoLibreria">
-                        <h3 id="direccionLibreria"><i class="fas fa-map-marker-alt fa-lg lib-icon"></i></h3>
-                    </div>
-                
-                    <div class="form-full">
-                        <h3>Localización</h3>
-                        <div id="map"></div>
+                <div class="filtros">
+                    <input type="text" placeholder="Nombre de la librería" class="search-box" id="buscar" onkeyup="filtrarLib()" />
+                </div>
+                <div class="table-cont">
+                    <div class="scrollit">
+                        <table class="lista-suc font" id="lista-suc">
+                            <thead>
+                                <tr class="table-titles">
+                                    <td colspan="1"><a>Nombre</a></td>
+                                    <td colspan="1"><a>Dirección</a></td>
+                                    <td colspan="1"><a>Teléfono</a></td>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
-                <!--Alert si no se cumple una validacion en el form-->
+                <div class="form-btn"><button class="submit font" onclick="nuevaPromocionLib(event)">Nueva promoción</button></div>
+
                 <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     <label id="msg"></label>
                 </div>
+                
 
             </div>
         </div>
@@ -150,11 +155,10 @@
 
 
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="js/libreria/mapa-libreria.js"></script>
-        <script src="js/libreria/perfilLibreriaAdmin.js"></script>
-        <script src="js/log-nav.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap" async defer></script>
-
+        <script src="js/promocion/listar-promociones.js"></script>
+        <script src="./js/log-nav.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqzaTADSVChrabQc0ntsuhF8xU4Opl7B0&libraries=places&callback=initMap"
+        async defer></script>
         
     </body>
 

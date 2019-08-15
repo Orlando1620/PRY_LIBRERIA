@@ -33,7 +33,7 @@
                             <div><a id="nav-autores">Autores</a></div>
                             <div><a id="nav-librerias">Librerías</a></div>
                             <div><a id="nav-club">Clubes de Lectura</a></div>
-                            <div><a id="nav-promo">Promociones</a></div>
+                           
                             
                         </div>
                     </div>
@@ -64,20 +64,22 @@
                 <div class="tab-unselected" id="tab-impreso"><a href="#/" onclick="fisico()">Físico</a></div>
                 </div>
                 
-                <form onSubmit="addClub(event)" class="wrapper-form">
+                <form  class="wrapper-form" id="form">
                     
                     <div class="form-full"><h3>Nombre del club</h3></div>
                     <div class="form-full"><input required type="text" id="nombre" class="input" ></div>
                     
                     <div class="form-mitad">
                     <h3>Género</h3>
-                    <select required class="select-form" id="genero" ></select>
+                    <select required class="select-form form-control" id="genero" >
+                        <option>Seleccione un género</option>
+                    </select>
                     </div>
                         
                     <div class="form-mitad">
                     <h3>Día</h3>
-                    <select required class="select-form" id="dia">
-                            <option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Jueves</option><option>Viernes</option><option>Sábado</option><option>Domingo</option>
+                    <select required class="select-form form-control" id="dia">
+                            <option>Seleccione un día</option><option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Jueves</option><option>Viernes</option><option>Sábado</option><option>Domingo</option>
                     </select>
                     </div>
                         
@@ -93,7 +95,9 @@
                         
                     <div class="form-mitad">
                     <h3>Libro</h3>
-                    <select required class="select-form" id="libro" ></select>
+                    <select required class="select-form form-control" id="libro" >
+                        <option>Seleccione un libro</option>
+                    </select>
                     </div>
                         
                     <div class="form-mitad">
@@ -102,9 +106,9 @@
                     </div>
                         
                     <div class="form-full"><h3>Descripción</h3></div>
-                        <div class="form-full"> <textarea required id="desc"> </textarea> </div>
+                        <div class="form-full "> <textarea required id="desc" class="form-control"> </textarea> </div>
                         
-                    <input type="submit" id="btn-registrar" value="Registrar" class="submit font">
+                    <input type="button" id="btn-registrar" value="Registrar" class="submit font" onclick="addClub(event)">
                         
                     
                 </form>
@@ -112,6 +116,10 @@
                 <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     <label id="msg"></label>
+                </div>
+                <div id="alert-success" class="alert-success oculto">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    <label id="msg-success"></label>
                 </div>
                 
             </div>
@@ -148,11 +156,12 @@
             
             
        
-        
+        <script src="./js/comun.js"></script>
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
         <script src="./js/clubes/formAddClub.js"></script>
         <script src="./js/clubes/clubController.js"></script>
         <script src="./js/log-nav.js"></script>
+        
         
     </body>
 </html>
