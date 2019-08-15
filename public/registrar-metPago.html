@@ -2,7 +2,6 @@
     <head>
         <meta charset="utf-8">
         <title>Metodo de pago</title>
-        <link rel="stylesheet" type="text/css" href="css/pago/pago1.css">
         <link rel="stylesheet" type="text/css" href="css/pago/pago2.css">
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
@@ -12,50 +11,50 @@
     <body class="font">
         
         <nav>
-                <div class="wrapper-nav1">
-                    <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
-                    <div class="usuario-nav">
-                        <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
-    
-                        <div class="dropdown" id="dropdown">
-                            <button class="dropbtn" >
-                                <label id="usrName"></label> 
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <a href="#" id="perfil">Perfil</a>
-                                <a href="#" id="admin" class="oculto">Administrar</a>
-                                <a href="#" id="c-r">Cerrar Sesión</a>
-                            </div>
-                        </div> 
-    
-                        <div class="wrapper-nav2">
-                            <div><a id="nav-libros">Libros</a></div>
-                            <div><a id="nav-autores">Autores</a></div>
-                            <div><a id="nav-librerias">Librerías</a></div>
-                            <div><a id="nav-club">Clubes de Lectura</a></div>
-                            
-                            
+            <div class="wrapper-nav1">
+                <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+                <div class="usuario-nav">
+                    <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                    <div class="dropdown" id="dropdown">
+                        <button class="dropbtn" >
+                            <label id="usrName"></label> 
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" id="perfil">Perfil</a>
+                            <a href="#" id="admin" class="oculto">Administrar</a>
+                            <a href="#" id="c-r">Cerrar Sesión</a>
                         </div>
-                        <div class="wrapper-nav2">
-                                <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito</a></div>
-                            </div>
+                    </div> 
+
+                    <div class="wrapper-nav2">
+                        <div><a id="nav-libros">Libros</a></div>
+                        <div><a id="nav-autores">Autores</a></div>
+                        <div><a id="nav-librerias">Librerías</a></div>
+                        <div><a id="nav-club">Clubes de Lectura</a></div>
+                        
+                        
                     </div>
+                    <div class="wrapper-nav2">
+                            <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito</a></div>
+                        </div>
                 </div>
-    
-                
-    
-                <div class="select-nav">
-                    <select id="select-nav">
-                        <option>Más</option>
-                        <option value="1">Libros</option>
-                        <option value="2">Autores</option>
-                        <option value="3">Librerías</option>
-                        <option value="4">Clubes de Lectura</option>
-                        <option value="5">Promociones</option>
-                    </select>
-                </div>
-        </nav>
+            </div>
+
+            
+
+            <div class="select-nav">
+                <select id="select-nav">
+                    <option>Más</option>
+                    <option value="1">Libros</option>
+                    <option value="2">Autores</option>
+                    <option value="3">Librerías</option>
+                    <option value="4">Clubes de Lectura</option>
+                    <option value="5">Promociones</option>
+                </select>
+            </div>
+    </nav>
         
         <div class="main-wrapper">
             <div class="select-side-bar">
@@ -82,7 +81,7 @@
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-book"></i></div>
-                    <div class="side-bar-option"><a href="#">Mis Libros</a></div>
+                    <div class="side-bar-option"><a href="mis-libros.html">Mis Libros</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
@@ -95,7 +94,7 @@
             </div>
         
             <div class="wrapper-cont">
-                <h1 class="main-title">Registrar nuevo método de pago</h1>
+                <h1 class="main-title">Método de pago</h1>
                 
                 <div class="payment-cont">
                 <h4>Medios de pago aceptados</h4>
@@ -134,6 +133,10 @@
                 <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     <label id="msg"></label>
+                </div>
+                <div id="alert-success" class="alert-success oculto">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    <label id="msg-success"></label>
                 </div>
             
             </div>

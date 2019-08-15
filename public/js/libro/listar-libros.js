@@ -80,6 +80,33 @@ async function listarLibros(){
             var califT = document.createTextNode("N/A");
             cardTextCont3.appendChild(califT);
         }
+
+        /*if(califs.length != 0){
+            var calif = 0;
+            var cantCalif = 0;
+            for(var j=0;j<califs.length;j++){
+                calif += califs[j]['calif'];
+                cantCalif++;
+            }
+            calif = calif/cantCalif;
+            calif = Math.round(calif);
+
+            for(var j=0;j<calif;j++){
+                var icon = document.createElement("i");
+                icon.classList.add("fas");
+                icon.classList.add("fa-book");
+                icon.classList.add("calif-true");
+                td.appendChild(icon);
+            }
+
+            for(var j=0;j<5-calif;j++){
+                var icon = document.createElement("i");
+                icon.classList.add("fas");
+                icon.classList.add("fa-book");
+                icon.classList.add("calif-false");
+                td.appendChild(icon);
+            }
+        }*/
         card.appendChild(cardTextCont3);
 
         document.getElementById("cards-cont").appendChild(card);

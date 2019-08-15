@@ -261,20 +261,112 @@ module.exports.compra = async function(req, res) {
   try{
       var usuario = req.body.usuario;
       var libro = req.body.libro;
+      var cantidad = req.body.cantidad;
     
       var result = await Usuario.findOne({_id:usuario}).exec(); 
       var libros = result['libros'];
-      libros.push(libro);
+      var nuevosLibros = [];
+
+      var agregar = true;
+      for(var i=0;i<libros.length;i++){
+        if(libros[i][0]['libro'] == libro){
+          agregar = false;
+          var nuevoLibro = {
+            libro:libro,
+            intercambiable: libros[i][0]['intercambiable'],
+            cantidad: parseInt(libros[i][0]['cantidad'],10) + cantidad,
+            calif: libros[i][0]['calif']
+          }
+          nuevosLibros.push(nuevoLibro);
+        } else {
+          nuevosLibros.push(libros[i]);
+        }
+      }
+      if(agregar){
+        nuevosLibros.push({
+          libro:libro,
+          intercambiable:true,
+          cantidad: cantidad,
+          calif: 0
+        });
+      }
+      
       
       await Usuario.updateOne(
         { _id: usuario },
         {
           $set: { 
-            libros:libros
+            libros:nuevosLibros
           },
           $currentDate: { lastModified: true }
         }
       );
+
+      /*const output = ;
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+              user: 'servicio.leemas@gmail.com',
+              pass: '123queso!'
+          }
+      });
+      
+      const mailOptions = {
+        from: 'servicio.leemas@gmail.com', // sender address
+        to: req.body.correo, // list of receivers
+        subject: 'Bienvenido a Leer+', // Subject line
+        html: output// plain text body
+      };
+
+      transporter.sendMail(mailOptions, function (err, info) {
+        if(err)
+          console.log(err)
+        else
+          console.log(info);
+      });*/
+
+      res.json({result: 'exito'});
+  } catch(err){
+    console.log(err);
+  }
+}
+
+module.exports.califLibro = async function(req, res) {
+  try{
+      var usuario = req.body.usuario;
+      var libro = req.body.libro;
+      var calif = req.body.calif;
+    
+      var result = await Usuario.findOne({_id:usuario}).exec(); 
+      var libros = result['libros'];
+      var nuevosLibros = [];
+
+      for(var i=0;i<libros.length;i++){
+        if(libros[i][0]['libro'] == libro){
+          var nuevoLibro = {
+            libro:libro,
+            intercambiable: libros[i][0]['intercambiable'],
+            cantidad: parseInt(libros[i][0]['cantidad'],10),
+            calif: calif
+          }
+          nuevosLibros.push(nuevoLibro);
+        } else {
+          nuevosLibros.push(libros[i]);
+        }
+      }
+      
+      
+      await Usuario.updateOne(
+        { _id: usuario },
+        {
+          $set: { 
+            libros:nuevosLibros
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+
       res.json({result: 'exito'});
   } catch(err){
     console.log(err);

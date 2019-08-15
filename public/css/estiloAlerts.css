@@ -131,3 +131,20 @@
     color: white;
     border: none;
 }
+
+.text-cont{
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.text-cont textarea{
+    width: 100%;
+    height: 100px;
+}
+
+.text-cont select{
+    width: 100%;
+    padding: 5px;
+}

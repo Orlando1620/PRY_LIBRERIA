@@ -24,6 +24,10 @@ router.post('/perfil', function (req, res){
 router.post('/compra', function (req, res){
     usuarioApi.compra(req,res);
 })
+
+router.post('/califLibro', function (req, res){
+    usuarioApi.califLibro(req,res);
+})
   
 
 module.exports = router;

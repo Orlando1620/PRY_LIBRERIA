@@ -265,7 +265,8 @@ async function finalizarCompra(){
 
         var data = {
             usuario: sessionStorage.getItem('id'),
-            libro: inventario['libro']
+            libro: inventario['libro'],
+            cantidad: carrito[i]['cantidad']
         };
         var response = await fetch('/usuarioCliente/compra', {
             method: 'POST',
@@ -277,7 +278,7 @@ async function finalizarCompra(){
     registrarBitacora(sessionStorage.getItem("correo"),'compra de libros');
     document.getElementById("msg-success").innerHTML = "Compra finalizada";
     setTimeout(function () {
-        localStorage.setItem('carrito','');
+        //localStorage.setItem('carrito','');
         window.location.href = "homePage.html";
     }, 3000);
 

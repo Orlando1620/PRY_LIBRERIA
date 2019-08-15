@@ -1,10 +1,5 @@
-@charset "utf-8";
-/* CSS Document */
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans|Satisfy|Caveat);
-
 .main-title{
-    padding-left: 20%;
+    padding-left: 9.5%;
     color: #022600;
 }
 
@@ -73,64 +68,66 @@
 }
 
 .wrapper-cont{
+    overflow: auto;
     float: left;
     width: 80%;
-	padding-bottom: 50px;
 }
 
-.wrapper-form{
-    padding: 20px 20%;
-    overflow: auto;
-    box-sizing: border-box;
+
+.filtros{
+    padding: 0 9.5%;
 }
 
-.wrapper-form h3{
-    margin: 0;
-    font-size: 1.2rem;
-}
-
-.input{
-    width: 91%;
-    padding: 10px 10px;
-    margin: 10px 0px 4px 0px;
-    font-size: 1.2rem;
-}
-
-.wrapper-form textarea{
-    float: left;
+.search-box{
     width: 100%;
     padding: 10px 10px;
     margin: 10px 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
 }
 
-.select-form{
+.table-cont{
+    margin: 10px 9.5% 50px 9.5%;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.lista-suc{
     width: 100%;
-    padding: 10px 5px;
-    margin: 10px 0 10px 0;
-    font-size: 1.2rem;
+    border-collapse: collapse;
 }
 
-.form-mitad{
-    float: left;
-    width: 50%;
-    padding: 5px 5px;
-    font-size: 1.2rem;
-    box-sizing: border-box;
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
 }
 
-.form-full{
-    float: left;
-    width: 100%;
-    padding: 5px 5px;
-    font-size: 1.2rem;
-    box-sizing: border-box;
+.lista-suc select{
+    padding: 10px;
+    width: 130px;
 }
+
+.lista-suc img{
+    width: 50px;
+}
+
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
 
 .submit{
     text-align: center;
     padding: 10px 30px;
-    margin: 20px 40% 10px 40%;
     background-color: #48725231;
     color: black;
     border: none;
@@ -143,20 +140,20 @@
     color: white;
 }
 
-
-.icon-container{
-	font-size: 65px;
-	text-align: center;
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
 }
 
-.payment-cont{
-	float: left;
-	text-align: center;
-	width: 100%;
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
 }
 
-.paragraphcenter{
-	text-align: center;
+.icons{
+    text-align: center;
 }
 
 @media(max-width: 920px){
@@ -182,6 +179,10 @@
     .select-side-bar{
         display: block;
         text-align: center;
+    }
+
+    .wrapper-cont{
+        width: 100%;
     }
     
 }
