@@ -265,7 +265,8 @@ async function finalizarCompra(){
 
         var data = {
             usuario: sessionStorage.getItem('id'),
-            libro: inventario['libro']
+            libro: inventario['libro'],
+            cantidad: carrito[i]['cantidad']
         };
         var response = await fetch('/usuarioCliente/compra', {
             method: 'POST',

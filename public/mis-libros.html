@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>PerfilUC</title>
-        <link rel="stylesheet" type="text/css" href="css/usuario/perfil-uc.css">
+        <link rel="stylesheet" type="text/css" href="css/libro/estilo-mis-libros.css">
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
@@ -69,7 +69,7 @@
                     </select>
                 </div>
                 <div class="wrapper-side-bar">
-                    <div class="side-bar-selected">
+                    <div class="side-bar">
                         <div class="side-bar-icon"><i class="fas fa-user"></i></div>
                         <div class="side-bar-option"><a href="perfil-uc.html">Mi Perfil</a></div>
                     </div>
@@ -81,7 +81,7 @@
                         <div class="side-bar-icon"><i class="fas fa-credit-card"></i></div>
                         <div class="side-bar-option"><a href="registrar-metPago.html">Método de Pago</a></div>
                     </div>
-                    <div class="side-bar">
+                    <div class="side-bar-selected">
                         <div class="side-bar-icon"><i class="fas fa-book"></i></div>
                         <div class="side-bar-option"><a href="mis-libros.html">Mis Libros</a></div>
                     </div>
@@ -96,71 +96,44 @@
                 </div>
         
                 <div class="wrapper-cont">
-                    <h1 class="main-title">Mi perfil</h1>
+                    <h1 class="main-title">Mis libros</h1>
                     
-                    <div class="wrapper">
-                        <div class="ppic-cont">
-                            <div class="ppic" id="profilepic"></div>
+                    <div class="filtros">
+                        <input type="text" placeholder="Buscar libro" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
+                    </div>
+                
+                    <div class="table-cont">
+                        <table class="lista-suc font" id="table"></table>
+                    </div>
+                    
+                    <div id="alert" class="alert oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg"></label>
+                    </div>
+                    
+                </div>
+
+                <div class="pop-up-cont oculto" id="pop-up">
+                    <div class="pop-up">
+                        <div class="text-cont">
+                            <label>Calificación</label>
+                            <div class="icons">
+                                <a onclick="cambiarCalif(event)"><i class="fas fa-book fa-lg calif-false" id='1'></i></a>
+                                <a onclick="cambiarCalif(event)"><i class="fas fa-book fa-lg calif-false" id='2'></i></a>
+                                <a onclick="cambiarCalif(event)"><i class="fas fa-book fa-lg calif-false" id='3'></i></a>
+                                <a onclick="cambiarCalif(event)"><i class="fas fa-book fa-lg calif-false" id='4'></i></a>
+                                <a onclick="cambiarCalif(event)"><i class="fas fa-book fa-lg calif-false" id='5'></i></a>
+                            </div>
                         </div>
-                        
-                        <div id="icons" class="icons">
-                            <a><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
-                            <a><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
+                        <div class="text-cont">
+                            <label>Reseña:</label>
+                            <textarea id='resena'></textarea>
+                        </div>
+                        <div class="btn-cont">
+                            <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Enviar</button>
+                            <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
                         </div>
                     </div>
-                   
-                    
-                    <table>
-                        <tr>
-                            <td class="tdmenu">Nombre</td>
-                            <td class="table-data" id="nombre"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Apellidos</td>
-                            <td class="table-data" id="apellidos"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Género</td>
-                            <td class="table-data" id="sexo"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Identificación</td>
-                            <td class="table-data" id="identificacion"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Correo electrónico</td>
-                            <td class="table-data" id="correo"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Fecha de nacimiento</td>
-                            <td class="table-data" id="fechanacimiento"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Edad</td>
-                            <td class="table-data" id="edad"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Domicilio</td>
-                            <td class="table-data">
-                                <label disabled name="provincia" id="provincia"></label>
-                                <label disabled name="provincia" id="canton"></label>
-                                <label disabled name="provincia" id="distrito"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Dirección exacta</td>
-                            <td class="table-data" id="direccion"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdmenu">Géneros favoritos</td>
-                            <td class="table-data" id="generos">
-                                <ul class="generosul" id="generosul">
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
-                
-                    <div class="mappadding"><h3>Localización</h3><div class="map" id="map"></div></div>
                 </div>
             </div>			
                     
@@ -197,8 +170,7 @@
         
         
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="js/usuario/perfil-uc.js"></script>
+        <script src="js/libro/mis-libros.js"></script>
         <script src="js/log-nav.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJeBaMdnl4Bk7G9ZYJnBwSJUU818wdsHA&callback=initMap"></script>
     </body>
 </html>

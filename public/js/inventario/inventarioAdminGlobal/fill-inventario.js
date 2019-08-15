@@ -320,6 +320,7 @@ async function addInv(e){
         fillInventario();
         document.getElementById("alert-inv-add").classList.remove("oculto");
         document.getElementById("msg-inv-add").innerHTML = "Libro agregado al inventario";
+        registrarBitacora(sessionStorage.getItem("correo"),'libro añadido a inventario');
         
         setTimeout(function () {
           document.getElementById("alert-inv-add").classList.add("oculto");
@@ -348,7 +349,7 @@ async function modInv(e){
     fillInventario();
     document.getElementById("alert-inv").classList.remove("oculto");
     document.getElementById("msg-inv").innerHTML = "Cambios guardados";
-    
+    registrarBitacora(sessionStorage.getItem("correo"),'inventario modificado');
     setTimeout(function () {
       document.getElementById("alert-inv").classList.add("oculto");
     }, 2000);
@@ -373,7 +374,7 @@ async function delInv(){
     fillInventario();
     document.getElementById("alert-inv-del").classList.remove("oculto");
     document.getElementById("msg-inv-del").innerHTML = "Libro eliminado del inventario";
-    
+    registrarBitacora(sessionStorage.getItem("correo"),'libro eliminado del inventario');
     setTimeout(function () {
       document.getElementById("alert-inv-del").classList.add("oculto");
     }, 2000);
@@ -400,6 +401,34 @@ function aceptar(){
 function cancelar(){
   document.getElementById("pop-up").classList.add("oculto");
 }
+
+
+function registrarBitacora(correo,accion){
+  var data = {
+      correo: correo,
+      accion: accion,
+      fecha: new Date()
+  };
+  fetch('/bitacora/add', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{'Content-Type': 'application/json'}
+  })
+  .then(
+      function(response) {
+      if (response.status != 200)
+          console.log('Ocurrió un error con el servicio: ' + response.status);
+      else
+          return response.json();
+      }
+  )
+  .catch(
+      function(err) {
+      console.log('Ocurrió un error con la ejecución', err);
+      }
+  );
+}
+
 
 fetch('/libreria/listar', {
   method: 'GET',
