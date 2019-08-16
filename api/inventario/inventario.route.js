@@ -28,6 +28,10 @@ router.post('/mod', function(req, res) {
     inventarioApi.modificarInventario(req,res);
 })
 
+router.post('/restar', function(req, res) {
+    inventarioApi.restarInventario(req,res);
+})
+
 router.post('/eliminarTodo', function(req, res) {
     inventarioApi.eliminarInventarioTodo(req,res);
 })

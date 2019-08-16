@@ -89,6 +89,36 @@ module.exports.modificarInventario = function(req, res) {
   );
 }
 
+module.exports.restarInventario = async function(req, res) {
+
+  var idSuc = req.body.sucursal;
+  var idLibro = req.body.libro;
+  var cantidad = req.body.cantidad;
+
+  var inventario = await Inventario.findOne({ sucursal: idSuc, libro: idLibro }).exec();
+  
+
+  Inventario.updateOne(
+    { sucursal: idSuc, libro: idLibro },
+    {
+      $set: { 
+        cantidad: inventario['cantidad'] - cantidad
+      },
+      $currentDate: { lastModified: true }
+    }
+  )
+  .then(
+      function(result){
+      res.json(result);
+      }
+  )
+  .catch(
+      function(err){
+      console.log(err);
+      }
+  );
+}
+
 module.exports.eliminarInventario = async function(req, res) {
   
   await Inventario.deleteOne(

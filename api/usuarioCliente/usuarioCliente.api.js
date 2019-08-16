@@ -304,7 +304,168 @@ module.exports.compra = async function(req, res) {
         }
       );
 
-      /*const output = ;
+      const output = `<html>
+      <head>
+          <style>
+          @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        body{
+            margin: 0;
+            background-image: url("https://images.unsplash.com/photo-1550399105-05c4a7641b02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80");
+        }
+        .font{
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1{
+            font-family: 'Open Sans', sans-serif;
+        } 
+        p{
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5rem;
+        }    
+        .title-cont{
+            background-color: #000000;
+            color: white;
+        }
+        .title-cont img{
+            width: 100px
+        }
+        .info-cont{
+            overflow: auto;
+            margin: 20px 20% 20px 20%;
+            padding: 20px;
+            background-color: white;
+            text-align: justify;
+        }
+        span{
+            color: #022600;
+            font-weight: bold;
+        }
+
+        .table-titles{
+            background-color: #487252; 
+            border-bottom: solid 1px silver;
+            color: white;
+        }
+
+        .table-titles td{
+            padding: 10px;
+            border-bottom: 1px solid silver;
+        }
+
+        .carrito{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .carrito td{
+            padding: 10px;
+            border-bottom: 1px solid silver;
+        }
+
+        .carrito img{
+            width: 50px;
+        }
+
+        .carrito i{
+            color: #487252;
+        }
+
+        .table-cont{
+            float: left;
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+
+        
+        .total-cont{
+            overflow: auto;
+            float: left;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .total-cont h2,h3{
+            margin: 0;
+        }
+
+        .total-text-value-cont{
+            float: left;
+            width: 100%;
+        }
+
+        .total-text{
+            float: left;
+            padding: 5px;
+            padding-left: 0;
+        }
+
+        .total-imp{
+            float: left;
+            width: 100%;
+        }
+
+        .total-imp p{
+            font-size: 0.9rem;
+        }
+
+        .text{
+            font-size: 1rem;
+        }
+
+        .total-value{
+            float: left;
+            padding: 5px;
+        }
+  
+          </style>
+      </head>
+  
+      <body class="font">
+      <div class="title-cont">
+          <img src="https://res.cloudinary.com/imgproyecto1/image/upload/v1565212683/xrgzbsgrdd0pywxdkkdq.png">
+      </div>
+      <div class="info-cont">
+          <p><span>¡Gracias por tu compra!</span></p>
+          <p class="text">A continuación podrás encontrar los detalles de tu orden y los enlaces para descargar tu libros.</p>
+  
+          <div class="table-cont">
+              <table class="carrito font" id="table">
+                  <tr id="mainTr" class="table-titles">
+                      <td colspan="2"><a>Producto</a></td>
+                      <td colspan="1"><a>Cantidad</a></td>
+                      <td colspan="1"><a>Precio</a></td>
+                  </tr>
+                  ${req.body.compras}
+                  
+              </table>
+          </div>
+  
+          <div class="total-cont">
+              <div class="total-text-value-cont">
+                  <div class="total-text"><h3>Subtotal de la orden</h3></div>
+                  
+                  <div class="total-value"><h3 id='subtotal'>${req.body.subtotal}</h3></div>
+                  <div class="total-imp"><p id='imp'>IVA: ${req.body.imp}</p></div>
+              </div>
+  
+              <div class="total-text-value-cont">
+                  <div class="total-text"><h3>Total de la orden</h3></div>
+                  
+                  <div class="total-value"><h3 id='total'>${req.body.total}</h3></div>
+              </div>
+              
+          </div>
+  
+          
+  
+          ${req.body.enlaces}          
+  
+      </div>
+          
+      </body>
+  </html>`;
 
       var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -317,7 +478,7 @@ module.exports.compra = async function(req, res) {
       const mailOptions = {
         from: 'servicio.leemas@gmail.com', // sender address
         to: req.body.correo, // list of receivers
-        subject: 'Bienvenido a Leer+', // Subject line
+        subject: '¡Gracias por tu compra!', // Subject line
         html: output// plain text body
       };
 
@@ -326,7 +487,7 @@ module.exports.compra = async function(req, res) {
           console.log(err)
         else
           console.log(info);
-      });*/
+      });
 
       res.json({result: 'exito'});
   } catch(err){

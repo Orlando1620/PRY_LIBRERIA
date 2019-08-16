@@ -4,13 +4,15 @@ var sucursales = [];
 var carrito;
 var impuesto;
 var total;
+var subtotal;
+var imp;
 
 window.onload = function () {
     fillCarrito();
 }
 
 async function fillCarrito(){
-    if(localStorage.getItem('carrito') == '' && localStorage.getItem("carrito") == null){
+    if(localStorage.getItem('carrito') == ''){
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         var text = document.createTextNode("El carrito está vacío");
@@ -79,6 +81,7 @@ async function fillCarrito(){
         cantidad.type = 'number';
         cantidad.value = carrito[i]['cantidad'];
         cantidad.min = 0;
+        cantidad.max = inventario['cantidad'];
         cantidad.id = carrito[i]['inventario'];
         cantidad.addEventListener('change', mod);
 
@@ -106,9 +109,12 @@ async function fillCarrito(){
 
         document.getElementById("table").appendChild(tr);
     }
+    subtotal = total;
     var impAgregado = total*(impuesto/100);
     total = total+impAgregado;
+    imp = impAgregado;
     
+    document.getElementById('subtotal').innerHTML = '₡'+(subtotal).toLocaleString();
     document.getElementById('total').innerHTML = '₡'+(total).toLocaleString();
     document.getElementById('imp').innerHTML = 'IVA: ₡'+ (impAgregado).toLocaleString();
 }
@@ -151,6 +157,10 @@ function mod(e){
     for(var i=0;i<carrito.length;i++){
         if(carrito[i]['inventario'] == id){
             var cantidad = document.getElementById(id).value;
+            if(cantidad > document.getElementById(id).max){
+                cantidad = document.getElementById(id).max;
+                document.getElementById(id).value = cantidad;
+            }
             if(cantidad != 0){
                 nuevoCarrito.push({
                     inventario:id,
@@ -222,6 +232,27 @@ async function finalizarCompra(){
     document.getElementById("alert-success").classList.remove("oculto");
     document.getElementById("msg-success").innerHTML = "Se está procesando la compra";
 
+    for(var i=0;i<carrito.length;i++){
+
+        var inventario;
+        for(var j=0;j<inventarios.length;j++){
+            if(inventarios[j]['_id'] == carrito[i]['inventario']){
+                inventario = inventarios[j];
+            }
+        }
+
+        var data = {
+            sucursal: inventario['sucursal'],
+            libro: inventario['libro'],
+            cantidad: carrito[i]['cantidad']
+        };
+        var response = await fetch('/inventario/restar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+    }
+
     var data = {
         carrito: carrito,
         usuario: sessionStorage.getItem('id'),
@@ -263,10 +294,19 @@ async function finalizarCompra(){
             }
         }
 
+        var compras = facturaCompras();
+        var enlaces = facturaEnlaces();
+
         var data = {
             usuario: sessionStorage.getItem('id'),
+            correo: sessionStorage.getItem('correo'),
             libro: inventario['libro'],
-            cantidad: carrito[i]['cantidad']
+            cantidad: carrito[i]['cantidad'],
+            compras: compras,
+            subtotal: '₡'+subtotal,
+            imp: '₡'+imp,
+            total: '₡'+total,
+            enlaces:enlaces
         };
         var response = await fetch('/usuarioCliente/compra', {
             method: 'POST',
@@ -282,6 +322,81 @@ async function finalizarCompra(){
         window.location.href = "homePage.html";
     }, 3000);
 
+}
+
+function facturaCompras(){
+
+    var compras = '';
+
+    for(var i=0;i<carrito.length;i++){
+    
+        var inventario;
+        for(var j=0;j<inventarios.length;j++){
+            if(inventarios[j]['_id'] == carrito[i]['inventario']){
+                inventario = inventarios[j];
+            }
+        }
+
+        var libro;
+        for(var j=0;j<libros.length;j++){
+            if(libros[j]['_id'] == inventario['libro']){
+                libro = libros[j]['nombre'];
+            }
+        }
+        
+        
+        var cantidad;
+        cantidad = carrito[i]['cantidad'];
+        
+        var precio = "₡"+(inventario['precio']).toLocaleString();
+        
+
+        var compra = 
+        '<tr>'+
+            '<td colspan="2"><a>'+libro+'</a></td>'+
+            '<td colspan="1"><a>'+cantidad+'</a></td>'+
+            '<td colspan="1"><a>'+precio+'</a></td>'+
+        '</tr>'; 
+        compras += compra;  
+    }
+
+    return compras;
+}
+
+function facturaEnlaces(){
+
+    var enlaces = '';
+    var digital = false;
+    for(var i=0;i<carrito.length;i++){
+        
+        var inventario;
+        for(var j=0;j<inventarios.length;j++){
+            if(inventarios[j]['_id'] == carrito[i]['inventario']){
+                inventario = inventarios[j];
+            }
+        }
+
+        var href;
+        for(var j=0;j<libros.length;j++){
+            if(libros[j]['_id'] == inventario['libro']){
+                if(libros[j]['urlPdf']){
+                    digital = true;
+                    href = libros[j]['urlPdf'];
+                    var enlace = 
+                    '<a href="'+href+'">'+href+'</a><br><br>'; 
+                    enlaces += enlace;  
+                }
+            }
+        }
+        
+        
+    }
+
+    if(digital){
+
+        enlaces = '<p><span>Tus libros</span></p>'+enlaces;
+    }
+    return enlaces;
 }
 
 function cancelar(){

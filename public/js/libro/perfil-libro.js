@@ -136,9 +136,10 @@ async function fillInventario(id){
           function(json){
             var list = document.getElementById("opciones");
             removeElements(list);
-            
+            var resultados = 0;
             for(var i=0;i<json.length;i++){
-                
+                if(json[i]['cantidad'] > 0){
+                  resultados++;
                 var tr = document.createElement("tr");
                 var td1 = document.createElement("td");
                 var td2 = document.createElement("td");
@@ -180,9 +181,10 @@ async function fillInventario(id){
     
                 document.getElementById("opciones").appendChild(tr);
                 //inventario.push(json[i]['isbn']);
+              }
             }
 
-            if(json.length == 0){
+            if(json.length == 0 || resultados == 0){
               var tr = document.createElement("tr");
               var td = document.createElement("td");
               var text = document.createTextNode("Este libro no está disponible");
