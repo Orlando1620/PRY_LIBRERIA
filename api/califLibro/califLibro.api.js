@@ -33,11 +33,11 @@ module.exports.add = function(req, res) {
 module.exports.listar = function(req, res) {
   var libro = req.body.libro;
   
-  nuevaCalif.find({libro:libro}).exec()
+  Calif.find({libro:libro}).exec()
   .then(
     function(result){
       console.log(result);
-      res.json({result:"exito"});
+      res.send(result);
     }
   )
   .catch(

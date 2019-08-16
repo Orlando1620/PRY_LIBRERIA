@@ -58,37 +58,25 @@ async function listarLibros(){
         cardTextCont2.appendChild(autor);
         card.appendChild(cardTextCont2);
 
+        var data = {
+            libro:json[i]['_id']
+        }
+        var response = await fetch('/califLibro/listar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        })
+        var califs = await response.json();
+
         var cardTextCont3 = document.createElement("div");
         cardTextCont3.classList.add("card-text-cont");
-        if(json[i]["calificacion"]){
-            for(var j=0;j<json[i]["calificacion"];j++){
-                var icon = document.createElement("i");
-                icon.classList.add("fas");
-                icon.classList.add("fa-book");
-                icon.classList.add("calif-true");
-                cardTextCont3.appendChild(icon);
-            }
-
-            for(var j=0;j<5-json[i]["calificacion"];j++){
-                var icon = document.createElement("i");
-                icon.classList.add("fas");
-                icon.classList.add("fa-book");
-                icon.classList.add("calif-false");
-                cardTextCont3.appendChild(icon);
-            }
-        } else {
-            var califT = document.createTextNode("N/A");
-            cardTextCont3.appendChild(califT);
-        }
-
-        /*if(califs.length != 0){
+        
+        if(califs.length != 0){
             var calif = 0;
-            var cantCalif = 0;
             for(var j=0;j<califs.length;j++){
                 calif += califs[j]['calif'];
-                cantCalif++;
             }
-            calif = calif/cantCalif;
+            calif = calif/califs.length;
             calif = Math.round(calif);
 
             for(var j=0;j<calif;j++){
@@ -96,7 +84,7 @@ async function listarLibros(){
                 icon.classList.add("fas");
                 icon.classList.add("fa-book");
                 icon.classList.add("calif-true");
-                td.appendChild(icon);
+                cardTextCont3.appendChild(icon);
             }
 
             for(var j=0;j<5-calif;j++){
@@ -104,9 +92,12 @@ async function listarLibros(){
                 icon.classList.add("fas");
                 icon.classList.add("fa-book");
                 icon.classList.add("calif-false");
-                td.appendChild(icon);
+                cardTextCont3.appendChild(icon);
             }
-        }*/
+        } else {
+            var califT = document.createTextNode("");
+            cardTextCont3.appendChild(califT);
+        }
         card.appendChild(cardTextCont3);
 
         document.getElementById("cards-cont").appendChild(card);

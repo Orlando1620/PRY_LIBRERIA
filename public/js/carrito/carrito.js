@@ -10,6 +10,17 @@ window.onload = function () {
 }
 
 async function fillCarrito(){
+    if(localStorage.getItem('carrito') == '' && localStorage.getItem("carrito") == null){
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        var text = document.createTextNode("El carrito está vacío");
+        td.colSpan = 4;
+        td.appendChild(text);
+        td.style.textAlign = 'center'; 
+        tr.appendChild(td);
+        document.getElementById("table").appendChild(tr);
+        return false;
+    }
     carrito = JSON.parse(localStorage.getItem('carrito'));
 
     var response = await fetch('/inventario/listarTodo', {
@@ -100,17 +111,6 @@ async function fillCarrito(){
     
     document.getElementById('total').innerHTML = '₡'+(total).toLocaleString();
     document.getElementById('imp').innerHTML = 'IVA: ₡'+ (impAgregado).toLocaleString();
-
-    if(carrito.length == 0){
-        var tr = document.createElement("tr");
-        var td = document.createElement("td");
-        var text = document.createTextNode("El carrito está vacío");
-        td.colSpan = 4;
-        td.appendChild(text);
-        td.style.textAlign = 'center'; 
-        tr.appendChild(td);
-        document.getElementById("opciones").appendChild(tr);
-    }
 }
 
 function removeElements(list){

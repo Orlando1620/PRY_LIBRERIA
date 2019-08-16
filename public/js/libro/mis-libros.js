@@ -156,59 +156,92 @@ function filtrarNombre(){
                 resultados++;
                 var tr = document.createElement("tr");
 
-                var td = document.createElement("td");
-                var libro = document.createElement('a');
-                var cover = document.createElement('img');
-                for(var j=0;j<libros.length;j++){
-                    if(libros[j]['_id'] == misLibros[i][0]['libro']){
-                        libro.appendChild(document.createTextNode(libros[j]['nombre']));
-                        libro.id = libros[j]['_id'];
-                        cover.src = libros[j]['urlImg'];
-                    }
+            var td = document.createElement("td");
+            var libro = document.createElement('a');
+            var cover = document.createElement('img');
+            for(var j=0;j<libros.length;j++){
+                if(libros[j]['_id'] == misLibros[i][0]['libro']){
+                    libro.appendChild(document.createTextNode(libros[j]['nombre']));
+                    libro.id = libros[j]['_id'];
+                    cover.src = libros[j]['urlImg'];
                 }
-                td.appendChild(cover);
-                tr.appendChild(td);
-        
-                var td = document.createElement("td");
-                libro.href = "#";
-                libro.addEventListener('click', perfil); 
-                td.appendChild(libro);
-                tr.appendChild(td);
+            }
+            td.appendChild(cover);
+            tr.appendChild(td);
+
+            var td = document.createElement("td");
+            libro.href = "#";
+            libro.addEventListener('click', perfil); 
+            td.appendChild(libro);
+            tr.appendChild(td);
+            
+            var td = document.createElement("td");
+            var intercambio = document.createElement('select');
+
+            var opc = document.createElement("option");
+            var textNode = document.createTextNode('Disponible');
+            opc.appendChild(textNode);
+
+            intercambio.appendChild(opc);
+
+            var opc = document.createElement("option");
+            var textNode = document.createTextNode('No disponible');
+            opc.appendChild(textNode);
+
+            intercambio.appendChild(opc);
+
+            if(misLibros[i][0]['intercambiable'] == false){
+                intercambio.value = 'No disponible';
+            }
+
+            //intercambio.addEventListener('change', mod);
+            td.appendChild(intercambio);
+            tr.appendChild(td);
+
+            var td = document.createElement("td");
+            var cantidad = document.createTextNode(misLibros[i][0]['cantidad']);
+            cantidad.id = misLibros[i][0]['libro'];
+
+            td.appendChild(cantidad);
+            tr.appendChild(td);
+
+            var data = {
+                libro:misLibros[i][0]['libro'],
+                usuario: sessionStorage.getItem('id')
+            }
+
+            
+            var td = document.createElement("td");
+            var calif = misLibros[i][0]['calif'];
+            if(calif != 0){
                 
-                var td = document.createElement("td");
-                var intercambio = document.createElement('select');
-        
-                var opc = document.createElement("option");
-                var textNode = document.createTextNode('Disponible');
-                opc.appendChild(textNode);
-        
-                intercambio.appendChild(opc);
-        
-                var opc = document.createElement("option");
-                var textNode = document.createTextNode('No disponible');
-                opc.appendChild(textNode);
-        
-                intercambio.appendChild(opc);
-        
-                if(misLibros[i][0]['intercambiable'] == false){
-                    intercambio.value = 'No disponible';
+                for(var j=0;j<calif;j++){
+                    var icon = document.createElement("i");
+                    icon.classList.add("fas");
+                    icon.classList.add("fa-book");
+                    icon.classList.add("calif-true");
+                    td.appendChild(icon);
                 }
-        
-                //intercambio.addEventListener('change', mod);
-                td.appendChild(intercambio);
-                tr.appendChild(td);
-        
-                var td = document.createElement("td");
-                var cantidad = document.createTextNode(misLibros[i][0]['cantidad']);
-                cantidad.id = misLibros[i][0]['libro'];
-        
-                td.appendChild(cantidad);
-                tr.appendChild(td);
 
+                for(var j=0;j<5-calif;j++){
+                    var icon = document.createElement("i");
+                    icon.classList.add("fas");
+                    icon.classList.add("fa-book");
+                    icon.classList.add("calif-false");
+                    td.appendChild(icon);
+                }
+            } else {
+                var btn = document.createElement('button');
+                btn.innerHTML = 'Valorar libro';
+                btn.id = misLibros[i][0]['libro'];
+                btn.addEventListener('click', calificar);
+                btn.classList.add('submit');
+                td.appendChild(btn);
+            }
+    
+        tr.appendChild(td);
 
-
-        
-                document.getElementById("table").appendChild(tr);
+        document.getElementById("table").appendChild(tr);
             }
         }
         if(resultados == 0){

@@ -69,6 +69,7 @@
                                 <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
                             </div>
                         <h3 id="autor">Por: </h3>
+                        <div id='calif'></div>
                         <ul class="libro-info-list">
                             <li id="idioma"><b>Idioma: </b></li>
                             <li id="genero"><b>Género: </b></li>
@@ -90,8 +91,13 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="resenas-cont">
+                    <h2>Reseñas</h2>
+                    <table class="lista-res font" id="table">
+                    </table>
+                </div>
                 
-                <!--Alert si no se cumple una validacion en el form-->
                 <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                     <label id="msg"></label>

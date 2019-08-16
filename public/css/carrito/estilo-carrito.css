@@ -95,6 +95,7 @@
 .carrito{
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 200px;
 }
 
 .carrito td{

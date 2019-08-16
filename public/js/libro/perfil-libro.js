@@ -8,7 +8,11 @@ if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem(
 }
 
 document.getElementById("usrName").innerHTML = sessionStorage.getItem("correo");
+
 var autores = [];
+var califs = [];
+var sucursales = [];
+
 async function fillPerfil(id){
 
     var responseAutor = await fetch('/autor/listar', {
@@ -34,7 +38,7 @@ async function fillPerfil(id){
         }
       )
       .then(
-          function(json){
+          async function(json){
             document.getElementById('portada').src = json["urlImg"];
             document.getElementById('titulo').innerHTML += json['nombre']; 
 
@@ -46,11 +50,53 @@ async function fillPerfil(id){
             }    
 
             document.getElementById('autor').innerHTML += textAutor; 
+
+            var data = {
+              libro:id
+            }
+            var response = await fetch('/califLibro/listar', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{'Content-Type': 'application/json'}
+            })
+            califs = await response.json();
+            
+            if(califs.length != 0){
+                var calif = 0;
+                for(var j=0;j<califs.length;j++){
+                    calif += califs[j]['calif'];
+                }
+                calif = calif/califs.length;
+                calif = Math.round(calif);
+    
+                for(var j=0;j<calif;j++){
+                    var icon = document.createElement("i");
+                    icon.classList.add("fas");
+                    icon.classList.add("fa-book");
+                    icon.classList.add("calif-true");
+                    document.getElementById('calif').appendChild(icon);
+                }
+    
+                for(var j=0;j<5-calif;j++){
+                    var icon = document.createElement("i");
+                    icon.classList.add("fas");
+                    icon.classList.add("fa-book");
+                    icon.classList.add("calif-false");
+                    document.getElementById('calif').appendChild(icon);
+                }
+
+            } else {
+                var califT = document.createTextNode("");
+                document.getElementById('calif').appendChild(califT);
+            }
+
+
             document.getElementById('idioma').innerHTML += json['idioma']; 
             document.getElementById('genero').innerHTML += json['genero']; 
             document.getElementById('categoria').innerHTML += json['categoria'];
             document.getElementById('desc').innerHTML += json['descripcion']; 
             fillInventario(id);
+            resenas(id);
           }
       )
       .catch(
@@ -60,7 +106,6 @@ async function fillPerfil(id){
       );
 }
 
-var sucursales = [];
 async function fillInventario(id){
 
     var response = await fetch('/sucursal/listarTodo', {
@@ -168,9 +213,8 @@ function addCart(e){
   var a = e.target;
   var id = a.id;
 
-  if(localStorage.getItem("carrito") != null){
+  if(localStorage.getItem("carrito") != "" && localStorage.getItem("carrito") != null){
     var carrito = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carrito);
     var existe = false;
     for(var i=0;i<carrito.length;i++){
       if(carrito[i]['inventario'] == id){
@@ -208,4 +252,117 @@ function seguir(){
 
 function carrito(){
   window.location.href = "carrito.html";
+}
+
+async function resenas(id){
+
+    var response = await fetch('/usuario/listar', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    var usuarios = await response.json();
+    console.log(usuarios);
+    
+    var data = {
+      libro:id
+    }
+    var response = await fetch('/califLibro/listar', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    califs = await response.json();
+
+    
+
+    for(var i=0;i<califs.length;i++){
+      var tr = document.createElement('tr');
+      //foto perfil
+      var td = document.createElement('td');
+      var ppic = document.createElement('img');
+
+      var wrapper = document.createElement('div');
+      var div = document.createElement('div');
+
+      wrapper.classList.add('usr-pic-cont');
+
+      for(var j=0;j<usuarios.length;j++){
+        if(usuarios[j]['_id'] == califs[i]['usuario']){
+          ppic.src = usuarios[j]['imgUrl'];
+        }
+      }
+      div.appendChild(ppic);
+      div.classList.add('usr-pic-pic');
+      wrapper.appendChild(div);
+
+      //nombre del usuario
+      var div = document.createElement('div');
+      var nombre = document.createElement('a');
+
+      for(var j=0;j<usuarios.length;j++){
+        if(usuarios[j]['_id'] == califs[i]['usuario']){
+          nombre.appendChild(document.createTextNode(usuarios[j]['nombre']+' '+usuarios[j]['apellido1']));
+        }
+      }
+      div.appendChild(nombre);
+      div.classList.add('usr-pic-nombre');
+      wrapper.appendChild(div);
+      td.appendChild(wrapper);
+      tr.appendChild(td);
+
+      tr.classList.add('resena');
+      document.getElementById('table').appendChild(tr);
+
+      //calificacion
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      var calif = califs[i]['calif'];
+
+      td.appendChild(document.createTextNode('Calificación: '))
+
+      for(var j=0;j<calif;j++){
+        var icon = document.createElement("i");
+        icon.classList.add("fas");
+        icon.classList.add("fa-book");
+        icon.classList.add("calif-true");
+        td.appendChild(icon);
+      }
+
+      for(var j=0;j<5-calif;j++){
+          var icon = document.createElement("i");
+          icon.classList.add("fas");
+          icon.classList.add("fa-book");
+          icon.classList.add("calif-false");
+          td.appendChild(icon);
+      }
+      tr.appendChild(td);
+
+      tr.classList.add('resena');
+      document.getElementById('table').appendChild(tr);
+
+      //fecha
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+
+      var date = new Date(califs[i]['fecha']);
+			var formatedDate = date.toLocaleDateString(); 
+
+      td.appendChild(document.createTextNode(formatedDate));
+      tr.appendChild(td);
+
+      tr.classList.add('resena');
+      document.getElementById('table').appendChild(tr);
+
+      //resena
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      td.appendChild(document.createTextNode(califs[i]['resena']));
+      tr.appendChild(td);
+      
+
+      document.getElementById('table').appendChild(tr);
+
+    }
+    
+    
 }
