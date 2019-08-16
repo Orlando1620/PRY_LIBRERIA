@@ -4,7 +4,7 @@ if(sessionStorage.getItem("tipo") == "adminGlobal" || sessionStorage.getItem("ti
 }
 
 if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
-  document.getElementById("mod").classList.add("oculto");
+  document.getElementById("icons").classList.add("oculto");
 }
 
 document.getElementById("usrName").innerHTML = sessionStorage.getItem("correo");
@@ -136,9 +136,10 @@ async function fillInventario(id){
           function(json){
             var list = document.getElementById("opciones");
             removeElements(list);
-            
+            var resultados = 0;
             for(var i=0;i<json.length;i++){
-                
+                if(json[i]['cantidad'] > 0){
+                  resultados++;
                 var tr = document.createElement("tr");
                 var td1 = document.createElement("td");
                 var td2 = document.createElement("td");
@@ -166,8 +167,8 @@ async function fillInventario(id){
                 var aAdd = document.createElement('a');
                 button.classList.add('fas');
                 button.classList.add('fa-cart-plus');
-                button.id = json[i]['sucursal'];
-                //aAdd.addEventListener('click', popDel);
+                button.id = json[i]['_id'];
+                aAdd.addEventListener('click', addCart);
                 aAdd.appendChild(button);
                 
                 td1.appendChild(sucursal);
@@ -180,6 +181,18 @@ async function fillInventario(id){
     
                 document.getElementById("opciones").appendChild(tr);
                 //inventario.push(json[i]['isbn']);
+              }
+            }
+
+            if(json.length == 0 || resultados == 0){
+              var tr = document.createElement("tr");
+              var td = document.createElement("td");
+              var text = document.createTextNode("Este libro no está disponible");
+              td.colSpan = 3;
+              td.appendChild(text);
+              td.style.textAlign = 'center'; 
+              tr.appendChild(td);
+              document.getElementById("opciones").appendChild(tr);
             }
           }
       )
