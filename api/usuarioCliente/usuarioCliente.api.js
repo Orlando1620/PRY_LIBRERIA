@@ -275,7 +275,8 @@ module.exports.compra = async function(req, res) {
             libro:libro,
             intercambiable: libros[i][0]['intercambiable'],
             cantidad: parseInt(libros[i][0]['cantidad'],10) + cantidad,
-            calif: libros[i][0]['calif']
+            calif: libros[i][0]['calif'],
+            favorito: libros[i][0]['favorito']
           }
           nuevosLibros.push(nuevoLibro);
         } else {
@@ -287,7 +288,8 @@ module.exports.compra = async function(req, res) {
           libro:libro,
           intercambiable:true,
           cantidad: cantidad,
-          calif: 0
+          calif: 0,
+          favorito: false
         });
       }
       
@@ -348,7 +350,50 @@ module.exports.califLibro = async function(req, res) {
             libro:libro,
             intercambiable: libros[i][0]['intercambiable'],
             cantidad: parseInt(libros[i][0]['cantidad'],10),
-            calif: calif
+            calif: calif,
+            favorito: libros[i][0]['favorito']
+          }
+          nuevosLibros.push(nuevoLibro);
+        } else {
+          nuevosLibros.push(libros[i]);
+        }
+      }
+      
+      
+      await Usuario.updateOne(
+        { _id: usuario },
+        {
+          $set: { 
+            libros:nuevosLibros
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+
+      res.json({result: 'exito'});
+  } catch(err){
+    console.log(err);
+  }
+}
+
+module.exports.modFavorito = async function(req, res) {
+  try{
+      var usuario = req.body.usuario;
+      var libro = req.body.libro;
+      var fav = req.body.fav;
+    
+      var result = await Usuario.findOne({_id:usuario}).exec(); 
+      var libros = result['libros'];
+      var nuevosLibros = [];
+
+      for(var i=0;i<libros.length;i++){
+        if(libros[i][0]['libro'] == libro){
+          var nuevoLibro = {
+            libro:libro,
+            intercambiable: libros[i][0]['intercambiable'],
+            cantidad: parseInt(libros[i][0]['cantidad'],10),
+            calif: libros[i][0]['calif'],
+            favorito: fav
           }
           nuevosLibros.push(nuevoLibro);
         } else {

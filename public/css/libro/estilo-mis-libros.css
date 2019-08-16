@@ -75,16 +75,32 @@
 
 
 .filtros{
+    overflow: auto;
     padding: 0 9.5%;
 }
 
 .search-box{
-    width: 100%;
+    float: left;
+    width: 48%;
     padding: 10px 10px;
     margin: 10px 0;
+    margin-right: 2%; 
     font-size: 1rem;
     border: none;
     background-color: #48725231;
+    box-sizing: border-box;
+}
+
+.select-filtro{
+    float: left;
+    width: 48%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    margin-left: 2%; 
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+    box-sizing: border-box;
 }
 
 .table-cont{
@@ -106,6 +122,8 @@
 .lista-suc select{
     padding: 10px;
     width: 130px;
+    border: none;
+    background-color: #48725231;
 }
 
 .lista-suc img{
@@ -154,6 +172,12 @@
 
 .icons{
     text-align: center;
+}
+
+.fav-icon{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
 }
 
 @media(max-width: 920px){

@@ -100,6 +100,10 @@
                     
                     <div class="filtros">
                         <input type="text" placeholder="Buscar libro" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
+                        <select class="select-filtro" id="fav" onchange="filtrarFav()">
+                            <option>Todos</option>
+                            <option>Favoritos</option>
+                        </select>
                     </div>
                 
                     <div class="table-cont">

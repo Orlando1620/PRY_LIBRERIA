@@ -115,8 +115,33 @@ async function fillTable(){
             btn.classList.add('submit');
             td.appendChild(btn);
         }
-    
         tr.appendChild(td);
+
+        //favoritos
+        var td = document.createElement("td");
+        if(misLibros[i][0]['favorito']){
+            var btn = document.createElement('i');
+            var fav = document.createElement('a');
+            btn.classList.add('fas');
+            btn.classList.add('fa-heart');
+            btn.id = misLibros[i][0]['libro'];
+            btn.classList.add('fav-icon');
+            fav.addEventListener('click', delFav);
+            fav.appendChild(btn);
+        } else {
+            var btn = document.createElement('i');
+            var fav = document.createElement('a');
+            btn.classList.add('far');
+            btn.classList.add('fa-heart');
+            btn.id = misLibros[i][0]['libro'];
+            btn.classList.add('fav-icon');
+            fav.addEventListener('click', addFav);
+            fav.appendChild(btn);
+        }
+        td.style.textAlign = 'center';
+        td.appendChild(fav);
+        tr.appendChild(td);
+        
 
         document.getElementById("table").appendChild(tr);
     
@@ -126,7 +151,7 @@ async function fillTable(){
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         var text = document.createTextNode("Aún no ha adquirido ningún libro");
-        td.colSpan = 4;
+        td.colSpan = 5;
         td.appendChild(text);
         td.style.textAlign = 'center'; 
         tr.appendChild(td);
@@ -241,6 +266,31 @@ function filtrarNombre(){
     
         tr.appendChild(td);
 
+        //favoritos
+        var td = document.createElement("td");
+        if(misLibros[i][0]['favorito']){
+            var btn = document.createElement('i');
+            var fav = document.createElement('a');
+            btn.classList.add('fas');
+            btn.classList.add('fa-heart');
+            btn.id = misLibros[i][0]['libro'];
+            btn.classList.add('fav-icon');
+            fav.addEventListener('click', addFav);
+            fav.appendChild(btn);
+        } else {
+            var btn = document.createElement('i');
+            var fav = document.createElement('a');
+            btn.classList.add('far');
+            btn.classList.add('fa-heart');
+            btn.id = misLibros[i][0]['libro'];
+            btn.classList.add('fav-icon');
+            fav.addEventListener('click', delFav);
+            fav.appendChild(btn);
+        }
+        td.style.textAlign = 'center';
+        td.appendChild(fav);
+        tr.appendChild(td);
+
         document.getElementById("table").appendChild(tr);
             }
         }
@@ -250,6 +300,147 @@ function filtrarNombre(){
         } else {
             document.getElementById("alert").classList.add("oculto");
         }
+    }
+}
+
+function filtrarFav(){
+    var list = document.getElementById("table");
+    removeElements(list);
+    
+    if(misLibros.length>0){
+        switch(document.getElementById('fav').value){
+            case 'Todos':
+                fillTable();
+                break;
+            case 'Favoritos':
+                var resultados = 0;
+                for(var i=0;i<misLibros.length;i++){
+                    if(misLibros[i][0]['favorito']){
+                        resultados++;
+                        var tr = document.createElement("tr");
+        
+                        var td = document.createElement("td");
+                        var libro = document.createElement('a');
+                        var cover = document.createElement('img');
+                        for(var j=0;j<libros.length;j++){
+                            if(libros[j]['_id'] == misLibros[i][0]['libro']){
+                                libro.appendChild(document.createTextNode(libros[j]['nombre']));
+                                libro.id = libros[j]['_id'];
+                                cover.src = libros[j]['urlImg'];
+                            }
+                        }
+                        td.appendChild(cover);
+                        tr.appendChild(td);
+        
+                        var td = document.createElement("td");
+                        libro.href = "#";
+                        libro.addEventListener('click', perfil); 
+                        td.appendChild(libro);
+                        tr.appendChild(td);
+                        
+                        var td = document.createElement("td");
+                        var intercambio = document.createElement('select');
+        
+                        var opc = document.createElement("option");
+                        var textNode = document.createTextNode('Disponible');
+                        opc.appendChild(textNode);
+        
+                        intercambio.appendChild(opc);
+        
+                        var opc = document.createElement("option");
+                        var textNode = document.createTextNode('No disponible');
+                        opc.appendChild(textNode);
+        
+                        intercambio.appendChild(opc);
+        
+                        if(misLibros[i][0]['intercambiable'] == false){
+                            intercambio.value = 'No disponible';
+                        }
+        
+                        //intercambio.addEventListener('change', mod);
+                        td.appendChild(intercambio);
+                        tr.appendChild(td);
+        
+                        var td = document.createElement("td");
+                        var cantidad = document.createTextNode(misLibros[i][0]['cantidad']);
+                        cantidad.id = misLibros[i][0]['libro'];
+        
+                        td.appendChild(cantidad);
+                        tr.appendChild(td);
+        
+                        var data = {
+                            libro:misLibros[i][0]['libro'],
+                            usuario: sessionStorage.getItem('id')
+                        }
+        
+                        
+                        var td = document.createElement("td");
+                        var calif = misLibros[i][0]['calif'];
+                        if(calif != 0){
+                            
+                            for(var j=0;j<calif;j++){
+                                var icon = document.createElement("i");
+                                icon.classList.add("fas");
+                                icon.classList.add("fa-book");
+                                icon.classList.add("calif-true");
+                                td.appendChild(icon);
+                            }
+        
+                            for(var j=0;j<5-calif;j++){
+                                var icon = document.createElement("i");
+                                icon.classList.add("fas");
+                                icon.classList.add("fa-book");
+                                icon.classList.add("calif-false");
+                                td.appendChild(icon);
+                            }
+                        } else {
+                            var btn = document.createElement('button');
+                            btn.innerHTML = 'Valorar libro';
+                            btn.id = misLibros[i][0]['libro'];
+                            btn.addEventListener('click', calificar);
+                            btn.classList.add('submit');
+                            td.appendChild(btn);
+                        }
+                
+                        tr.appendChild(td);
+        
+                        //favoritos
+                        var td = document.createElement("td");
+                        if(misLibros[i][0]['favorito']){
+                            var btn = document.createElement('i');
+                            var fav = document.createElement('a');
+                            btn.classList.add('fas');
+                            btn.classList.add('fa-heart');
+                            btn.id = misLibros[i][0]['libro'];
+                            btn.classList.add('fav-icon');
+                            fav.addEventListener('click', addFav);
+                            fav.appendChild(btn);
+                        } else {
+                            var btn = document.createElement('i');
+                            var fav = document.createElement('a');
+                            btn.classList.add('far');
+                            btn.classList.add('fa-heart');
+                            btn.id = misLibros[i][0]['libro'];
+                            btn.classList.add('fav-icon');
+                            fav.addEventListener('click', delFav);
+                            fav.appendChild(btn);
+                        }
+                        td.style.textAlign = 'center';
+                        td.appendChild(fav);
+                        tr.appendChild(td);
+        
+                        document.getElementById("table").appendChild(tr);
+                    }
+                }
+                if(resultados == 0){
+                    document.getElementById("alert").classList.remove("oculto");
+                    document.getElementById("msg").innerHTML = "No se encontraron resultados";
+                } else {
+                    document.getElementById("alert").classList.add("oculto");
+                }
+                break;
+        }
+        
     }
 }
 
@@ -280,6 +471,11 @@ function removeElements(list){
     var td = document.createElement("td");
     var calif = document.createTextNode("Calificación");
     td.appendChild(calif);
+    tr.appendChild(td);
+
+    var td = document.createElement("td");
+    var favoritos = document.createTextNode("Favoritos");
+    td.appendChild(favoritos);
     tr.appendChild(td);
 
     tr.classList.add('table-titles')
@@ -351,6 +547,40 @@ function cancelar(){
     document.getElementById("pop-up").classList.add('oculto');
     document.getElementById('resena').value = '';
     califActual = 0;
+}
+
+async function addFav(e){
+    var a = e.target;
+    var libro = a.id;
+
+    var data = {
+        usuario: sessionStorage.getItem("id"),
+        libro: libro,
+        fav: true
+    };
+	await fetch('/usuarioCliente/modFavorito', {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'Content-Type': 'application/json'}
+    });
+    fillTable();
+}
+
+async function delFav(e){
+    var a = e.target;
+    var libro = a.id;
+
+    var data = {
+        usuario: sessionStorage.getItem("id"),
+        libro: libro,
+        fav: false
+    };
+	await fetch('/usuarioCliente/modFavorito', {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers:{'Content-Type': 'application/json'}
+    });
+    fillTable();
 }
 
 function perfil(e){

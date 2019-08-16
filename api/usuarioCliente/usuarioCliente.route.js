@@ -28,6 +28,10 @@ router.post('/compra', function (req, res){
 router.post('/califLibro', function (req, res){
     usuarioApi.califLibro(req,res);
 })
+
+router.post('/modFavorito', function (req, res){
+    usuarioApi.modFavorito(req,res);
+})
   
 
 module.exports = router;
