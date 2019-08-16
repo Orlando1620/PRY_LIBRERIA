@@ -78,14 +78,22 @@
     overflow: hidden;
 }
 
-.card-text-cont i{
+
+.autor{
+    color: #487252;
+}
+
+
+.calif-true{
     padding-right: 5px;
     padding-bottom: 10px;
     color: #487252;
 }
 
-.autor{
-    color: #487252;
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
 }
 
 @media(max-width: 1278px){

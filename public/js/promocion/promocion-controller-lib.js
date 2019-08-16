@@ -78,7 +78,7 @@ async function fillInventario() {
                     nombre = document.createTextNode(libros[j]['nombre']);
                 }
             }
-            option.value = json[i]['_id'];
+            option.value = json[i]['libro'];
 
             option.appendChild(nombre);
 

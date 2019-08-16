@@ -2,6 +2,27 @@
     display: none;
 }
 
+.acomodar{
+    display: flex;
+}
+
+#icons{
+    padding-left: 47%;
+    padding-top: 19px;
+}
+
+#pencil, #trash{
+    float: right;
+}
+#trash{
+    color: rgb(223, 80, 80);
+}
+
+#pencil{
+    color: #487252;
+    padding-right: 20px;
+}
+
 .main-title{
     color: #022600;
     margin: 0;
@@ -9,6 +30,19 @@
 
 .full{
     width: 100% !important;
+}
+
+
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
 }
 
 /*content*/
@@ -118,6 +152,60 @@
     
     border: none;
     background-color: #48725231;
+}
+
+.resenas-cont{
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px;
+}
+
+.lista-res{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-res td{
+    padding: 5px;
+    border-bottom: 1px solid silver;
+}
+
+
+
+.lista-res a{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.lista-res img{
+    width: 50px;
+}
+
+.resena td{
+    border: none !important;
+}
+
+.usr-pic-cont{
+    overflow: auto;
+    height: 70px;
+}
+
+.usr-pic-cont div{
+    float: left;
+}
+
+.usr-pic-nombre{
+    padding: 10px 0 0 10px; 
+    box-sizing: border-box;
+}
+
+.usr-pic-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 @media(max-width: 1278px){

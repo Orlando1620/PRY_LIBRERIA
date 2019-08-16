@@ -83,16 +83,20 @@ function validarFecha(){
 
 function validarForm(){
     var espaciosVacios = [];
-    var librerias = document.getElementById('librerias').value;
+    if(document.getElementById('librerias') != null){
+        var librerias = document.getElementById('librerias').value;
+        if(librerias == "Seleccione una librería"){
+            espaciosVacios.push('librerias');
+        } else {
+            document.getElementById("librerias").classList.remove('invalid');
+        }
+    }
+    
     var sucursales = document.getElementById('sucursales').value;
     var libroPromo = document.getElementById('libroPromo').value;
     var porcentaje = document.getElementById('porcentaje').value;
 
-    if(librerias == "Seleccione una librería"){
-        espaciosVacios.push('librerias');
-    } else {
-        document.getElementById("librerias").classList.remove('invalid');
-    }
+    
     if(sucursales == "Seleccione una sucursal"){
         espaciosVacios.push('sucursales');
     } else {
@@ -107,7 +111,7 @@ function validarForm(){
         document.getElementById("alert-porcentaje").classList.remove("oculto");
         document.getElementById("msg-porcentaje").innerHTML = "El porcentaje de descuento debe ser mayor a 0";
     } else {
-        document.getElementById("alert").classList.add("oculto");
+        document.getElementById("alert-porcentaje").classList.add("oculto");
     }
     if(espaciosVacios.length > 0){
         for(var i=0;i<espaciosVacios.length;i++){

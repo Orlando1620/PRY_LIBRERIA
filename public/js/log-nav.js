@@ -19,6 +19,7 @@ if(sessionStorage.getItem("nombre") == null){
     switch(sessionStorage.getItem("tipo")){
         case "usuarioCliente":
             document.getElementById("perfil").href = "perfil-uc.html";
+            document.getElementById("nav-cart").href= "carrito.html";
             break;
         case "AdminLib":
             document.getElementById("perfil").href = "perfil-adminLib.html";
@@ -27,6 +28,9 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("home").href = "perfil-adminLib.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
+            if(document.getElementById("nav-cart") != null){
+                document.getElementById("nav-cart").classList.add("oculto");
+            }
             break;
         case "adminGlobal":
             document.getElementById("perfil").href = "perfil-adminGlobal.html";
@@ -35,6 +39,9 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("home").href = "perfil-adminGlobal.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
+            if(document.getElementById("nav-cart") != null){
+                document.getElementById("nav-cart").classList.add("oculto");
+            }
             break;
     }
 }
@@ -71,5 +78,6 @@ function opcionesNav(){
 
 function cerrarSesion(){
     sessionStorage.clear();
+    localStorage.clear();
     window.location.href = "login.html";
 }

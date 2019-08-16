@@ -9,6 +9,10 @@ router.post('/listar', function(req, res) {
     inventarioApi.listarInventario(req,res);
 })
 
+router.get('/listarTodo', function(req, res) {
+    inventarioApi.listarInventarioTodo(req,res);
+})
+
 /**
  * Registra un nuevo inventario en la base de datos
  */
@@ -22,6 +26,10 @@ router.post('/del', function(req, res) {
 
 router.post('/mod', function(req, res) {
     inventarioApi.modificarInventario(req,res);
+})
+
+router.post('/restar', function(req, res) {
+    inventarioApi.restarInventario(req,res);
 })
 
 router.post('/eliminarTodo', function(req, res) {
