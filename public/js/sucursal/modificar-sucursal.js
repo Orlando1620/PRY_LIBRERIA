@@ -1,7 +1,7 @@
 async function eliminar(){
 
     var dataInv = {
-        nombreSuc:nombreSuc
+        sucursal:idSuc
     }
     var inv = await fetch('/inventario/eliminarTodo', {
         method: 'POST',
@@ -17,6 +17,7 @@ async function eliminar(){
         body: JSON.stringify(dataSuc),
         headers:{'Content-Type': 'application/json'}
     });
+    registrarBitacora(sessionStorage.getItem("correo"),'eliminación de sucursal: '+nombreSuc);
 
     window.location.href = "perfil-libreria.html";
 }
@@ -33,4 +34,30 @@ function aceptar(){
 
 function cancelar(){
     document.getElementById("pop-up").classList.add("oculto");
+}
+
+function registrarBitacora(correo,accion){
+    var data = {
+        correo: correo,
+        accion: accion,
+        fecha: new Date()
+    };
+    fetch('/bitacora/add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    .then(
+        function(response) {
+        if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+        else
+            return response.json();
+        }
+    )
+    .catch(
+        function(err) {
+        console.log('Ocurrió un error con la ejecución', err);
+        }
+    );
 }
