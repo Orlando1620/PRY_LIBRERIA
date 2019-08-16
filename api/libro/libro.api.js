@@ -397,20 +397,32 @@ module.exports.perfilLibro = function (req, res) {
 
 
 module.exports.verificarAsociacionLibro = function (req, res) {
-  var nombreLibro = req.body.nombre;
-  var idLibro = req.body._id;
-  ClubLectura.find({ libro: nombreLibro }).then(function (club) {
+  var nombreLibro = req.body.nombreLibro;
+  var idLibro = req.body.id;
+
+  ClubLectura.findOne({ libro: nombreLibro }).then(function (club) {
     if (club) {
       res.send(true);
-    } else {
-      Promociones.find({ libro: idLibro }).then(function (promo) {
+    }else{
+      Promociones.findOne({ libro: idLibro }).then(function (promo) {
         if (promo) {
           res.send(true);
-        } else {
+        }else{
           res.send(false);
         }
       })
     }
-  }
-  )
+  })
+ 
+}
+
+module.exports.deleteLibro = function (req, res) {
+  Libro.findByIdAndDelete(req.body.id).then(libro => {
+    if (libro) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
+
 }

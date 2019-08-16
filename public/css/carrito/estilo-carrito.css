@@ -1,0 +1,122 @@
+.main-wrapper{
+    overflow: auto;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 100%;
+    overflow: auto;
+}
+
+.table-cont{
+    float: left;
+    width: 60%;
+    padding: 0 30px 10px 10%;
+    box-sizing: border-box;
+}
+
+.total-cont{
+    overflow: auto;
+    float: left;
+    width: 30%;
+    padding: 0 20px 0 30px;
+    margin-right: 10%;
+    box-sizing: border-box;
+    box-shadow: 5px 10px 8px rgb(199, 199, 199);
+}
+
+.total-text-value-cont{
+    float: left;
+    width: 100%;
+}
+
+.total-text{
+    float: left;
+    padding: 5px;
+}
+
+.total-imp{
+    float: left;
+    padding: 5px;
+    width: 100%;
+}
+
+.total-value{
+    float: right;
+}
+
+.btn-cont{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.alert-cont{
+    float: left;
+    width: 100%;
+}
+
+.submit{
+    text-align: center;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 0.9rem;
+    border-radius: 10px;
+}
+
+.submit:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.cantidad{
+    border: none;
+    border-bottom: 1px solid silver;
+    width: 55px;
+    padding: 5px;
+}
+
+.total-cont h2{
+   margin: 0;
+}
+
+.total-cont h3{
+    margin: 0;
+}
+
+.main-title{
+    padding: 0 10%;
+}
+
+/*table*/
+.carrito{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.carrito td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.carrito img{
+    width: 50px;
+}
+
+.carrito i{
+    color: #487252;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}

@@ -66,7 +66,7 @@
                 <div class="libro-cont-mitad" id="info">
                         <h1 class="main-title" id="titulo"></h1>
                         <div id="icons">
-                            <a><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
+                            <a onclick="mostrarPopUp()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
                             <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
                         </div>
                     </div>
@@ -92,6 +92,17 @@
                         <table class="lista-suc font" id="opciones"></table>
                     </div>
                 </div>
+            </div>
+
+            <div class="pop-up-cont oculto" id="pop-up">
+                <div class="pop-up">
+                    <p id="msg-pop">¿Desea eliminar este libro de su inventario?</p>
+                    <div class="btn-cont">
+                        <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
+                        <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
+                    </div>
+                </div>
+                
             </div>
 
             <!--Alert si no se cumple una validacion en el form-->
@@ -145,6 +156,7 @@
     </footer>
 
 
+    <script src="js/libro/Controller-Eliminar.js"></script>
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
     <script src="js/libro/perfil-libro.js"></script>
     <script src="js/libro/libroServicios.js"></script>

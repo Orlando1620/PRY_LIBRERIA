@@ -60,7 +60,11 @@ router.post('/perfil', function (req, res){
   libroApi.perfilLibro(req,res);
 })
 
-router.get('/verificarAsociacionLibro', function(req, res){
+router.post('/verificarAsociacionLibro', function(req, res){
   libroApi.verificarAsociacionLibro(req,res);
+})
+
+router.post('/deleteLibro', function(req, res){
+  libroApi.deleteLibro(req, res);
 })
 module.exports = router;

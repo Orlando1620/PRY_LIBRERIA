@@ -1,28 +1,42 @@
-var tmp;
+function mostrarPopUp(){
+    document.getElementById("pop-up").classList.remove("oculto");
+}
+
+function cancelar(){
+    document.getElementById("pop-up").classList.add("oculto");
+}
 
 async function eliminarLibro() {
     var idLibro = sessionStorage.getItem('idLibro');
     var nombrelibro = document.getElementById("titulo").innerHTML;
 
     var tmp = await obtenerDatoAsociacionLibro(nombrelibro, idLibro);
-
+   
     if (tmp) {
         //mostrarle el msj que no lo puede eliminar
-
+        alert("Hay datos asociados al libro no se puede eliminar :)");
     } else {
-        //mostrarle el msj si de verdad lo quiere eliminar
-        //cuando le de que si 
+     //   var del = await deleteLibro(idLibro);
+        if (del){
+
+            alert("se elimino el libro :)");
+            window.location.href = ("listar-libros-admin.html");
+        }else{
+            alert("Hubo un error :(");
+        }
+        
     }
 
 }
 
 
-function aceptar() {
+function aceptar() {  
+    eliminarLibro();
     document.getElementById("pop-up").classList.add("oculto");
-    //eliminarLibro();
 }
 
 
 function cancelar() {
     document.getElementById("pop-up").classList.add("oculto");
 }
+
