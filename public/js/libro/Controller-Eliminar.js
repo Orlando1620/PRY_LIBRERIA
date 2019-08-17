@@ -25,24 +25,27 @@ async function eliminarLibro() {
             setTimeout(function () {
                 window.location.href = ("listar-libros-admin.html");
             }, 3000);
+
         }
+
     }
+}
+
+function aceptar() {
+    eliminarLibro();
+    document.getElementById("pop-up").classList.add("oculto");
+}
 
 
-    function aceptar() {
-        eliminarLibro();
-        document.getElementById("pop-up").classList.add("oculto");
-    }
+function cancelar() {
+    document.getElementById("pop-up").classList.add("oculto");
+}
 
+function mostrarMsg(id_clase_error) {
+    setTimeout(function () {
+        document.getElementById(id_clase_error).classList.add("oculto");
+    }, 3000);
 
-    function cancelar() {
-        document.getElementById("pop-up").classList.add("oculto");
-    }
+    document.getElementById(id_clase_error).classList.remove("oculto");
 
-    function mostrarMsg(id_clase_error) {
-        setTimeout(function () {
-            document.getElementById(id_clase_error).classList.add("oculto");
-        }, 3000);
-
-        document.getElementById(id_clase_error).classList.remove("oculto");
-    }
+}
