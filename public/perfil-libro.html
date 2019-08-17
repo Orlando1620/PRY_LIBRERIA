@@ -57,38 +57,49 @@
         <div class="main-wrapper">
             
             <div class="wrapper-cont">
-                <div class="portada-cont">
-                    <img class="portada" id="portada"/>
-                    
-                </div>
-                <div class="libro-cont">
-                    <div class="libro-cont-mitad" id="info">
-                        <h1 class="main-title" id="titulo"></h1>
-                        <div id="icons" class="form-mitad">
-                                <a><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
-                                <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
-                            </div>
-                        <h3 id="autor">Por: </h3>
-                        <div id='calif'></div>
-                        <ul class="libro-info-list">
-                            <li id="idioma"><b>Idioma: </b></li>
-                            <li id="genero"><b>Género: </b></li>
-                            <li id="categoria"><b>Categoría: </b></li>
-                        </ul>
-                        <label id="desc"><b>Descripción: </b><br/></label>
-
+                <div class="info-cont">
+                    <div class="portada-cont">
+                        <img class="portada" id="portada"/>
+                        
                     </div>
-                    
-                    <div class="libro-cont-mitad" id="opciones-cont">
-                        <div class="filtros">
-                            <select id="select-opciones" class="selectFiltrar">
-                                <option>Comprar</option>
-                                <option>Intercambiar</option>
-                            </select>
+                    <div class="libro-cont">
+                        <div class="libro-cont-mitad" id="info">
+                            <h1 class="main-title" id="titulo"></h1>
+                            <div id="icons" class="form-mitad">
+                                    <a><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
+                                    <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
+                                </div>
+                            <h3 id="autor">Por: </h3>
+                            <div id='calif'></div>
+                            <ul class="libro-info-list">
+                                <li id="idioma"><b>Idioma: </b></li>
+                                <li id="genero"><b>Género: </b></li>
+                                <li id="categoria"><b>Categoría: </b></li>
+                            </ul>
+                            <label id="desc"><b>Descripción: </b><br/></label>
+
                         </div>
-                        <div class="opciones">
-                            <table class="lista-suc font" id="opciones"></table>
-                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+                <div class="opciones-cont" id="opciones-cont">
+                    <div class="filtros">
+                        <select id="select-opciones" class="selectFiltrar">
+                            <option>Comprar</option>
+                            <option>Intercambiar</option>
+                        </select>
+                    </div>
+                    <div class="opciones">
+                        <table class="lista-suc font" id="opciones">
+                            <tr id="mainTr" class="table-titles">
+                                <td colspan="1"><a>Sucursal</a></td>
+                                <td colspan="1"><a>Precio</a></td>
+                                <td colspan="1"><a>Descuento</a></td>
+                                <td colspan="1"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 

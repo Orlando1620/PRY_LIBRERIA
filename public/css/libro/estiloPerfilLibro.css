@@ -55,11 +55,18 @@
     width: 100%;
 }
 
+.info-cont{
+    overflow: auto;
+    float: left;
+    width: 100%;
+}
+
 .portada-cont{
     float: left;
     width: 20%;
     box-sizing: border-box;
     padding: 20px;
+    padding-left: 50px;
     text-align: center;
 }
 
@@ -67,10 +74,13 @@
     width: 250px;
 }
 
+
 .libro-cont{
     overflow: auto;
     float: left;
     width: 80%;
+    padding: 50px;
+    padding-top: 20px;
     box-sizing: border-box;
     
 }
@@ -78,9 +88,10 @@
 .libro-cont-mitad{
     overflow: auto;
     float: left;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
     padding: 20px;
+    padding-top: 0;
 }
 
 .libro-info-list{
@@ -92,6 +103,13 @@
 .libro-info-list li{
     padding-bottom: 20px;
     margin-right: 10px; 
+}
+
+.opciones-cont{
+    overflow: auto;
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
 }
 
 .opciones{
@@ -114,7 +132,7 @@
 }
 
 .table-cont{
-    margin: 10px 9.5% 50px 9.5%;
+    margin: 10px 0 50px 0;
     max-height: 400px;
     overflow: scroll;
 }
@@ -147,7 +165,7 @@
 .selectFiltrar{
     width: 100%;
     padding: 10px 10px;
-    margin: 10px 3% 10px 0;
+    margin: 10px 0 10px 0;
     font-size: 1rem;
     
     border: none;

@@ -52,7 +52,16 @@ async function registrarPromocion(e){
                         document.getElementById("alert-success").classList.remove("oculto");
                         document.getElementById("msg-success").innerHTML = "Promoción registrada";
                         setTimeout(function () {
-                            window.location.href = "listar-promociones-adminGlobal.html";
+                            switch(sessionStorage.getItem("tipo")){
+                                
+                                case "AdminLib":
+                                    window.location.href = "listar-promociones-adminLib.html";
+                                    break;
+                                case "adminGlobal":
+                                    window.location.href = "listar-promociones-adminGlobal.html";
+                                    break;
+                            }
+                            
                         }, 2000);
                         break;
                 }

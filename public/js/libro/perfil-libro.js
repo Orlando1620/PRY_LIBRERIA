@@ -12,6 +12,7 @@ document.getElementById("usrName").innerHTML = sessionStorage.getItem("correo");
 var autores = [];
 var califs = [];
 var sucursales = [];
+var promociones = [];
 
 async function fillPerfil(id){
 
@@ -107,6 +108,11 @@ async function fillPerfil(id){
 }
 
 async function fillInventario(id){
+    var response = await fetch('/promocion/listarTodo', {
+      method: 'GET',
+      headers:{'Content-Type': 'application/json'}
+    })
+    promociones = await response.json();
 
     var response = await fetch('/sucursal/listarTodo', {
       method: 'GET',
@@ -135,52 +141,68 @@ async function fillInventario(id){
       .then(
           function(json){
             var list = document.getElementById("opciones");
-            removeElements(list);
+            //removeElements(list);
             var resultados = 0;
             for(var i=0;i<json.length;i++){
                 if(json[i]['cantidad'] > 0){
                   resultados++;
-                var tr = document.createElement("tr");
-                var td1 = document.createElement("td");
-                var td2 = document.createElement("td");
-                var td3 = document.createElement("td");
+                  var tr = document.createElement("tr");
+                  var td1 = document.createElement("td");
+                  var td2 = document.createElement("td");
+                  var td3 = document.createElement("td");
+                  var td4 = document.createElement("td");
 
-                var sucursal = document.createElement("label");
-                var precio = document.createElement("label");
-                var button = document.createElement("i");
+                  var sucursal = document.createElement("label");
+                  var precio = document.createElement("label");
+                  var descuento = document.createElement("label");
+                  var button = document.createElement("i");
 
-    
-                var textSuc;
-                for(var j=0;j<sucursales.length;j++){
-                  if(sucursales[j]['_id'] == json[i]['sucursal']){
-                    textSuc = document.createTextNode(sucursales[j]['nombreSucursal']);
+      
+                  var textSuc;
+                  for(var j=0;j<sucursales.length;j++){
+                    if(sucursales[j]['_id'] == json[i]['sucursal']){
+                      textSuc = document.createTextNode(sucursales[j]['nombreSucursal']);
+                    }
                   }
-                }
-                sucursal.appendChild(textSuc);
-    
-                var textPrecio = document.createTextNode("Precio: ₡"+json[i]['precio'].toLocaleString());
-                precio.appendChild(textPrecio);
+                  sucursal.appendChild(textSuc);
 
-                
-                //button.addEventListener('click', addInv);
-                
-                var aAdd = document.createElement('a');
-                button.classList.add('fas');
-                button.classList.add('fa-cart-plus');
-                button.id = json[i]['_id'];
-                aAdd.addEventListener('click', addCart);
-                aAdd.appendChild(button);
-                
-                td1.appendChild(sucursal);
-                td2.appendChild(precio);
-                td3.appendChild(aAdd);
+                  //promociones
+                  var textProm = document.createTextNode('-');
+                  for(var j=0;j<promociones.length;j++){
+                    if(promociones[j]['libro'] == json[i]['libro'] && promociones[j]['sucursal'] == json[i]['sucursal']){
+                      if(new Date(promociones[j]['fechaInicio']) <= new Date() && new Date(promociones[j]['fechaFinaliza']) >= new Date()){
+                        textProm = document.createTextNode(promociones[j]['porcentaje']+'%');
+                      }
+                    }
+                  }
+                  descuento.appendChild(textProm);
 
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-    
-                document.getElementById("opciones").appendChild(tr);
-                //inventario.push(json[i]['isbn']);
+      
+                  var textPrecio = document.createTextNode("₡"+json[i]['precio'].toLocaleString());
+                  precio.appendChild(textPrecio);
+
+                  
+                  //button.addEventListener('click', addInv);
+                  
+                  var aAdd = document.createElement('a');
+                  button.classList.add('fas');
+                  button.classList.add('fa-cart-plus');
+                  button.id = json[i]['_id'];
+                  aAdd.addEventListener('click', addCart);
+                  aAdd.appendChild(button);
+                  
+                  td1.appendChild(sucursal);
+                  td2.appendChild(precio);
+                  td3.appendChild(descuento);
+                  td4.appendChild(aAdd);
+
+                  tr.appendChild(td1);
+                  tr.appendChild(td2);
+                  tr.appendChild(td3);
+                  tr.appendChild(td4);
+      
+                  document.getElementById("opciones").appendChild(tr);
+                  //inventario.push(json[i]['isbn']);
               }
             }
 
@@ -211,6 +233,10 @@ fillPerfil(sessionStorage.getItem("idLibro"));
 
 
 function addCart(e){
+  if(sessionStorage.getItem("nombre") == null){
+    window.location.href = 'login.html';
+    return false;
+  }
 
   var a = e.target;
   var id = a.id;
@@ -275,6 +301,14 @@ async function resenas(id){
     })
     califs = await response.json();
 
+    if(califs.length == 0){
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      td.style.textAlign = 'center';
+      td.appendChild(document.createTextNode('No hay reseñas para este libro'));
+      tr.appendChild(td);
+      document.getElementById('table').appendChild(tr);
+    }
     
 
     for(var i=0;i<califs.length;i++){

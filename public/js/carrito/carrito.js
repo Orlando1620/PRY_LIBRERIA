@@ -1,6 +1,7 @@
 var inventarios = [];
 var libros = [];
 var sucursales = [];
+var promociones = [];
 var carrito;
 var impuesto;
 var total;
@@ -43,6 +44,12 @@ async function fillCarrito(){
     })
     impuestoJson = await response.json();
     impuesto = impuestoJson[0]['valor'];
+
+    var response = await fetch('/promocion/listarTodo', {
+        method: 'GET',
+        headers:{'Content-Type': 'application/json'}
+    })
+    promociones = await response.json();
 
     var list = document.getElementById("table");
     removeElements(list);
@@ -92,7 +99,17 @@ async function fillCarrito(){
 
         var td = document.createElement("td");
         var precio = document.createTextNode("₡"+(inventario['precio']).toLocaleString());
-        total += inventario['precio']*carrito[i]['cantidad'];
+        var precioNum = inventario['precio'];
+        for(var j=0;j<promociones.length;j++){
+            if(promociones[j]['libro'] == inventario['libro'] && promociones[j]['sucursal'] == inventario['sucursal']){
+                if(new Date(promociones[j]['fechaInicio']) <= new Date() && new Date(promociones[j]['fechaFinaliza']) >= new Date()){
+                    var desc = promociones[j]['porcentaje']/100;
+                    precioNum = precioNum - (precioNum*desc);
+                    precio = document.createTextNode("₡"+ precioNum.toLocaleString());
+                }
+            }
+        }
+        total += precioNum*carrito[i]['cantidad'];
         td.appendChild(precio);
         tr.appendChild(td);
 
@@ -200,11 +217,16 @@ function perfil(e){
 }
 
 function verificarPago(){
+    if(sessionStorage.getItem("nombre") == null){
+        window.location.href = 'login.html';
+        return false;
+    }
     document.getElementById("pop-up").classList.remove("oculto");
     document.getElementById("msg-pop").innerHTML = "El cobro se realizará al método de pago asociado a su cuenta. ¿Desea realizar la compra?";
 }
 
 async function finalizarCompra(){
+     
 
     document.getElementById("pop-up").classList.add("oculto");
 
@@ -303,9 +325,9 @@ async function finalizarCompra(){
             libro: inventario['libro'],
             cantidad: carrito[i]['cantidad'],
             compras: compras,
-            subtotal: '₡'+subtotal,
-            imp: '₡'+imp,
-            total: '₡'+total,
+            subtotal: '₡'+subtotal.toLocaleString(),
+            imp: '₡'+imp.toLocaleString(),
+            total: '₡'+total.toLocaleString(),
             enlaces:enlaces
         };
         var response = await fetch('/usuarioCliente/compra', {
@@ -349,7 +371,16 @@ function facturaCompras(){
         cantidad = carrito[i]['cantidad'];
         
         var precio = "₡"+(inventario['precio']).toLocaleString();
-        
+        var precioNum = inventario['precio'];
+        for(var j=0;j<promociones.length;j++){
+            if(promociones[j]['libro'] == inventario['libro'] && promociones[j]['sucursal'] == inventario['sucursal']){
+                if(new Date(promociones[j]['fechaInicio']) <= new Date() && new Date(promociones[j]['fechaFinaliza']) >= new Date()){
+                    var desc = promociones[j]['porcentaje']/100;
+                    precioNum = precioNum - (precioNum*desc);
+                    precio = "₡"+ precioNum.toLocaleString();
+                }
+            }
+        }
 
         var compra = 
         '<tr>'+

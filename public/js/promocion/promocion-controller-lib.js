@@ -50,7 +50,7 @@ async function fillInventario() {
     removeElements(list);
     var option = document.createElement("option");
   
-    var nombre = document.createTextNode("Selecione un libro");
+    var nombre = document.createTextNode("Seleccione un libro");
     option.appendChild(nombre);
   
     document.getElementById('libroPromo').appendChild(option);
