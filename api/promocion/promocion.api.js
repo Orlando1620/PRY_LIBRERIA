@@ -78,3 +78,19 @@ module.exports.listarPromo = function (req, res) {
       }
     );
 }
+
+module.exports.libById = function (req, res) {
+  var admin_id = req.body.admin_id;
+  Libreria.findOne({ admin_id: admin_id }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+}
