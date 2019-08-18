@@ -37,6 +37,16 @@
 }
 
 
+.search-box{
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
+
+
 .filtro-lib{
     float: left;
     margin-bottom: 20px;
@@ -134,13 +144,6 @@
     padding: 10px 0;
 }
 
-.search-box{
-    width: 290px;
-    padding: 10px 10px;
-    margin: 10px 5px 10px 50px;
-    font-size: 1rem;
-}
-
 .search-btn{
     padding: 12px 20px;
     font-size: 1rem;
@@ -162,28 +165,63 @@
     color: #487252;
 }
 
+
+@media(max-width: 920px){
+
+    .side-bar a{
+        font-size: 1rem;
+    }
+
+    .side-bar-selected a{
+        font-size: 1rem;
+    }
+}
+
+
 /*cambios para movil*/
-@media(max-width: 1080px){
-
-    .card{
-        float: left;
-        margin: 20px 0;
-        width: 50%;
-        box-shadow: 5px 10px 8px rgb(199, 199, 199);
-        text-align: center;
-    }
-}
-
 @media(max-width: 750px){
-    
-    .card{
-        float: left;
-        margin: 20px 0;
-        width: 100%;
-        box-shadow: 5px 10px 8px rgb(199, 199, 199);
+
+    /*side bar*/
+    .wrapper-side-bar{
+        display: none;
+    }
+
+    .select-side-bar{
+        display: block;
         text-align: center;
     }
+
+    .wrapper-cont{
+        width: 100%;
+    }
+
+    .tab-wrapper div{
+        font-size: 1rem;
+    }
+
+    .form-mitad h3{
+        font-size: 1rem;
+    }
+
+    .form-full h3{
+        font-size: 1rem;
+    }
+
+    .select-form{
+        font-size: 1rem;
+    }
+
+    .wrapper-form{
+        padding: 20px 10%;
+    }
+
+    .submit{
+        padding: 5px 20px;
+        margin: 20px 40%;
+    }
+    
 }
+
 
 .lista-suc{
     width: 100%;

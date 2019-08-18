@@ -7,7 +7,7 @@ var sucursalSchema = mongoose.Schema({
   porcentaje: Number,
   fechaInicio: Date,
   fechaFinaliza: Date,
-  imgUrl: String
+  imgUrl: String,
 });
 
 module.exports = mongoose.model('Promocion', sucursalSchema,'Promociones');

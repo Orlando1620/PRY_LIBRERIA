@@ -6,10 +6,7 @@
     display: flex;
 }
 
-#icons{
-    padding-left: 47%;
-    padding-top: 19px;
-}
+
 
 #pencil, #trash{
     float: right;
@@ -32,6 +29,19 @@
     width: 100% !important;
 }
 
+
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
+}
+
 /*content*/
 .main-wrapper{
     overflow: auto;
@@ -42,22 +52,41 @@
     width: 100%;
 }
 
+.info-cont{
+    overflow: auto;
+    float: left;
+    width: 100%;
+}
+
 .portada-cont{
     float: left;
     width: 20%;
     box-sizing: border-box;
     padding: 20px;
+    padding-left: 50px;
     text-align: center;
+    margin-bottom: 45px;
 }
 
 .portada{
     width: 250px;
 }
 
+.icons-cont{
+    overflow: auto;
+    padding: 20px 50px 20px 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
 .libro-cont{
     overflow: auto;
     float: left;
     width: 80%;
+    padding: 50px;
+    padding-top: 20px;
     box-sizing: border-box;
     
 }
@@ -65,9 +94,10 @@
 .libro-cont-mitad{
     overflow: auto;
     float: left;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
     padding: 20px;
+    padding-top: 0;
 }
 
 .libro-info-list{
@@ -79,6 +109,15 @@
 .libro-info-list li{
     padding-bottom: 20px;
     margin-right: 10px; 
+}
+
+
+
+.opciones-cont{
+    overflow: auto;
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
 }
 
 .opciones{
@@ -101,7 +140,7 @@
 }
 
 .table-cont{
-    margin: 10px 9.5% 50px 9.5%;
+    margin: 10px 0 50px 0;
     max-height: 400px;
     overflow: scroll;
 }
@@ -134,11 +173,65 @@
 .selectFiltrar{
     width: 100%;
     padding: 10px 10px;
-    margin: 10px 3% 10px 0;
+    margin: 10px 0 10px 0;
     font-size: 1rem;
     
     border: none;
     background-color: #48725231;
+}
+
+.resenas-cont{
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px;
+}
+
+.lista-res{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-res td{
+    padding: 5px;
+    border-bottom: 1px solid silver;
+}
+
+
+
+.lista-res a{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.lista-res img{
+    width: 50px;
+}
+
+.resena td{
+    border: none !important;
+}
+
+.usr-pic-cont{
+    overflow: auto;
+    height: 70px;
+}
+
+.usr-pic-cont div{
+    float: left;
+}
+
+.usr-pic-nombre{
+    padding: 10px 0 0 10px; 
+    box-sizing: border-box;
+}
+
+.usr-pic-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 @media(max-width: 1278px){
