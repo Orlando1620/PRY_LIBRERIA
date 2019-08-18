@@ -36,7 +36,7 @@ async function listarLibros(){
 
         title.href = "#";
         title.id = json[i]["_id"];
-        title.addEventListener('click', perfil);
+        title.addEventListener('click', perfil);    
 
         var cardTextCont2 = document.createElement("div");
         cardTextCont2.classList.add("card-text-cont");
@@ -58,10 +58,28 @@ async function listarLibros(){
         cardTextCont2.appendChild(autor);
         card.appendChild(cardTextCont2);
 
+        var data = {
+            libro:json[i]['_id']
+        }
+        var response = await fetch('/califLibro/listar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        })
+        var califs = await response.json();
+
         var cardTextCont3 = document.createElement("div");
         cardTextCont3.classList.add("card-text-cont");
-        if(json[i]["calificacion"]){
-            for(var j=0;j<json[i]["calificacion"];j++){
+        
+        if(califs.length != 0){
+            var calif = 0;
+            for(var j=0;j<califs.length;j++){
+                calif += califs[j]['calif'];
+            }
+            calif = calif/califs.length;
+            calif = Math.round(calif);
+
+            for(var j=0;j<calif;j++){
                 var icon = document.createElement("i");
                 icon.classList.add("fas");
                 icon.classList.add("fa-book");
@@ -69,7 +87,7 @@ async function listarLibros(){
                 cardTextCont3.appendChild(icon);
             }
 
-            for(var j=0;j<5-json[i]["calificacion"];j++){
+            for(var j=0;j<5-calif;j++){
                 var icon = document.createElement("i");
                 icon.classList.add("fas");
                 icon.classList.add("fa-book");
@@ -77,7 +95,7 @@ async function listarLibros(){
                 cardTextCont3.appendChild(icon);
             }
         } else {
-            var califT = document.createTextNode("N/A");
+            var califT = document.createTextNode("");
             cardTextCont3.appendChild(califT);
         }
         card.appendChild(cardTextCont3);
@@ -147,8 +165,8 @@ fetch('/categoria/listar', {
 
 function perfil(e){
     var a = e.target;
-    var isbn = a.id;
-    sessionStorage.setItem("idLibro",isbn);
+    var id = a.id;
+    sessionStorage.setItem("idLibro",id);
     window.location.href = "perfil-libro.html";
 }
 

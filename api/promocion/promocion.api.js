@@ -64,6 +64,19 @@ module.exports.registrarPromocion = async function(req, res) {
   }
 }
 
+module.exports.listarTodo = function(req, res) {
+  Promocion.find().exec()
+    .then(
+      function(result){
+        res.send(result);
+      }
+    )
+    .catch(
+      function(err){
+        console.log(err);
+      }
+    );
+}
 module.exports.listarPromo = function (req, res) {
   Promocion.find().exec()
     .then(

@@ -15,4 +15,8 @@ router.get('/listar', function(req, res){
 promocionApi.listarPromo(req, res);
 })
 
+router.get('/listarTodo', function (req, res){
+  promocionApi.listarTodo(req,res);
+})
+
 module.exports = router;

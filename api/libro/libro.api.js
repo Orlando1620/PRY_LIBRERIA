@@ -1,4 +1,8 @@
 var Libro = require('./libro.model');
+var ClubLectura = require('../clubes/clubes.model');
+var Promociones = require('../promocion/promocion.model');
+var Inventarios = require('../inventario/inventario.model');
+var Ventas = require('../venta/venta.model');
 var ISBN = require('isbn-validate');
 var mongoose = require('mongoose');
 var cloudinary = require('cloudinary');
@@ -394,14 +398,45 @@ module.exports.perfilLibro = function (req, res) {
 }
 
 
-module.exports.verificarAsosiacionLibro = function (req, res) {
-  var nombreLibro = req.body.nombre;
-  Libro.find({ nombre: nombreLibro }).then(function (libreria) {
-    if (libreria) {
-      res.send(libreria);
+module.exports.verificarAsociacionLibro = function (req, res) {
+  var nombreLibro = req.body.nombreLibro;
+  var idLibro = req.body.id;
+
+  ClubLectura.findOne({ libro: nombreLibro }).then(function (club) {
+    if (club) {
+      res.send(true);
+    } else {
+      Promociones.findOne({ libro: idLibro }).then(function (promo) {
+        if (promo) {
+          res.send(true);
+        } else {
+          Inventarios.findOne({ libro: idLibro }).then(function (inve) {
+            if (inve) {
+              res.send(true);
+            } else {
+              Ventas.findOne({ libro: idLibro }).then(function (ven) {
+                if (ven) {
+                  res.send(true);
+                } else {
+                  res.send(false);
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+  })
+
+}
+
+module.exports.deleteLibro = function (req, res) {
+  Libro.findByIdAndDelete(req.body.id).then(libro => {
+    if (libro) {
+      res.send(true);
     } else {
       res.send(false);
     }
-  }
-  )
+  });
+
 }

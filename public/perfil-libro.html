@@ -1,19 +1,20 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="./css/libro/estiloPerfilLibro.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/libro/estiloPerfilLibro.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
 
-    <body class="font">
+<body class="font">
+
         <nav>
                 <div class="wrapper-nav1">
                     <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
                     <div class="usuario-nav">
                         <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
-    
+        
                         <div class="dropdown" id="dropdown">
                             <button class="dropbtn" >
                                 <label id="usrName"></label> 
@@ -25,13 +26,13 @@
                                 <a href="#" id="c-r">Cerrar Sesión</a>
                             </div>
                         </div> 
-    
+        
                         <div class="wrapper-nav2">
                             <div><a id="nav-libros">Libros</a></div>
                             <div><a id="nav-autores">Autores</a></div>
                             <div><a id="nav-librerias">Librerías</a></div>
                             <div><a id="nav-club">Clubes de Lectura</a></div>
-                          
+                            
                             
                         </div>
                         <div class="wrapper-nav2">
@@ -39,102 +40,116 @@
                             </div>
                     </div>
                 </div>
-
-                <div class="wrapper-nav2">
-                    <div><a id="nav-libros">Libros</a></div>
-                    <div><a id="nav-autores">Autores</a></div>
-                    <div><a id="nav-librerias">Librerías</a></div>
-                    <div><a id="nav-club">Clubes de Lectura</a></div>
-                    <div><a id="nav-promo">Promociones</a></div>
-
+        
+                
+        
+                <div class="select-nav">
+                    <select id="select-nav">
+                        <option>Más</option>
+                        <option value="1">Libros</option>
+                        <option value="2">Autores</option>
+                        <option value="3">Librerías</option>
+                        <option value="4">Clubes de Lectura</option>
+                        <option value="5">Promociones</option>
+                    </select>
                 </div>
-            </div>
-        </div>
+            </nav>
 
-
-
-        <div class="select-nav">
-            <select id="select-nav">
-                <option>Más</option>
-                <option value="1">Libros</option>
-                <option value="2">Autores</option>
-                <option value="3">Librerías</option>
-                <option value="4">Clubes de Lectura</option>
-                <option value="5">Promociones</option>
-            </select>
-        </div>
-    </nav>
-
-    <div class="main-wrapper">
-
-        <div class="wrapper-cont">
-            <div class="portada-cont">
-                <img class="portada" id="portada" />
-            </div>
-            <div class="libro-cont">
-                <div class="libro-cont-mitad" id="info">
-
-                    <div class="form-full acomodar">
-
-                        <div class="titulo form-mitad ">
-                            <h1 class="main-title" id="titulo"></h1>
-                        </div>
-
-                        <div id="icons" class="form-mitad">
-                            <a><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
+        <div class="main-wrapper">
+            
+            <div class="wrapper-cont">
+                <div class="info-cont">
+                    <div class="portada-cont">
+                        <img class="portada" id="portada"/>
+                        <div id="icons" class="icons-cont">
+                            <a onclick="mostrarPopUp()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
                             <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
                         </div>
-
                     </div>
+                    <div class="libro-cont">
+                        <div class="libro-cont-mitad" id="info">
+                            <h1 class="main-title" id="titulo"></h1>
+                           
+                            <h3 id="autor">Por: </h3>
+                            <div id='calif'></div>
+                            <ul class="libro-info-list">
+                                <li id="idioma"><b>Idioma: </b></li>
+                                <li id="genero"><b>Género: </b></li>
+                                <li id="categoria"><b>Categoría: </b></li>
+                            </ul>
+                            <label id="desc"><b>Descripción: </b><br/></label>
 
-                    <h3 id="autor">Por: </h3>
-                    <ul class="libro-info-list">
-                        <li id="idioma"><b>Idioma: </b></li>
-                        <li id="genero"><b>Género: </b></li>
-                        <li id="categoria"><b>Categoría: </b></li>
-                    </ul>
-                    <label id="desc"><b>Descripción: </b><br /></label>
-
+                        </div>
+                        
+                        
+                    </div>
                 </div>
 
-                <div class="libro-cont-mitad" id="opciones-cont">
-                    <div class="tab-wrapper">
-                        <div class="tab-selected"><a href="#/">Comprar</a></div>
-                        <div class="tab-unselected"><a href="#/">Intercambiar</a></div>
+                <div class="opciones-cont" id="opciones-cont">
+                    <div class="filtros">
+                        <select id="select-opciones" class="selectFiltrar">
+                            <option>Comprar</option>
+                            <option>Intercambiar</option>
+                        </select>
                     </div>
-<<<<<<< HEAD
-                    
-                    <div class="libro-cont-mitad" id="opciones-cont">
-                        <div class="filtros">
-                            <select id="select-opciones" class="selectFiltrar">
-                                <option>Comprar</option>
-                                <option>Intercambiar</option>
-                            </select>
-                        </div>
-                        <div class="opciones">
-                            <table class="lista-suc font" id="opciones"></table>
-                        </div>
-=======
-                    <div class="opciones" id="opciones">
-                        <!-- <div class="opcion">
-                                <div class="div-opcion">
-                                    <label>Sucursal</label>
-                                    <p>Precio: ₡2500</p>
-                                </div>
-                                <div class="div-opcion">
-                                    <button>Agregar al Carrito</button>
-                                </div>
-                                
-                            </div> -->
->>>>>>> Dev_Orlando
+                    <div class="opciones">
+                        <table class="lista-suc font" id="opciones">
+                            <tr id="mainTr" class="table-titles">
+                                <td colspan="1"><a>Sucursal</a></td>
+                                <td colspan="1"><a>Precio</a></td>
+                                <td colspan="1"><a>Descuento</a></td>
+                                <td colspan="1"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <!--Alert si no se cumple una validacion en el form-->
+                
+        </div>
+
+            <div id="alert" class="alert oculto">
+                <p id="msg" class="pAlert">No se puede eliminar el libro.</p>
+            </div>
+
+            <div id="alertCorrect" class="alertCorrect oculto">
+                <p id="msg" class="pAlert">El libro fue eliminado de forma exitosa.</p>
+            </div>
+
+            <div class="resenas-cont">
+                <h2>Reseñas</h2>
+                <table class="lista-res font" id="table">
+                </table>
+            </div>
+
             <div id="alert" class="alert oculto">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 <label id="msg"></label>
+            </div>
+            <div class="pop-up-cont oculto" id="pop-up">
+                <div class="pop-up">
+                    <p id="msg-pop">¿Desea eliminar este libro?</p>
+                    <div class="btn-cont">
+                        <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
+                        <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div id="alert" class="alert oculto">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <label id="msg"></label>
+            </div>
+
+            <div class="pop-up-cont oculto" id="pop-up-cart">
+                <div class="pop-up">
+                    <p id="msg-pop-cart"></p>
+                    <div class="btn-cont">
+                        <button class="pop-up-btn" onclick="seguir()" id="aceptar">Seguir comprando</button>
+                        <button class="pop-up-btn" onclick="carrito()">Ver carrito</button>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -171,6 +186,7 @@
     </footer>
 
 
+    <script src="js/libro/Controller-Eliminar.js"></script>
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
     <script src="js/libro/perfil-libro.js"></script>
     <script src="js/libro/libroServicios.js"></script>

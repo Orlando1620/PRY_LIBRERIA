@@ -87,7 +87,7 @@
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
-                    <div class="side-bar-option"><a href="#">Promociones</a></div>
+                    <div class="side-bar-option"><a href="listar-promociones-adminLib.html">Promociones</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
@@ -104,7 +104,10 @@
                         <select id="sucursales" class="filtro"></select>
                     </div>
                     
-                    <div class="titles-inv-full"><h3>Inventario</h3></div>
+                    <div class="titles-inv-full">
+                        <h3>Inventario</h3>
+                        <input type="text" placeholder="Filtrar" class="search-box" id="buscarInv" onkeyup="filtrarInv()"/>
+                    </div>
                 </div>
 
                 <div class="wrapper">
@@ -123,7 +126,10 @@
                     </div>
                 </div>
                 <div class="wrapper">
-                    <div class="titles-inv"><h3>Libros disponibles</h3></div>
+                    <div class="titles-inv-full">
+                        <h3>Libros disponibles</h3>
+                        <input type="text" placeholder="Filtrar" class="search-box" id="buscarLib" onkeyup="filtrarLibros()"/>
+                    </div>
                 </div>
                 <div class="wrapper">
                     <div id="alert-inv-add" class="alert-inv oculto">

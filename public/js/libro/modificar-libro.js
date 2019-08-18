@@ -100,7 +100,7 @@ var autores = [];
 var pathPdf;
 var pathImg;
 var idLibro;
-async function fillPerfil(isbn){
+async function fillPerfil(id){
 
     var responseAutor = await fetch('/autor/listar', {
       method: 'GET',
@@ -119,7 +119,7 @@ async function fillPerfil(isbn){
     }
 
     var data = {
-        isbn: isbn
+      id: id
     }
     fetch('/libro/perfil', {
         method: 'POST',

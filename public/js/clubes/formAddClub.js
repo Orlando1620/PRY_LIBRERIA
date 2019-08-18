@@ -197,6 +197,7 @@ fetch('/libro/listar', {
         for(var i=0;i<json.length;i++){
             var opc = document.createElement("option");
             var textNode = document.createTextNode(json[i]['nombre']);
+            opc.value = json[i]['_id'];
             opc.appendChild(textNode);
 
             document.getElementById("libro").appendChild(opc);
@@ -232,6 +233,7 @@ fetch('/sucursal/listarTodo', {
         for(var i=0;i<json.length;i++){
             var opc = document.createElement("option");
             var textNode = document.createTextNode(json[i]['nombreSucursal']);
+            opc.value = json[i]['_id'];
             opc.appendChild(textNode);
 
             document.getElementById("sucursal").appendChild(opc);

@@ -1,132 +1,132 @@
-function nuevaSucursal(e){
+function nuevaSucursal(e) {
     window.location.href = "registrar-sucursal.html";
 }
 
 var sucursales = [];
 var nombreLibreria;
 
-async function listarSucursal(){
+async function listarSucursal() {
     nombreLibreria = await fetchLib();
     var data = {
-      nombreLibreria: nombreLibreria
+        nombreLibreria: nombreLibreria
     }
     fetch('/sucursal/listar', {
         method: 'POST',
         body: JSON.stringify(data),
-        headers:{'Content-Type': 'application/json'}
-      })
-      .then(
-        function(response) {
-          if (response.status != 200)
-            console.log('Ocurrió un error con el servicio: ' + response.status);
-          else
-            return response.json();
-        }
-      )
-      .then(
-          function(json){
-            for(var i=0;i<json.length;i++){
-                sucursales.push(json[i]);
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then(
+            function (response) {
+                if (response.status != 200)
+                    console.log('Ocurrió un error con el servicio: ' + response.status);
+                else
+                    return response.json();
+            }
+        )
+        .then(
+            function (json) {
+                for (var i = 0; i < json.length; i++) {
+                    sucursales.push(json[i]);
+                    var tr = document.createElement("tr");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
+
+
+                    var a = document.createElement("a");
+
+                    var textTd1 = document.createTextNode(json[i]['nombreSucursal']);
+                    a.appendChild(textTd1);
+                    a.href = "#";
+                    a.id = json[i]['_id'];
+                    a.addEventListener('click', perfil);
+
+                    var textTd2 = document.createTextNode(json[i]['provincia'] + ", " + json[i]['canton'] + ", " + json[i]['distrito']);
+                    var textTd3 = document.createTextNode(json[i]['telefono']);
+
+                    td1.appendChild(a);
+                    td2.appendChild(textTd2);
+                    td3.appendChild(textTd3);
+
+                    td2.colSpan = 2;
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+
+                    document.getElementById("lista-suc").appendChild(tr);
+                }
+            }
+        )
+        .catch(
+            function (err) {
+                console.log('Ocurrió un error con la ejecución', err);
+            }
+        );
+}
+
+async function filtrar() {
+
+    var list = document.getElementById("lista-suc");
+    removeElements(list);
+    var nombreReq = document.getElementById("buscar").value;
+    nombreReq = nombreReq.toLowerCase();
+
+    if (sucursales.length > 0) {
+        var resultados = 0;
+        for (var i = 0; i < sucursales.length; i++) {
+            var nombreSucursales = sucursales[i]['nombreSucursal'];
+            nombreSucursales = nombreSucursales.toLowerCase();
+
+            if (nombreSucursales.includes(nombreReq)) {
+                resultados++;
                 var tr = document.createElement("tr");
                 var td1 = document.createElement("td");
                 var td2 = document.createElement("td");
                 var td3 = document.createElement("td");
-  
-  
+
+
                 var a = document.createElement("a");
-              
-                var textTd1 = document.createTextNode(json[i]['nombreSucursal']);
+
+                var textTd1 = document.createTextNode(sucursales[i]['nombreSucursal']);
                 a.appendChild(textTd1);
                 a.href = "#";
                 a.id = json[i]['_id'];
                 a.addEventListener('click', perfil);
 
-                var textTd2 = document.createTextNode(json[i]['provincia']+", "+json[i]['canton']+", "+json[i]['distrito']);
-                var textTd3 = document.createTextNode(json[i]['telefono']);
+                var textTd2 = document.createTextNode(sucursales[i]['provincia'] + ", " + sucursales[i]['canton'] + ", " + sucursales[i]['distrito']);
+                var textTd3 = document.createTextNode(sucursales[i]['telefono']);
 
                 td1.appendChild(a);
                 td2.appendChild(textTd2);
                 td3.appendChild(textTd3);
-  
+
                 td2.colSpan = 2;
-  
+
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
-  
+
                 document.getElementById("lista-suc").appendChild(tr);
+
+
             }
-          }
-      )
-      .catch(
-        function(err) {
-          console.log('Ocurrió un error con la ejecución', err);
         }
-      );
-}
-  
-async function filtrar(){
-
-var list = document.getElementById("lista-suc");
-removeElements(list);
-var nombreReq = document.getElementById("buscar").value;
-nombreReq = nombreReq.toLowerCase();
-
-if(sucursales.length>0){
-    var resultados = 0;
-    for(var i=0;i<sucursales.length;i++){
-        var nombreSucursales = sucursales[i]['nombreSucursal'];
-        nombreSucursales  = nombreSucursales.toLowerCase();
-
-        if(nombreSucursales.includes(nombreReq)){
-            resultados++;
-            var tr = document.createElement("tr");
-            var td1 = document.createElement("td");
-            var td2 = document.createElement("td");
-            var td3 = document.createElement("td");
-
-
-            var a = document.createElement("a");
-              
-            var textTd1 = document.createTextNode(sucursales[i]['nombreSucursal']);
-            a.appendChild(textTd1);
-            a.href = "#";
-            a.id = json[i]['_id'];
-            a.addEventListener('click', perfil);
-
-            var textTd2 = document.createTextNode(sucursales[i]['provincia']+", "+sucursales[i]['canton']+", "+sucursales[i]['distrito']);
-            var textTd3 = document.createTextNode(sucursales[i]['telefono']);
-
-            td1.appendChild(a);
-            td2.appendChild(textTd2);
-            td3.appendChild(textTd3);
-
-            td2.colSpan = 2;
-
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-
-            document.getElementById("lista-suc").appendChild(tr);
-
-            
+        if (resultados == 0) {
+            document.getElementById("alert").classList.remove("oculto");
+            document.getElementById("msg").innerHTML = "No se encontraron resultados";
+        } else {
+            document.getElementById("alert").classList.add("oculto");
         }
-    }
-    if(resultados == 0){
+
+    } else {
         document.getElementById("alert").classList.remove("oculto");
         document.getElementById("msg").innerHTML = "No se encontraron resultados";
-    } else {
-        document.getElementById("alert").classList.add("oculto");
     }
-    
-} else {
-    document.getElementById("alert").classList.remove("oculto");
-    document.getElementById("msg").innerHTML = "No se encontraron resultados";
+
 }
-    
-}
-  
-function removeElements(list){
+
+function removeElements(list) {
     while (list.childNodes[1]) {
         list.removeChild(list.childNodes[1]);
     }
@@ -154,42 +154,42 @@ function removeElements(list){
     document.getElementById("lista-suc").appendChild(titles);
 }
 
-function fetchLib(){
-var data = {
-    admin_id: sessionStorage.getItem("id")
-}
-return fetch('/libreria/libById', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers:{'Content-Type': 'application/json'}
+function fetchLib() {
+    var data = {
+        admin_id: sessionStorage.getItem("id")
+    }
+    return fetch('/libreria/libById', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
     })
-    .then(
-    function(response) {
-        if (response.status != 200)
-        console.log('Ocurrió un error con el servicio: ' + response.status);
-        else
-        return response.json();
-    }
-    )
-    .then(
-        function(json){
-            var lib = json["nombreComercial"];
-            return lib;
-        }
-    )
-    .catch(
-    function(err) {
-        console.log('Ocurrió un error con la ejecución', err);
-    }
-    );
+        .then(
+            function (response) {
+                if (response.status != 200)
+                    console.log('Ocurrió un error con el servicio: ' + response.status);
+                else
+                    return response.json();
+            }
+        )
+        .then(
+            function (json) {
+                var lib = json["nombreComercial"];
+                return lib;
+            }
+        )
+        .catch(
+            function (err) {
+                console.log('Ocurrió un error con la ejecución', err);
+            }
+        );
 }
 
 
-function perfil(e){
+function perfil(e) {
     var a = e.target;
     var sucursal = a.id;
-    sessionStorage.setItem("idSuc",sucursal);
+    sessionStorage.setItem("idSuc", sucursal);
     window.location.href = "perfil-sucursal.html";
-  }
-  
+}
+
 listarSucursal();

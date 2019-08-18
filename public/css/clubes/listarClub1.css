@@ -45,7 +45,7 @@
 .submit{
     text-align: center;
     padding: 10px 30px;
-    margin: 20px 40% 10px 40%;
+    margin: 40px 0;
     background-color: #48725231;
     color: black;
     border: none;
@@ -63,4 +63,6 @@
     width: 100%;
 }
 
-
+.form-btn{
+    text-align: center;
+}
