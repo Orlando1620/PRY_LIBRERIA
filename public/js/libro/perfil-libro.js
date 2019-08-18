@@ -270,8 +270,8 @@ function addCart(e){
     
     localStorage.setItem("carrito",JSON.stringify(carrito));
   }
-  document.getElementById('pop-up').classList.remove('oculto');
-  document.getElementById('msg-pop').innerHTML = "Libro añadido al carrito";
+  document.getElementById('pop-up-cart').classList.remove('oculto');
+  document.getElementById('msg-pop-cart').innerHTML = "Libro añadido al carrito";
 }
 
 function seguir(){

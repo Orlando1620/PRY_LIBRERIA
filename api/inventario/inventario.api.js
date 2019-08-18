@@ -15,7 +15,21 @@ module.exports.listarInventario = function(req, res) {
       }
     );
 }
-  
+ 
+module.exports.listarTodo = function(req, res) {
+  Inventario.find().sort({libro: 'asc'})
+    .then(
+      function(result){
+        res.send(result);
+      }
+    )
+    .catch(
+      function(err){
+        console.log(err);
+      }
+    );
+}
+
 module.exports.registrarInventario = function(req, res) {
   var idSuc = req.body.idSuc;
   var idLibro = req.body.libro;
