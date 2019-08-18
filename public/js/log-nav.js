@@ -19,7 +19,6 @@ if(sessionStorage.getItem("nombre") == null){
     switch(sessionStorage.getItem("tipo")){
         case "usuarioCliente":
             document.getElementById("perfil").href = "perfil-uc.html";
-            document.getElementById("nav-cart").href= "carrito.html";
             break;
         case "AdminLib":
             document.getElementById("perfil").href = "perfil-adminLib.html";
@@ -78,6 +77,5 @@ function opcionesNav(){
 
 function cerrarSesion(){
     sessionStorage.clear();
-    localStorage.clear();
     window.location.href = "login.html";
 }

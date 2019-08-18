@@ -7,8 +7,7 @@
 }
 
 #icons{
-    padding-left: 47%;
-    padding-top: 19px;
+    padding-right: 47%;
 }
 
 #pencil, #trash{
@@ -68,6 +67,7 @@
     padding: 20px;
     padding-left: 50px;
     text-align: center;
+    margin-bottom: 45px;
 }
 
 .portada{

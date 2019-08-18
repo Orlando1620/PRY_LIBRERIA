@@ -20,12 +20,12 @@
 }
 
 a{
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
 a:hover{
-    color: #487252;
+    color: #47458C;
 }
 
 p{
@@ -39,7 +39,7 @@ p{
 .nav{
     padding: 15px 0;
     overflow: auto;
-    background-color: #022600;
+    background-color: #F2C335;
 }
 
 .logo-nav-cont{
@@ -153,7 +153,7 @@ p{
 
 .sub-wrapper-v i{
     margin-top: 20px;
-    color: #487252;
+    color: #47458C;
 }
 
 .wrapper-equipo{
@@ -169,7 +169,7 @@ p{
 .sub-wrapper-info i{
     padding-right: 10px; 
     padding-top: 10px;
-    color: #487252; 
+    color: #47458C; 
 }
 
 .info-cont-trio{
@@ -210,14 +210,14 @@ p{
 }
 
 footer{
-    background-color: #022600;
+    background-color: #F2C335;
     padding: 10px 50px;
     overflow: auto;
 }
 
 h4{
     margin: 0;
-    color: white;
+    color: #000000;
 }
 
 p{
@@ -228,22 +228,21 @@ p{
 footer i{
     padding-right: 10px;
     margin-top: 10px;
-    color: white;
 }
 
 footer i:hover{
-    color: #487252;
+    color: #47458C;
 
 }
 
 footer a{
     margin-top: 10px;
-    color: white;
+    color: black;
 }
 
 footer a:hover{
     margin-top: 10px;
-    color: #487252;
+    color: #47458C;
 }
 
 .logo{

@@ -1,5 +1,5 @@
-async function registroDigital(){
-    try{
+async function registroDigital() {
+    try {
         var formData = new FormData(document.getElementById('form'));
         await fetch('/libro/localUpload', {
             method: 'POST',
@@ -8,35 +8,35 @@ async function registroDigital(){
         });
 
         var data = {
-        nombre: document.getElementById("nombre").value,
-        isbn: document.getElementById("isbn").value,
-        idioma: document.getElementById("idioma").value,
-        autor: document.getElementById("autor").value,
-        genero: document.getElementById("genero").value,
-        categoria: document.getElementById("categoria").value,
-        desc: document.getElementById("desc").value,
-        pathImg: 'public/uploads/' + document.getElementById('portada').files[0]['name'],
-        pathPdf: 'public/uploads/' + document.getElementById('pdf').files[0]['name']
+            nombre: document.getElementById("nombre").value,
+            isbn: document.getElementById("isbn").value,
+            idioma: document.getElementById("idioma").value,
+            autor: document.getElementById("autor").value,
+            genero: document.getElementById("genero").value,
+            categoria: document.getElementById("categoria").value,
+            desc: document.getElementById("desc").value,
+            pathImg: 'public/uploads/' + document.getElementById('portada').files[0]['name'],
+            pathPdf: 'public/uploads/' + document.getElementById('pdf').files[0]['name']
         };
-        
+
         var response = await fetch('/libro/registrarDigital', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers:{'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
-        
+
         var result = await response.json();
 
         msg = result['result'];
         console.log(msg);
-        switch(msg){
+        switch (msg) {
             case 'repetido':
                 document.getElementById("alert").classList.remove("oculto");
                 document.getElementById("msg").innerHTML = "Un libro con el mismo ISBN ya fue registrado";
                 break;
             case 'exito':
                 document.getElementById("alert").classList.add("oculto");
-                registrarBitacora(sessionStorage.getItem("correo"),'registro libro: '+document.getElementById("nombre").value);
+                registrarBitacora(sessionStorage.getItem("correo"), 'registro libro: ' + document.getElementById("nombre").value);
                 document.getElementById("alert-success").classList.remove("oculto");
                 document.getElementById("msg-success").innerHTML = "Libro registrado";
                 setTimeout(function () {
@@ -44,13 +44,13 @@ async function registroDigital(){
                 }, 2000);
                 break;
         }
-    } catch(err){
+    } catch (err) {
         console.log('Ocurrió un error con la ejecución', err);
-    }   
+    }
 }
 
-async function registroImpreso(){
-    try{
+async function registroImpreso() {
+    try {
         var formData = new FormData(document.getElementById('form'));
         await fetch('/libro/localUpload', {
             method: 'POST',
@@ -59,34 +59,34 @@ async function registroImpreso(){
         });
 
         var data = {
-        nombre: document.getElementById("nombre").value,
-        isbn: document.getElementById("isbn").value,
-        idioma: document.getElementById("idioma").value,
-        autor: document.getElementById("autor").value,
-        genero: document.getElementById("genero").value,
-        categoria: document.getElementById("categoria").value,
-        desc: document.getElementById("desc").value,
-        pathImg: 'public/uploads/' + document.getElementById('portada').files[0]['name']
+            nombre: document.getElementById("nombre").value,
+            isbn: document.getElementById("isbn").value,
+            idioma: document.getElementById("idioma").value,
+            autor: document.getElementById("autor").value,
+            genero: document.getElementById("genero").value,
+            categoria: document.getElementById("categoria").value,
+            desc: document.getElementById("desc").value,
+            pathImg: 'public/uploads/' + document.getElementById('portada').files[0]['name']
         };
-        
+
         var response = await fetch('/libro/registrarImpreso', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers:{'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
-        
+
         var result = await response.json();
 
         msg = result['result'];
         console.log(msg);
-        switch(msg){
+        switch (msg) {
             case 'repetido':
                 document.getElementById("alert").classList.remove("oculto");
                 document.getElementById("msg").innerHTML = "Un libro con el mismo ISBN ya fue registrado";
                 break;
             case 'exito':
                 document.getElementById("alert").classList.add("oculto");
-                registrarBitacora(sessionStorage.getItem("correo"),'registro libro: '+document.getElementById("nombre").value);
+                registrarBitacora(sessionStorage.getItem("correo"), 'registro libro: ' + document.getElementById("nombre").value);
                 document.getElementById("alert-success").classList.remove("oculto");
                 document.getElementById("msg-success").innerHTML = "Libro registrado";
                 setTimeout(function () {
@@ -94,24 +94,24 @@ async function registroImpreso(){
                 }, 2000);
                 break;
         }
-    } catch(err){
+    } catch (err) {
         console.log('Ocurrió un error con la ejecución', err);
-    }   
+    }
 }
 
-function filtrarNombre(){
+function filtrarNombre() {
     var list = document.getElementById("cards-cont");
     removeElements(list);
     var nombreReq = document.getElementById('buscar').value;
     nombreReq = nombreReq.toLowerCase();
-    
-    if(libros.length>0){
+
+    if (libros.length > 0) {
         var resultados = 0;
-        for(var i=0;i<libros.length;i++){
+        for (var i = 0; i < libros.length; i++) {
             var nombreRes = libros[i]['nombre'];
             nombreRes = nombreRes.toLowerCase();
 
-            if(nombreRes.includes(nombreReq)){
+            if (nombreRes.includes(nombreReq)) {
                 resultados++;
                 var card = document.createElement("div");
                 card.classList.add("card");
@@ -147,7 +147,7 @@ function filtrarNombre(){
 
                 var cardTextCont3 = document.createElement("div");
                 cardTextCont3.classList.add("card-text-cont");
-                for(var j=0;j<5;j++){
+                for (var j = 0; j < 5; j++) {
                     var icon = document.createElement("i");
                     icon.classList.add("fas");
                     icon.classList.add("fa-book");
@@ -155,12 +155,12 @@ function filtrarNombre(){
                 }
                 card.appendChild(cardTextCont3);
 
-                
+
 
                 document.getElementById("cards-cont").appendChild(card);
             }
         }
-        if(resultados == 0){
+        if (resultados == 0) {
             document.getElementById("alert").classList.remove("oculto");
             document.getElementById("msg").innerHTML = "No se encontraron resultados";
         } else {
@@ -171,8 +171,8 @@ function filtrarNombre(){
         document.getElementById("msg").innerHTML = "No se encontraron resultados";
     }
 }
-  
-function filtrarGenCat(){
+
+function filtrarGenCat() {
     var list = document.getElementById("cards-cont");
     removeElements(list);
     document.getElementById("buscar").value = "";
@@ -185,109 +185,109 @@ function filtrarGenCat(){
     fetch('/libro/filtrarGenCat', {
         method: 'POST',
         body: JSON.stringify(data),
-        headers:{'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
     })
-    .then(
-        function(response) {
-        if (response.status != 200)
-            console.log('Ocurrió un error con el servicio: ' + response.status);
-        else
-            return response.json();
-        }
-    )
-    .then(
-        function(json){
-            if(json.length>0){
-            for(var i=0;i<json.length;i++){
-                libros.push(json[i]);
-                        
-                var card = document.createElement("div");
-                card.classList.add("card");
+        .then(
+            function (response) {
+                if (response.status != 200)
+                    console.log('Ocurrió un error con el servicio: ' + response.status);
+                else
+                    return response.json();
+            }
+        )
+        .then(
+            function (json) {
+                if (json.length > 0) {
+                    for (var i = 0; i < json.length; i++) {
+                        libros.push(json[i]);
 
-                var img = document.createElement("img");
-                img.classList.add("img-card");
-                img.src = json[i]['urlImg'];
-                card.appendChild(img);
+                        var card = document.createElement("div");
+                        card.classList.add("card");
 
-                var cardTextCont = document.createElement("div");
-                cardTextCont.classList.add("card-text-cont");
-                var title = document.createElement("a");
-                var textTitle = document.createTextNode(json[i]["nombre"]);
-                title.appendChild(textTitle);
-                cardTextCont.appendChild(title);
-                card.appendChild(cardTextCont);
+                        var img = document.createElement("img");
+                        img.classList.add("img-card");
+                        img.src = json[i]['urlImg'];
+                        card.appendChild(img);
 
-                title.href = "#";
-                title.id = json[i]["_id"];
-                title.addEventListener('click', perfil);
+                        var cardTextCont = document.createElement("div");
+                        cardTextCont.classList.add("card-text-cont");
+                        var title = document.createElement("a");
+                        var textTitle = document.createTextNode(json[i]["nombre"]);
+                        title.appendChild(textTitle);
+                        cardTextCont.appendChild(title);
+                        card.appendChild(cardTextCont);
 
-                var cardTextCont2 = document.createElement("div");
-                cardTextCont2.classList.add("card-text-cont");
-                var label = document.createElement("label");
-                var textLabel = document.createTextNode("Por: ");
-                label.appendChild(textLabel);
-                cardTextCont2.appendChild(label);
+                        title.href = "#";
+                        title.id = json[i]["_id"];
+                        title.addEventListener('click', perfil);
 
-                var autor = document.createElement("label");
+                        var cardTextCont2 = document.createElement("div");
+                        cardTextCont2.classList.add("card-text-cont");
+                        var label = document.createElement("label");
+                        var textLabel = document.createTextNode("Por: ");
+                        label.appendChild(textLabel);
+                        cardTextCont2.appendChild(label);
 
-                var textAutor;
-                for(var j=0;j<autores.length;j++){
-                    if(autores[j]["_id"] == json[i]["autor"]){
-                        textAutor = document.createTextNode(autores[j]["nombre"]+" "+autores[j]["apellido1"]+" "+autores[j]["apellido2"]);
+                        var autor = document.createElement("label");
+
+                        var textAutor;
+                        for (var j = 0; j < autores.length; j++) {
+                            if (autores[j]["_id"] == json[i]["autor"]) {
+                                textAutor = document.createTextNode(autores[j]["nombre"] + " " + autores[j]["apellido1"] + " " + autores[j]["apellido2"]);
+                            }
+                        }
+
+                        autor.appendChild(textAutor);
+                        cardTextCont2.appendChild(autor);
+                        card.appendChild(cardTextCont2);
+
+                        var cardTextCont3 = document.createElement("div");
+                        cardTextCont3.classList.add("card-text-cont");
+                        if (json[i]["calificacion"]) {
+                            for (var j = 0; j < json[i]["calificacion"]; j++) {
+                                var icon = document.createElement("i");
+                                icon.classList.add("fas");
+                                icon.classList.add("fa-book");
+                                icon.classList.add("calif-true");
+                                cardTextCont3.appendChild(icon);
+                            }
+
+                            for (var j = 0; j < 5 - json[i]["calificacion"]; j++) {
+                                var icon = document.createElement("i");
+                                icon.classList.add("fas");
+                                icon.classList.add("fa-book");
+                                icon.classList.add("calif-false");
+                                cardTextCont3.appendChild(icon);
+                            }
+                        } else {
+                            var califT = document.createTextNode("N/A");
+                            calif.appendChild(califT);
+                        }
+                        card.appendChild(cardTextCont3);
+
+                        document.getElementById("cards-cont").appendChild(card);
                     }
-                }
-
-                autor.appendChild(textAutor);
-                cardTextCont2.appendChild(autor);
-                card.appendChild(cardTextCont2);
-
-                var cardTextCont3 = document.createElement("div");
-                cardTextCont3.classList.add("card-text-cont");
-                if(json[i]["calificacion"]){
-                    for(var j=0;j<json[i]["calificacion"];j++){
-                        var icon = document.createElement("i");
-                        icon.classList.add("fas");
-                        icon.classList.add("fa-book");
-                        icon.classList.add("calif-true");
-                        cardTextCont3.appendChild(icon);
-                    }
-
-                    for(var j=0;j<5-json[i]["calificacion"];j++){
-                        var icon = document.createElement("i");
-                        icon.classList.add("fas");
-                        icon.classList.add("fa-book");
-                        icon.classList.add("calif-false");
-                        cardTextCont3.appendChild(icon);
-                    }
+                    document.getElementById("alert").classList.add("oculto");
                 } else {
-                    var califT = document.createTextNode("N/A");
-                    calif.appendChild(califT);
+                    document.getElementById("alert").classList.remove("oculto");
+                    document.getElementById("msg").innerHTML = "No se encontraron resultados";
                 }
-                card.appendChild(cardTextCont3);
-
-                document.getElementById("cards-cont").appendChild(card);
             }
-                document.getElementById("alert").classList.add("oculto");
-            } else {
-                document.getElementById("alert").classList.remove("oculto");
-                document.getElementById("msg").innerHTML = "No se encontraron resultados";
+        )
+        .catch(
+            function (err) {
+                console.log('Ocurrió un error con la ejecución', err);
             }
-        }
-    )
-    .catch(
-        function(err) {
-        console.log('Ocurrió un error con la ejecución', err);
-        }
-    );
+        );
 }
 
-function removeElements(list){
-    while (list.hasChildNodes()) {   
-    list.removeChild(list.firstChild);
+function removeElements(list) {
+    while (list.hasChildNodes()) {
+        list.removeChild(list.firstChild);
     }
 }
 
-function registrarBitacora(correo,accion){
+function registrarBitacora(correo, accion) {
     var data = {
         correo: correo,
         accion: accion,
@@ -296,30 +296,30 @@ function registrarBitacora(correo,accion){
     fetch('/bitacora/add', {
         method: 'POST',
         body: JSON.stringify(data),
-        headers:{'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
     })
-    .then(
-        function(response) {
-        if (response.status != 200)
-            console.log('Ocurrió un error con el servicio: ' + response.status);
-        else
-            return response.json();
-        }
-    )
-    .catch(
-        function(err) {
-        console.log('Ocurrió un error con la ejecución', err);
-        }
-    );
+        .then(
+            function (response) {
+                if (response.status != 200)
+                    console.log('Ocurrió un error con el servicio: ' + response.status);
+                else
+                    return response.json();
+            }
+        )
+        .catch(
+            function (err) {
+                console.log('Ocurrió un error con la ejecución', err);
+            }
+        );
 }
 
-function nuevoLibro(){
+function nuevoLibro() {
     window.location.href = "registrar-libro.html"
 }
 
-async function modDigital(){
-    try{
-        if(document.getElementById('portada').value != "" && document.getElementById('pdf').value != ""){
+async function modDigital() {
+    try {
+        if (document.getElementById('portada').value != "" && document.getElementById('pdf').value != "") {
             var formData = new FormData(document.getElementById('form'));
             await fetch('/libro/localUpload', {
                 method: 'POST',
@@ -341,14 +341,14 @@ async function modDigital(){
                 pdf: true
             };
         }
-        if(document.getElementById('portada').value != "" && document.getElementById('pdf').value == ""){
+        if (document.getElementById('portada').value != "" && document.getElementById('pdf').value == "") {
             var formData = new FormData(document.getElementById('form'));
             await fetch('/libro/localUpload', {
                 method: 'POST',
                 body: formData,
                 enctype: "multipart/form-data"
             });
-        
+
             var data = {
                 idLibro: idLibro,
                 nombre: document.getElementById("nombre").value,
@@ -364,14 +364,14 @@ async function modDigital(){
                 pdf: false
             };
         }
-        if(document.getElementById('portada').value == "" && document.getElementById('pdf').value != ""){
+        if (document.getElementById('portada').value == "" && document.getElementById('pdf').value != "") {
             var formData = new FormData(document.getElementById('form'));
             await fetch('/libro/localUpload', {
                 method: 'POST',
                 body: formData,
                 enctype: "multipart/form-data"
             });
-        
+
             var data = {
                 idLibro: idLibro,
                 nombre: document.getElementById("nombre").value,
@@ -387,7 +387,7 @@ async function modDigital(){
                 pdf: true
             };
         }
-        if(document.getElementById('portada').value == "" && document.getElementById('pdf').value == ""){
+        if (document.getElementById('portada').value == "" && document.getElementById('pdf').value == "") {
             var data = {
                 idLibro: idLibro,
                 nombre: document.getElementById("nombre").value,
@@ -403,25 +403,25 @@ async function modDigital(){
                 pdf: false
             };
         }
-        
+
         var response = await fetch('/libro/modificarDigital', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers:{'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
-        
+
         var result = await response.json();
 
         msg = result['result'];
         console.log(msg);
-        switch(msg){
+        switch (msg) {
             case 'repetido':
                 document.getElementById("alert").classList.remove("oculto");
                 document.getElementById("msg").innerHTML = "Un libro con el mismo ISBN ya fue registrado";
                 break;
             case 'exito':
                 document.getElementById("alert").classList.add("oculto");
-                registrarBitacora(sessionStorage.getItem("correo"),'modificación libro: '+document.getElementById("nombre").value);
+                registrarBitacora(sessionStorage.getItem("correo"), 'modificación libro: ' + document.getElementById("nombre").value);
                 document.getElementById("alert-success").classList.remove("oculto");
                 document.getElementById("msg-success").innerHTML = "Libro modificado";
                 setTimeout(function () {
@@ -429,14 +429,14 @@ async function modDigital(){
                 }, 2000);
                 break;
         }
-    } catch(err){
+    } catch (err) {
         console.log('Ocurrió un error con la ejecución', err);
-    }   
+    }
 }
 
-async function modImpreso(){
-    try{
-        if(document.getElementById('portada').value != "" ){
+async function modImpreso() {
+    try {
+        if (document.getElementById('portada').value != "") {
             var formData = new FormData(document.getElementById('form'));
             await fetch('/libro/localUpload', {
                 method: 'POST',
@@ -469,25 +469,25 @@ async function modImpreso(){
                 portada: false
             };
         }
-        
+
         var response = await fetch('/libro/modificarImpreso', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers:{'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
-        
+
         var result = await response.json();
 
         msg = result['result'];
         console.log(msg);
-        switch(msg){
+        switch (msg) {
             case 'repetido':
                 document.getElementById("alert").classList.remove("oculto");
                 document.getElementById("msg").innerHTML = "Un libro con el mismo ISBN ya fue registrado";
                 break;
             case 'exito':
                 document.getElementById("alert").classList.add("oculto");
-                registrarBitacora(sessionStorage.getItem("correo"),'modificación libro: '+document.getElementById("nombre").value);
+                registrarBitacora(sessionStorage.getItem("correo"), 'modificación libro: ' + document.getElementById("nombre").value);
                 document.getElementById("alert-success").classList.remove("oculto");
                 document.getElementById("msg-success").innerHTML = "Libro modificado";
                 setTimeout(function () {
@@ -495,10 +495,87 @@ async function modImpreso(){
                 }, 2000);
                 break;
         }
-    } catch(err){
+    } catch (err) {
         console.log('Ocurrió un error con la ejecución', err);
-    }   
+    }
 }
 
+async function obtenerDatoAsociacionLibro(nombreLibro, idLibro) {
 
+    let datos = {
+        nombreLibro: nombreLibro,
+        id: idLibro
+    }
 
+    let dato = await fetch('/libro/verificarAsociacionLibro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(function (response) {
+            if (response.status != 200)
+                console.log('Error en el servicio: ' + response.status);
+            else
+                return response.json();
+        })
+        .then(function (response) {
+             return response;
+        })
+        .catch(err => console.log('Error:', err));
+
+    return dato;
+};
+
+async function deleteLibro(id) {
+
+    let dato = {
+        id: id
+    }
+
+    let msg = await fetch('/libro/deleteLibro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dato)
+    })
+        .then(function (response) {
+            if (response.status != 200)
+                console.log('Error en el servicio: ' + response.status);
+            else
+                return response.json();
+        })
+        .then(function (response) {
+            return response;
+        })
+        .catch(err => console.log('Error:', err));
+    return msg;
+}
+
+function registrarBitacora(correo,accion){
+    var data = {
+        correo: correo,
+        accion: accion,
+        fecha: new Date()
+    };
+    fetch('/bitacora/add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    .then(
+        function(response) {
+        if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+        else
+            return response.json();
+        }
+    )
+    .catch(
+        function(err) {
+        console.log('Ocurrió un error con la ejecución', err);
+        }
+    );
+}

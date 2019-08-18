@@ -9,10 +9,6 @@ router.post('/listar', function(req, res) {
     inventarioApi.listarInventario(req,res);
 })
 
-router.get('/listarTodo', function(req, res) {
-    inventarioApi.listarInventarioTodo(req,res);
-})
-
 /**
  * Registra un nuevo inventario en la base de datos
  */
