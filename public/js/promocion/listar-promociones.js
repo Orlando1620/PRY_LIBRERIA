@@ -85,11 +85,33 @@ async function listarPromociones(){
 
 
 
+                var modDelTd = document.createElement("td");
+                var aMod = document.createElement('a');
+                var mod = document.createElement("i");
+                mod.classList.add('fas');
+                mod.classList.add('fa-pencil-alt');
+                mod.id = promociones[i]['_id'];
+                //aMod.addEventListener('click', modInv);
+                aMod.appendChild(mod);
+                modDelTd.appendChild(aMod);
+            
+                var aDel = document.createElement('a');
+                var del = document.createElement("i");
+                del.classList.add('fas');
+                del.classList.add('fa-trash-alt');
+                del.id = promociones[i]['_id'];
+                //aDel.addEventListener('click', popDel);
+                aDel.appendChild(del);
+                modDelTd.appendChild(aDel);
+            
+            
+            
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
                 tr.appendChild(td4);
                 tr.appendChild(td5);
+                tr.appendChild(modDelTd);
 
                 document.getElementById("lista-prom").appendChild(tr);
             }
@@ -177,11 +199,33 @@ listarPromociones();
 
 
 
+        var modDelTd = document.createElement("td");
+        var aMod = document.createElement('a');
+        var mod = document.createElement("i");
+        mod.classList.add('fas');
+        mod.classList.add('fa-pencil-alt');
+        mod.id = promociones[i]['_id'];
+        //aMod.addEventListener('click', modInv);
+        aMod.appendChild(mod);
+        modDelTd.appendChild(aMod);
+    
+        var aDel = document.createElement('a');
+        var del = document.createElement("i");
+        del.classList.add('fas');
+        del.classList.add('fa-trash-alt');
+        del.id = promociones[i]['_id'];
+        //aDel.addEventListener('click', popDel);
+        aDel.appendChild(del);
+        modDelTd.appendChild(aDel);
+    
+    
+    
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
         tr.appendChild(td4);
         tr.appendChild(td5);
+        tr.appendChild(modDelTd);
 
         document.getElementById("lista-prom").appendChild(tr);
     }

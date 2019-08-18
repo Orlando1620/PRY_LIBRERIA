@@ -31,6 +31,7 @@ async function listarPromociones(){
   })
   sucursales = await response.json();
 
+  var resultados = 0;
   for(var i=0;i<sucursales.length;i++){
     var data = {
       sucursal: sucursales[i]['_id']
@@ -41,7 +42,18 @@ async function listarPromociones(){
       headers:{'Content-Type': 'application/json'}
     })
     promociones = await response.json();
+    resultados += promociones.length;
     fillPromociones();
+  }
+  if(resultados.length == 0){
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    var text = document.createTextNode("No hay promociones activas");
+    td.colSpan = 6;
+    td.appendChild(text);
+    td.style.textAlign = 'center'; 
+    tr.appendChild(td);
+    document.getElementById("lista-prom").appendChild(tr);
   }
 }
 listarPromociones();
@@ -85,10 +97,28 @@ function fillPromociones(){
 
     var textTd5 = document.createTextNode(date2.toLocaleDateString());
     td5.appendChild(textTd5);
+    
 
     // var textTd6 = document.createTextNode(json[i]['sucursal']);
     // td6.appendChild(textTd1);
+    var modDelTd = document.createElement("td");
+    var aMod = document.createElement('a');
+    var mod = document.createElement("i");
+    mod.classList.add('fas');
+    mod.classList.add('fa-pencil-alt');
+    mod.id = promociones[i]['_id'];
+    //aMod.addEventListener('click', modInv);
+    aMod.appendChild(mod);
+    modDelTd.appendChild(aMod);
 
+    var aDel = document.createElement('a');
+    var del = document.createElement("i");
+    del.classList.add('fas');
+    del.classList.add('fa-trash-alt');
+    del.id = promociones[i]['_id'];
+    //aDel.addEventListener('click', popDel);
+    aDel.appendChild(del);
+    modDelTd.appendChild(aDel);
 
 
 
@@ -97,6 +127,7 @@ function fillPromociones(){
     tr.appendChild(td3);
     tr.appendChild(td4);
     tr.appendChild(td5);
+    tr.appendChild(modDelTd);
 
     document.getElementById("lista-prom").appendChild(tr);
   }
@@ -207,11 +238,33 @@ function fetchLib(){
 
 
 
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
-        tr.appendChild(td5);
+        var modDelTd = document.createElement("td");
+    var aMod = document.createElement('a');
+    var mod = document.createElement("i");
+    mod.classList.add('fas');
+    mod.classList.add('fa-pencil-alt');
+    mod.id = promociones[i]['_id'];
+    //aMod.addEventListener('click', modInv);
+    aMod.appendChild(mod);
+    modDelTd.appendChild(aMod);
+
+    var aDel = document.createElement('a');
+    var del = document.createElement("i");
+    del.classList.add('fas');
+    del.classList.add('fa-trash-alt');
+    del.id = promociones[i]['_id'];
+    //aDel.addEventListener('click', popDel);
+    aDel.appendChild(del);
+    modDelTd.appendChild(aDel);
+
+
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    tr.appendChild(modDelTd);
 
         document.getElementById("lista-prom").appendChild(tr);
     }
@@ -241,6 +294,7 @@ function fetchLib(){
     var t4 = document.createElement("td");
     var t5 = document.createElement("td");
     var t6 = document.createElement("td");
+    var t7 = document.createElement("td");
 
 
     var textT2 = document.createTextNode("Sucursal");
@@ -257,11 +311,14 @@ function fetchLib(){
     t6.appendChild(textT6);
 
 
+    t7.colSpan = 2;
+
     titles.appendChild(t2);
     titles.appendChild(t3);
     titles.appendChild(t4);
     titles.appendChild(t5);
     titles.appendChild(t6);
+    titles.appendChild(t7);
 
 
 

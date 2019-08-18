@@ -7,6 +7,12 @@
     color: #022600;
 }
 
+.table-cont {
+    margin: 10px 7.5% 50px 9.5% !important;
+    max-height: 400px;
+    overflow: scroll;
+}
+
 /*content*/
 .main-wrapper{
     overflow: auto;
@@ -94,7 +100,7 @@
 }
 
 .filtros{
-    padding: 0 9.5%;
+    padding: 0 7.5% 0 9.5%;
 }
 
 .search-box{
@@ -132,6 +138,22 @@
 .form-btn{
     text-align: center;
     width: 100%;
+}
+
+.fa-trash-alt{
+    color: rgb(230,80,80);
+}
+
+.fa-plus{
+    color: #487252;
+}
+
+.fa-pencil-alt{
+    color: #487252;
+}
+
+i{
+    padding: 5px;
 }
 
 
