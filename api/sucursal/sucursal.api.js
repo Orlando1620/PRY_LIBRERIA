@@ -29,7 +29,7 @@ module.exports.obtener_Sucursal = function (req, res) {
 
 module.exports.listarSucursalInv = function (req, res) {
   var nombreLibreria = req.body.nombreLibreria;
-  Sucursal.find({ nombreLibreria: nombreLibreria }).exec()
+  Sucursal.find({ nombreLibreria: nombreLibreria }).sort({ nombreSucursal: 'asc' })
     .then(
       function (result) {
         res.send(result);

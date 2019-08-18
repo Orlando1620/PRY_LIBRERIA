@@ -77,6 +77,7 @@ module.exports.listarTodo = function(req, res) {
       }
     );
 }
+
 module.exports.listarPromo = function (req, res) {
   Promocion.find().exec()
     .then(
@@ -92,12 +93,11 @@ module.exports.listarPromo = function (req, res) {
     );
 }
 
-module.exports.libById = function (req, res) {
-  var admin_id = req.body.admin_id;
-  Libreria.findOne({ admin_id: admin_id }).exec()
+module.exports.listarBySuc = function (req, res) {
+  var sucursal = req.body.sucursal;
+  Promocion.find({sucursal:sucursal}).exec()
     .then(
       function (result) {
-        console.log(result);
         res.send(result);
       }
     )
@@ -107,3 +107,5 @@ module.exports.libById = function (req, res) {
       }
     );
 }
+
+
