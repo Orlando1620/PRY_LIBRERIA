@@ -61,15 +61,15 @@
                 <div class="info-cont">
                     <div class="portada-cont">
                         <img class="portada" id="portada"/>
-                        
+                        <div id="icons" class="icons-cont">
+                            <a onclick="mostrarPopUp()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
+                            <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
+                        </div>
                     </div>
                     <div class="libro-cont">
                         <div class="libro-cont-mitad" id="info">
                             <h1 class="main-title" id="titulo"></h1>
-                            <div id="icons" class="form-mitad">
-                                    <a onclick="mostrarPopUp()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
-                                    <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
-                                </div>
+                           
                             <h3 id="autor">Por: </h3>
                             <div id='calif'></div>
                             <ul class="libro-info-list">
@@ -103,22 +103,10 @@
                         </table>
                     </div>
                 </div>
-
-
-                </div>
-
-                <div class="libro-cont-mitad" id="opciones-cont">
-                    <div class="filtros">
-                        <select id="select-opciones" class="selectFiltrar">
-                            <option>Comprar</option>
-                            <option>Intercambiar</option>
-                        </select>
-                    </div>
-                    <div class="opciones">
-                        <table class="lista-suc font" id="opciones"></table>
-                    </div>
-                </div>
             </div>
+
+                
+        </div>
 
             <div id="alert" class="alert oculto">
                 <p id="msg" class="pAlert">No se puede eliminar el libro.</p>
@@ -140,7 +128,7 @@
             </div>
             <div class="pop-up-cont oculto" id="pop-up">
                 <div class="pop-up">
-                    <p id="msg-pop">¿Desea eliminar este libro de su inventario?</p>
+                    <p id="msg-pop">¿Desea eliminar este libro?</p>
                     <div class="btn-cont">
                         <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
                         <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>

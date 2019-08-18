@@ -6,9 +6,7 @@
     display: flex;
 }
 
-#icons{
-    padding-right: 47%;
-}
+
 
 #pencil, #trash{
     float: right;
@@ -74,6 +72,14 @@
     width: 250px;
 }
 
+.icons-cont{
+    overflow: auto;
+    padding: 20px 50px 20px 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 
 .libro-cont{
     overflow: auto;
@@ -104,6 +110,8 @@
     padding-bottom: 20px;
     margin-right: 10px; 
 }
+
+
 
 .opciones-cont{
     overflow: auto;
