@@ -24,6 +24,22 @@ module.exports.iniciar_sesion = function(req, res){
   })
 };
 
+module.exports.perfil = function(req, res){
+    
+  Usuario.findOne({_id:req.body.id}).exec()
+  .then(
+    function(result){
+      console.log('tipo'+result);
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
+};
+
 module.exports.listarUsuario = function (req, res) {
   Usuario.find().exec()
     .then(

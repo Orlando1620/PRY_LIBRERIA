@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Satisfy|Caveat);
+
+.oculto{
+    display: none;
+}
+
+.main-title{
+    padding-left: 9.5%;
+    color: #022600;
+}
+
+#lib{
+    margin-bottom: 50px;
+}
+
+#global{
+    margin-bottom: 200px;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 100%;
+}
+
+.form-mitad{
+    float: left;
+    width: 50%;
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
+.form-full{
+    float: left;
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
+.table-data{
+	text-align: left;
+	font-weight: bold;
+}
+
+td{
+	height: 50px;
+	border-bottom: 1px solid #9e9e9e;
+}
+
+.tdmenu{
+	color: #9e9e9e;
+	font-weight: bold;
+	padding-right: 25%;
+}
+
+table{
+	box-sizing: border-box;
+	width: 65%;
+	margin: auto;
+	border-collapse: collapse;
+	font-size: 1rem;
+	padding-bottom: 10%;
+}
+
+.ppic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-left: auto;
+}
+
+.wrapper{
+    overflow: auto;
+    padding-left: 17%;
+    width: 65%;
+}
+
+.ppic-cont{
+    float: left;
+    width: 100%;
+    text-align: right;
+}
+
+.icons{
+    float: right;
+}
+
+.libros-cont{
+    float: left;
+    width: 100%;
+    padding: 0 10%;
+    box-sizing: border-box;
+}
+
+.map {
+    height: 400px; 
+    width: 100%;
+	margin: auto;
+    float: left;
+    margin-bottom: 50px;
+}
+
+.mappadding{
+    width: 60%;
+    margin: 10px 20%;
+}
+

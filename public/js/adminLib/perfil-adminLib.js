@@ -1,6 +1,6 @@
 
 var data = {
-	correo: sessionStorage.getItem("correo")
+	id: sessionStorage.getItem("id")
 };
 
 fetch('/adminLib/perfil', {

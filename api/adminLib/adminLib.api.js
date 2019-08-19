@@ -149,8 +149,8 @@ module.exports.enviarContrasena = function(req,res){
 }
 
 module.exports.perfil = function(req, res){
-    var correo = req.body.correo;
-    AdminLib.find({correo: correo}).exec()
+    var id = req.body.id;
+    AdminLib.find({_id: id}).exec()
     .then(
       function(result){
         res.send(result);

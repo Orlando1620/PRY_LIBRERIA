@@ -1,0 +1,236 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/usuario/estilo-perfil-pub.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/usuario/perfil-pub-admin.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    </head>
+
+    <body class="font">
+        <nav>
+            <div class="wrapper-nav1">
+                <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+                <div class="usuario-nav">
+                    <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                    <div class="dropdown" id="dropdown">
+                        <button class="dropbtn" >
+                            <label id="usrName"></label> 
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" id="perfil">Perfil</a>
+                            <a href="#" id="admin" class="oculto">Administrar</a>
+                            <a href="#" id="c-r">Cerrar Sesión</a>
+                        </div>
+                    </div> 
+
+                    <div class="wrapper-nav2">
+                        <div><a id="nav-libros">Libros</a></div>
+                        <div><a id="nav-autores">Autores</a></div>
+                        <div><a id="nav-librerias">Librerías</a></div>
+                        <div><a id="nav-club">Clubes de Lectura</a></div>
+                        
+                        
+                    </div>
+                    <div class="wrapper-nav2">
+                            <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito</a></div>
+                        </div>
+                </div>
+            </div>
+
+            
+
+            <div class="select-nav">
+                <select id="select-nav">
+                    <option>Más</option>
+                    <option value="1">Libros</option>
+                    <option value="2">Autores</option>
+                    <option value="3">Librerías</option>
+                    <option value="4">Clubes de Lectura</option>
+                    <option value="5">Promociones</option>
+                </select>
+            </div>
+        </nav>
+
+        <div class="main-wrapper">
+
+            <div class="wrapper-cont oculto" id='uc'>
+                
+                <div class="wrapper">
+                    <div class="ppic-cont">
+                        <div class="ppic" id="profilepic"></div>
+                    </div>
+                </div>
+               
+                
+                <table>
+                    <tr>
+                        <td class="tdmenu">Nombre</td>
+                        <td class="table-data" id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Apellidos</td>
+                        <td class="table-data" id="apellidos"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Género</td>
+                        <td class="table-data" id="sexo"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Identificación</td>
+                        <td class="table-data" id="identificacion"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Correo electrónico</td>
+                        <td class="table-data" id="correo"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Fecha de nacimiento</td>
+                        <td class="table-data" id="fechanacimiento"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Edad</td>
+                        <td class="table-data" id="edad"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Domicilio</td>
+                        <td class="table-data">
+                            <label disabled name="provincia" id="provincia"></label>
+                            <label disabled name="provincia" id="canton"></label>
+                            <label disabled name="provincia" id="distrito"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Dirección exacta</td>
+                        <td class="table-data" id="direccion"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Géneros favoritos</td>
+                        <td class="table-data" id="generos">
+                            <ul class="generosul" id="generosul">
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            
+                <div class="mappadding"><h3>Localización</h3><div class="map" id="map"></div></div>
+
+                <div class="libros-cont">
+                    <h1 class="main-title">Libros</h1>
+                    
+                    <div class="filtros" id='filtros'>
+                        <input type="text" placeholder="Buscar libro" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
+                    </div>
+                
+                    <div class="table-cont" id='table-cont'>
+                        <table class="lista-suc font" id="table"></table>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="wrapper-cont oculto" id='lib'>
+                <table>
+                    <tr>
+                        <td class="tdmenu">Nombre</td>
+                        <td class="table-data" id="nombreLib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Primer apellido</td>
+                        <td class="table-data" id="apellido1Lib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Segundo apellido</td>
+                        <td class="table-data" id="apellido2Lib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Identificación</td>
+                        <td class="table-data" id="identificacionLib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Correo electrónico</td>
+                        <td class="table-data" id="correoLib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Fecha de nacimiento</td>
+                        <td class="table-data" id="fechanacimientoLib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Edad</td>
+                        <td class="table-data" id="edadLib"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Sexo</td>
+                        <td class="table-data" id="sexoLib"></td>
+                    </tr>
+                </table>
+
+            </div>
+            
+            <div class="wrapper-cont oculto" id='global'>
+                <table>
+                    <tr>
+                        <td class="tdmenu">Nombre</td>
+                        <td class="table-data" id="nombreGlobal"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Apellidos</td>
+                        <td class="table-data" id="apellidosGlobal"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Identificación</td>
+                        <td class="table-data" id="identificacionGlobal"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdmenu">Correo electrónico</td>
+                        <td class="table-data" id="correoGlobal"></td>
+                    </tr>
+                </table>
+                    
+                
+
+
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
+            <div class="footer-cont">
+                <h4></h4>
+                <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo"/></a><br>
+                <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo"/></a><br>
+            </div>
+            <div class="footer-cont">
+                <h4>Compañia</h4>
+                <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+                <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+                <i class="fab fa-instagram fa-lg"></i>
+                <i class="fab fa-facebook-square fa-lg"></i>
+                <i class="fab fa-twitter-square fa-lg"></i>
+            </div>
+
+            <div class="footer-cont">
+                <h4>Soporte</h4>
+                <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+                <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+            </div>
+
+            <div class="footer-cont">
+                
+            </div>
+            
+        </footer>
+
+
+        <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+        <script src="js/usuario/perfil-pub-admin.js"></script>
+        <script src="js/log-nav.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJeBaMdnl4Bk7G9ZYJnBwSJUU818wdsHA&callback=initMap"></script>
+
+    </body>
+
+</html>

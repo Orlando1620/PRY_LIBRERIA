@@ -24,9 +24,13 @@ function listarUsuario() {
             var tr = document.createElement("tr");
             var td = document.createElement("td");
 
-
+            var a = document.createElement('a');
             var textNode = document.createTextNode(json[i]['nombre'] + " " + json[i]['apellido1'] + " " + json[i]['apellido2']);
-            td.appendChild(textNode);
+            a.id = json[i]['_id'];
+            a.appendChild(textNode);
+            a.href = "#";
+            a.addEventListener('click', perfil); 
+            td.appendChild(a);
             tr.appendChild(td);
 
             var td2 = document.createElement("td");
@@ -226,5 +230,12 @@ function filtrarTipo() {
 
 function nuevoAdmin(){
     window.location.href= "registrarAdminGlobal.html";
-  }
+}
+
+function perfil(e){
+    var a = e.target;
+    var id = a.id;
+    localStorage.setItem("idUsuario",id);
+    window.location.href = "perfil-pub-admin.html";
+}
 
