@@ -1,0 +1,186 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>PerfilUC</title>
+        <link rel="stylesheet" type="text/css" href="css/libro/estilo-mis-libros.css">
+        <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
+    </head>
+
+    <body class="font">
+        
+            <nav>
+                    <div class="wrapper-nav1">
+                        <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+                        <div class="usuario-nav">
+                            <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+        
+                            <div class="dropdown" id="dropdown">
+                                <button class="dropbtn" >
+                                    <label id="usrName"></label> 
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="#" id="perfil">Perfil</a>
+                                    <a href="#" id="admin" class="oculto">Administrar</a>
+                                    <a href="#" id="c-r">Cerrar Sesión</a>
+                                </div>
+                            </div> 
+        
+                            <div class="wrapper-nav2">
+                                <div><a id="nav-libros">Libros</a></div>
+                                <div><a id="nav-autores">Autores</a></div>
+                                <div><a id="nav-librerias">Librerías</a></div>
+                                <div><a id="nav-club">Clubes de Lectura</a></div>
+                                
+                                
+                            </div>
+                            <div class="wrapper-nav2">
+                                    <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito</a></div>
+                                </div>
+                        </div>
+                    </div>
+        
+                    
+        
+                    <div class="select-nav">
+                        <select id="select-nav">
+                            <option>Más</option>
+                            <option value="1">Libros</option>
+                            <option value="2">Autores</option>
+                            <option value="3">Librerías</option>
+                            <option value="4">Clubes de Lectura</option>
+                            <option value="5">Promociones</option>
+                        </select>
+                    </div>
+            </nav>
+        
+            <div class="main-wrapper">
+                <div class="select-side-bar">
+                    <select>
+                        <option value="1">Mí Perfil</option>
+                        <option value="2">Librería</option>
+                        <option value="3">Sucursales</option>
+                        <option value="4">Registrar Libro</option>
+                        <option value="5">Promociones</option>
+                        <option value="6">Clubes de Lectura</option>
+                    </select>
+                </div>
+                <div class="wrapper-side-bar">
+                    <div class="side-bar">
+                        <div class="side-bar-icon"><i class="fas fa-user"></i></div>
+                        <div class="side-bar-option"><a href="perfil-uc.html">Mi Perfil</a></div>
+                    </div>
+                    <div class="side-bar">
+                        <div class="side-bar-icon"><i class="fas fa-user-edit"></i></div>
+                        <div class="side-bar-option"><a href="#">Editar Perfil</a></div>
+                    </div>
+                    <div class="side-bar">
+                        <div class="side-bar-icon"><i class="fas fa-credit-card"></i></div>
+                        <div class="side-bar-option"><a href="registrar-metPago.html">Método de Pago</a></div>
+                    </div>
+                    <div class="side-bar-selected">
+                        <div class="side-bar-icon"><i class="fas fa-book"></i></div>
+                        <div class="side-bar-option"><a href="mis-libros.html">Mis Libros</a></div>
+                    </div>
+                    <div class="side-bar">
+                        <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
+                        <div class="side-bar-option"><a href="listar-clubes-UC.html">Clubes de Lectura</a></div>
+                    </div>
+                    <div class="side-bar">
+                        <div class="side-bar-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <div class="side-bar-option"><a href="#">Intercambios</a></div>
+                    </div>
+                </div>
+        
+                <div class="wrapper-cont">
+                    <h1 class="main-title">Intercambios</h1>
+                    
+                    <div class="table-cont">
+                        <table class="lista-suc font" id="table"></table>
+                    </div>
+                    
+                    <div id="alert" class="alert oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg"></label>
+                    </div>
+                    
+                </div>
+
+                <!-- <div class="pop-up-cont oculto" id="pop-up-intercambio">
+                        <div class="pop-up">
+                            <form id='form'>
+                                <div class="text-cont">
+                                    <h3>Solicitud de intercambio</h3>
+                                </div>
+                                <div class="text-cont">
+                                    <label>Sucursal</label>
+                                    <select class="selectFiltrar" id='sucursales'>
+                                        <option>Seleccione una sucursal</option>
+                                    </select>
+                                </div>
+                                <div class="text-cont">
+                                    <label>Fecha: </label>
+                                    <input type="date" class="input" id='fecha-intercambio' required>
+                                </div>
+                                <div class="text-cont">
+                                    <label>Hora: </label>
+                                    <input type="time" class="input" id='hora-intercambio' required>
+                                </div>
+                                <div class="btn-cont">
+                                    <button class="pop-up-btn" onclick="aceptarIntercambio(event)" id="aceptar">Enviar</button>
+                                    <button class="pop-up-btn" onclick="cancelarIntercambio()">Cancelar</button>
+                                </div>
+                            </form>
+                            <div class="text-cont">
+                                <div id="alert-intercambio" class="alert-intercambio oculto">
+                                    <p id="msg-intercambio" class="pAlert"></p>
+                                </div>
+                                <div id="alert-intercambio-success" class="alert-intercambio-success oculto">
+                                    <p id="msg-intercambio-success" class="pAlert"></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                </div> -->
+            </div>			
+                    
+            <footer>
+                <div class="footer-cont"><a href="#"><img src="img/logo.png" class="logo"/></a></div>
+                <div class="footer-cont">
+                    <h4></h4>
+                    <a href="https://www.barnesandnoble.com/" target="_blank"><img src="img/Barnes_&_Noble_logo.png" class="logo"/></a><br>
+                    <a href="https://www.booksforkids.org/" target="_blank"><img src="img/bfk-logo-clear.png" class="logo"/></a><br>
+                </div>
+                <div class="footer-cont">
+                    <h4>Compañia</h4>
+                    <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+                    <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+                    <i class="fab fa-instagram fa-lg"></i>
+                    <i class="fab fa-facebook-square fa-lg"></i>
+                    <i class="fab fa-twitter-square fa-lg"></i>
+                </div>
+
+                <div class="footer-cont">
+                    <h4>Soporte</h4>
+                    <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+                    <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+                </div>
+
+                <div class="footer-cont">
+                    
+                </div>
+                
+            </footer>
+            
+            
+            
+        
+        
+        <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+        <script src="js/intercambios/intercambios.js"></script>
+        <script src="js/log-nav.js"></script>
+    </body>
+</html>
