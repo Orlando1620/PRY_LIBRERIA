@@ -1,0 +1,163 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+h2, h1{
+    color: #487252;
+}
+
+#nombre, #genero, #tipo, #dia, #libro, #sucursal, #descripcion{
+    font-size: 25px;
+    padding-left: 50px;
+}
+
+.main-title{
+    padding-left: 20%;
+    color: #022600;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+/*sidebar*/
+.wrapper-side-bar{
+    float: left;
+    width: 20%;
+}
+
+.wrapper-side-bar div{
+    font-size: 1.2rem;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 100%;
+}
+
+
+.wrapper-form{
+    padding: 10px 15%;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.wrapper-form h3{
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.form-mitad{
+    float: left;
+    width: 50%;
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
+.form-full{
+    float: left;
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
+
+.submit{
+    text-align: center;
+    border: none;
+    padding: 10px;
+    padding: 10px 40px;
+    margin: 20px 40%;
+    margin-top: 30px;
+    font-size: 1rem;
+    border-radius: 10px;   
+}
+
+.submit:hover{
+    transition: 0.4s;
+    background-color: #487252;
+    color: white;
+}
+
+.submit1{
+    text-align: center;
+    border: none;
+    padding: 10px;
+    padding: 10px 40px;
+    margin: 20px 40%;
+    margin-top: 30px;
+    font-size: 1rem;
+    border-radius: 10px;
+    background-color: rgb(223, 80, 80);
+    color: white;
+}
+
+#botones{
+    padding-top: 20px;
+}
+
+#botones input{
+    float: right;
+}
+
+#tittle{
+    font-size: 47px;
+}
+@media(max-width: 920px){
+
+    .side-bar a{
+        font-size: 1rem;
+    }
+
+    .side-bar-selected a{
+        font-size: 1rem;
+    }
+}
+
+
+/*cambios para movil*/
+@media(max-width: 750px){
+
+    /*side bar*/
+    .wrapper-side-bar{
+        display: none;
+    }
+
+    .select-side-bar{
+        display: block;
+        text-align: center;
+    }
+
+    .wrapper-cont{
+        width: 100%;
+    }
+
+    .form-mitad h3{
+        font-size: 1rem;
+    }
+
+    .form-full h3{
+        font-size: 1rem;
+    }
+
+    .select-form{
+        font-size: 1rem;
+    }
+
+    .wrapper-form{
+        padding: 20px 10%;
+    }
+
+    .main-title{
+        padding-left: 10%;
+    }
+
+    .submit{
+        padding: 5px 20px;
+        margin: 20px 40%;
+    }
+    
+}

@@ -30,4 +30,7 @@ router.post('/eliminar', function(req, res){
     libreriaApi.eliminarLibreria(req, res); 
 })
 
+router.post('/obtener', function(req, res){
+    sucursalesApi.listarSucursal(req, res);
+})
 module.exports = router;

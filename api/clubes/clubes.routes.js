@@ -30,5 +30,28 @@ router.post('/filtrarTipo', function (req, res){
 	clubesApi.filtrarTipo(req,res);	
 })
 
+router.post('/obtenerClubesLectura', function (req, res){
+    clubesApi.obtenerClub(req, res);
+})
+
+router.post('/obtenerLibroClubesLectura', function (req, res){
+    clubesApi.obtenerLibroClub(req, res);
+})
+
+router.post('/obtenerSucursalClubesLectura', function (req, res){
+    clubesApi.obtenerSucursalClub(req, res);
+})
+
+router.post('/registrarUsuarioClub', function (req, res){
+    clubesApi.unirseAlClub(req, res);
+})
+
+router.post('/deleteUsuario', function (req, res){
+    clubesApi.deleteUsuario(req, res);
+})
+
+router.post('/verificarUsuario', function (req, res){
+    clubesApi.verificarUsuario(req, res);
+})
 
 module.exports = router;
