@@ -107,10 +107,9 @@ async function fillPerfil(id){
             document.getElementById('categoria').innerHTML += json['categoria'];
             document.getElementById('desc').innerHTML += json['descripcion']; 
 
-            if(json['formato'] == 'impreso'){
-              document.getElementById('select-opciones').classList.remove('oculto');
-              fillIntercambios(id);
-            }
+            document.getElementById('select-opciones').classList.remove('oculto');
+              
+            fillIntercambios(id);
             fillInventario(id);
             resenas(id);
           }

@@ -246,7 +246,6 @@ module.exports.perfil = function(req, res) {
   Usuario.findOne({_id:id}).exec()
   .then(
     function(result){
-      console.log(result);
       res.send(result);
     }
   )
@@ -565,6 +564,103 @@ module.exports.modFavorito = async function(req, res) {
       
       await Usuario.updateOne(
         { _id: usuario },
+        {
+          $set: { 
+            libros:nuevosLibros
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+
+      res.json({result: 'exito'});
+  } catch(err){
+    console.log(err);
+  }
+}
+
+module.exports.actualizarCantidad = async function(req, res) {
+  try{
+      var usuario1 = req.body.usuario1;
+      var usuario2 = req.body.usuario2;
+      var libro1 = req.body.libro1;
+      var libro2 = req.body.libro2;
+      var opc = req.body.opc;
+    
+      var result = await Usuario.findOne({_id:usuario1}).exec(); 
+      var libros = result['libros'];
+      var nuevosLibros = [];
+
+      for(var i=0;i<libros.length;i++){
+        if(libros[i][0]['libro'] == libro1){
+          if(opc){
+            var nuevoLibro = {
+              libro:libro1,
+              intercambiable: libros[i][0]['intercambiable'],
+              cantidad: parseInt(libros[i][0]['cantidad'],10) + 1,
+              calif: libros[i][0]['calif'],
+              favorito: libros[i][0]['favorito']
+            }
+          } else {
+            var nuevoLibro = {
+              libro:libro1,
+              intercambiable: libros[i][0]['intercambiable'],
+              cantidad: parseInt(libros[i][0]['cantidad'],10) - 1,
+              calif: libros[i][0]['calif'],
+              favorito: libros[i][0]['favorito']
+            }
+          }
+          
+          nuevosLibros.push(nuevoLibro);
+        } else {
+          nuevosLibros.push(libros[i]);
+        }
+      }
+      
+      
+      await Usuario.updateOne(
+        { _id: usuario1 },
+        {
+          $set: { 
+            libros:nuevosLibros
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+
+
+      var result = await Usuario.findOne({_id:usuario2}).exec(); 
+      var libros = result['libros'];
+      var nuevosLibros = [];
+
+      for(var i=0;i<libros.length;i++){
+        if(libros[i][0]['libro'] == libro2){
+          if(opc){
+            var nuevoLibro = {
+              libro:libro2,
+              intercambiable: libros[i][0]['intercambiable'],
+              cantidad: parseInt(libros[i][0]['cantidad'],10) + 1,
+              calif: libros[i][0]['calif'],   
+              favorito: libros[i][0]['favorito']
+            }
+          } else {
+            var nuevoLibro = {
+              libro:libro2,
+              intercambiable: libros[i][0]['intercambiable'],
+              cantidad: parseInt(libros[i][0]['cantidad'],10) - 1,
+              calif: libros[i][0]['calif'],
+              favorito: libros[i][0]['favorito']
+            }
+          }
+          
+          nuevosLibros.push(nuevoLibro);
+        } else {
+          nuevosLibros.push(libros[i]);
+        }
+      }
+      
+      
+      await Usuario.updateOne(
+        { _id: usuario2 },
         {
           $set: { 
             libros:nuevosLibros

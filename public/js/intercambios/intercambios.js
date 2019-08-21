@@ -6,7 +6,10 @@ var enviados = [];
 var idsEnviados = [];
 var idUsuario;
 var idIntercambio;
+var idLibro;
+var idLibro2;
 var librosIntercambio = [];
+var finalizado = false;
 window.onload = function () {
     fillTable();
 }
@@ -137,7 +140,8 @@ async function fillTable(){
 
                 idsRecibidos.push({
                     intercambio: recibidos[i]['_id'],
-                    usuario: recibidos[i]['usuario1']
+                    usuario: recibidos[i]['usuario1'],
+                    libro: recibidos[i]['libro1']
                 });
                 ids++;
             }
@@ -171,7 +175,9 @@ async function fillTable(){
                 btn.id = ids;
                 idsRecibidos.push({
                     intercambio: recibidos[i]['_id'],
-                    usuario: recibidos[i]['usuario1']
+                    usuario: recibidos[i]['usuario1'],
+                    libro1: recibidos[i]['libro2'],
+                    libro2: recibidos[i]['libro1']
                 });
                 ids++;
                 btn.addEventListener('click', devuelto2);
@@ -191,7 +197,9 @@ async function fillTable(){
                 tr.appendChild(td);
             }
             
-            
+            if(recibidos[i]['devolucion1'] == true){
+                finalizado = true;
+            } 
 
             document.getElementById("table").appendChild(tr);
         }
@@ -310,7 +318,9 @@ async function fillTable(){
                 btn.id = ids;
                 idsEnviados.push({
                     intercambio: enviados[i]['_id'],
-                    usuario: enviados[i]['usuario2']
+                    usuario: enviados[i]['usuario2'],
+                    libro1: enviados[i]['libro2'],
+                    libro2: enviados[i]['libro1']
                 });
                 ids++;
                 btn.addEventListener('click', devuelto1);
@@ -329,6 +339,10 @@ async function fillTable(){
                 td.appendChild(document.createTextNode('Finalizado'));
                 tr.appendChild(td);
             }
+
+            if(enviados[i]['devolucion2'] == true){
+                finalizado = true;
+            } 
             
             document.getElementById("table").appendChild(tr);
         }
@@ -481,6 +495,7 @@ async function responder(e){
 
     idUsuario = idsRecibidos[id]['usuario'];
     idIntercambio = idsRecibidos[id]['intercambio'];
+    idLibro = idsRecibidos[id]['libro'];
     document.getElementById('respuesta').classList.remove('oculto');
     removeOptions(document.getElementById('libros'));
 
@@ -499,13 +514,13 @@ async function responder(e){
         if(librosIntercambio[i][0]['intercambiable'] == true && librosIntercambio[i][0]['cantidad'] > 0){
             var opc = document.createElement("option");
             for(var j=0;j<libros.length;j++){
-                if(libros[j]['_id'] == librosIntercambio[i][0]['libro']){
+                if(libros[j]['_id'] == librosIntercambio[i][0]['libro'] && librosIntercambio[i][0]['libro'] != idLibro){
                     opc.appendChild(document.createTextNode(libros[j]['nombre']));
+                    opc.value = librosIntercambio[i][0]['libro'];
+                    document.getElementById("libros").appendChild(opc);
                 }
             }
-            opc.value = librosIntercambio[i][0]['libro'];
-
-            document.getElementById("libros").appendChild(opc);
+            
         }
     }
 }
@@ -524,7 +539,23 @@ async function enviar(e){
             body: JSON.stringify(data),
             headers:{'Content-Type': 'application/json'}
         });
+        
+
+        var data = {
+            usuario1: idUsuario,
+            usuario2: sessionStorage.getItem('id'),
+            libro1: document.getElementById('libros').value,
+            libro2: idLibro,
+            opc: false
+        };
+        await fetch('/usuarioCliente/actualizarCantidad', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+
         document.getElementById('respuesta').classList.add('oculto');
+        registrarBitacora(sessionStorage.getItem("correo"), 'inicio de intercambio');
         fillTable();
     } else {
         document.getElementById('alert-intercambio').classList.remove('oculto');
@@ -596,10 +627,13 @@ async function entregado2(e){
 }
 
 async function devuelto1(e){
+    console.log('1');
     var a = e.target;
     var id = a.id;
     idIntercambio = idsEnviados[id]['intercambio'];
     idUsuario = idsEnviados[id]['usuario'];
+    idLibro = idsEnviados[id]['libro1'];
+    idLibro2 = idsEnviados[id]['libro2'];
 
     var data = {
         id: idIntercambio,
@@ -611,16 +645,35 @@ async function devuelto1(e){
         headers:{'Content-Type': 'application/json'}
     });
 
+    if(finalizado){
+        console.log('finalizado');
+        var data = {
+            usuario1: sessionStorage.getItem('id'),
+            usuario2: idUsuario,
+            libro1: idLibro,
+            libro2: idLibro2,
+            opc: true
+        };
+        await fetch('/usuarioCliente/actualizarCantidad', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+    }
+    registrarBitacora(sessionStorage.getItem("correo"), 'finalización de intercambio');
     calificar();
     fillTable();
 }
 
 async function devuelto2(e){
+    console.log('2');
     var a = e.target;
     var id = a.id;
 
     idIntercambio = idsRecibidos[id]['intercambio'];
     idUsuario = idsRecibidos[id]['usuario'];
+    idLibro = idsRecibidos[id]['libro1'];
+    idLibro2 = idsRecibidos[id]['libro2'];
 
     var data = {
         id: idIntercambio,
@@ -632,6 +685,22 @@ async function devuelto2(e){
         headers:{'Content-Type': 'application/json'}
     });
 
+    if(finalizado){
+        var data = {
+            usuario1: idUsuario,
+            usuario2: sessionStorage.getItem('id'),
+            libro1: idLibro,
+            libro2: idLibro2,
+            opc: true
+        };
+        await fetch('/usuarioCliente/actualizarCantidad', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+        
+    }
+    registrarBitacora(sessionStorage.getItem("correo"), 'finalización de intercambio');
     calificar();
     fillTable();
 }
@@ -707,4 +776,30 @@ function cancelarCalif(){
     document.getElementById("pop-up-calif").classList.add('oculto');
     document.getElementById('resena').value = '';
     califActual = 0;
+}
+
+function registrarBitacora(correo,accion){
+    var data = {
+        correo: correo,
+        accion: accion,
+        fecha: new Date()
+    };
+    fetch('/bitacora/add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    .then(
+        function(response) {
+        if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+        else
+            return response.json();
+        }
+    )
+    .catch(
+        function(err) {
+        console.log('Ocurrió un error con la ejecución', err);
+        }
+    );
 }

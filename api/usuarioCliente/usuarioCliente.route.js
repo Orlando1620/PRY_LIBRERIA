@@ -33,5 +33,9 @@ router.post('/modFavorito', function (req, res){
     usuarioApi.modFavorito(req,res);
 })
   
+router.post('/actualizarCantidad', function (req, res){
+    usuarioApi.actualizarCantidad(req,res);
+})
+  
 
 module.exports = router;
