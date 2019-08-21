@@ -14,6 +14,7 @@ module.exports.registrar_Admin = function (req, res) {
                 apellido2: req.body.apellido2,
                 correo: req.body.correo,
                 contrasena: req.body.contrasena,
+                changePassword: false,
                 bloqueado: false,
                 tipo: 'AdminLib',
                 fechaNaci: req.body.fechaNaci,

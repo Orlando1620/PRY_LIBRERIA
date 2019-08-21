@@ -9,6 +9,7 @@ var usuarioSchema = mongoose.Schema({
   apellido2: String,
   correo: String,
   contrasena: String,
+  changePassword: Boolean,
   tipoIdentificacion: String,
   identificacion:String,
   fechaNacimiento: Date,

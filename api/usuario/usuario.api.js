@@ -2,25 +2,25 @@ var mongoose = require('mongoose');
 var Usuario = require('./usuario.model');
 var nodemailer = require('nodemailer');
 
-module.exports.iniciar_sesion = function(req, res){
-    
-  Usuario.findOne({correo: req.body.correo}).then(function(user){
-      console.log(req.body.correo);
-      console.log(user);
-      //debugger;
-      if(user){
-          if (user.contrasena == req.body.contrasena) {
-              res.send(user);
-          }
-          else {
-              console.log(user + " primer else");
-              res.send('NO ENCONTRO EL PASSWORD'); 
-          }
-      }else{
-          console.log(user + "segundo else");
-          console.log(user);
-          res.send('NO ENCONTRO EL EMAIL'); 
+module.exports.iniciar_sesion = function (req, res) {
+
+  Usuario.findOne({ correo: req.body.correo }).then(function (user) {
+    console.log(req.body.correo);
+    console.log(user);
+    //debugger;
+    if (user) {
+      if (user.contrasena == req.body.contrasena) {
+        res.send(user);
       }
+      else {
+        console.log(user + " primer else");
+        res.send('NO ENCONTRO EL PASSWORD');
+      }
+    } else {
+      console.log(user + "segundo else");
+      console.log(user);
+      res.send('NO ENCONTRO EL EMAIL');
+    }
   })
 };
 
@@ -124,23 +124,23 @@ module.exports.filtrarUsuario = function (req, res) {
     );
 }
 
-module.exports.recuperarContrasena = async function(req, res) {
-  try{
-      var usuario = await Usuario.find({correo: req.body.correo});
-      if(usuario.length>0){
-        var id = usuario[0]["_id"];
-        
-        await Usuario.updateOne(
-          { _id: id },
-          {
-            $set: { 
-              contrasena: req.body.contrasena
-            },
-            $currentDate: { lastModified: true }
-          }
-        );
+module.exports.recuperarContrasena = async function (req, res) {
+  try {
+    var usuario = await Usuario.find({ correo: req.body.correo });
+    if (usuario.length > 0) {
+      var id = usuario[0]["_id"];
 
-        const output = `
+      await Usuario.updateOne(
+        { _id: id },
+        {
+          $set: {
+            contrasena: req.body.contrasena
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+
+      const output = `
           <html>
             <head>
                 <style>
@@ -195,35 +195,56 @@ module.exports.recuperarContrasena = async function(req, res) {
           </html>
         `
 
-        var transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-                user: 'servicio.leemas@gmail.com',
-                pass: '123queso!'
-            }
-        });
-        
-        const mailOptions = {
-          from: 'servicio.leemas@gmail.com', // sender address
-          to: req.body.correo, // list of receivers
-          subject: '¿Olvidaste tu contraseña?', // Subject line
-          html: output// plain text body
-        };
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'servicio.leemas@gmail.com',
+          pass: '123queso!'
+        }
+      });
 
-        transporter.sendMail(mailOptions, function (err, info) {
-          if(err)
-            console.log(err)
-          else
-            console.log(info);
-        });
-      }
+      const mailOptions = {
+        from: 'servicio.leemas@gmail.com', // sender address
+        to: req.body.correo, // list of receivers
+        subject: '¿Olvidaste tu contraseña?', // Subject line
+        html: output// plain text body
+      };
 
-      res.json({result: 'exito'});
-  } catch(err){
+      transporter.sendMail(mailOptions, function (err, info) {
+        if (err)
+          console.log(err)
+        else
+          console.log(info);
+      });
+    }
+
+    res.json({ result: 'exito' });
+  } catch (err) {
     console.log(err);
   }
 }
 
-  
-  
 
+
+
+module.exports.obtenerDatos = function (req, res) {
+  var id = req.body.id;
+  Usuario.findOne({ _id: id }).then(function (dato) {
+    if (dato) {
+      res.send(dato);
+    }
+  })
+}
+
+module.exports.guardar = function (req, res) {
+  var id = req.body.id;
+  var contrasena = req.body.contrasena;
+  var change = true;
+
+  Usuario.updateOne({ _id: id }, { $set: { contrasena: contrasena , changePassword: change} }, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  res.send(result);
+};

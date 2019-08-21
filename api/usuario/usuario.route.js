@@ -22,6 +22,13 @@ router.post('/recuperarContrasena', function (req, res) {
     usuarioApi.recuperarContrasena(req, res);
 });
 
+router.post('/obtenerDatos', function (req, res){
+    usuarioApi.obtenerDatos(req, res);
+})
+
+router.put('/guardarContra', function (req, res){
+    usuarioApi.guardar(req, res);
+})
 
 
 module.exports = router;
