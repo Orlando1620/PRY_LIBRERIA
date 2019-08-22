@@ -6,4 +6,8 @@ router.get('/listar', function(req, res) {
     impuestoApi.listarImpuesto(req,res);
 })
 
+router.post('/modificar', function(req, res) {
+    impuestoApi.modificarImpuesto(req,res);
+})
+
 module.exports = router;

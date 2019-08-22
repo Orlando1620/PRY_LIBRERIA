@@ -47,3 +47,29 @@ module.exports.checkMetPago = function(req, res){
     }
   );
 }
+
+module.exports.modPago = async function(req, res) {
+  try{
+    var nombreTarjeta = req.body.nombreTarjeta;
+    var numTarjeta = req.body.numTarjeta;
+    var fechaVenc = req.body.fechaVenc;
+    var codSeg = req.body.codSeg;
+    var idUsuario = req.body.idUsuario;
+
+      await Pago.updateOne(
+        { idUsuario: idUsuario },
+        {
+          $set: {
+            nombreTarjeta: nombreTarjeta,
+            numTarjeta: numTarjeta,
+            fechaVenc: fechaVenc,
+            codSeg: codSeg
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+      res.json({result: 'exito'});
+  } catch(err){
+    console.log(err);
+  }
+}
