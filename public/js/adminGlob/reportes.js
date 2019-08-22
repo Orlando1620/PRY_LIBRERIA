@@ -5,7 +5,6 @@ var sucursales = [];
 
 window.onload = function () {
     cargarInfo();
-    cargarLibrerias();
 }
 
 async function cargarInfo(){
@@ -22,6 +21,7 @@ async function cargarInfo(){
     })
     var json = await response.json();
     libros = json;
+    cargarLibrerias();
 }
 
 async function infoVendidos(){
@@ -157,6 +157,109 @@ function fillMasVendidos(json){
     }
 }
 
+async function infoVotados(){
+    titulosMejorVotados();
+    var lista = [];
+    
+    for(var i=0;i<libros.length;i++){
+        var data = {
+            libro: libros[i]['_id']
+        }
+        var response = await fetch('/califLibro/listar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        })
+        var califs = await response.json();
+
+        var calif = 0;
+        if(califs.length != 0){
+            for(var j=0;j<califs.length;j++){
+                calif += califs[j]['calif'];
+            }
+            calif = calif/califs.length;
+            calif = Math.round(calif);
+        } 
+
+        lista.push({
+            libro: libros[i]['_id'],
+            calif: calif
+        });
+    }
+
+    fillMejorVotados(lista);
+}
+
+function fillMejorVotados(json){
+
+    for(var i=0;i<json.length;i++){
+
+        for(var j=0;j<json.length;j++){
+            if(json[i]['calif'] > json[j]['calif']){
+                var temp = json[i];
+                json[i] = json[j];
+                json[j] = temp;
+            }
+        }
+        
+    }
+
+    for(var i=0;i<json.length;i++){
+        var tr = document.createElement("tr");
+
+        var libroTd = document.createElement("td");
+        var autorTd = document.createElement("td");
+        var cantidadTd = document.createElement("td");
+
+        var libro = document.createElement('Label');
+        var textLibro = document.createTextNode(json[i]['libro']);
+        for(var j=0;j<libros.length;j++){
+            if(libros[j]['_id'] == json[i]['libro']){
+            textLibro = document.createTextNode(libros[j]['nombre']);
+            }
+        }
+        libro.appendChild(textLibro);
+        libroTd.appendChild(libro);
+        libroTd.id = json[i]['libro'] + "lib"; 
+
+        var autor = document.createElement('Label');
+        var textAutor;
+        for(var j=0;j<autores.length;j++){
+            for(var n=0;n<libros.length;n++){
+            if(autores[j]["_id"] == libros[n]["autor"] && libros[n]['_id'] == json[i]['libro']){
+                textAutor = document.createTextNode(autores[j]["nombre"]+" "+autores[j]["apellido1"]+" "+autores[j]["apellido2"]);
+            }
+            }
+        }
+        autor.appendChild(textAutor);
+        autorTd.appendChild(autor);
+
+        var calif = json[i]['calif'];
+        console.log(calif);
+        for(var j=0;j<calif;j++){
+            var icon = document.createElement("i");
+            icon.classList.add("fas");
+            icon.classList.add("fa-book");
+            icon.classList.add("calif-true");
+            cantidadTd.appendChild(icon);
+        }
+
+        for(var j=0;j<5-calif;j++){
+            var icon = document.createElement("i");
+            icon.classList.add("fas");
+            icon.classList.add("fa-book");
+            icon.classList.add("calif-false");
+            cantidadTd.appendChild(icon);
+        }
+
+        tr.appendChild(libroTd);
+        tr.appendChild(autorTd);
+        tr.appendChild(cantidadTd);
+
+        document.getElementById("lib-cont").appendChild(tr);
+    }
+}
+
 function fillSucursales(){
 
   var data = {
@@ -195,6 +298,7 @@ function fillSucursales(){
             document.getElementById("sucursales").appendChild(opc);
         }
         infoVendidos();
+        infoVotados();
       }
   )
   .catch(
@@ -240,6 +344,36 @@ function titulosMasVendidos(){
     titles.appendChild(cantidadTitleTd);
     titles.classList.add('table-titles')
     document.getElementById("inv-cont").appendChild(titles);
+}
+
+function titulosMejorVotados(){
+    var list = document.getElementById("lib-cont");
+    removeElements(list);
+    var titles = document.createElement("tr");
+    var libroTitleTd = document.createElement("td");
+    var autorTitleTd = document.createElement("td");
+    var cantidadTitleTd = document.createElement("td");
+
+    var libroTitle = document.createElement('Label');
+    var textLibro = document.createTextNode("Libro");
+    libroTitle.appendChild(textLibro);
+    libroTitleTd.appendChild(libroTitle);
+
+    var autorTitle = document.createElement('Label');
+    var textAutor = document.createTextNode("Autor");
+    autorTitle.appendChild(textAutor);
+    autorTitleTd.appendChild(autorTitle);
+
+    var cantidadTitle = document.createElement('Label');
+    var textCantidad = document.createTextNode("Calificación");
+    cantidadTitle.appendChild(textCantidad);
+    cantidadTitleTd.appendChild(cantidadTitle);
+
+    titles.appendChild(libroTitleTd);
+    titles.appendChild(autorTitleTd);
+    titles.appendChild(cantidadTitleTd);
+    titles.classList.add('table-titles')
+    document.getElementById("lib-cont").appendChild(titles);
 }
 
 function cargarLibrerias(){
