@@ -1,4 +1,18 @@
+.calif-true{
+    color: #487252;
+}
 
+.calif-false{
+    color: #48725298;
+}
+
+.listaLibBetVot{
+    overflow: auto;
+}
+
+i{
+    padding: 5px;
+}
 
 #contenedor_img_BookSale{
     border-bottom: 2px solid #487252;
@@ -11,13 +25,15 @@
 }
 
 #title_lmv{
-    padding-bottom: 50px;
+    margin-top: 30px;
+    padding-top: 100px;
 }
 
 #lmv{
     font-size: 45px;
     color: #487252;
     text-align: center;
+    margin: 50px 0;
 }
 
 #number_1{
@@ -141,7 +157,7 @@
 }
 .tamaNo_space_img{
     width: 40%;
-    height: 90%;
+    margin-bottom: 30px;
 }
 
 .video-cont{
