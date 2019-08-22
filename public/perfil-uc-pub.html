@@ -60,6 +60,7 @@
                 <div class="ppic-cont">
                     <div class="ppic" id="profilepic"></div>
                     <h1 class="nombre" id="nombre"></h1>
+                    <div class="calif-cont" id="calif"></div>
                 </div>
 
                 
@@ -75,6 +76,43 @@
                 </div>
                  
             </div>
+
+            <div class="pop-up-cont oculto" id="pop-up-intercambio">
+                    <div class="pop-up">
+                        <form id='form'>
+                            <div class="text-cont">
+                                <h3>Solicitud de intercambio</h3>
+                            </div>
+                            <div class="text-cont">
+                                <label>Sucursal</label>
+                                <select class="selectFiltrar" id='sucursales'>
+                                    <option value="0">Seleccione una sucursal</option>
+                                </select>
+                            </div>
+                            <div class="text-cont">
+                                <label>Fecha: </label>
+                                <input type="date" class="input" id='fecha-intercambio' required>
+                            </div>
+                            <div class="text-cont">
+                                <label>Hora: </label>
+                                <input type="time" class="input" id='hora-intercambio' required>
+                            </div>
+                            <div class="btn-cont">
+                                <button class="pop-up-btn" onclick="aceptarIntercambio(event)" id="aceptar">Enviar</button>
+                                <button class="pop-up-btn" onclick="cancelarIntercambio()">Cancelar</button>
+                            </div>
+                        </form>
+                        <div class="text-cont">
+                            <div id="alert-intercambio" class="alert-intercambio oculto">
+                                <p id="msg-intercambio" class="pAlert"></p>
+                            </div>
+                            <div id="alert-intercambio-success" class="alert-intercambio-success oculto">
+                                <p id="msg-intercambio-success" class="pAlert"></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
         </div>
 
         <footer>
@@ -105,7 +143,7 @@
             
         </footer>
 
-
+        <script src="js/comun.js"></script>
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
         <script src="js/usuario/perfil-uc-pub.js"></script>
         <script src="js/log-nav.js"></script>

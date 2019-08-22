@@ -27,29 +27,12 @@ module.exports.add = function(req, res) {
 }
 
 module.exports.listar = function(req, res) {
-  var libro = req.body.libro;
+  var usuario2 = req.body.usuario2;
   
-  Calif.find({libro:libro}).exec()
+  Calif.find({usuario2:usuario2}).exec()
   .then(
     function(result){
       console.log(result);
-      res.send(result);
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
-}
-
-module.exports.listarById = function(req, res) {
-  var libro = req.body.libro;
-  var usuario = req.body.usuario;
-  
-  Calif.find({libro:libro, usuario:usuario}).exec()
-  .then(
-    function(result){
       res.send(result);
     }
   )

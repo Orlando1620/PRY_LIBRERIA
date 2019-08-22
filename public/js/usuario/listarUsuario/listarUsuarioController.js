@@ -17,8 +17,7 @@ function listarUsuario() {
       }
     )
     .then(
-      function (json) {
-        console.log(json);
+      async function (json) {
         for (var i = 0; i < json.length; i++) {
             usuarios.push(json[i]);
             var tr = document.createElement("tr");
@@ -33,16 +32,7 @@ function listarUsuario() {
             td.appendChild(a);
             tr.appendChild(td);
 
-            var td2 = document.createElement("td");
-            td2.colSpan = "2";
             
-            for(var j=0;j<5;j++){
-                var icon = document.createElement("i");
-                icon.classList.add("fas");
-                icon.classList.add("fa-book");
-                td2.appendChild(icon);
-            }
-            tr.appendChild(td2);
 
             var td3 = document.createElement("td");
             var textNode;
@@ -50,12 +40,59 @@ function listarUsuario() {
             switch(json[i]['tipo']){
                 case "usuarioCliente":
                     textNode = document.createTextNode("Usuario cliente");
+                    var td2 = document.createElement("td");
+                    
+                    var data = {
+                        usuario2:json[i]['_id']
+                    }
+                    var response = await fetch('/califUsuario/listar', {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers:{'Content-Type': 'application/json'}
+                    })
+                    califs = await response.json();
+                    
+                    if(califs.length != 0){
+                        var calif = 0;
+                        for(var j=0;j<califs.length;j++){
+                            calif += califs[j]['calif'];
+                        }
+                        calif = calif/califs.length;
+                        calif = Math.round(calif);
+                        console.log(calif);
+                        for(var j=0;j<calif;j++){
+                            var icon = document.createElement("i");
+                            icon.classList.add("fas");
+                            icon.classList.add("fa-book");
+                            icon.classList.add("calif-true");
+                            td2.appendChild(icon);
+                        }
+            
+                        for(var j=0;j<5-calif;j++){
+                            var icon = document.createElement("i");
+                            icon.classList.add("fas");
+                            icon.classList.add("fa-book");
+                            icon.classList.add("calif-false");
+                            td2.appendChild(icon);
+                        }
+            
+                    } else {
+                        var califT = document.createTextNode("");
+                        td2.appendChild(califT);
+                       
+                    }
+                    tr.appendChild(td2);
                     break;
                 case "adminGlobal":
                     textNode = document.createTextNode("Administrador global");
+                    var td2 = document.createElement("td");
+                    tr.appendChild(td2);
+
                     break;
                 case "AdminLib":
                     textNode = document.createTextNode("Administrador de librería");
+                    var td2 = document.createElement("td");
+                    tr.appendChild(td2);
                     break;
             }
             td3.appendChild(textNode);

@@ -1,6 +1,6 @@
 window.onload = function () {
 	fillPerfil();
-	
+	fillSucursales();
 }
 
 var libros = [];
@@ -12,7 +12,7 @@ async function fillPerfil(){
 	
 	try{
 	var data = {
-		id: localStorage.getItem("idUsuario")
+		id: localStorage.getItem("idUsuario") 
 	};
 	var response = await fetch('/usuarioCliente/perfil', {
 		method: 'POST',
@@ -23,8 +23,47 @@ async function fillPerfil(){
 
 	document.getElementById('nombre').innerHTML = usuario['nombre']+" "+usuario['apellido1']+" "+usuario['apellido2'];
 	document.getElementById('profilepic').style.backgroundImage = "url("+usuario['imgUrl']+")";
-	misLibros = usuario['libros'];
-	console.log(misLibros);
+    misLibros = usuario['libros'];
+    
+    var data = {
+        usuario2:localStorage.getItem("idUsuario")
+      }
+      var response = await fetch('/califUsuario/listar', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers:{'Content-Type': 'application/json'}
+      })
+      califs = await response.json();
+      
+      if(califs.length != 0){
+          var calif = 0;
+          for(var j=0;j<califs.length;j++){
+              calif += califs[j]['calif'];
+          }
+          calif = calif/califs.length;
+          calif = Math.round(calif);
+
+          for(var j=0;j<calif;j++){
+              var icon = document.createElement("i");
+              icon.classList.add("fas");
+              icon.classList.add("fa-book");
+              icon.classList.add("calif-true");
+              document.getElementById('calif').appendChild(icon);
+          }
+
+          for(var j=0;j<5-calif;j++){
+              var icon = document.createElement("i");
+              icon.classList.add("fas");
+              icon.classList.add("fa-book");
+              icon.classList.add("calif-false");
+              document.getElementById('calif').appendChild(icon);
+          }
+
+      } else {
+          var califT = document.createTextNode("");
+          document.getElementById('calif').appendChild(califT);
+      }
+
 	fillTable();
 		
 	} catch (err) {
@@ -240,6 +279,138 @@ function perfil(e){
     window.location.href = "perfil-libro.html";
 }
 
-function intercambio(){
+
+function intercambio(e){
+    document.getElementById('pop-up-intercambio').classList.remove('oculto');
+    var a = e.target;
+    idLibro = a.id;
+}
+  
+async function aceptarIntercambio(e){
+    try{
+        var esValido = validarCamposFormulario("form");
+        if (esValido == false || validarForm() == false) {
+            validarForm();
+            document.getElementById("alert-intercambio").classList.remove("oculto");
+            document.getElementById("msg-intercambio").innerHTML = "Complete los espacios requeridos";
+            return false;
+        }
+        e.preventDefault();
+        if(validarFecha()){
+        document.getElementById("alert-intercambio").classList.add("oculto");
+        var data = {
+            libro: idLibro,
+            sucursal: document.getElementById('sucursales').value,
+            fecha: document.getElementById('fecha-intercambio').value,
+            hora: document.getElementById('hora-intercambio').value,
+            usuario1: sessionStorage.getItem('id'),
+            usuario2: localStorage.getItem('idUsuario')
+        };
+        
+        var response  = await fetch('/intercambio/add', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        });
+
+        var result = await response.json();
+        
+        msg = result['result'];
+        switch(msg){
+            case 'repetido':
+                document.getElementById("alert-intercambio").classList.remove("oculto");
+                document.getElementById("msg-intercambio").innerHTML = "Ya envió una solicitud por este libro";
+                break;
+            case 'exito':
+                document.getElementById("alert-intercambio").classList.add("oculto");
+                registrarBitacora(sessionStorage.getItem("correo"),'envío de solicitud de intercambio: '+document.getElementById("nombre").value);
+                document.getElementById("alert-intercambio-success").classList.remove("oculto");
+                document.getElementById("msg-intercambio-success").innerHTML = "Solicitud enviada";
+                setTimeout(function () {
+                    document.getElementById('pop-up-intercambio').classList.add('oculto');
+                }, 2000);
+                break;
+        }
+        } else {
+        document.getElementById("alert-intercambio").classList.remove("oculto");
+        document.getElementById("msg-intercambio").innerHTML = "La fecha del intercambio debe ser en el futuro";
+        }
+    } catch(err) {
+        console.log('Ocurrió un error con la ejecución', err);
+    }
+}
+  
+function validarFecha(){
+    var fecha = new Date(document.getElementById('fecha-intercambio').value);
+    var hoy = new Date();
+    if (hoy >= fecha) {
+        return false;
+    } else {
+        return true;
+    }
+}
+  
+function validarForm(){
+    var sucursal = document.getElementById('sucursales').value;
+
+    if(sucursal == "Seleccione una sucursal"){
+        document.getElementById('sucursales').classList.add('invalid');
+        return false;
+    } else {
+        document.getElementById('sucursales').classList.remove('invalid');
+        return true;
+    }
+}
+  
+function cancelarIntercambio(){
+    document.getElementById("form").reset();
+    document.getElementById("alert-intercambio").classList.add("oculto");
+    document.getElementById('sucursales').classList.remove('invalid');
+    document.getElementById('fecha-intercambio').classList.remove('invalid');
+    document.getElementById('hora-intercambio').classList.remove('invalid');
+    document.getElementById('pop-up-intercambio').classList.add('oculto');
+}
+
+async function fillSucursales(){
+    var response = await fetch('/sucursal/listarTodo', {
+        method: 'GET',
+        headers:{'Content-Type': 'application/json'}
+    });
+    var sucursales = await response.json();
+
+    for(var i=0;i<sucursales.length;i++){
+        var opc = document.createElement("option");
+        var textNode = document.createTextNode(sucursales[i]['nombreSucursal']);
+        opc.value = sucursales[i]['_id'];
+        opc.appendChild(textNode);
+
+        document.getElementById("sucursales").appendChild(opc);
+    }
 
 }
+
+function registrarBitacora(correo,accion){
+    var data = {
+        correo: correo,
+        accion: accion,
+        fecha: new Date()
+    };
+    fetch('/bitacora/add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    })
+    .then(
+        function(response) {
+        if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+        else
+            return response.json();
+        }
+    )
+    .catch(
+        function(err) {
+        console.log('Ocurrió un error con la ejecución', err);
+        }
+    );
+  }

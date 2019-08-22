@@ -12,6 +12,24 @@
     color: #022600;
 }
 
+.calif-cont{
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
+}
+
 #lib{
     margin-bottom: 50px;
 }

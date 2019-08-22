@@ -63,7 +63,7 @@ function centerMap(coords){
 	map.setCenter(coords);
 }
 
-function perfilUc(){
+async function perfilUc(){
 
     var data = {
         id: localStorage.getItem("idUsuario")
@@ -83,7 +83,7 @@ function perfilUc(){
         }
       )
       .then(
-          function(json){  
+          async function(json){  
             document.getElementById('correo').innerHTML = json['correo'];
             document.getElementById('nombre').innerHTML = json['nombre'];
             document.getElementById('apellidos').innerHTML = json['apellido1']+" "+json['apellido2'];
@@ -128,6 +128,46 @@ function perfilUc(){
             }
 
             misLibros = json['libros'];
+
+            var data = {
+                usuario2:localStorage.getItem("idUsuario")
+              }
+              var response = await fetch('/califUsuario/listar', {
+                  method: 'POST',
+                  body: JSON.stringify(data),
+                  headers:{'Content-Type': 'application/json'}
+              })
+              califs = await response.json();
+              
+              if(califs.length != 0){
+                  var calif = 0;
+                  for(var j=0;j<califs.length;j++){
+                      calif += califs[j]['calif'];
+                  }
+                  calif = calif/califs.length;
+                  calif = Math.round(calif);
+        
+                  for(var j=0;j<calif;j++){
+                      var icon = document.createElement("i");
+                      icon.classList.add("fas");
+                      icon.classList.add("fa-book");
+                      icon.classList.add("calif-true");
+                      document.getElementById('calif').appendChild(icon);
+                  }
+        
+                  for(var j=0;j<5-calif;j++){
+                      var icon = document.createElement("i");
+                      icon.classList.add("fas");
+                      icon.classList.add("fa-book");
+                      icon.classList.add("calif-false");
+                      document.getElementById('calif').appendChild(icon);
+                  }
+        
+              } else {
+                  var califT = document.createTextNode("");
+                  document.getElementById('calif').appendChild(califT);
+              }
+
             fillTable();
         })
         .catch(

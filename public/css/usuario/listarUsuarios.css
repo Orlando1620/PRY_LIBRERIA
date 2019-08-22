@@ -125,7 +125,6 @@
 .lista-suc i{
     padding-right: 5px;
     padding-bottom: 10px;
-    color: #487252;
 }
 
 .table-cont{
@@ -153,6 +152,18 @@
 .table-titles td{
     padding: 10px;
     border-bottom: 1px solid silver;
+}
+
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
 }
 
 @media(max-width: 920px){

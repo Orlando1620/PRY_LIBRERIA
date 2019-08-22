@@ -422,6 +422,11 @@ function validarForm(){
 }
 
 function cancelarIntercambio(){
+  document.getElementById("form").reset();
+  document.getElementById("alert-intercambio").classList.add("oculto");
+  document.getElementById('sucursales').classList.remove('invalid');
+  document.getElementById('fecha-intercambio').classList.remove('invalid');
+  document.getElementById('hora-intercambio').classList.remove('invalid');
   document.getElementById('pop-up-intercambio').classList.add('oculto');
 }
 
