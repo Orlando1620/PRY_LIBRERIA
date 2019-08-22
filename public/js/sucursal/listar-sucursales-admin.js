@@ -56,7 +56,19 @@ async function listarSucursal() {
 
                     document.getElementById("lista-suc").appendChild(tr);
                 }
+                if(json.length == 0){
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    var text = document.createTextNode("Aún no hay sucursales registradas");
+                    td.colSpan = 5;
+                    td.appendChild(text);
+                    td.style.textAlign = 'center'; 
+                    tr.appendChild(td);
+                    document.getElementById("lista-suc").appendChild(tr);
+                  }
             }
+
+            
         )
         .catch(
             function (err) {
