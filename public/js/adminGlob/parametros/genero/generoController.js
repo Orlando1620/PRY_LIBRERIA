@@ -179,7 +179,7 @@ var varAccion;
 function popDel(accion){
   varAccion = accion;
   document.getElementById("pop-up").classList.remove("oculto");
-  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta club?";
+  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar este género?";
 }
 
 function aceptar(){
@@ -232,6 +232,9 @@ function eliminarGenero() {
                     } else {
                         document.getElementById("msg-pop-info").innerHTML = "No se puede eliminar porque hay un libro asociado";
                         document.getElementById("msgInfo").classList.remove("oculto");
+                        setTimeout(function () {
+                            document.getElementById("msgInfo").classList.add("oculto");
+                          }, 2000);
                     }
                 }
             )

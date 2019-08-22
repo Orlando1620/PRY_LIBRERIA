@@ -27,7 +27,7 @@ async function registrarCategoria() {
             })
             document.getElementById("alertCat").classList.add("oculto");
             registrarBitacora(sessionStorage.getItem("correo"), "registro categoría: " + nombreCategoria);
-            window.location.href = "parametros.html";
+            window.location.href = "categorias.html";
         } else {
             document.getElementById("alertCat").classList.remove("oculto");
             document.getElementById("msg").innerHTML = "Esta categoría ya existe";
@@ -135,16 +135,14 @@ function registrarBitacora(correo, accion) {
         );
 }
 
-function msgInfoBtn(){
-    document.getElementById("msgInfo").classList.add("oculto");
-}
+
 
 var varAccion;
 
 function popDel(accion){
   varAccion = accion;
   document.getElementById("pop-up").classList.remove("oculto");
-  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta club?";
+  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta categoría?";
 }
 
 function aceptar(){
@@ -189,8 +187,11 @@ function eliminarCategoria() {
                     if (json.length == 0) {
                         eliminarCategoriaNoAsociada(dataCat);
                     } else {
-                        document.getElementById("msg-pop-info").innerHTML = "No se puede eliminar la categoría porque hay libros asociados a ella primero elimine los libros";
+                        document.getElementById("msg-pop-info").innerHTML = "No se puede eliminar la categoría porque hay libros asociados a ella";
                         document.getElementById("msgInfo").classList.remove("oculto");
+                        setTimeout(function () {
+                            document.getElementById("msgInfo").classList.add("oculto");
+                          }, 2000);
                     }
                 }
             )
