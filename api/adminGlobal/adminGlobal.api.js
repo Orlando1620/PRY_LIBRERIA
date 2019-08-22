@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var AdminGlobal = require('./adminGlobal.model');
 var nodemailer = require('nodemailer');
 
-module.exports.registrarUsuario = function (req, res) {
+module.exports.registrarUsuario = function(req, res) {
   var tipoUsuario = req.body.tipoUsuario;
   var fechaRegistro = req.body.fechaRegistro;
   var nombre = req.body.nombre;
@@ -13,60 +13,60 @@ module.exports.registrarUsuario = function (req, res) {
   var tipoIdentificacion = req.body.tipoIdentificacion;
   var identificacion = req.body.identificacion;
 
-  AdminGlobal.find({ correo: correo }).exec()
-    .then(
-      function (result) {
-        if (result.length == 0) {
-          AdminGlobal.find({ identificacion: identificacion })
-            .then(
-              function (result) {
-                if (result.length == 0) {
-
-                  var nuevoAdminGlobal = new AdminGlobal({
-                    _id: new mongoose.Types.ObjectId(),
-                    tipo: tipoUsuario,
-                    fechaRegistro: fechaRegistro,
-                    nombre: nombre,
-                    apellido1: primerApellido,
-                    apellido2: segundoApellido,
-                    correo: correo,
-                    contrasena: contrasena,
-                    tipoIdentificacion: tipoIdentificacion,
-                    identificacion: identificacion
-                  });
-
-
-                  nuevoAdminGlobal.save()
-                    .then(
-                      function (result) {
-                        console.log(result);
-                        res.json({ result: "exito" });
-                      }
-                    )
-                    .catch(
-                      function (err) {
-                        console.log(err);
-                      }
-                    );
-                } else {
-                  res.json({ result: "idRepetido" });
-                }
-              })
-            .catch(function (err) {
-              console.log('error');
-              console.log("** File Upload (Promise)");
-              if (err) { console.warn(err); }
-            });
-        } else {
-          res.json({ result: "correoRepetido" });
-        }
+  AdminGlobal.find({correo: correo}).exec()
+  .then(
+    function(result){
+      if(result.length == 0){
+        AdminGlobal.find({identificacion: identificacion})
+        .then(
+          function(result){
+            if(result.length == 0){
+      
+                var nuevoAdminGlobal = new AdminGlobal({
+                  _id: new mongoose.Types.ObjectId(),
+                  tipo: tipoUsuario,
+                  fechaRegistro: fechaRegistro,
+                  nombre: nombre,
+                  apellido1: primerApellido,
+                  apellido2: segundoApellido,
+                  correo: correo,
+                  contrasena: contrasena,
+                  tipoIdentificacion: tipoIdentificacion,
+                  identificacion: identificacion
+                });
+                  
+                
+                nuevoAdminGlobal.save()
+                .then(
+                  function(result){
+                    console.log(result); 
+                    res.json({result:"exito"});
+                  }
+                )
+                .catch(
+                  function(err){
+                    console.log(err);
+                  }
+                );
+            } else {
+              res.json({result:"idRepetido"});
+            }
+        })
+        .catch(function (err) {
+          console.log('error');
+          console.log("** File Upload (Promise)");
+          if (err) { console.warn(err); }
+        });
+      } else {
+        res.json({result:"correoRepetido"});
       }
-    )
-    .catch(
-      function (err) {
-        console.log(err);
-      }
-    );
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
 }
 
 module.exports.enviarContrasena = function (req, res) {

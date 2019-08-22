@@ -90,6 +90,7 @@ module.exports.registrarUsuario = function (req, res) {
                         apellido2: segundoApellido,
                         correo: correo,
                         contrasena: contrasena,
+                        changePassword: false,
                         tipoIdentificacion: tipoIdentificacion,
                         identificacion: identificacion,
                         fechaNacimiento: fechaNacimiento,
@@ -784,6 +785,8 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
     console.log(err);
   }
 }
+
+
 
 
 

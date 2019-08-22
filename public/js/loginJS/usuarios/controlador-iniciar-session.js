@@ -13,7 +13,7 @@
 var id_alert_error = "alert";
 var id_alert_long = "alert_long";
 var id_alert_cred = "alert_cred";
-var id_alert_bloqueado = "alert_bloqueado";
+var user;
 
 async function login() {
     //debugger;
@@ -22,29 +22,39 @@ async function login() {
 
     if (correo != "" && contrasena != "") {
         //debugger;
-        let user = await iniciar_sesion(correo, contrasena);
+        user = await iniciar_sesion(correo, contrasena);
 
         if (user !== null) {
-            if (!user.bloqueado) {
-                sessionStorage.setItem("correo", user.correo);
-                sessionStorage.setItem("tipo", user.tipo);
-                sessionStorage.setItem("nombre", user.nombre);
-                sessionStorage.setItem("id", user._id);
-                localStorage.setItem('carrito','');
-
-                switch(sessionStorage.getItem("tipo")){
-                    case "usuarioCliente":
+            sessionStorage.setItem("correo", user.correo);
+            sessionStorage.setItem("tipo", user.tipo);
+            sessionStorage.setItem("nombre", user.nombre);
+            sessionStorage.setItem("id", user._id);
+            localStorage.setItem('carrito','');
+            
+            switch (sessionStorage.getItem("tipo")) {
+                case "usuarioCliente":
+                    if (user.changePassword) {
                         window.location.href = ("homePage.html");
-                        break;
-                    case "AdminLib":
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
+
+                case "AdminLib":
+                    if (user.changePassword) {
                         window.location.href = ("perfil-lib-admin.html");
-                        break;
-                    case "adminGlobal":
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
+
+                case "adminGlobal":
+                    if (user.changePassword) {
                         window.location.href = ("listar-usuarios.html");
-                        break;
-                }
-            } else {
-                mostrarMsg(id_alert_bloqueado);
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
             }
 
         } else {
@@ -57,8 +67,8 @@ async function login() {
     }
 }
 
-function registro(){
-    window.location.href= ("registrarUC.html");
+function registro() {
+    window.location.href = ("registrarUC.html");
 }
 
 function validaCorreo(event) {

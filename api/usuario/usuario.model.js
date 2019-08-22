@@ -9,7 +9,8 @@ var usuarioSchema = mongoose.Schema({
     tipo: String,
     correo: String,
     contrasena: String,
-    bloqueado: Boolean
+    bloqueado: Boolean,
+    changePassword: { type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Usuario', usuarioSchema, 'Usuarios');

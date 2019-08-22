@@ -1,5 +1,9 @@
 var Clubes = require('./clubes.model');
+var MiembrosClub = require('./miembros.model');
+var Libro = require('../libro/libro.model');
+var Sucursal = require('../sucursal/sucursal.model');
 var mongoose = require('mongoose');
+
 
 module.exports.addFisico = function (req, res) {
   var nombre = req.body.nombre;
@@ -249,3 +253,82 @@ module.exports.modificarClub = async function (req, res) {
     console.log(err);
   }
 }
+
+
+module.exports.obtenerClub = function (req, res) {
+  Clubes.findOne({ nombre: new RegExp(req.body.nombre, "i") }).then(function (club) {
+    if (club) {
+      res.send(club);
+    } else {
+      res.send(false);
+    }
+  })
+};
+
+module.exports.obtenerLibroClub = function (req, res) {
+  Libro.findOne({ _id: req.body.libro }).then(function (libro) {
+    if (libro) {
+      res.send(libro);
+    } else {
+      res.send(false);
+    }
+  })
+};
+
+module.exports.obtenerSucursalClub = function (req, res) {
+  Sucursal.findOne({ _id: req.body.sucursal }).then(function (suc) {
+    if (suc) {
+      res.send(suc);
+    } else {
+      res.send(false);
+    }
+  })
+};
+
+module.exports.unirseAlClub = function (req, res) {
+  let usuarioId = req.body.usuarioId;
+  let clubId = req.body.clubId;
+  MiembrosClub.findOne({ usuarioId: usuarioId, clubId: clubId }).then(function (usu) {
+
+    if (!usu) {
+      let nuevoMiembro = new MiembrosClub({
+        usuarioId: usuarioId,
+        clubId: clubId
+      });
+      nuevoMiembro.save(function (error) {
+        if (error) {
+          console.log(error);
+          res.json({ codigo: 'errorADmin' });
+        } else {
+          res.json({ codigo: 'exitoso' });
+        }
+      })
+    }
+  })
+};
+
+module.exports.deleteUsuario = function (req, res) {
+  let usuarioId = req.body.usuarioId;
+  let clubId = req.body.clubId;
+  MiembrosClub.findOneAndDelete({ usuarioId: usuarioId, clubId: clubId }).then(del => {
+    if (del) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
+
+};
+
+module.exports.verificarUsuario = function (req, res){
+  let usuarioId = req.body.usuarioId;
+  let clubId = req.body.clubId;
+  MiembrosClub.findOne({ usuarioId: usuarioId, clubId: clubId }).then(function (verf) {
+    if (verf) {
+      res.send(true);
+    }else{
+      res.send(false);
+    }
+  });
+
+};

@@ -29,6 +29,13 @@ router.post('/recuperarContrasena', function (req, res) {
 router.post('/buscarUsuario', function (req, res) {
     usuarioApi.buscarUsuario(req, res);
 });
+router.post('/obtenerDatos', function (req, res){
+    usuarioApi.obtenerDatos(req, res);
+})
+
+router.put('/guardarContra', function (req, res){
+    usuarioApi.guardar(req, res);
+})
 
 router.post('/actualizarEstadoUsuario', function (req, res) {
     usuarioApi.actualizarEstadoUsuario(req, res);

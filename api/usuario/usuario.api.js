@@ -11,8 +11,7 @@ module.exports.iniciar_sesion = function (req, res) {
     if (user) {
       if (user.contrasena == req.body.contrasena) {
         res.send(user);
-      }
-      else {
+      } else {
         console.log(user + " primer else");
         res.send('NO ENCONTRO EL PASSWORD');
       }
@@ -276,3 +275,27 @@ module.exports.actualizarEstadoUsuario = async function (req, res) {
     console.log(err);
   }
 }
+
+
+
+module.exports.obtenerDatos = function (req, res) {
+  var id = req.body.id;
+  Usuario.findOne({ _id: id }).then(function (dato) {
+    if (dato) {
+      res.send(dato);
+    }
+  })
+}
+
+module.exports.guardar = function (req, res) {
+  var id = req.body.id;
+  var contrasena = req.body.contrasena;
+  var change = true;
+
+  Usuario.updateOne({ _id: id }, { $set: { contrasena: contrasena , changePassword: change} }, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  res.send(result);
+};
