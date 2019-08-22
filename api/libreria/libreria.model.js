@@ -5,6 +5,7 @@ var registroSchema = new mongoose.Schema({
     admin_id: { type: String, required: true },
     nombreFantasia: { type: String, required: true },
     tipo : { type: String, required: true },
+    estado: {type: Number, default: 0},
     latitud: { type: Number, required: true },
     longitud: { type: Number, required: true },
     provincia: { type: String, required: true },

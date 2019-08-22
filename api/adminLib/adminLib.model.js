@@ -9,6 +9,8 @@ let registroSchema = new mongoose.Schema({
     correo: { type: String, required: true },
     contrasena: { type: String, required: true },
     changePassword: Boolean,
+    estado: {type: Number, default: 0},
+    eliminado: {type: Boolean, default: false},
     bloqueado: { type: Boolean, required: true },
     tipo: { type: String, required: true },
     fechaNaci: { type: String, required: true },
