@@ -153,8 +153,8 @@ module.exports.enviarContrasena = function(req,res){
 }
 
 module.exports.perfil = function(req, res){
-    var correo = req.body.correo;
-    AdminLib.find({correo: correo}).exec()
+    var id = req.body.id;
+    AdminLib.find({_id: id}).exec()
     .then(
       function(result){
         res.send(result);
@@ -165,4 +165,52 @@ module.exports.perfil = function(req, res){
         console.log(err);
       }
     );
+}    
+module.exports.modificarUsuarioAdminLib = async function (req, res) {
+    try {
+        var id = req.body.id;
+        var nombre = req.body.nombre;
+        var apellido1 = req.body.apellido1;
+        var apellido2 = req.body.apellido2;
+        var correo = req.body.correo;
+        var fechaNaci = req.body.fechaNaci;
+        var tipoSexo = req.body.tipoSexo;
+        var tipoIdentificacion = req.body.tipoIdentificacion;
+        var identificacion = req.body.identificacion;
+        console.log(req.body);
+
+        var result = await AdminLib.find({ identificacion: identificacion }).exec();
+
+
+
+        if (result.length > 0) {
+            if (result[0]['_id'] != id) {
+                res.json({ result: 'repetido' });
+                return false;
+            }
+        }
+        await AdminLib.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    nombre: nombre,
+                    apellido1: apellido1,
+                    apellido2: apellido2,
+                    fechaNaci: fechaNaci,
+                    tipoSexo: tipoSexo,
+                    correo: correo,
+                    tipoIdentificacion: tipoIdentificacion,
+                    identificacion: identificacion
+                },
+                $currentDate: { lastModified: true }
+            }
+        );
+        res.json({ result: 'exito' });
+
+
+
+    } catch (err) {
+
+        console.log(err);
+    }
 }

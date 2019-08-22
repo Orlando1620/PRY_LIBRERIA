@@ -70,17 +70,23 @@
 
                 <div class="total-cont">
                     <div class="total-text-value-cont">
+                        <div class="total-text"><h3>Subtotal de la orden</h3></div>
+                        
+                        <div class="total-value"><h3 id='subtotal'></h3></div>
+                        <div class="total-imp"><p id='imp'>IVA: </p></div>
+                    </div>
+
+                    <div class="total-text-value-cont">
                         <div class="total-text"><h3>Total de la orden</h3></div>
                         
                         <div class="total-value"><h2 id='total'></h2></div>
-                        <div class="total-imp"><p id='imp'>IVA: </p></div>
                     </div>
                     
                     <div class="btn-cont"><button class='submit' onclick="verificarPago()">Proceder al pago</button></div>
 
-                    <div id="alert" class="alert-carrito oculto alert-cont">
+                    <div id="alert" class="alert-carrito  alert-cont">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                        <label id="msg"></label>
+                        <label id="msg">wtf</label>
                     </div>
                     <div id="alert-success" class="alert-success-carrito alert-cont oculto">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 

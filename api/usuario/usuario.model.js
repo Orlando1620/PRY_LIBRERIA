@@ -9,6 +9,7 @@ var usuarioSchema = mongoose.Schema({
     tipo: String,
     correo: String,
     contrasena: String,
+    bloqueado: Boolean,
     changePassword: { type: Boolean, default: false}
 });
 

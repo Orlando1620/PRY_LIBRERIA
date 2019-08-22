@@ -29,7 +29,8 @@ async function login() {
             sessionStorage.setItem("tipo", user.tipo);
             sessionStorage.setItem("nombre", user.nombre);
             sessionStorage.setItem("id", user._id);
-
+            localStorage.setItem('carrito','');
+            
             switch (sessionStorage.getItem("tipo")) {
                 case "usuarioCliente":
                     if (user.changePassword) {

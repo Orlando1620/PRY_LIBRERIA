@@ -240,7 +240,8 @@
 
 .table-data{
 	text-align: left;
-	font-weight: bold;
+    font-weight: bold;
+    
 }
 
 td{
@@ -321,4 +322,9 @@ select{
 .mappadding{
     width: 60%;
     margin: 10px 20%;
+}
+
+.tdGenFav {
+    height: 100%;
+    border-bottom: 1px solid #9e9e9e;
 }

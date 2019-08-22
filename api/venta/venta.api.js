@@ -3,7 +3,22 @@ var mongoose = require('mongoose');
 
 module.exports.listar = function(req, res) {
   var sucursal = req.body.sucursal;
-  Venta.find({sucursal: sucursal}).sort({libro: 'asc'})
+  Venta.find({sucursal: sucursal}).exec()
+    .then(
+      function(result){
+        res.send(result);
+      }
+    )
+    .catch(
+      function(err){
+        console.log(err);
+      }
+    );
+}
+
+module.exports.listarTodo = function(req, res) {
+  
+  Venta.find().exec()
     .then(
       function(result){
         res.send(result);

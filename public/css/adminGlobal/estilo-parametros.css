@@ -141,6 +141,19 @@
     height: 350px;
 }
 
+.inputActualizar {
+    border: none;
+    font-size: 1rem;
+}
+
+.inputActualizando {
+    border: solid 1px;
+    font-size: 1rem;
+}
+.apellidos{
+    display: flex;
+}
+
 @media(max-width: 920px){
 
     .side-bar a{

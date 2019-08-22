@@ -698,6 +698,7 @@ async function sucursales(){
               var opc = document.createElement("option");
               var textNode = document.createTextNode(json[i]['nombreSucursal']);
               opc.appendChild(textNode);
+              opc.value = json[i]['_id'];
 
               document.getElementById("sucursales").appendChild(opc);
             }

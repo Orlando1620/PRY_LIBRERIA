@@ -438,5 +438,56 @@ module.exports.deleteLibro = function (req, res) {
       res.send(false);
     }
   });
+}
+
+
+module.exports.validarCategoriaLibros = function (req, res) {
+  var categoria = req.body.categoria;
+  Libro.find({ categoria: categoria }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 
 }
+
+module.exports.validarGeneroLibros = function (req, res) {
+  var genero = req.body.genero;
+  Libro.find({ genero: genero }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+
+}
+
+module.exports.validarAutLibros = function (req, res) {
+  var autor = req.body.autor;
+  Libro.find({ autor: autor }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+}
+

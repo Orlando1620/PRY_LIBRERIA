@@ -4,6 +4,7 @@ var Libro = require('../libro/libro.model');
 var Sucursal = require('../sucursal/sucursal.model');
 var mongoose = require('mongoose');
 
+
 module.exports.addFisico = function (req, res) {
   var nombre = req.body.nombre;
   var genero = req.body.genero;
@@ -191,6 +192,68 @@ module.exports.filtrarGenTipo = function (req, res) {
   }
 
 }
+
+
+module.exports.validarGeneroClubes = function (req, res) {
+  var genero = req.body.genero;
+  Clubes.find({ genero: genero }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+
+}
+
+module.exports.eliminarClub = async function (req, res) {
+
+  await Clubes.deleteOne(
+    { _id: req.body.id }
+  )
+  res.json({ result: "exito" });
+}
+
+module.exports.modificarClub = async function (req, res) {
+  try {
+    var id = req.body.id;
+    var nombre = req.body.nombre;
+    var genero = req.body.genero;
+    var tipo = req.body.tipo;
+
+    var result = await Clubes.find({ nombre: nombre }).exec();
+    console.log(result[0]);
+    console.log(result[0]['_id']);
+    if (result.length > 0) {
+      if (result[0]['_id'] != id) {
+        res.json({ result: 'repetido' });
+        return false;
+      }
+    }
+    console.log(genero);
+
+    await Clubes.updateOne(
+      { _id: id },
+      {
+        $set: {
+          nombre: nombre,
+          genero: genero,
+          tipo: tipo
+        },
+        $currentDate: { lastModified: true }
+      }
+    );
+    res.json({ result: 'exito' });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 
 module.exports.obtenerClub = function (req, res) {
   Clubes.findOne({ nombre: new RegExp(req.body.nombre, "i") }).then(function (club) {

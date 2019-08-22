@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/adminGlobal/estilo-parametros.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/inventario/estiloInventario.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
@@ -65,10 +65,6 @@
             </div>
             <div class="wrapper-side-bar">
                 <div class="side-bar">
-                    <div class="side-bar-icon"><i class="fas fa-user"></i></div>
-                    <div class="side-bar-option"><a href="perfil-adminGlobal.html">Mí Perfil</a></div>
-                </div>
-                <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-users"></i></div>
                     <div class="side-bar-option"><a href="listar-usuarios.html">Usuarios</a></div>
                 </div>
@@ -90,19 +86,23 @@
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
-                    <div class="side-bar-option"><a href="#">Promociones</a></div>
+                    <div class="side-bar-option"><a href="listar-promociones-adminGlobal.html">Promociones</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
                     <div class="side-bar-option"><a href="listar-clubes-adminGlobal.html">Clubes de Lectura</a></div>
                 </div>
-                <div class="side-bar-selected">
+                <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-file-alt"></i></div>
-                    <div class="side-bar-option"><a href="parametros.html">Parámetros</a></div>
+                    <div class="side-bar-option"><a href="categorias.html">Categorías</a></div>
                 </div>
                 <div class="side-bar">
+                    <div class="side-bar-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="side-bar-option"><a href="genero.html">Géneros</a></div>
+                </div>
+                <div class="side-bar-selected">
                     <div class="side-bar-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="side-bar-option"><a href="#">Reportes</a></div>
+                    <div class="side-bar-option"><a href="reportes.html">Reportes</a></div>
                 </div>
                 <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-file-alt"></i></div>
@@ -115,45 +115,56 @@
             </div>
 
             <div class="wrapper-cont">
-                <h1 class="main-title">Parametros</h1>
-            
-                <div class="wrapper-form">
-                    <div class="form-mitad">
-                        <h3>Categorias</h3>
-                        <div>
-                            <input type="text" placeholder="Nombre de categoría..." class="input" id="buscarCat" onkeyup="filtrarCategoria(event)"/>
-                        </div>
-                        <div class="cont-values">
-                            <ul id="listCategoria"></ul>
-                        </div>
-                        <input type="text" class="input" id="categoria" placeholder="Nueva categoría">
-                        <div id="alertCat" class="alertParam oculto">
-                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                            <label id="msg"></label>
-                        </div>
-                        <button class="submit" onclick="registrarCategoria(event)">Registrar</button>
-                    </div>
-                    <div class="form-mitad">
-                        <h3>Géneros</h3>
-                        <div>
-                            <input type="text" placeholder="Nombre de género..." class="input" id="buscarGen" onkeyup="filtrarGenero(event)"/>
-                        </div>
-                        <div class="cont-values">
-                            <ul id="listGenero"></ul>
-                        </div>
-                        <input type="text" class="input" id="genero" placeholder="Nuevo género">
-                        <div id="alertGen" class="alertParam oculto">
-                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                            <label id="msgGen"></label>
-                        </div>
-                        <button class="submit" onclick="registrarGenero(event)">Registrar</button>
+                <h1 class="main-title">Reportes</h1>
 
+                <div class="wrapper">
+                    <div class="titles-inv-full">
+                        <h3>Libros más vendidos</h3>
+                    </div>
+                    <div class="titles-inv">
+                        <h3>Librería</h3>
+                        <select id="librerias" class="filtro" onchange="fillSucursales()"></select>
+                    </div>
+                    <div class="titles-inv">
+                        <h3>Sucursal</h3>
+                        <select id="sucursales" class="filtro" onchange="infoVendidos()"></select>
+                    </div>
+                    
+                </div>
+
+                <div class="wrapper">
+                    <div id="alert-inv" class="alert-inv oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg-inv"></label>
+                    </div>
+                    <div id="alert-inv-del" class="alert-inv-del oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <label id="msg-inv-del"></label>
                     </div>
                 </div>
+                <div class="wrapper"> 
+                    <div class="cards-cont">
+                        <table class="lista-suc font" id="inv-cont"></table>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="titles-inv-full">
+                        <h3>Libros mejor votados</h3>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="cards-cont">
+                        <table class="lista-suc font" id="lib-cont">
+                        </table>
+                    </div>
+                </div>
+                    
+            </div>
                 
 
-            </div>
         </div>
+        
 
         <footer>
             <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
@@ -185,10 +196,7 @@
 
 
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="js/adminGlob/parametros/categoria/listarCategoria.js"></script>
-        <script src="js/adminGlob/parametros/categoria/categoriaController.js"></script>
-        <script src="js/adminGlob/parametros/genero/listarGenero.js"></script>
-        <script src="js/adminGlob/parametros/genero/generoController.js"></script>
+        <script src="js/adminGlob/reportes.js"></script>
         <script src="js/log-nav.js"></script>
         
     </body>

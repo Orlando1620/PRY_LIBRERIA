@@ -6,6 +6,25 @@ window.onload = function () {
     fillTable();
 }
 
+async function modificarIntercambio(e) {
+    var libro = e.target;
+    var id = libro.id;
+    var libroId = id.split("_");
+    var intercambio = document.getElementById(id).value;
+
+    var data = {
+        usuarioId: sessionStorage.getItem("id"),
+        libroId: libroId[0],
+        intercambio: intercambio
+    };
+    await fetch('/usuarioCliente/modLibroIntercambio', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    alert('Libro modificado');
+}
+
 async function fillTable(){
 
     var response = await fetch('/libro/listar', {

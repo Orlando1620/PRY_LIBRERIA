@@ -1,4 +1,3 @@
-// JavaScript Document
 if (sessionStorage.getItem("nombre") == null) {
     document.getElementById("btn-reg").classList.add("oculto");
 }

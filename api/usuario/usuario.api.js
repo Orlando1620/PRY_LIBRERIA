@@ -11,8 +11,7 @@ module.exports.iniciar_sesion = function (req, res) {
     if (user) {
       if (user.contrasena == req.body.contrasena) {
         res.send(user);
-      }
-      else {
+      } else {
         console.log(user + " primer else");
         res.send('NO ENCONTRO EL PASSWORD');
       }
@@ -22,6 +21,22 @@ module.exports.iniciar_sesion = function (req, res) {
       res.send('NO ENCONTRO EL EMAIL');
     }
   })
+};
+
+module.exports.perfil = function(req, res){
+    
+  Usuario.findOne({_id:req.body.id}).exec()
+  .then(
+    function(result){
+      console.log('tipo'+result);
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
 };
 
 module.exports.listarUsuario = function (req, res) {
@@ -224,6 +239,42 @@ module.exports.recuperarContrasena = async function (req, res) {
   }
 }
 
+module.exports.buscarUsuario = function (req, res) {
+
+  Usuario.findOne({ _id: req.body.id })
+    .then(
+      function (result) {
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+};
+
+module.exports.actualizarEstadoUsuario = async function (req, res) {
+  try {
+    var id = req.body.id;
+    var bloqueado = req.body.bloqueado;
+    //console.log(id);
+    //console.log(bloqueado);
+
+    await Usuario.updateOne(
+      { _id: id },
+      {
+        $set: {
+          bloqueado: bloqueado
+        },
+        $currentDate: { lastModified: true }
+      }
+    );
+    res.json({ result: 'exito' });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 
 

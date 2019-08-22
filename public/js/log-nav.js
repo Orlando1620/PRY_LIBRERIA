@@ -24,7 +24,7 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("perfil").href = "perfil-adminLib.html";
             document.getElementById("admin").classList.remove("oculto");
             document.getElementById("admin").href = "perfil-lib-admin.html";
-            document.getElementById("home").href = "perfil-adminLib.html";
+            document.getElementById("home").href = "perfil-lib-admin.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
             if(document.getElementById("nav-cart") != null){
@@ -35,7 +35,7 @@ if(sessionStorage.getItem("nombre") == null){
             document.getElementById("perfil").href = "perfil-adminGlobal.html";
             document.getElementById("admin").classList.remove("oculto");
             document.getElementById("admin").href = "listar-usuarios.html";
-            document.getElementById("home").href = "perfil-adminGlobal.html";
+            document.getElementById("home").href =  "listar-usuarios.html";
             var navElements = document.getElementsByClassName("wrapper-nav2");
             navElements[0].classList.add("oculto");
             if(document.getElementById("nav-cart") != null){

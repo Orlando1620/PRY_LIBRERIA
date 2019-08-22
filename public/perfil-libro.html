@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <link rel="stylesheet" type="text/css" href="./css/libro/estiloPerfilLibro.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
@@ -9,89 +8,114 @@
 </head>
 
 <body class="font">
-    <nav>
-        <div class="wrapper-nav1">
-            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
-            <div class="usuario-nav">
-                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
 
-                <div class="dropdown" id="dropdown">
-                    <button class="dropbtn">
-                        <label id="usrName"></label>
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" id="perfil">Perfil</a>
-                        <a href="#" id="admin" class="oculto">Administrar</a>
-                        <a href="#" id="c-r">Cerrar Sesión</a>
+        <nav>
+                <div class="wrapper-nav1">
+                    <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
+                    <div class="usuario-nav">
+                        <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+        
+                        <div class="dropdown" id="dropdown">
+                            <button class="dropbtn" >
+                                <label id="usrName"></label> 
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#" id="perfil">Perfil</a>
+                                <a href="#" id="admin" class="oculto">Administrar</a>
+                                <a href="#" id="c-r">Cerrar Sesión</a>
+                            </div>
+                        </div> 
+        
+                        <div class="wrapper-nav2">
+                            <div><a id="nav-libros">Libros</a></div>
+                            <div><a id="nav-autores">Autores</a></div>
+                            <div><a id="nav-librerias">Librerías</a></div>
+                            <div><a id="nav-club">Clubes de Lectura</a></div>
+                            
+                            
+                        </div>
+                        <div class="wrapper-nav2">
+                                <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a></div>
+                            </div>
+                    </div>
+                </div>
+        
+                
+        
+                <div class="select-nav">
+                    <select id="select-nav">
+                        <option>Más</option>
+                        <option value="1">Libros</option>
+                        <option value="2">Autores</option>
+                        <option value="3">Librerías</option>
+                        <option value="4">Clubes de Lectura</option>
+                        <option value="5">Promociones</option>
+                    </select>
+                </div>
+            </nav>
+
+        <div class="main-wrapper">
+            
+            <div class="wrapper-cont">
+                <div class="info-cont">
+                    <div class="portada-cont">
+                        <img class="portada" id="portada"/>
+                        <div id="icons" class="icons-cont">
+                            <a onclick="mostrarPopUp()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
+                            <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="libro-cont">
+                        <div class="libro-cont-mitad" id="info">
+                            <h1 class="main-title" id="titulo"></h1>
+                           
+                            <h3 id="autor">Por: </h3>
+                            <div id='calif'></div>
+                            <ul class="libro-info-list">
+                                <li id="idioma"><b>Idioma: </b></li>
+                                <li id="genero"><b>Género: </b></li>
+                                <li id="categoria"><b>Categoría: </b></li>
+                            </ul>
+                            <label><b>Descripción: </b>
+                                <p id="desc" class="justify"></p>
+                            </label>
+
+                        </div>
+                        
+                        
                     </div>
                 </div>
 
-                <div class="wrapper-nav2">
-                    <div><a id="nav-libros">Libros</a></div>
-                    <div><a id="nav-autores">Autores</a></div>
-                    <div><a id="nav-librerias">Librerías</a></div>
-                    <div><a id="nav-club">Clubes de Lectura</a></div>
-
-
-                </div>
-                <div class="wrapper-nav2">
-                    <div><a id="nav-cart"><i class="fas fa-shopping-cart"></i> Carrito</a></div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="select-nav">
-            <select id="select-nav">
-                <option>Más</option>
-                <option value="1">Libros</option>
-                <option value="2">Autores</option>
-                <option value="3">Librerías</option>
-                <option value="4">Clubes de Lectura</option>
-                <option value="5">Promociones</option>
-            </select>
-        </div>
-    </nav>
-
-    <div class="main-wrapper">
-
-        <div class="wrapper-cont">
-            <div class="portada-cont">
-                <img class="portada" id="portada" />
-
-            </div>
-            <div class="libro-cont">
-                <div class="libro-cont-mitad" id="info">
-                    <h1 class="main-title" id="titulo"></h1>
-                    <div id="icons" class="form-mitad">
-                        <a onclick="mostrarPopUp()"><i id="trash" class="fas fa-trash-alt fa-lg"></i></a>
-                        <a onclick="modificar()"><i id="pencil" class="fas fa-pencil-alt fa-lg"></i></a>
-                    </div>
-                    <h3 id="autor">Por: </h3>
-                    <div id='calif'></div>
-                    <ul class="libro-info-list">
-                        <li id="idioma"><b>Idioma: </b></li>
-                        <li id="genero"><b>Género: </b></li>
-                        <li id="categoria"><b>Categoría: </b></li>
-                    </ul>
-                    <label id="desc"><b>Descripción: </b><br /></label>
-
-                </div>
-
-                <div class="libro-cont-mitad" id="opciones-cont">
+                <div class="opciones-cont" id="opciones-cont">
                     <div class="filtros">
-                        <select id="select-opciones" class="selectFiltrar">
-                            <option>Comprar</option>
-                            <option>Intercambiar</option>
+                        <select id="select-opciones" class="selectFiltrar oculto" onchange="opciones()">
+                            <option value="1">Comprar</option>
+                            <option value="2">Intercambiar</option>
                         </select>
                     </div>
                     <div class="opciones">
-                        <table class="lista-suc font" id="opciones"></table>
+                        <table class="lista-suc font" id="opciones">
+                            <tr id="mainTr" class="table-titles">
+                                <td colspan="1"><a>Sucursal</a></td>
+                                <td colspan="1"><a>Precio</a></td>
+                                <td colspan="1"><a>Descuento</a></td>
+                                <td colspan="1"></td>
+                            </tr>
+                        </table>
+                        <table class="lista-suc font oculto" id="intercambios">
+                            <tr id="mainTr" class="table-titles">
+                                <td colspan="1"><a>Usuario</a></td>
+                                <td colspan="1"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
+
+            
+                
+        </div>
 
             <div id="alert" class="alert oculto">
                 <p id="msg" class="pAlert">No se puede eliminar el libro.</p>
@@ -107,13 +131,9 @@
                 </table>
             </div>
 
-            <div id="alert" class="alert oculto">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <label id="msg"></label>
-            </div>
             <div class="pop-up-cont oculto" id="pop-up">
                 <div class="pop-up">
-                    <p id="msg-pop">¿Desea eliminar este libro de su inventario?</p>
+                    <p id="msg-pop">¿Desea eliminar este libro?</p>
                     <div class="btn-cont">
                         <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
                         <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
@@ -122,18 +142,50 @@
                 
             </div>
 
-            <div id="alert" class="alert oculto">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <label id="msg"></label>
-            </div>
-
-            <div class="pop-up-cont oculto" id="pop-up">
+            <div class="pop-up-cont oculto" id="pop-up-cart">
                 <div class="pop-up">
-                    <p id="msg-pop"></p>
+                    <p id="msg-pop-cart"></p>
                     <div class="btn-cont">
                         <button class="pop-up-btn" onclick="seguir()" id="aceptar">Seguir comprando</button>
                         <button class="pop-up-btn" onclick="carrito()">Ver carrito</button>
                     </div>
+                </div>
+            </div>
+
+            <div class="pop-up-cont oculto" id="pop-up-intercambio">
+                <div class="pop-up">
+                    <form id='form'>
+                        <div class="text-cont">
+                            <h3>Solicitud de intercambio</h3>
+                        </div>
+                        <div class="text-cont">
+                            <label>Sucursal</label>
+                            <select class="selectFiltrar" id='sucursales'>
+                                <option>Seleccione una sucursal</option>
+                            </select>
+                        </div>
+                        <div class="text-cont">
+                            <label>Fecha: </label>
+                            <input type="date" class="input" id='fecha-intercambio' required>
+                        </div>
+                        <div class="text-cont">
+                            <label>Hora: </label>
+                            <input type="time" class="input" id='hora-intercambio' required>
+                        </div>
+                        <div class="btn-cont">
+                            <button class="pop-up-btn" onclick="aceptarIntercambio(event)" id="aceptar">Enviar</button>
+                            <button class="pop-up-btn" onclick="cancelarIntercambio()">Cancelar</button>
+                        </div>
+                    </form>
+                    <div class="text-cont">
+                        <div id="alert-intercambio" class="alert-intercambio oculto">
+                            <p id="msg-intercambio" class="pAlert"></p>
+                        </div>
+                        <div id="alert-intercambio-success" class="alert-intercambio-success oculto">
+                            <p id="msg-intercambio-success" class="pAlert"></p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -173,6 +225,7 @@
 
     <script src="js/libro/Controller-Eliminar.js"></script>
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+    <script src="js/comun.js"></script>
     <script src="js/libro/perfil-libro.js"></script>
     <script src="js/libro/libroServicios.js"></script>
     <script src="js/log-nav.js"></script>
