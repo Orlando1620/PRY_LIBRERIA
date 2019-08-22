@@ -3,7 +3,15 @@ var Sucursal = require('../sucursal/sucursal.model');
 var mongoose = require('mongoose');
 
 module.exports.listarLibrerias = function (req, res) {
-  Libreria.find().sort({ nombreComercial: 'asc' }).then(
+  Libreria.find({estado: 1}).sort({ nombreComercial: 'asc' }).then(
+    function (libreria) {
+      res.send(libreria);
+    }
+  )
+};
+
+module.exports.listarLibreriasSolicitudRegistro = function (req, res) {
+  Libreria.find({estado: 0}).sort({ nombreComercial: 'asc' }).then(
     function (libreria) {
       res.send(libreria);
     }

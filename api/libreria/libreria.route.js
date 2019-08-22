@@ -33,4 +33,8 @@ router.post('/eliminar', function(req, res){
 router.post('/obtener', function(req, res){
     sucursalesApi.listarSucursal(req, res);
 })
+
+router.post('/listarSolicitudes', function(req, res){
+    libreriaApi.listarLibreriasSolicitudRegistro(req, res);
+})
 module.exports = router;
