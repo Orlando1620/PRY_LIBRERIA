@@ -17,6 +17,8 @@ module.exports.registrar_Admin = function (req, res) {
                 changePassword: false,
                 bloqueado: false,
                 tipo: 'AdminLib',
+                estado: 0,
+                eliminado: false,
                 fechaNaci: req.body.fechaNaci,
                 tipoIdentificacion: req.body.tipoIdentificacion,
                 identificacion: req.body.numberIdentificacion,
