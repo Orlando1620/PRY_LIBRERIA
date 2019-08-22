@@ -8,9 +8,11 @@ var libros = [];
 var autores = [];
 var ventas = [];
 var sucursales = [];
+var promociones = [];
 
 window.onload = function () {
     cargarInfo();
+    promos();
 }
 
 async function cargarInfo(){
@@ -82,7 +84,7 @@ async function fillMasVendidos(json){
 
     json = sumar;
 
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<7;i++){
         var libro;
         for(var j=0;j<libros.length;j++){
             if(libros[j]['_id'] == json[i]['libro']){
@@ -200,7 +202,7 @@ function fillMejorVotados(json){
         
     }
 
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<10;i++){
         var libro;
         for(var j=0;j<libros.length;j++){
             if(libros[j]['_id'] == json[i]['libro']){
@@ -212,6 +214,29 @@ function fillMejorVotados(json){
         document.getElementById('vot'+index).setAttribute('src',libro['urlImg']);
         document.getElementById('avot'+index).addEventListener('click',perfil);
         document.getElementById('vot'+index).id = libro['_id'];
+    }
+}
+
+async function promos(){
+    var response = await fetch('/promocion/listarTodo', {
+        method: 'GET',
+        headers:{'Content-Type': 'application/json'}
+    })
+    promociones = await response.json();
+
+    for(var i=0;i<promociones.length;i++){
+        var div = document.createElement('div');
+        if(i == 0){
+            div.classList.add('active');
+        }
+        div.classList.add('carousel-item');
+        var img = document.createElement('img');
+        img.src = promociones[i]['imgUrl'];
+        img.classList.add('d-block');
+        img.classList.add('w-100');
+        img.alt = '...';
+        div.appendChild(img);
+        document.getElementById('car').appendChild(div);
     }
 }
 
