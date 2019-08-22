@@ -108,3 +108,71 @@ async function checkMetPago(){
 }
 
 checkMetPago();
+
+async function modificarPago(){
+
+    try{
+
+    	var data = {
+
+  	nombreTarjeta: document.getElementById('ccName').value,
+  	numTarjeta: document.getElementById('ccNumber').value,
+  	fechaVenc: document.getElementById('ccExpDate').value,
+  	codSeg: document.getElementById('ccCode').value,
+  	idUsuario: sessionStorage.getItem("id")
+  	};
+  	var response  = await fetch('/pago/modificar', {
+  		method: 'POST',
+  		body: JSON.stringify(data),
+  		headers:{'Content-Type': 'application/json'}
+  	})
+
+  	document.getElementById("alert").classList.add("oculto");
+  	registrarBitacora(sessionStorage.getItem("correo"),'modificación de método de pago: '+document.getElementById("ccNumber").value);
+  	document.getElementById("alert-success").classList.remove("oculto");
+  	document.getElementById("msg-success").innerHTML = "Método de pago registrado";
+  	setTimeout(function () {
+  		window.location.href = "registrar-metPago.html";
+  	}, 2000);
+
+  } catch(err){
+      console.log('Ocurrió un error con la ejecución', err);
+  }
+
+}
+
+function modPago(){
+
+  var ccNumber = document.getElementById('ccNumber').value;
+	var ccCode = document.getElementById("ccCode").value;
+	var expMonth = document.getElementById("ccExpDate").value;
+	var expYear = document.getElementById("ccExpDate").value;
+	var expMonthSub = expMonth.substring(0, 2);
+	var expYearSub = expYear.substring(3, 5);
+	var date = new Date();
+	var currentMonth = date.getMonth();
+	var currentYear = date.getFullYear() %100;
+
+
+    if (ccNumber.length < 15 || ccNumber.length > 16) {
+		document.getElementById("alert").classList.remove("oculto");
+		//document.getElementById("ccNumber").classList.add("border-error");
+		document.getElementById("msg").innerHTML = "El número de tarjeta debe de contener 15 o 16 dígitos.";
+		return false;
+	}
+
+	if (expMonthSub < currentMonth && expYearSub < currentYear || expMonthSub > currentMonth && expYearSub < currentYear || expMonthSub > 12) {
+		document.getElementById("alert").classList.remove("oculto");
+		//document.getElementById("ccExpDate").classList.add("border-error");
+		document.getElementById("msg").innerHTML = "Fecha de expiración inválida.";
+		return false;
+	}
+
+	if (ccCode.length > 4 || ccCode.length < 3){
+		document.getElementById("alert").classList.remove("oculto");
+		//document.getElementById("ccCode").classList.add("border-error");
+		document.getElementById("msg").innerHTML = "Código CVV inválido.";
+		return false;
+	}
+	modificarPago();
+}
