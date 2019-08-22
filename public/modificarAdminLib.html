@@ -1,0 +1,182 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/registrarAdmin_Lib/regAdmin_Lib.css">
+    <link rel="stylesheet" type="text/css" href="css/estiloNav.css" />
+    <link rel="stylesheet" type="text/css" href="css/registrarAdmin_Lib/estiloCont.css" />
+    <link rel="stylesheet" type="text/css" href="css/registrarAdmin_Lib/estiloFooter.css" />
+    <link rel="stylesheet" type="text/css" href="css/registrarAdmin_Lib/estiloAlerts.css">
+    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body class="font">
+    <nav>
+        <div class="wrapper-nav1">
+            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
+            <div class="usuario-nav">
+                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                <div class="dropdown" id="dropdown">
+                    <button class="dropbtn">
+                        <label id="usrName"></label>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="perfil">Perfil</a>
+                        <a href="#" id="c-r">Cerrar Sesión</a>
+                    </div>
+                </div>
+
+                <div class="wrapper-nav2">
+                    <div><a id="nav-libros">Libros</a></div>
+                    <div><a id="nav-autores">Autores</a></div>
+                    <div><a id="nav-librerias">Librerías</a></div>
+                    <div><a id="nav-club">Clubes de Lectura</a></div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="select-nav">
+            <select id="select-nav">
+                <option>Más</option>
+                <option value="1">Libros</option>
+                <option value="2">Autores</option>
+                <option value="3">Librerías</option>
+                <option value="4">Clubes de Lectura</option>
+                <option value="5">Promociones</option>
+            </select>
+        </div>
+    </nav>
+
+    <form class="wrapper-form" id="form" name="registroLib">
+        <div class="formAli" id="space_Regist_Admin">
+            <h1>Administrador de Librería</h1>
+            <div id="contenedorAdmin">
+
+                <div class="form-mitad">
+                    <h3>Nombre</h3>
+                    <input class="input" type="text" id="nomAdmin" required>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Primer Apellido</h3>
+                    <input class="input" type="text" id="apellido1" required>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Segundo Apellido</h3>
+                    <input class="input" type="text" id="apellido2" required>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Correo electrónico</h3>
+                    <input class="input" type="emal" id="emailAdmin" readonly>
+                </div>
+
+                <div class="form-full">
+                    <h3>Fecha de nacimiento</h3>
+                    <input class="input" type="date" id="fechaNaci_Admin" required>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Tipo de Identificación</h3>
+                    <select class="select-form" id="tipo_identificacion">
+                        <option>Seleccione un tipo de identificación</option>
+                        <option value="cedula">Cédula</option>
+                        <option value="pasaporte">DIMEX</option>
+                        <option value="pasaporte">Pasaporte</option>
+                    </select>
+                </div>
+
+                <div class="form-mitad">
+                    <h3>Número de Identificación</h3>
+                    <input class="input" type="text" id="number_identificacion" required>
+                </div>
+
+                <div class="form-full">
+                    <h3>Género</h3>
+                    <select id="sexo" class="select-form form-control">
+                        <option>Seleccione un género</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div id="boton">
+        <input type="button" class="submit font" id="botonEnviar" value="Guardar"
+            onclick="modificarUsuarioAdminLibBD()">
+    </div>
+    <div id="alert" class="alert oculto">
+        <p id="msg" class="pAlert">Complete los espacios requeridos</p>
+    </div>
+
+    <div id="alert_correo" class="alert oculto">
+        <p id="msg_cred" class="pAlert"></p>Ya hay un administrador con el mismo correo.</p>
+    </div>
+
+    <div id="alert_mapa" class="alert oculto">
+        <p id="msg_cred" class="pAlert"></p>Debe indicar su ubicación en el mapa.</p>
+    </div>
+
+    <div id="alert_correo_form" class="alert oculto">
+        <p id="msg_cred" class="pAlert"></p>El formato del correo no es válido.</p>
+    </div>
+
+    <div id="alert_tel" class="alert oculto">
+        <p id="msg_cred" class="pAlert"></p>El formato del teléfono no es válido.</p>
+    </div>
+
+    <div id="alert_fecha" class="alert oculto">
+        <p id="msg_cred" class="pAlert"></p>Fecha actual o en el futuro no es válida.</p>
+    </div>
+
+    <footer>
+        <div class="footer-cont"><a href="#"><img src="img/logo.png" class="logo" /></a></div>
+        <div class="footer-cont">
+            <h4></h4>
+            <a href="https://www.barnesandnoble.com/" target="_blank"><img src="img/Barnes_&_Noble_logo.png"
+                    class="logo" /></a><br>
+            <a href="https://www.booksforkids.org/" target="_blank"><img src="img/bfk-logo-clear.png"
+                    class="logo" /></a><br>
+        </div>
+        <div class="footer-cont">
+            <h4>Compañia</h4>
+            <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+            <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+            <i class="fab fa-instagram fa-lg"></i>
+            <i class="fab fa-facebook-square fa-lg"></i>
+            <i class="fab fa-twitter-square fa-lg"></i>
+        </div>
+
+        <div class="footer-cont">
+            <h4>Soporte</h4>
+            <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+            <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+        </div>
+
+        <div class="footer-cont">
+
+        </div>
+
+    </footer>
+    <script src="js/usuario/listarUsuario/usuarioModificarController.js"></script>
+    <script src="js/comun.js"></script>
+
+
+    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+
+
+
+</body>
+
+</html>

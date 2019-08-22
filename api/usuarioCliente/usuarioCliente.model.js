@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var usuarioSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId, 
+  _id: mongoose.Schema.Types.ObjectId,
   tipo: String,
   fechaRegistro: Date,
   nombre: String,
@@ -10,8 +10,8 @@ var usuarioSchema = mongoose.Schema({
   correo: String,
   contrasena: String,
   tipoIdentificacion: String,
-  identificacion:String,
-  fechaNacimiento: Date,
+  identificacion: String,
+  fechaNacimiento: String,
   sexo: String,
   provincia: String,
   canton: String,
@@ -24,8 +24,7 @@ var usuarioSchema = mongoose.Schema({
   clubes: [Array],
   libros: [Array],
   librosFav: [Array],
-  urlImg: String,
   bloqueado: Boolean
 });
 
-module.exports = mongoose.model('UsuarioCliente', usuarioSchema,'Usuarios'); 
+module.exports = mongoose.model('UsuarioCliente', usuarioSchema, 'Usuarios'); 

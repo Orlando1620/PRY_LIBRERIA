@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var AdminGlobal = require('./adminGlobal.model');
 var nodemailer = require('nodemailer');
 
-module.exports.registrarUsuario = function(req, res) {
+module.exports.registrarUsuario = function (req, res) {
   var tipoUsuario = req.body.tipoUsuario;
   var fechaRegistro = req.body.fechaRegistro;
   var nombre = req.body.nombre;
@@ -13,63 +13,63 @@ module.exports.registrarUsuario = function(req, res) {
   var tipoIdentificacion = req.body.tipoIdentificacion;
   var identificacion = req.body.identificacion;
 
-  AdminGlobal.find({correo: correo}).exec()
-  .then(
-    function(result){
-      if(result.length == 0){
-        AdminGlobal.find({identificacion: identificacion})
-        .then(
-          function(result){
-            if(result.length == 0){
-      
-                var nuevoAdminGlobal = new AdminGlobal({
-                  _id: new mongoose.Types.ObjectId(),
-                  tipo: tipoUsuario,
-                  fechaRegistro: fechaRegistro,
-                  nombre: nombre,
-                  apellido1: primerApellido,
-                  apellido2: segundoApellido,
-                  correo: correo,
-                  contrasena: contrasena,
-                  tipoIdentificacion: tipoIdentificacion,
-                  identificacion: identificacion
-                });
-                  
-                
-                nuevoAdminGlobal.save()
-                .then(
-                  function(result){
-                    console.log(result); 
-                    res.json({result:"exito"});
-                  }
-                )
-                .catch(
-                  function(err){
-                    console.log(err);
-                  }
-                );
-            } else {
-              res.json({result:"idRepetido"});
-            }
-        })
-        .catch(function (err) {
-          console.log('error');
-          console.log("** File Upload (Promise)");
-          if (err) { console.warn(err); }
-        });
-      } else {
-        res.json({result:"correoRepetido"});
+  AdminGlobal.find({ correo: correo }).exec()
+    .then(
+      function (result) {
+        if (result.length == 0) {
+          AdminGlobal.find({ identificacion: identificacion })
+            .then(
+              function (result) {
+                if (result.length == 0) {
+
+                  var nuevoAdminGlobal = new AdminGlobal({
+                    _id: new mongoose.Types.ObjectId(),
+                    tipo: tipoUsuario,
+                    fechaRegistro: fechaRegistro,
+                    nombre: nombre,
+                    apellido1: primerApellido,
+                    apellido2: segundoApellido,
+                    correo: correo,
+                    contrasena: contrasena,
+                    tipoIdentificacion: tipoIdentificacion,
+                    identificacion: identificacion
+                  });
+
+
+                  nuevoAdminGlobal.save()
+                    .then(
+                      function (result) {
+                        console.log(result);
+                        res.json({ result: "exito" });
+                      }
+                    )
+                    .catch(
+                      function (err) {
+                        console.log(err);
+                      }
+                    );
+                } else {
+                  res.json({ result: "idRepetido" });
+                }
+              })
+            .catch(function (err) {
+              console.log('error');
+              console.log("** File Upload (Promise)");
+              if (err) { console.warn(err); }
+            });
+        } else {
+          res.json({ result: "correoRepetido" });
+        }
       }
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 }
 
-module.exports.enviarContrasena = function(req,res){
+module.exports.enviarContrasena = function (req, res) {
   const output = `
   <html>
   <head>
@@ -128,11 +128,11 @@ module.exports.enviarContrasena = function(req,res){
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-           user: 'servicio.leemas@gmail.com',
-           pass: '123queso!'
-       }
-   });
-  
+      user: 'servicio.leemas@gmail.com',
+      pass: '123queso!'
+    }
+  });
+
   const mailOptions = {
     from: 'servicio.leemas@gmail.com', // sender address
     to: req.body.correo, // list of receivers
@@ -141,44 +141,84 @@ module.exports.enviarContrasena = function(req,res){
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
-    if(err)
+    if (err)
       console.log(err)
     else
       console.log(info);
   });
 }
 
-module.exports.checkCorreo = function(req, res) {
+module.exports.checkCorreo = function (req, res) {
   var correo = req.body.correo;
 
-  Usuario.find({correo: correo}).exec()
-  .then(
-    function(result){
-      //console.log(result);
-      res.json(result);
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
+  Usuario.find({ correo: correo }).exec()
+    .then(
+      function (result) {
+        //console.log(result);
+        res.json(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 }
 
-module.exports.buscarAdminGlobal = function(req, res) {
+module.exports.buscarAdminGlobal = function (req, res) {
   var id = req.body.id;
-  AdminGlobal.findOne({_id:id}).exec()
-  .then(
-    function(result){
-      console.log(result);
-      res.send(result);
+  AdminGlobal.findOne({ _id: id }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
+}
+
+module.exports.modificarUsuarioAdminGlobal = async function (req, res) {
+  try {
+    var id = req.body.id;
+    var nombre = req.body.nombre;
+    var apellido1 = req.body.apellido1;
+    var apellido2 = req.body.apellido2;
+    var correo = req.body.correo;
+    var tipoIdentificacion = req.body.tipoIdentificacion;
+    var identificacion = req.body.identificacion;
+
+    console.log(identificacion);
+
+    var result = await AdminGlobal.find({ identificacion: identificacion }).exec();
+    //var result = await AdminGlobal.find({ correo: correo }).exec();
+
+    if (result.length > 1) {
+      res.json({ result: 'repetido' });
+    } else {
+      await AdminGlobal.updateOne(
+        { _id: id },
+        {
+          $set: {
+            nombre: nombre,
+            apellido1: apellido1,
+            apellido2: apellido2,
+            tipoIdentificacion: tipoIdentificacion,
+            identificacion: identificacion
+          },
+          $currentDate: { lastModified: true }
+        }
+      );
+      res.json({ result: 'exito' });
     }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
+
+
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 

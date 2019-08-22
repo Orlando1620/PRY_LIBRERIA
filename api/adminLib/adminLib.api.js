@@ -22,7 +22,7 @@ module.exports.registrar_Admin = function (req, res) {
                 tipoSexo: req.body.tipoSexo,
 
             });
-        
+
             let nuevaLib = new Libreria({
                 nombre: req.body.nombre,
                 nombreComercial: req.body.nombreComercial,
@@ -36,7 +36,7 @@ module.exports.registrar_Admin = function (req, res) {
                 direccion: req.body.direccion,
                 telefono: req.body.telefono
             });
-         
+
             if (nuevaLib.latitud == 0 && nuevaLib.longitud == 0) {
                 res.json({ codigo: 'mapaNoSelect' });
 
@@ -51,9 +51,9 @@ module.exports.registrar_Admin = function (req, res) {
 
                         nuevaLib.save(function (error, response) {
                             if (error) {
-                                res.json({codigo:'errorLib'});
+                                res.json({ codigo: 'errorLib' });
                             } else {
-                                res.json({codigo: 'exitoso'});
+                                res.json({ codigo: 'exitoso' });
                             }
                         });
                         // res.json({ success: true, msg: 'El producto ' });
@@ -69,7 +69,7 @@ module.exports.registrar_Admin = function (req, res) {
     })
 };
 
-module.exports.enviarContrasena = function(req,res){
+module.exports.enviarContrasena = function (req, res) {
     const output = `
     <html>
     <head>
@@ -124,29 +124,30 @@ module.exports.enviarContrasena = function(req,res){
     </body>
   </html>
     `
-  
+
     var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-             user: 'servicio.leemas@gmail.com',
-             pass: '123queso!'
-         }
-     });
-    
+        service: 'gmail',
+        auth: {
+            user: 'servicio.leemas@gmail.com',
+            pass: '123queso!'
+        }
+    });
+
     const mailOptions = {
-      from: 'servicio.leemas@gmail.com', // sender address
-      to: req.body.correo, // list of receivers
-      subject: 'Bienvenido a Leer+', // Subject line
-      html: output// plain text body
+        from: 'servicio.leemas@gmail.com', // sender address
+        to: req.body.correo, // list of receivers
+        subject: 'Bienvenido a Leer+', // Subject line
+        html: output// plain text body
     };
-  
+
     transporter.sendMail(mailOptions, function (err, info) {
-      if(err)
-        console.log(err)
-      else
-        console.log(info);
+        if (err)
+            console.log(err)
+        else
+            console.log(info);
     });
 }
+
 
 module.exports.perfil = function(req, res){
     var id = req.body.id;
@@ -158,7 +159,52 @@ module.exports.perfil = function(req, res){
     )
     .catch(
       function(err){
+
+module.exports.modificarUsuarioAdminLib = async function (req, res) {
+    try {
+        var id = req.body.id;
+        var nombre = req.body.nombre;
+        var apellido1 = req.body.apellido1;
+        var apellido2 = req.body.apellido2;
+        var correo = req.body.correo;
+        var fechaNaci = req.body.fechaNaci;
+        var tipoSexo = req.body.tipoSexo;
+        var tipoIdentificacion = req.body.tipoIdentificacion;
+        var identificacion = req.body.identificacion;
+        console.log(req.body);
+
+        var result = await AdminLib.find({ identificacion: identificacion }).exec();
+
+
+
+        if (result.length > 0) {
+            if (result[0]['_id'] != id) {
+                res.json({ result: 'repetido' });
+                return false;
+            }
+        }
+        await AdminLib.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    nombre: nombre,
+                    apellido1: apellido1,
+                    apellido2: apellido2,
+                    fechaNaci: fechaNaci,
+                    tipoSexo: tipoSexo,
+                    correo: correo,
+                    tipoIdentificacion: tipoIdentificacion,
+                    identificacion: identificacion
+                },
+                $currentDate: { lastModified: true }
+            }
+        );
+        res.json({ result: 'exito' });
+
+
+
+    } catch (err) {
+
         console.log(err);
-      }
-    );
+    }
 }

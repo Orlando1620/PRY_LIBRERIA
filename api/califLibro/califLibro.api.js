@@ -47,6 +47,7 @@ module.exports.listar = function(req, res) {
   );
 }
 
+
 module.exports.listarTodo = function(req, res) {
   Calif.find().exec()
   .then(

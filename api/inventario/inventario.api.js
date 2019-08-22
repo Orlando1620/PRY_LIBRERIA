@@ -1,6 +1,7 @@
 var Inventario = require('./inventario.model');
 var mongoose = require('mongoose');
 
+
 module.exports.listarInventario = function(req, res) {
   var sucursal = req.body.sucursal;
   Inventario.find({sucursal: sucursal}).sort({libro: 'asc'})

@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var usuarioApi = require('./usuario.api');
 
-router.route('/iniciar_sesion').post(function(req , res){
-    usuarioApi.iniciar_sesion(req , res);
+router.route('/iniciar_sesion').post(function (req, res) {
+    usuarioApi.iniciar_sesion(req, res);
 });
 
 router.post('/perfil', function (req, res) {
@@ -26,6 +26,12 @@ router.post('/recuperarContrasena', function (req, res) {
     usuarioApi.recuperarContrasena(req, res);
 });
 
+router.post('/buscarUsuario', function (req, res) {
+    usuarioApi.buscarUsuario(req, res);
+});
 
+router.post('/actualizarEstadoUsuario', function (req, res) {
+    usuarioApi.actualizarEstadoUsuario(req, res);
+});
 
 module.exports = router;

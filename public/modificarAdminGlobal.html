@@ -1,12 +1,12 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="./css/adminGlobal/estilo-perfil-adminGlobal.css" />
+    <link rel="stylesheet" type="text/css" href="./css/registroUC/estilo-registrarUC.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
-    <link rel="stylesheet" type="text/css" href="./css/adminGlobal/estilo-parametros.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
     <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8">
+    <title>Registrar Administrador Global</title>
 </head>
 
 <body class="font">
@@ -55,42 +55,51 @@
 
     <div class="main-wrapper">
 
-        <div class="wrapper-cont">
-            <h1 class="main-title">Mi perfil</h1>
+        <form id="form" class="wrapper-form">
+            <div class="form-full">
+                <h3>Nombre</h3>
+            </div>
+            <div class="form-full"><input type="text" name="Nombre" class="input" id="nombre" required></div>
+            <div class="form-mitad">
+                <h3>Primer Apellido</h3>
+                <input type="text" name="primer Apellido" class="input" id="primerApellido" required>
+            </div>
 
-            <table>
-                <tr>
-                    <td class="tdmenu">Nombre</td>
-                    <td class="table-data"><input type="text" id="nombre" readonly></td>
-                </tr>
-                <tr>
-                    <td class="tdmenu">Apellidos</td>
-                    <td class="table-data apellidos">
-                        <input type="text" id="primerApellido" readonly>
-                        <input type="text" id="segundoApellido" readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdmenu">Identificación</td>
-                    <td class="table-data"><input type="text" id="identificacion" readonly></td>
-                </tr>
-                <tr>
-                    <td class="tdmenu">Correo electrónico</td>
-                    <td class="table-data"><input type="email" id="correo" readonly></td>
-                </tr>
+            <div class="form-mitad">
+                <h3>Segundo Apellido</h3>
+                <input type="text" name="segundo Apellido" class="input" id="segundoApellido" required>
+            </div>
 
-            </table>
-            <input id="tipoIdentificacion" hidden>
+            <div class="form-mitad">
+                <h3>Correo Electrónico</h3>
+                <input type="text" name="correo electronico" class="input" id="correo" readonly>
+            </div>
 
-            <div class="form-full"><input type="button" class="submit" onclick="mostrarModificar(event)"
-                    value="Modificar" id="guardarPerfilAG"></input></div>
+            <div class="form-mitad">
+                <h3>Tipo de Identificación</h3>
+                <select id="tipoIdentificacion1" class="select-form">
+                    <option value="cedula">Cédula</option>
+                    <option value="pasaporte">Pasaporte</option>
+                    <option value="dimex">DIMEX</option>
+                </select>
+            </div>
 
+            <div class="form-mitad">
+                <h3>Número de Identificación</h3>
+                <input name="Identificación" type="text" class="input" id="identificacion1" required>
+            </div>
+            <div class="form-full"><input type="button" class="submit" onclick="modificarUsuarioAdminGlobalBD(event)"
+                    value="Guardar"></input></div>
 
-
-
-
+        </form>
+        <!--Alert si no se cumple una validacion en el form-->
+        <div id="alert" class="alert oculto">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <label id="msg"></label>
         </div>
     </div>
+
+
 
     <footer>
         <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
@@ -122,11 +131,10 @@
 
     </footer>
 
-
-    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-    <script src="js/adminGlob/perfil-adminGlobal.js"></script>
-
+    <script src="js/comun.js"></script>
+    <script src="js/usuario/listarUsuario/usuarioModificarController.js"></script>
     <script src="js/log-nav.js"></script>
+    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
 
 </body>
 

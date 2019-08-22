@@ -8,8 +8,8 @@ var nodemailer = require('nodemailer');
 var multer = require('multer');
 const storage = multer.diskStorage({
   destination: './public/uploads',
-  filename: function(req,file,cb){
-    cb(null,file.originalname);
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
   }
 });
 const upload = multer({
@@ -20,7 +20,7 @@ const upload = multer({
  * Upload de multer
  */
 module.exports.localUploadImg = function (req, res) {
-  upload(req, res, function(err){
+  upload(req, res, function (err) {
     console.log(req.file);
     res.send(req.file);
   })
@@ -30,21 +30,21 @@ module.exports.localUploadImg = function (req, res) {
  * Sube la imagen a cloudinary
  * @returns informacion de la imagen subida a cloudinary
  */
-module.exports.uploadImg = function(req,res){
+module.exports.uploadImg = function (req, res) {
   var path = req.body.path;
   cloudinary.uploader.upload(path, { tags: 'basic_sample' })
-  .then(function (image) {
-    console.log(image);
-    res.send(image);
-  })
-  .catch(function (err) {
-    console.log('error');
-    console.log("** File Upload (Promise)");
-    if (err) { console.warn(err); }
-  });
+    .then(function (image) {
+      console.log(image);
+      res.send(image);
+    })
+    .catch(function (err) {
+      console.log('error');
+      console.log("** File Upload (Promise)");
+      if (err) { console.warn(err); }
+    });
 }
 
-module.exports.registrarUsuario = function(req, res) {
+module.exports.registrarUsuario = function (req, res) {
   var tipoUsuario = req.body.tipoUsuario;
   var fechaRegistro = req.body.fechaRegistro;
   var nombre = req.body.nombre;
@@ -56,7 +56,7 @@ module.exports.registrarUsuario = function(req, res) {
   var identificacion = req.body.identificacion;
   var fechaNacimiento = req.body.fechaNacimiento;
   var sexo = req.body.sexo;
-  var provincia= req.body.provincia;
+  var provincia = req.body.provincia;
   var canton = req.body.canton;
   var distrito = req.body.distrito;
   var direccionExacta = req.body.direccionExacta;
@@ -68,84 +68,84 @@ module.exports.registrarUsuario = function(req, res) {
   var librosFav = req.body.librosFav;
   var path = req.body.path;
 
-  Usuario.find({correo: correo}).exec()
-  .then(
-    function(result){
-      if(result.length == 0){
-        Usuario.find({identificacion: identificacion})
-        .then(
-          function(result){
-            if(result.length == 0){
-              cloudinary.uploader.upload(path, { tags: 'basic_sample' })
-              .then(function (image) {
-                console.log(image);
-                fs.unlinkSync(path);
-      
-                var nuevoUsuario = new Usuario({
-                  _id: new mongoose.Types.ObjectId(),
-                  tipo: tipoUsuario,
-                  fechaRegistro: fechaRegistro,
-                  nombre: nombre,
-                  apellido1: primerApellido,
-                  apellido2: segundoApellido,
-                  correo: correo,
-                  contrasena: contrasena,
-                  tipoIdentificacion: tipoIdentificacion,
-                  identificacion: identificacion,
-                  fechaNacimiento: fechaNacimiento,
-                  sexo: sexo,
-                  provincia: provincia,
-                  canton: canton,
-                  distrito: distrito,
-                  direccionExacta: direccionExacta,
-                  latitud: latitud,
-                  longitud: longitud,
-                  imgUrl: image['url'],
-                  generosFav: generosFav,
-                  clubes: clubes,
-                  libros: libros,
-                  librosFav: librosFav,
-                  bloqueado: false
-                });
-                  
-                
-                nuevoUsuario.save()
-                .then(
-                  function(result){
-                    console.log(result); 
-                    res.json({result:"exito"});
-                  }
-                )
-                .catch(
-                  function(err){
-                    console.log(err);
-                  }
-                );
-            }
-          )
-            } else {
-              res.json({result:"idRepetido"});
-            }
-        })
-        .catch(function (err) {
-          console.log('error');
-          console.log("** File Upload (Promise)");
-          if (err) { console.warn(err); }
-        });
-      } else {
-        res.json({result:"correoRepetido"});
+  Usuario.find({ correo: correo }).exec()
+    .then(
+      function (result) {
+        if (result.length == 0) {
+          Usuario.find({ identificacion: identificacion })
+            .then(
+              function (result) {
+                if (result.length == 0) {
+                  cloudinary.uploader.upload(path, { tags: 'basic_sample' })
+                    .then(function (image) {
+                      console.log(image);
+                      fs.unlinkSync(path);
+
+                      var nuevoUsuario = new Usuario({
+                        _id: new mongoose.Types.ObjectId(),
+                        tipo: tipoUsuario,
+                        fechaRegistro: fechaRegistro,
+                        nombre: nombre,
+                        apellido1: primerApellido,
+                        apellido2: segundoApellido,
+                        correo: correo,
+                        contrasena: contrasena,
+                        tipoIdentificacion: tipoIdentificacion,
+                        identificacion: identificacion,
+                        fechaNacimiento: fechaNacimiento,
+                        sexo: sexo,
+                        provincia: provincia,
+                        canton: canton,
+                        distrito: distrito,
+                        direccionExacta: direccionExacta,
+                        latitud: latitud,
+                        longitud: longitud,
+                        imgUrl: image['url'],
+                        generosFav: generosFav,
+                        clubes: clubes,
+                        libros: libros,
+                        librosFav: librosFav,
+                        bloqueado: false
+                      });
+
+
+                      nuevoUsuario.save()
+                        .then(
+                          function (result) {
+                            console.log(result);
+                            res.json({ result: "exito" });
+                          }
+                        )
+                        .catch(
+                          function (err) {
+                            console.log(err);
+                          }
+                        );
+                    }
+                    )
+                } else {
+                  res.json({ result: "idRepetido" });
+                }
+              })
+            .catch(function (err) {
+              console.log('error');
+              console.log("** File Upload (Promise)");
+              if (err) { console.warn(err); }
+            });
+        } else {
+          res.json({ result: "correoRepetido" });
+        }
       }
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 }
 
 
-module.exports.enviarContrasena = function(req,res){
+module.exports.enviarContrasena = function (req, res) {
   const output = `
         <html>
           <head>
@@ -204,11 +204,11 @@ module.exports.enviarContrasena = function(req,res){
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-           user: 'servicio.leemas@gmail.com',
-           pass: '123queso!'
-       }
-   });
-  
+      user: 'servicio.leemas@gmail.com',
+      pass: '123queso!'
+    }
+  });
+
   const mailOptions = {
     from: 'servicio.leemas@gmail.com', // sender address
     to: req.body.correo, // list of receivers
@@ -217,93 +217,94 @@ module.exports.enviarContrasena = function(req,res){
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
-    if(err)
+    if (err)
       console.log(err)
     else
       console.log(info);
   });
 }
 
-module.exports.checkCorreo = function(req, res) {
+module.exports.checkCorreo = function (req, res) {
   var correo = req.body.correo;
 
-  Usuario.find({correo: correo}).exec()
-  .then(
-    function(result){
-      //console.log(result);
-      res.json(result);
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
+  Usuario.find({ correo: correo }).exec()
+    .then(
+      function (result) {
+        //console.log(result);
+        res.json(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 }
 
-module.exports.perfil = function(req, res) {
+module.exports.perfil = function (req, res) {
   var id = req.body.id;
-  Usuario.findOne({_id:id}).exec()
-  .then(
-    function(result){
-      res.send(result);
-    }
-  )
-  .catch(
-    function(err){
-      console.log(err);
-    }
-  );
+  Usuario.findOne({ _id: id }).exec()
+    .then(
+      function (result) {
+        console.log(result);
+        res.send(result);
+      }
+    )
+    .catch(
+      function (err) {
+        console.log(err);
+      }
+    );
 }
 
-module.exports.compra = async function(req, res) {
-  try{
-      var usuario = req.body.usuario;
-      var libro = req.body.libro;
-      var cantidad = req.body.cantidad;
-    
-      var result = await Usuario.findOne({_id:usuario}).exec(); 
-      var libros = result['libros'];
-      var nuevosLibros = [];
+module.exports.compra = async function (req, res) {
+  try {
+    var usuario = req.body.usuario;
+    var libro = req.body.libro;
+    var cantidad = req.body.cantidad;
 
-      var agregar = true;
-      for(var i=0;i<libros.length;i++){
-        if(libros[i][0]['libro'] == libro){
-          agregar = false;
-          var nuevoLibro = {
-            libro:libro,
-            intercambiable: libros[i][0]['intercambiable'],
-            cantidad: parseInt(libros[i][0]['cantidad'],10) + cantidad,
-            calif: libros[i][0]['calif'],
-            favorito: libros[i][0]['favorito']
-          }
-          nuevosLibros.push(nuevoLibro);
-        } else {
-          nuevosLibros.push(libros[i]);
-        }
-      }
-      if(agregar){
-        nuevosLibros.push({
-          libro:libro,
-          intercambiable:true,
-          cantidad: cantidad,
-          calif: 0,
-          favorito: false
-        });
-      }
-      
-      
-      await Usuario.updateOne(
-        { _id: usuario },
-        {
-          $set: { 
-            libros:nuevosLibros
-          },
-          $currentDate: { lastModified: true }
-        }
-      );
+    var result = await Usuario.findOne({ _id: usuario }).exec();
+    var libros = result['libros'];
+    var nuevosLibros = [];
 
-      const output = `<html>
+    var agregar = true;
+    for (var i = 0; i < libros.length; i++) {
+      if (libros[i][0]['libro'] == libro) {
+        agregar = false;
+        var nuevoLibro = {
+          libro: libro,
+          intercambiable: libros[i][0]['intercambiable'],
+          cantidad: parseInt(libros[i][0]['cantidad'], 10) + cantidad,
+          calif: libros[i][0]['calif'],
+          favorito: libros[i][0]['favorito']
+        }
+        nuevosLibros.push(nuevoLibro);
+      } else {
+        nuevosLibros.push(libros[i]);
+      }
+    }
+    if (agregar) {
+      nuevosLibros.push({
+        libro: libro,
+        intercambiable: true,
+        cantidad: cantidad,
+        calif: 0,
+        favorito: false
+      });
+    }
+
+
+    await Usuario.updateOne(
+      { _id: usuario },
+      {
+        $set: {
+          libros: nuevosLibros
+        },
+        $currentDate: { lastModified: true }
+      }
+    );
+
+    const output = `<html>
       <head>
           <style>
           @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -466,72 +467,72 @@ module.exports.compra = async function(req, res) {
       </body>
   </html>`;
 
-      var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-              user: 'servicio.leemas@gmail.com',
-              pass: '123queso!'
-          }
-      });
-      
-      const mailOptions = {
-        from: 'servicio.leemas@gmail.com', // sender address
-        to: req.body.correo, // list of receivers
-        subject: '¡Gracias por tu compra!', // Subject line
-        html: output// plain text body
-      };
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'servicio.leemas@gmail.com',
+        pass: '123queso!'
+      }
+    });
 
-      transporter.sendMail(mailOptions, function (err, info) {
-        if(err)
-          console.log(err)
-        else
-          console.log(info);
-      });
+    const mailOptions = {
+      from: 'servicio.leemas@gmail.com', // sender address
+      to: req.body.correo, // list of receivers
+      subject: '¡Gracias por tu compra!', // Subject line
+      html: output// plain text body
+    };
 
-      res.json({result: 'exito'});
-  } catch(err){
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err)
+        console.log(err)
+      else
+        console.log(info);
+    });
+
+    res.json({ result: 'exito' });
+  } catch (err) {
     console.log(err);
   }
 }
 
-module.exports.califLibro = async function(req, res) {
-  try{
-      var usuario = req.body.usuario;
-      var libro = req.body.libro;
-      var calif = req.body.calif;
-    
-      var result = await Usuario.findOne({_id:usuario}).exec(); 
-      var libros = result['libros'];
-      var nuevosLibros = [];
+module.exports.califLibro = async function (req, res) {
+  try {
+    var usuario = req.body.usuario;
+    var libro = req.body.libro;
+    var calif = req.body.calif;
 
-      for(var i=0;i<libros.length;i++){
-        if(libros[i][0]['libro'] == libro){
-          var nuevoLibro = {
-            libro:libro,
-            intercambiable: libros[i][0]['intercambiable'],
-            cantidad: parseInt(libros[i][0]['cantidad'],10),
-            calif: calif,
-            favorito: libros[i][0]['favorito']
-          }
-          nuevosLibros.push(nuevoLibro);
-        } else {
-          nuevosLibros.push(libros[i]);
+    var result = await Usuario.findOne({ _id: usuario }).exec();
+    var libros = result['libros'];
+    var nuevosLibros = [];
+
+    for (var i = 0; i < libros.length; i++) {
+      if (libros[i][0]['libro'] == libro) {
+        var nuevoLibro = {
+          libro: libro,
+          intercambiable: libros[i][0]['intercambiable'],
+          cantidad: parseInt(libros[i][0]['cantidad'], 10),
+          calif: calif,
+          favorito: libros[i][0]['favorito']
         }
+        nuevosLibros.push(nuevoLibro);
+      } else {
+        nuevosLibros.push(libros[i]);
       }
-      
-      
-      await Usuario.updateOne(
-        { _id: usuario },
-        {
-          $set: { 
-            libros:nuevosLibros
-          },
-          $currentDate: { lastModified: true }
-        }
-      );
+    }
 
-      res.json({result: 'exito'});
-  } catch(err){
+
+    await Usuario.updateOne(
+      { _id: usuario },
+      {
+        $set: {
+          libros: nuevosLibros
+        },
+        $currentDate: { lastModified: true }
+      }
+    );
+
+    res.json({ result: 'exito' });
+  } catch (err) {
     console.log(err);
   }
 }
@@ -674,4 +675,116 @@ module.exports.actualizarCantidad = async function(req, res) {
     console.log(err);
   }
 }
+
+module.exports.modLibroIntercambio = async function (req, res) {
+  try {
+    var usuarioId = req.body.usuarioId;
+    var libroId = req.body.libroId;
+    var intercambio = req.body.intercambio;
+
+    var result = await Usuario.findOne({ _id: usuarioId }).exec();
+    var libros = result['libros'];
+    console.log('libroId ', libroId);
+    for (var i = 0; i < libros.length; i++) {
+      if (libros[i][0]['libro'] == libroId) {
+        console.log(intercambio);
+        if (intercambio == 'true') {
+          libros[i][0]['intercambiable'] = true;
+        } else {
+          libros[i][0]['intercambiable'] = false;
+        }
+        console.log(libros[i][0]['libro']);
+        break;
+      }
+    }
+
+    console.log(libros);
+    await Usuario.updateOne(
+      { _id: usuarioId },
+      {
+        $set: {
+          libros: libros
+        },
+        $currentDate: { lastModified: true }
+      }
+    );
+
+    res.json({ result: 'exito' });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports.modificarUsuarioCliente = async function (req, res) {
+  try {
+    var id = req.body.id;
+    var nombre = req.body.nombre;
+    var apellido1 = req.body.apellido1;
+    var apellido2 = req.body.apellido2;
+    var correo = req.body.correo;
+    var tipoIdentificacion = req.body.tipoIdentificacion;
+    var identificacion = req.body.identificacion;
+    var fechaNacimiento = req.body.fechaNacimiento;
+    var sexo = req.body.sexo;
+    var provincia = req.body.provincia;
+    var canton = req.body.canton;
+    var distrito = req.body.distrito;
+    var direccionExacta = req.body.direccionExacta;
+    var latitud = req.body.latitud;
+    var longitud = req.body.longitud;
+    //var foto = req.body.foto;
+    var generosFav = req.body.generosFav;
+
+
+    var result = await Usuario.find({ identificacion: identificacion }).exec();
+
+    if (result.length > 1) {
+      if (result[0]['_id'] != id) {
+        res.json({ result: 'repetido' });
+        return false;
+      }
+    }
+    /*if (foto) {
+      console.log(path);
+      var image = await cloudinary.uploader.upload(path, { tags: 'basic_sample' });
+      fs.unlinkSync(path);
+      path = image['url'];
+    }
+    */
+    await Usuario.updateOne(
+      { _id: id },
+      {
+        $set: {
+          nombre: nombre,
+          apellido1: apellido1,
+          apellido2: apellido2,
+          correo: correo,
+          tipoIdentificacion: tipoIdentificacion,
+          identificacion: identificacion,
+          fechaNacimiento: fechaNacimiento,
+          sexo: sexo,
+          provincia: provincia,
+          canton: canton,
+          distrito: distrito,
+          direccionExacta: direccionExacta,
+          // generosFav: generosFav,
+          longitud: longitud,
+          latitud: latitud
+
+
+        },
+        $currentDate: { lastModified: true }
+      }
+    );
+    res.json({ result: 'exito' });
+
+
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
+
 

@@ -10,6 +10,7 @@ router.post('/listar', function(req, res) {
   califApi.listar(req,res);
 })
 
+
 router.get('/listarTodo', function(req, res) {
   califApi.listarTodo(req,res);
 })

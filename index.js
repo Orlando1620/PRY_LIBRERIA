@@ -46,7 +46,6 @@ app.use('/califLibro', require('./api/califLibro/califLibro.route'));
 app.use('/califUsuario', require('./api/califUsuario/califUsuario.route'));
 app.use('/intercambio', require('./api/intercambio/intercambio.route'));
 
-
 app.listen(8080, function() {
   console.log('Servidor corriendo en puerto 8080...')
 });
