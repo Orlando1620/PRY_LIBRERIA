@@ -13,6 +13,7 @@
 var id_alert_error = "alert";
 var id_alert_long = "alert_long";
 var id_alert_cred = "alert_cred";
+var user;
 
 async function login() {
     //debugger;
@@ -20,30 +21,44 @@ async function login() {
     var contrasena = document.getElementById('contraseNa').value;
 
     if (correo != "" && contrasena != "") {
-            //debugger;
-            let user = await iniciar_sesion(correo, contrasena);
+        //debugger;
+        user = await iniciar_sesion(correo, contrasena);
 
-            if (user !== null) {
-                sessionStorage.setItem("correo", user.correo);
-                sessionStorage.setItem("tipo", user.tipo);
-                sessionStorage.setItem("nombre", user.nombre);
-                sessionStorage.setItem("id", user._id);
+        if (user !== null) {
+            sessionStorage.setItem("correo", user.correo);
+            sessionStorage.setItem("tipo", user.tipo);
+            sessionStorage.setItem("nombre", user.nombre);
+            sessionStorage.setItem("id", user._id);
 
-                switch(sessionStorage.getItem("tipo")){
-                    case "usuarioCliente":
+            switch (sessionStorage.getItem("tipo")) {
+                case "usuarioCliente":
+                    if (user.changePassword) {
                         window.location.href = ("homePage.html");
-                        break;
-                    case "AdminLib":
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
+
+                case "AdminLib":
+                    if (user.changePassword) {
                         window.location.href = ("perfil-lib-admin.html");
-                        break;
-                    case "adminGlobal":
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
+
+                case "adminGlobal":
+                    if (user.changePassword) {
                         window.location.href = ("listar-usuarios.html");
-                        break;
-                }
-                
-            } else {
-                mostrarMsg(id_alert_cred);
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
             }
+
+        } else {
+            mostrarMsg(id_alert_cred);
+        }
     } else {
         validaCorreo(document.getElementById('correo'));
         validaContrasena(document.getElementById('contraseNa'));
@@ -51,8 +66,8 @@ async function login() {
     }
 }
 
-function registro(){
-    window.location.href= ("registrarUC.html");
+function registro() {
+    window.location.href = ("registrarUC.html");
 }
 
 function validaCorreo(event) {

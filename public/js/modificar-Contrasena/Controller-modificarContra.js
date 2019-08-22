@@ -9,7 +9,7 @@ var idUsuario = sessionStorage.getItem("id");
 
 var datos;
 var guardar;
-
+debugger;
 async function guardarCambios() {
     var inputContraseNaActual = document.getElementById('contra-actual').value;
     var inputContraseNaNueva = document.getElementById('nueva-contra').value;
@@ -29,11 +29,24 @@ async function guardarCambios() {
             } else {
                 if (inputContraseNaNueva !== inputContraConfirm) {
                     mostrarMsg('alert_contraNuevas');
-                }else{
+                } else {
                     guardar = await guardarContra(idUsuario, inputContraseNaNueva, booleanPassword);
                     mostrarMsg('alert_correct');
+                    sessionStorage.setItem("tipo", datos.tipo);
                     setTimeout(function () {
-                        window.location.href = ("homePage.html");
+                        switch (sessionStorage.getItem("tipo")) {
+                            case "usuarioCliente":
+                                    window.location.href = ("homePage.html");
+                                break;
+                        
+                            case "AdminLib":
+                                    window.location.href = ("perfil-lib-admin.html");
+                                break;
+                        
+                            case "adminGlobal":
+                                    window.location.href = ("listar-usuarios.html");
+                                break;
+                        }
                     }, 3000);
                 }
             }
