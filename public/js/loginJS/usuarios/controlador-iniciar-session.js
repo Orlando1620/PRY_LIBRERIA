@@ -13,6 +13,7 @@
 var id_alert_error = "alert";
 var id_alert_long = "alert_long";
 var id_alert_cred = "alert_cred";
+var id_alert_bloqueado = "alert_bloqueado";
 
 async function login() {
     //debugger;
@@ -20,14 +21,16 @@ async function login() {
     var contrasena = document.getElementById('contraseNa').value;
 
     if (correo != "" && contrasena != "") {
-            //debugger;
-            let user = await iniciar_sesion(correo, contrasena);
+        //debugger;
+        let user = await iniciar_sesion(correo, contrasena);
 
-            if (user !== null) {
+        if (user !== null) {
+            if (!user.bloqueado) {
                 sessionStorage.setItem("correo", user.correo);
                 sessionStorage.setItem("tipo", user.tipo);
                 sessionStorage.setItem("nombre", user.nombre);
                 sessionStorage.setItem("id", user._id);
+                localStorage.setItem('carrito','');
 
                 switch(sessionStorage.getItem("tipo")){
                     case "usuarioCliente":
@@ -40,10 +43,13 @@ async function login() {
                         window.location.href = ("listar-usuarios.html");
                         break;
                 }
-                
             } else {
-                mostrarMsg(id_alert_cred);
+                mostrarMsg(id_alert_bloqueado);
             }
+
+        } else {
+            mostrarMsg(id_alert_cred);
+        }
     } else {
         validaCorreo(document.getElementById('correo'));
         validaContrasena(document.getElementById('contraseNa'));

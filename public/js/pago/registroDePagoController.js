@@ -51,7 +51,12 @@ async function registro(){
 
 	document.getElementById("alert").classList.add("oculto");
 	registrarBitacora(sessionStorage.getItem("correo"),'registro metodo de pago: '+document.getElementById("ccNumber").value);
+	document.getElementById("alert-success").classList.remove("oculto");
+	document.getElementById("msg-success").innerHTML = "Método de pago registrado";
+	setTimeout(function () {
 	window.location.href = "registrar-metPago.html";
+	}, 2000);
+
 	
 }
 

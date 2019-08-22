@@ -120,6 +120,15 @@
     margin: 10px 0 10px 0;
 }
 
+.inputActualizar {
+    border: none;
+    font-size: 1rem;
+}
+
+.inputActualizando {
+    border: solid 1px;
+    font-size: 1rem;
+}
 
 @media(max-width: 920px){
 
