@@ -1,0 +1,330 @@
+.oculto{
+    display: none;
+}
+
+.main-title{
+    padding-left: 20px;
+    color: #022600;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+.wrapper-cont{
+    overflow: auto;
+}
+
+.wrapper-cont h1{
+    padding: 10px 50px;
+    margin: 0;
+}
+
+.wrapper-cont h3{
+    margin: 0;
+    padding: 10px 50px;
+    font-size: 1.2rem;
+}
+
+.filtro{
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 3% 10px 0;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
+
+
+.search-box{
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+}
+
+.input{
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.filtro-lib{
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    padding: 10px;
+    width: 350px;
+}
+
+.titles-inv{
+    float: left;
+    width: 42.5%;
+    padding: 10px 0px;
+    margin-left: 5%;   
+    box-sizing: border-box;
+}
+
+.titles-inv-full{
+    float: left;
+    width: 95%;
+    padding: 10px 0px;
+    padding-left: 5%;   
+    box-sizing: border-box;
+}
+
+.titles-inv h3{
+    padding: 0;
+}
+
+.titles-inv-full h3{
+    padding: 0;
+}
+
+.cards-wrapper{
+    overflow: auto;
+    width: 100%;
+}
+
+.wrapper{
+    overflow: auto;
+    width: 100%;
+}
+
+.cards-cont{
+    float: left;
+    overflow: scroll;
+    width: 90%;
+    padding: 5px 0;
+    margin: 10px 5%;   
+    max-height: 500px;
+    box-sizing: border-box;
+}
+
+.cards-cont i{
+    padding-right: 20px; 
+}
+
+.card{
+    float: left;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: solid 1px silver;
+}
+
+.submit{
+    text-align: center;
+    padding: 10px 30px;
+    margin: 20px 0;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.submit:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.cantidad{
+    width: 100px;
+    padding: 5px;
+    border: none;
+    border-bottom: solid 1px silver;
+}
+
+.inv-list-div{
+    float: left;
+    width: 50%;
+}
+
+.card h4{
+    padding: 10px 0;
+}
+
+.search-btn{
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    background-color: #487252;
+    border-radius: 10px;
+}
+
+.fa-trash-alt{
+    color: rgb(230,80,80);
+}
+
+.fa-plus{
+    color: #487252;
+}
+
+.fa-save{
+    color: #487252;
+}
+
+.calif-true{
+    color: #487252;
+}
+
+.calif-false{
+    color: #48725298;
+}
+
+.form-full{
+    padding: 0 50px;
+}
+
+.form-btn{
+    padding: 0 50px;
+    text-align: center;
+}
+
+@media(max-width: 920px){
+
+    .side-bar a{
+        font-size: 1rem;
+    }
+
+    .side-bar-selected a{
+        font-size: 1rem;
+    }
+}
+
+
+/*cambios para movil*/
+@media(max-width: 750px){
+
+    /*side bar*/
+    .wrapper-side-bar{
+        display: none;
+    }
+
+    .select-side-bar{
+        display: block;
+        text-align: center;
+    }
+
+    .wrapper-cont{
+        width: 100%;
+    }
+
+    .tab-wrapper div{
+        font-size: 1rem;
+    }
+
+    .form-mitad h3{
+        font-size: 1rem;
+    }
+
+    .form-full h3{
+        font-size: 1rem;
+    }
+
+    .select-form{
+        font-size: 1rem;
+    }
+
+    .wrapper-form{
+        padding: 20px 10%;
+    }
+
+    .submit{
+        padding: 5px 20px;
+        margin: 20px 40%;
+    }
+    
+}
+
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+/*sidebar*/
+.wrapper-side-bar{
+    float: left;
+    width: 20%;
+}
+
+.wrapper-side-bar div{
+    font-size: 1.2rem;
+}
+
+.side-bar{
+    overflow: auto;
+    padding: 20px 0;
+}
+
+.side-bar-icon{
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.side-bar-option{
+    float: left;
+    width: 75%;
+    text-align: left;
+}
+
+.side-bar-selected{
+    overflow: auto;
+    padding: 20px 0;
+    background-color: #487252;
+}
+
+.side-bar-selected a{
+    color: white;
+}
+
+.side-bar a{
+    color: black;
+}
+
+.side-bar:hover{
+    background-color: #48725231;
+}
+
+/*select que sustituye el sidebar en movil*/
+.select-side-bar{
+    display: none;
+}
+
+.select-side-bar select{
+    width: 90%;
+    border: solid 1px #487252;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 1rem;
+}
+
+.wrapper-cont{
+    float: left;
+    width: 80%;
+}
