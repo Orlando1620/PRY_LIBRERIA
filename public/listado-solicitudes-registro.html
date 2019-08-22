@@ -1,8 +1,7 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/clubes/estilo-listar-clubes-admin.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/clubes/table.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/bitacora/estiloVisualizarBitacora.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
         <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
@@ -89,7 +88,7 @@
                     <div class="side-bar-icon"><i class="fas fa-certificate"></i></div>
                     <div class="side-bar-option"><a href="#">Promociones</a></div>
                 </div>
-                <div class="side-bar-selected">
+                <div class="side-bar">
                     <div class="side-bar-icon"><i class="fas fa-coffee"></i></div>
                     <div class="side-bar-option"><a href="listar-clubes-adminGlobal.html">Clubes de Lectura</a></div>
                 </div>
@@ -105,43 +104,26 @@
                     <div class="side-bar-icon"><i class="fas fa-file-alt"></i></div>
                     <div class="side-bar-option"><a href="bitacora.html">Bitácora</a></div>
                 </div>
-                <div class="side-bar">
+                <div class="side-bar-selected">
                     <div class="side-bar-icon"><i class="fas fa-check-square"></i></i></div>
                     <div class="side-bar-option"><a href="listado-solicitudes-registro.html">Solicitudes de registro</a></div>
                 </div>
             </div>
 
             <div class="wrapper-cont">
-                <h1 class="main-title">Clubes de Lectura</h1>
-            
-                <div class="filtros">
-                    
-                    <input type="text" placeholder="Nombre del club" class="search-box" id="buscar" onkeyup="filtrarNombre()"/>
-                    <select id="generos" onChange="filtrarGenTipo()" class="selectFiltrar"><option value="Generos">Géneros</option></select>
-            
-                    <select id="tipo" onChange="filtrarGenTipo()" class="selectFiltrar"><option value="Tipo">Tipo</option>
-                    <option value="Físico">Físico</option><option value="Virtual">Virtual</option></select>
-                
-                </div>
-            
-                <div class="table-cont">
-                    <table class="lista-suc font" id="table">
-                        <tr id="mainTr" class="table-titles">
-                            <td colspan="1"><a>Nombre</a></td>
-                            <td colspan="1"><a>Género</a></td>
-                            <td colspan="1"><a>Tipo</a></td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="alert" class="alert oculto">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    <label id="msg"></label>
-                </div>
-                
-                <div class="form-full"><button class="submit font" onclick="nuevoClub(event)">Nuevo Club</button></div>
+                <h1 class="main-title">Solicitudes de registro de librerías</h1>
+                <table class="maintable" id="maintable">
+                    <tr class="table-titles">
+                        <td colspan="1"><a>Librería</a></td>
+                        <td colspan="2"><a>Administrador de librería</a></td>
+                        <td colspan="1"><a>Fecha</a></td>
+                    </tr>
+                </table>
 
             </div>
+
         </div>
+        
 
         <footer>
             <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
@@ -173,9 +155,9 @@
 
 
         <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="./js/clubes/listarClubes.js"></script>
-        <script src="./js/clubes/clubController.js"></script>
-        <script src="./js/log-nav.js"></script>
+        <script src="js/inventario/inventarioAdminGlobal/fill-inventario.js"></script>
+        <script src="js/inventario/inventarioAdminGlobal/controllerInventario.js"></script>
+        <script src="js/log-nav.js"></script>
         
     </body>
 
