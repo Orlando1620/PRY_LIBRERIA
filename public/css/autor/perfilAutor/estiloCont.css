@@ -1,3 +1,19 @@
+
+.fa-trash-alt{
+    color: rgb(223, 80, 80);
+    padding: 10px;
+}
+
+.fa-pencil-alt{
+    color: #487252;
+    padding: 10px;
+}
+
+#imagenAutor{
+    width: 250px;
+    height: 373px;
+}
+
 .titulo{
   color: #022600;
 }
