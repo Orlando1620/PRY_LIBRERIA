@@ -99,6 +99,19 @@ function fillMasVendidos(json){
         
     }
 
+    for(var i=0;i<sumar.length;i++){
+
+        for(var j=0;j<sumar.length;j++){
+            if(sumar[i]['cantidad'] > sumar[j]['cantidad']){
+                var temp = sumar[i];
+                sumar[i] = sumar[j];
+                sumar[j] = temp;
+            }
+        }
+        
+    }
+
+
     json = sumar;
 
     for(var i=0;i<json.length;i++){
