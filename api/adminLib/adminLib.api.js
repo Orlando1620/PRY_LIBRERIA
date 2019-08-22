@@ -29,6 +29,7 @@ module.exports.registrar_Admin = function (req, res) {
                 nombreComercial: req.body.nombreComercial,
                 nombreFantasia: req.body.nombreFantasia,
                 tipo: 'lib',
+                estado: 0,
                 latitud: req.body.latitud,
                 longitud: req.body.longitud,
                 provincia: req.body.provincia,
