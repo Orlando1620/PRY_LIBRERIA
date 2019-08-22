@@ -40,6 +40,12 @@ function obtenerUsario(id) {
                     document.getElementById("identificacion1").value = json.identificacion;
                 }
                 if (json.tipo == "usuarioCliente") {
+                    var provincia = document.getElementById("provincias");
+                    var opcProvincia = document.createElement("option");
+
+                    var textNode = document.createTextNode(json.provincia);
+                    opcProvincia.appendChild(textNode);
+                    provincia.appendChild(opcProvincia);
 
                     var canton = document.getElementById("cantones");
                     var opcCanton = document.createElement("option");

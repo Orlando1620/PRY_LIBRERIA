@@ -133,6 +133,22 @@
     overflow: scroll;
 }
 
+.fa-trash{
+    color: rgb(223, 80, 80);
+}
+
+.fa-pencil-alt{
+    color: #487252
+}
+
+.fa-ban{
+    color: rgb(223, 80, 80);
+}
+
+.fa-check-circle{
+    color: #487252;
+}
+
 .lista-suc{
     width: 100%;
     border-collapse: collapse;

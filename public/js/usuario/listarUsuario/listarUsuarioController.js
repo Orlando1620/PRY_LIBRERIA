@@ -17,10 +17,10 @@ function listarUsuario() {
             }
         )
         .then(
-            function (json) {
-                console.log(json);
+            async function (json) {
+                removeElements();
                 for (var i = 0; i < json.length; i++) {
-                    usuarios.push(json[i]);
+                    usuarios = json;
                     var tr = document.createElement("tr");
                     var td = document.createElement("td");
 
@@ -107,6 +107,10 @@ function listarUsuario() {
                     var tdModificar = document.createElement("td");
                     var tdCambEstado = document.createElement("td");
 
+                    tdEliminar.style.textAlign = 'center';
+                    tdModificar.style.textAlign = 'center';
+                    tdModificar.style.textAlign = 'center';
+
                     var a = document.createElement('a');
                     var add = document.createElement("i");
                     add.classList.add('fas');
@@ -171,142 +175,147 @@ function modificarUsuario(e) {
 
 }
 
-function filtrarUsuario() {
-    removeElements();
+async function filtrarUsuario() {
+    
 
     var nombreReq = document.getElementById("buscar").value;
     nombreReq = nombreReq.toLowerCase();
     if (usuarios.length > 0) {
         var resultados = 0;
+        removeElements();
         for (var i = 0; i < usuarios.length; i++) {
             var nombreRes = usuarios[i]['nombre'] + " " + usuarios[i]["apellido1"] + " " + usuarios[i]["apellido2"];
             nombreRes = nombreRes.toLowerCase();
             if (nombreRes.includes(nombreReq)) {
                 resultados++;
                 var tr = document.createElement("tr");
-                    var td = document.createElement("td");
+                var td = document.createElement("td");
 
 
-                    var a = document.createElement('a');
-                    var textNode = document.createTextNode(json[i]['nombre'] + " " + json[i]['apellido1'] + " " + json[i]['apellido2']);
-                    a.id = json[i]['_id'];
-                    a.appendChild(textNode);
-                    a.href = "#";
-                    a.addEventListener('click', perfil); 
-                    td.appendChild(a);
-                    tr.appendChild(td);
+                var a = document.createElement('a');
+                var textNode = document.createTextNode(usuarios[i]['nombre'] + " " + usuarios[i]['apellido1'] + " " + usuarios[i]['apellido2']);
+                a.id = usuarios[i]['_id'];
+                a.appendChild(textNode);
+                a.href = "#";
+                a.addEventListener('click', perfil); 
+                td.appendChild(a);
+                tr.appendChild(td);
 
-                    
+                
 
-                    var td3 = document.createElement("td");
-                    var textNode;
-                    var tipoUsuario = 0;
-                    switch(json[i]['tipo']){
-                        case "usuarioCliente":
-                            textNode = document.createTextNode("Usuario cliente");
-                            var td2 = document.createElement("td");
-                            var tipoUsuario = 0;
-                            var data = {
-                                usuario2:json[i]['_id']
+                var td3 = document.createElement("td");
+                var textNode;
+                var tipoUsuario = 0;
+                switch(usuarios[i]['tipo']){
+                    case "usuarioCliente":
+                        textNode = document.createTextNode("Usuario cliente");
+                        var td2 = document.createElement("td");
+                        var tipoUsuario = 0;
+                        var data = {
+                            usuario2:usuarios[i]['_id']
+                        }
+                        var response = await fetch('/califUsuario/listar', {
+                            method: 'POST',
+                            body: JSON.stringify(data),
+                            headers:{'Content-Type': 'application/json'}
+                        })
+                        califs = await response.json();
+                        
+                        if(califs.length != 0){
+                            var calif = 0;
+                            for(var j=0;j<califs.length;j++){
+                                calif += califs[j]['calif'];
                             }
-                            var response = await fetch('/califUsuario/listar', {
-                                method: 'POST',
-                                body: JSON.stringify(data),
-                                headers:{'Content-Type': 'application/json'}
-                            })
-                            califs = await response.json();
+                            calif = calif/califs.length;
+                            calif = Math.round(calif);
+                            console.log(calif);
+                            for(var j=0;j<calif;j++){
+                                var icon = document.createElement("i");
+                                icon.classList.add("fas");
+                                icon.classList.add("fa-book");
+                                icon.classList.add("calif-true");
+                                td2.appendChild(icon);
+                            }
+                
+                            for(var j=0;j<5-calif;j++){
+                                var icon = document.createElement("i");
+                                icon.classList.add("fas");
+                                icon.classList.add("fa-book");
+                                icon.classList.add("calif-false");
+                                td2.appendChild(icon);
+                            }
+                
+                        } else {
+                            var califT = document.createTextNode("");
+                            td2.appendChild(califT);
                             
-                            if(califs.length != 0){
-                                var calif = 0;
-                                for(var j=0;j<califs.length;j++){
-                                    calif += califs[j]['calif'];
-                                }
-                                calif = calif/califs.length;
-                                calif = Math.round(calif);
-                                console.log(calif);
-                                for(var j=0;j<calif;j++){
-                                    var icon = document.createElement("i");
-                                    icon.classList.add("fas");
-                                    icon.classList.add("fa-book");
-                                    icon.classList.add("calif-true");
-                                    td2.appendChild(icon);
-                                }
-                    
-                                for(var j=0;j<5-calif;j++){
-                                    var icon = document.createElement("i");
-                                    icon.classList.add("fas");
-                                    icon.classList.add("fa-book");
-                                    icon.classList.add("calif-false");
-                                    td2.appendChild(icon);
-                                }
-                    
-                            } else {
-                                var califT = document.createTextNode("");
-                                td2.appendChild(califT);
-                               
-                            }
-                            tr.appendChild(td2);
-                            break;
-                        case "adminGlobal":
-                            textNode = document.createTextNode("Administrador global");
-                            var td2 = document.createElement("td");
-                            tipoUsuario = 1;
-                            tr.appendChild(td2);
-        
-                            break;
-                        case "AdminLib":
-                            textNode = document.createTextNode("Administrador de librería");
-                            var td2 = document.createElement("td");
-                            tipoUsuario = 2;
-                            tr.appendChild(td2);
-                            break;
-                    }
+                        }
+                        tr.appendChild(td2);
+                        break;
+                    case "adminGlobal":
+                        textNode = document.createTextNode("Administrador global");
+                        var td2 = document.createElement("td");
+                        tipoUsuario = 1;
+                        tr.appendChild(td2);
+    
+                        break;
+                    case "AdminLib":
+                        textNode = document.createTextNode("Administrador de librería");
+                        var td2 = document.createElement("td");
+                        tipoUsuario = 2;
+                        tr.appendChild(td2);
+                        break;
+                }
 
-                    td3.appendChild(textNode);
-                    tr.appendChild(td3);
+                td3.appendChild(textNode);
+                tr.appendChild(td3);
 
-                    var tdEliminar = document.createElement("td");
-                    var tdModificar = document.createElement("td");
-                    var tdCambEstado = document.createElement("td");
+                var tdEliminar = document.createElement("td");
+                var tdModificar = document.createElement("td");
+                var tdCambEstado = document.createElement("td");
 
-                    var a = document.createElement('a');
-                    var add = document.createElement("i");
-                    add.classList.add('fas');
-                    add.classList.add('fa-trash');
-                    a.appendChild(add);
-                    tdEliminar.appendChild(a);
-                    tr.appendChild(tdEliminar);
+                tdEliminar.style.textAlign = 'center';
+                tdModificar.style.textAlign = 'center';
+                tdModificar.style.textAlign = 'center';
 
-                    var a = document.createElement('a');
-                    var add = document.createElement("i");
-                    add.classList.add('fas');
-                    add.classList.add('fa-pencil-alt');
-                    add.id = json[i]['_id'] + '_' + tipoUsuario;
-                    a.addEventListener('click', modificarUsuario);
-                    a.appendChild(add);
-                    tdModificar.appendChild(a);
-                    tr.appendChild(tdModificar);
+                var a = document.createElement('a');
+                var add = document.createElement("i");
+                add.classList.add('fas');
+                add.classList.add('fa-trash');
+                a.appendChild(add);
+                tdEliminar.appendChild(a);
+                tr.appendChild(tdEliminar);
 
-                    var a = document.createElement('a');
-                    var add = document.createElement("i");
-                    add.classList.add('fas');
+                var a = document.createElement('a');
+                var add = document.createElement("i");
+                add.classList.add('fas');
+                add.classList.add('fa-pencil-alt');
+                add.id = usuarios[i]['_id'] + '_' + tipoUsuario;
+                a.addEventListener('click', modificarUsuario);
+                a.appendChild(add);
+                tdModificar.appendChild(a);
+                tr.appendChild(tdModificar);
 
-                    var estado;
-                    if (json[i]['bloqueado']) {
-                        estado = 1;
-                        add.classList.add('fa-ban');
-                    } else {
-                        estado = 0;
-                        add.classList.add('fa-check-circle');
-                    }
+                var a = document.createElement('a');
+                var add = document.createElement("i");
+                add.classList.add('fas');
 
-                    add.id = json[i]['_id'] + '_' + estado;
-                    a.addEventListener('click', cambiarEstadoUsuario);
-                    a.appendChild(add);
-                    tdCambEstado.appendChild(a);
-                    tr.appendChild(tdCambEstado);
+                var estado;
+                if (usuarios[i]['bloqueado']) {
+                    estado = 1;
+                    add.classList.add('fa-ban');
+                } else {
+                    estado = 0;
+                    add.classList.add('fa-check-circle');
+                }
 
-                    document.getElementById("listUsuario").appendChild(tr);
+                add.id = usuarios[i]['_id'] + '_' + estado;
+                a.addEventListener('click', cambiarEstadoUsuario);
+                a.appendChild(add);
+                tdCambEstado.appendChild(a);
+                tr.appendChild(tdCambEstado);
+
+                document.getElementById("listUsuario").appendChild(tr);
             }
         }
         if (resultados == 0) {
@@ -350,7 +359,6 @@ function removeElements() {
     t5.appendChild(textT5);
     t6.appendChild(textT6);
 
-    t2.colSpan = 2;
 
     titles.appendChild(t1);
     titles.appendChild(t2);
@@ -358,6 +366,7 @@ function removeElements() {
     titles.appendChild(t4);
     titles.appendChild(t4);
     titles.appendChild(t5);
+    titles.appendChild(t6);
 
     titles.classList.add("table-titles");
 
@@ -388,7 +397,7 @@ function filtrarTipo() {
             }
         )
         .then(
-            function (json) {
+            async function (json) {
                 console.log(json);
                 if (json.length > 0) {
                     for (var i = 0; i < json.length; i++) {
@@ -479,6 +488,10 @@ function filtrarTipo() {
                     var tdModificar = document.createElement("td");
                     var tdCambEstado = document.createElement("td");
 
+                    tdEliminar.style.textAlign = 'center';
+                    tdModificar.style.textAlign = 'center';
+                    tdModificar.style.textAlign = 'center';
+
                     var a = document.createElement('a');
                     var add = document.createElement("i");
                     add.classList.add('fas');
@@ -551,7 +564,9 @@ async function cambiarEstadoUsuario(e) {
         var id1 = usuario.id;
         var estado = id1.split("_");
         var actualizar;
-
+        console.log(estado[1]);
+        
+        
         if (estado[1] == 0) {//esta activo se va a bloquear
             actualizar = true;
         } else {
@@ -576,10 +591,12 @@ async function cambiarEstadoUsuario(e) {
             if (actualizar == 0) {//activo
                 usuario.classList.remove('fa-ban');
                 usuario.classList.add('fa-check-circle');
+                usuario.id = estado[0]+'_'+ 0;
             }
             if (actualizar == 1) {//bloqueado
                 usuario.classList.remove('fa-check-circle');
                 usuario.classList.add('fa-ban');
+                usuario.id = estado[0]+'_'+ 1;
             }
 
         } else {
