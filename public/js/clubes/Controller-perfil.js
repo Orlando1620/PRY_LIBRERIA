@@ -5,7 +5,7 @@ window.onload = function () {
 var idUsuario = sessionStorage.getItem("id");
 
 var club;
-var libro;
+var book;
 var suc;
 var clubId;
 var unirse;
@@ -15,14 +15,14 @@ var verificar;
 async function cargarDatos() {
     var nombre = localStorage.getItem('nombre');
     club = await obtenerClubesLectura(nombre);
-    libro = await obtenerLibroClubesLectura(club.libro);
+    book = await obtenerLibroClubesLectura(club.libro);
     suc = await obtenerSucursalClubesLectura(club.sucursal);
     clubId = club._id;
     document.getElementById("nombre").innerHTML = club.nombre;
     document.getElementById("genero").innerHTML = club.genero;
     document.getElementById("tipo").innerHTML = club.tipo;
     document.getElementById("dia").innerHTML = club.dia;
-    document.getElementById("libro").innerHTML = libro.nombre;
+    document.getElementById("libro").innerHTML = book.nombre;
     document.getElementById("sucursal").innerHTML = suc.nombreSucursal;
     document.getElementById("descripcion").innerHTML = club.descripcion;
     validarUsuarioClub();
