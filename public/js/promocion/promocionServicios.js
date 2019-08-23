@@ -4,7 +4,7 @@ async function registrarPromocion(e){
     e.preventDefault();
     var esValido = validarCamposFormulario("form");
     if (esValido == false || validarForm() == false) {
-        validarForm() 
+        validarForm(); 
         document.getElementById("alert").classList.remove("oculto");
         document.getElementById("msg").innerHTML = "Complete los espacios requeridos";
         return false;
@@ -92,16 +92,10 @@ function validarFecha(){
 
 function validarForm(){
     var espaciosVacios = [];
-    var librerias = document.getElementById('librerias').value;
     var sucursales = document.getElementById('sucursales').value;
     var libroPromo = document.getElementById('libroPromo').value;
     var porcentaje = document.getElementById('porcentaje').value;
 
-    if(librerias == "Seleccione una librería"){
-        espaciosVacios.push('librerias');
-    } else {
-        document.getElementById("librerias").classList.remove('invalid');
-    }
     if(sucursales == "Seleccione una sucursal"){
         espaciosVacios.push('sucursales');
     } else {
@@ -132,6 +126,7 @@ function validarForm(){
     }
 
 }
+
 
 
 function registrarBitacora(correo,accion){

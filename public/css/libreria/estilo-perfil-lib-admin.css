@@ -102,6 +102,25 @@
     box-sizing: border-box;
 }
 
+.form-icons{
+    float: left;
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.fa-trash-alt{
+    color: rgb(223, 80, 80);
+    padding: 10px;
+}
+
+.fa-pencil-alt{
+    color: #487252;
+    padding: 10px;
+}
+
 
 .submit{
     text-align: center;
