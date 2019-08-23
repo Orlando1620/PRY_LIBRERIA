@@ -1,3 +1,8 @@
+if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
+  document.getElementById("icons").classList.add("oculto");
+}
+
+
 var idSuc;
 var nombreSuc;
 function perfilSucursal(sucursal){
