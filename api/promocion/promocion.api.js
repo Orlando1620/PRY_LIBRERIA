@@ -16,7 +16,7 @@ const upload = multer({
 }).single('foto');
 
 /**
- * Upload de multer
+ * Upload de multer a
  */
 module.exports.localUploadImg = function (req, res) {
   upload(req, res, function(err){
