@@ -8,10 +8,14 @@ async function obtenerListLibrerias() {
 }
 
 async function filtrarLib() {
-    let input = document.getElementById("buscar").value;
+    let filtroNombre = document.getElementById("buscar").value;
     let librerias;
-    if (input) {
-        librerias = await obtener_libreria(input);
+    if (filtroNombre) {
+        let datos = {
+            nombreComercial: filtroNombre,
+            estado: 1
+        };
+        librerias = await filtrarLibreria(datos);
     } else {
         librerias = await listarLibrerias();
     }

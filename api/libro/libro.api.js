@@ -403,7 +403,7 @@ module.exports.verificarAsociacionLibro = function (req, res) {
   var nombreLibro = req.body.nombreLibro;
   var idLibro = req.body.id;
 
-  ClubLectura.findOne({ libro: nombreLibro }).then(function (club) {
+  ClubLectura.findOne({ libro: idLibro }).then(function (club) {
     if (club) {
       res.send(true);
     } else {

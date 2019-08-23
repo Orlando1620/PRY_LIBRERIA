@@ -13,6 +13,8 @@
 var id_alert_error = "alert";
 var id_alert_long = "alert_long";
 var id_alert_cred = "alert_cred";
+var id_alert_NotSoli = "alert_NotSoli";
+var id_alert_denegate = "alert_denegate";
 var user;
 
 async function login() {
@@ -29,8 +31,8 @@ async function login() {
             sessionStorage.setItem("tipo", user.tipo);
             sessionStorage.setItem("nombre", user.nombre);
             sessionStorage.setItem("id", user._id);
-            localStorage.setItem('carrito','');
-            
+            localStorage.setItem('carrito', '');
+
             switch (sessionStorage.getItem("tipo")) {
                 case "usuarioCliente":
                     if (user.changePassword) {
@@ -41,10 +43,19 @@ async function login() {
                     break;
 
                 case "AdminLib":
-                    if (user.changePassword) {
-                        window.location.href = ("perfil-lib-admin.html");
+                    if (user.estado == 0) {
+                        mostrarMsg('alert_NotSoli');
                     } else {
-                        window.location.href = ("modificar-contraseNa.html");
+                        if (user.estado == 2) {
+                            mostrarMsg('alert_Denegate');
+                        } else {
+                            if (user.changePassword) {
+                                window.location.href = ("perfil-lib-admin.html");
+                            } else {
+                                window.location.href = ("modificar-contraseNa.html");
+                            }
+                        }
+
                     }
                     break;
 

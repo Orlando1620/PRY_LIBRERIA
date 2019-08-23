@@ -1,9 +1,18 @@
 var Libreria = require('./libreria.model');
+var Administrador = require('../adminLib/adminLib.model')
 var Sucursal = require('../sucursal/sucursal.model');
 var mongoose = require('mongoose');
 
 module.exports.listarLibrerias = function (req, res) {
-  Libreria.find().sort({ nombreComercial: 'asc' }).then(
+  Libreria.find({ estado: 1 }).sort({ nombreComercial: 'asc' }).then(
+    function (libreria) {
+      res.send(libreria);
+    }
+  )
+};
+
+module.exports.listarLibreriasSolicitudRegistro = function (req, res) {
+  Libreria.find({ estado: 0 }).sort({ nombreComercial: 'asc' }).then(
     function (libreria) {
       res.send(libreria);
     }
@@ -12,6 +21,21 @@ module.exports.listarLibrerias = function (req, res) {
 
 module.exports.obtener_libreria = function (req, res) {
   Libreria.findOne({ nombreComercial: new RegExp(req.body.nombreComercial, "i") }).then(function (libreria) {
+    if (libreria) {
+      res.send(libreria);
+    } else {
+      res.send(false);
+    }
+  })
+};
+
+module.exports.filtrarLibreria = function (req, res) {
+
+  var criterios = req.body;
+  if(criterios.nombreComercial){
+    criterios["nombreComercial"] = new RegExp(req.body.nombreComercial, "i");
+  }
+  Libreria.find(criterios).then(function (libreria) {
     if (libreria) {
       res.send(libreria);
     } else {
@@ -86,22 +110,22 @@ module.exports.modificarLibreria = function (req, res) {
           console.log(err);
         }
         else {
-          if (nombreComercialAnterior !== lib.nombreComercial){
-            Sucursal.updateMany({ nombreLibreria: nombreComercialAnterior }, { $set: {nombreLibreria: lib.nombreComercial} },
-               function (err, actualizacionSucursal) {
-              if (err) {
-                console.log(err);
-          
-              }
-              else {
-                console.log(actualizacionSucursal);
-              }
-            });
+          if (nombreComercialAnterior !== lib.nombreComercial) {
+            Sucursal.updateMany({ nombreLibreria: nombreComercialAnterior }, { $set: { nombreLibreria: lib.nombreComercial } },
+              function (err, actualizacionSucursal) {
+                if (err) {
+                  console.log(err);
+
+                }
+                else {
+                  console.log(actualizacionSucursal);
+                }
+              });
           }
         }
       });
-      
-    
+
+
       res.send(lib);
     }
   })
@@ -112,6 +136,25 @@ module.exports.eliminarLibreria = async function (req, res) {
   await Libreria.deleteOne(
     { nombreComercial: req.body.libreria }
   )
-  res.json({result: "exito"});
+  res.json({ result: "exito" });
 
 };
+
+module.exports.actualizarSolicitud = function (req, res) {
+  var id = req.body.id;
+  var estado = req.body.estado;
+  var success = false;
+
+  Libreria.updateOne({ admin_id: id }, { $set: { estado: estado } }, function (err, result) {
+    if (result) {
+      success = true;
+    }
+    Administrador.updateOne({ _id: id }, { $set: { estado: estado } }, function (err, result) {
+      if (result) {
+        success = true;
+
+      }
+    })
+    res.send(success);
+  })
+}

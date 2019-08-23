@@ -4,6 +4,16 @@ let AdminLib = require('./adminLib.model');
 let Libreria = require('../libreria/libreria.model');
 var nodemailer = require('nodemailer');
 
+
+module.exports.obtenerAdminLib = function (req, res) {
+    var id = req.body.id;
+    Usuario.findOne({ _id: id }).then(function (dato) {
+      if (dato) {
+        res.send(dato);
+      }
+    })
+  }
+
 module.exports.registrar_Admin = function (req, res) {
     AdminLib.findOne({ correo: req.body.correo }).then(function (user) {
 
