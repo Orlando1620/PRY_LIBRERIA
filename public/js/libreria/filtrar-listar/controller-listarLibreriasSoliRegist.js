@@ -57,7 +57,7 @@ async function listar(librerias) {
                     case 1:
                         var idAdmin = librerias[i].admin_id;
                         datosAdminLib = await obtenerDatosAdmin(idAdmin);
-                        data = datosAdminLib.nombre;
+                        data = datosAdminLib.nombre+ " " + datosAdminLib.apellido1;
                         tbldata = document.createTextNode(data);
                         tbltd.appendChild(tbldata);
                         tblrw.appendChild(tbltd);
