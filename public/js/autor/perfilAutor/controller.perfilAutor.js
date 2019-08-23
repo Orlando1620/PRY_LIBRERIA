@@ -43,17 +43,17 @@ async function cargarPerfil() {
         title.id = autor.libros[i]["isbn"];
         title.addEventListener('click', perfil);
 
-        var cardTextCont2 = document.createElement("div");
+        /*var cardTextCont2 = document.createElement("div");
         cardTextCont2.classList.add("card-text-cont");
         var label = document.createElement("label");
-        var textLabel = document.createTextNode("Por: ");
+        //var textLabel = document.createTextNode("Por: ");
         label.appendChild(textLabel);
         cardTextCont2.appendChild(label);
         var autorLibro = document.createElement("label");
         var textAutor = document.createTextNode(autor.libros[i]["autor"]);
         autorLibro.appendChild(textAutor);
         cardTextCont2.appendChild(autorLibro);
-        card.appendChild(cardTextCont2);
+        card.appendChild(cardTextCont2);*/
 
         var cardTextCont3 = document.createElement("div");
         cardTextCont3.classList.add("card-text-cont");
