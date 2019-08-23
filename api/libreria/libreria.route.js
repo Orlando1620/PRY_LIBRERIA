@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var libreriaApi = require('./libreria.api');
+var AdminLib = require('../adminLib/adminLib.model');
 var sucursalesApi = require('../sucursal/sucursal.api');
 
 /**

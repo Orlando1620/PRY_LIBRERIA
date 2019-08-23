@@ -2,7 +2,7 @@ window.onload = function () {
     obtenerListLibrerias();
 }
 
-
+var datosAdminLib;
 
 async function obtenerListLibrerias() {
     let librerias = await listar_librerias_Solicitudes();
@@ -55,14 +55,17 @@ async function listar(librerias) {
                         break;
 
                     case 1:
-                        data = librerias[i].admin_id;
+                        var idAdmin = librerias[i].admin_id;
+                        datosAdminLib = await obtenerDatosAdmin(idAdmin);
+                        data = datosAdminLib.nombre;
                         tbldata = document.createTextNode(data);
                         tbltd.appendChild(tbldata);
                         tblrw.appendChild(tbltd);
                         break;
 
                     case 2:
-                        data = librerias[i].correo;
+                        datosAdminLib = await obtenerDatosAdmin(idAdmin);
+                        data = datosAdminLib.correo;
                         tbldata = document.createTextNode(data);
                         tbltd.appendChild(tbldata);
                         tblrw.appendChild(tbltd);
@@ -72,8 +75,8 @@ async function listar(librerias) {
                         let aceptar = document.createElement('a');
                         let aceparI = document.createElement("i");
 
-                        aceptar.classList.add('fas');
-                        aceptar.classList.add('fa-save');
+                        aceptar.classList.add('far');
+                        aceptar.classList.add('fa-check-circle');
                         aceptar.id = librerias[i].admin_id;;
                         aceptar.setAttribute('onclick', "aceptSolicitud(this)");
                         aceparI.appendChild(aceptar);
@@ -140,7 +143,7 @@ function deleteRow() {
 async function aceptSolicitud(e) {
     var id = e.id;
     let result = await actualizarSolicitud(id, 1);
-    if(result){
+    if (result) {
         obtenerListLibrerias();
     }
 }
@@ -148,8 +151,8 @@ async function aceptSolicitud(e) {
 async function denegar(e) {
     var id = e.id;
     let result = await actualizarSolicitud(id, 2);
-    
-    if(result){
+
+    if (result) {
         obtenerListLibrerias();
     }
 }
