@@ -154,6 +154,14 @@
     display: flex;
 }
 
+.fa-trash{
+    color: rgb(223, 80, 80);
+}
+
+.fa-pencil-alt{
+    color: #487252;
+}
+
 @media(max-width: 920px){
 
     .side-bar a{
