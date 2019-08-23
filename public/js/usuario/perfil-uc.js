@@ -3,12 +3,63 @@ var usuarioId;
 var lati;
 var longi;
 var sexoBD = [];
+var generosArray = [];
+var generoArrayLength;
 
 var data = {
 	id: sessionStorage.getItem("id")
 };
 
-iniciarUC();
+cargarGen();
+
+function cargarGen() {
+    fetch('/genero/listar', {
+        method: 'GET',
+        headers:{'Content-Type': 'application/json'}
+      })
+      .then(
+        function(response) {
+          if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+          else
+            return response.json();
+        }
+      )
+      .then(
+          function(json){
+            console.log(json);
+              generoArrayLength = json.length;
+            for(var i=0;i<json.length;i++){
+                generosArray = json;
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.value = json[i]['nombre'];
+				checkbox.id ="genero"+i;
+				checkbox.disabled = true;
+                
+                var div = document.createElement("div");
+                div.classList.add("form-tercio");
+    
+                
+                var label = document.createElement("label");
+                var textNode = document.createTextNode(json[i]['nombre']);
+                label.appendChild(textNode);
+                
+    
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                document.getElementById("genero").appendChild(div);
+            }
+			iniciarUC();
+          }
+      )
+      .catch(
+        function(err) {
+          console.log('Ocurrió un error con la ejecución', err);
+        }
+      );
+
+}
 
 function iniciarUC() {
 	fetch('/sexo/listar', {
@@ -156,14 +207,16 @@ function cargarPerfilUC() {
 				console.log(coords);
 				addMarker(coords);
 
+				var genFavoritos = json['generosFav'];
 
-				var generos = json['generosFav'];
-				for (var j = 0; j < generos.length; j++) {
-					var opc = document.createElement('li');
-					var textNode = document.createTextNode(generos[j][0]);
-					opc.appendChild(textNode);
+				for (var i = 0; i < genFavoritos.length; i++) {
 
-					document.getElementById("generosul").appendChild(opc);
+					for (var j = 0; j < generosArray.length; j++) {
+
+						if (genFavoritos[i] == generosArray[j]['nombre']) {
+							document.getElementById("genero" + j).checked = true;
+						}
+					}
 				}
 
 			}
@@ -233,6 +286,10 @@ function mostrarModificarUC(e) {
 	provincia.classList.add('inputActualizando');
 	provincia.disabled = false;
 
+	for (var i = 0; i < generoArrayLength; i++) {
+			document.getElementById("genero" + i).disabled = false;
+	}
+
 
 	var boton = document.getElementById('guardarPerfilUC');
 	boton.value = "Guardar";
@@ -271,6 +328,12 @@ async function modificarUsuarioClienteBD() {
 
 
 	var id = usuarioId;
+	var formData = new FormData(document.getElementById('form'));
+    await fetch('/usuarioCliente/localUploadImg', {
+    method: 'POST',
+    body: formData,
+    enctype: "multipart/form-data"
+    });
 	/*if (document.getElementById('foto').value != "") {
 		var formData = new FormData(document.getElementById('form'));
 
@@ -316,7 +379,8 @@ async function modificarUsuarioClienteBD() {
 		direccionExacta: direccionExacta,
 		generosFav: generos,
 		latitud: latitud,
-		longitud: longitud
+		longitud: longitud,
+		path: 'public/uploads/' + document.getElementById('foto').files[0]['name']
 
 	};
 	//}

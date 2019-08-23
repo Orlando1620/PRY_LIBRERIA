@@ -619,6 +619,7 @@ module.exports.modLibroIntercambio = async function (req, res) {
 }
 
 module.exports.modificarUsuarioCliente = async function (req, res) {
+  
   try {
     var id = req.body.id;
     var nombre = req.body.nombre;
@@ -635,9 +636,16 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
     var direccionExacta = req.body.direccionExacta;
     var latitud = req.body.latitud;
     var longitud = req.body.longitud;
-    //var foto = req.body.foto;
     var generosFav = req.body.generosFav;
+    var path = req.body.path;
+    var foto = req.body.foto;
 
+    if (foto) {
+      console.log(path);
+      var image = await cloudinary.uploader.upload(path, { tags: 'basic_sample' });
+      fs.unlinkSync(path);
+      path = image['url'];
+    }
 
     var result = await Usuario.find({ identificacion: identificacion }).exec();
 
@@ -647,13 +655,7 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
         return false;
       }
     }
-    /*if (foto) {
-      console.log(path);
-      var image = await cloudinary.uploader.upload(path, { tags: 'basic_sample' });
-      fs.unlinkSync(path);
-      path = image['url'];
-    }
-    */
+
     await Usuario.updateOne(
       { _id: id },
       {
@@ -670,10 +672,10 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
           canton: canton,
           distrito: distrito,
           direccionExacta: direccionExacta,
-          // generosFav: generosFav,
+          generosFav: generosFav,
           longitud: longitud,
-          latitud: latitud
-
+          latitud: latitud,
+          imgUrl: path
 
         },
         $currentDate: { lastModified: true }
@@ -682,9 +684,8 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
     res.json({ result: 'exito' });
 
 
-
   } catch (err) {
     console.log(err);
-  }
+}
 }
 

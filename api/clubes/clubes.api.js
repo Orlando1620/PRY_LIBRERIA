@@ -223,8 +223,7 @@ module.exports.modificarClub = async function (req, res) {
     var tipo = req.body.tipo;
 
     var result = await Clubes.find({ nombre: nombre }).exec();
-    console.log(result[0]);
-    console.log(result[0]['_id']);
+    console.log(result);
     if (result.length > 0) {
       if (result[0]['_id'] != id) {
         res.json({ result: 'repetido' });
