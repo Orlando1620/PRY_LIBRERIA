@@ -37,4 +37,8 @@ router.post('/obtener', function(req, res){
 router.post('/listarSolicitudes', function(req, res){
     libreriaApi.listarLibreriasSolicitudRegistro(req, res);
 })
+
+router.put('/actualizarSolicitud', function(req, res){
+    libreriaApi.actualizarSolicitud(req, res);
+})
 module.exports = router;
