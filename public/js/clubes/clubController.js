@@ -51,7 +51,7 @@ async function registroVirtual() {
                 window.location.href = "listar-clubes-UC.html";
                 break;
               case "AdminLib":
-                window.location.href = "listar--clubes-adminLib.html";
+                window.location.href = "listar-clubes-adminLib.html";
                 break;
               case "adminGlobal":
                 window.location.href = "listar-clubes-adminGlobal.html";
@@ -115,7 +115,7 @@ async function registroFisico(){
                       window.location.href = "listar-clubes-UC.html";
                       break;
                   case "AdminLib":
-                      window.location.href = "listar--clubes-adminLib.html";
+                      window.location.href = "listar-clubes-adminLib.html";
                       break;
                   case "adminGlobal":
                       window.location.href = "listar-clubes-adminGlobal.html";

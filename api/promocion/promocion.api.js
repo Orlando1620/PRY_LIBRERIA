@@ -107,3 +107,10 @@ module.exports.listarBySuc = function (req, res) {
       }
     );
 }
+
+module.exports.eliminar = async function (req, res) {
+  await Promocion.deleteMany(
+    { sucursal: req.body.id }
+  );
+  res.json({result: "exito"});
+}

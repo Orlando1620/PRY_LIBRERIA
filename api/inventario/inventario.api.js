@@ -146,7 +146,7 @@ module.exports.listarPerfilLibro = function(req, res) {
 
 module.exports.eliminarInventarioTodo = async function(req, res) {
   await Inventario.deleteMany(
-    { sucursal: req.body.sucursal }
+    { sucursal: req.body.id }
   );
   res.json({result: "exito"});
 }
