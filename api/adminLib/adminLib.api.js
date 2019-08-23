@@ -4,6 +4,16 @@ let AdminLib = require('./adminLib.model');
 let Libreria = require('../libreria/libreria.model');
 var nodemailer = require('nodemailer');
 
+
+module.exports.obtenerAdminLib = function (req, res) {
+    var id = req.body.id;
+    Usuario.findOne({ _id: id }).then(function (dato) {
+      if (dato) {
+        res.send(dato);
+      }
+    })
+  }
+
 module.exports.registrar_Admin = function (req, res) {
     AdminLib.findOne({ correo: req.body.correo }).then(function (user) {
 
@@ -14,8 +24,11 @@ module.exports.registrar_Admin = function (req, res) {
                 apellido2: req.body.apellido2,
                 correo: req.body.correo,
                 contrasena: req.body.contrasena,
+                changePassword: false,
                 bloqueado: false,
                 tipo: 'AdminLib',
+                estado: 0,
+                eliminado: false,
                 fechaNaci: req.body.fechaNaci,
                 tipoIdentificacion: req.body.tipoIdentificacion,
                 identificacion: req.body.numberIdentificacion,
@@ -28,6 +41,7 @@ module.exports.registrar_Admin = function (req, res) {
                 nombreComercial: req.body.nombreComercial,
                 nombreFantasia: req.body.nombreFantasia,
                 tipo: 'lib',
+                estado: 0,
                 latitud: req.body.latitud,
                 longitud: req.body.longitud,
                 provincia: req.body.provincia,
@@ -149,8 +163,8 @@ module.exports.enviarContrasena = function(req,res){
 }
 
 module.exports.perfil = function(req, res){
-    var correo = req.body.correo;
-    AdminLib.find({correo: correo}).exec()
+    var id = req.body.id;
+    AdminLib.find({_id: id}).exec()
     .then(
       function(result){
         res.send(result);
@@ -161,4 +175,52 @@ module.exports.perfil = function(req, res){
         console.log(err);
       }
     );
+}    
+module.exports.modificarUsuarioAdminLib = async function (req, res) {
+    try {
+        var id = req.body.id;
+        var nombre = req.body.nombre;
+        var apellido1 = req.body.apellido1;
+        var apellido2 = req.body.apellido2;
+        var correo = req.body.correo;
+        var fechaNaci = req.body.fechaNaci;
+        var tipoSexo = req.body.tipoSexo;
+        var tipoIdentificacion = req.body.tipoIdentificacion;
+        var identificacion = req.body.identificacion;
+        console.log(req.body);
+
+        var result = await AdminLib.find({ identificacion: identificacion }).exec();
+
+
+
+        if (result.length > 0) {
+            if (result[0]['_id'] != id) {
+                res.json({ result: 'repetido' });
+                return false;
+            }
+        }
+        await AdminLib.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    nombre: nombre,
+                    apellido1: apellido1,
+                    apellido2: apellido2,
+                    fechaNaci: fechaNaci,
+                    tipoSexo: tipoSexo,
+                    correo: correo,
+                    tipoIdentificacion: tipoIdentificacion,
+                    identificacion: identificacion
+                },
+                $currentDate: { lastModified: true }
+            }
+        );
+        res.json({ result: 'exito' });
+
+
+
+    } catch (err) {
+
+        console.log(err);
+    }
 }

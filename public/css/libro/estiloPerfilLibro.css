@@ -80,6 +80,9 @@
     box-sizing: border-box;
 }
 
+.justify {
+    text-align: justify;
+}
 
 .libro-cont{
     overflow: auto;
@@ -178,6 +181,34 @@
     
     border: none;
     background-color: #48725231;
+}
+
+.submit{
+    text-align: center;
+    padding: 10px 30px;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.submit:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.input{
+    border: none;
+}
+
+.pop-up-cont{
+    position: absolute;
+    top: 500px !important;
+    left: 30% !important;
+    right: 30% !important; 
+    border: 1px solid silver;
+    z-index: 99999999;
 }
 
 .resenas-cont{

@@ -3,6 +3,7 @@
 var id_alert = "alert";
 var id_alert_correo = "alert_correo";
 var id_alert_mapa = "alert_mapa";
+var alert_correct = "alert_correct"
 
 var nombre = document.getElementById('nomAdmin');
 var apellido1 = document.getElementById('apellido1');
@@ -47,6 +48,10 @@ async function obtener_datos() {
     var contrasena = contrasenaAleatoria();
     let response = await registrar_Adimin_Lib(nombre.value, apellido1.value, apellido2.value, correo.value, fechaNaci.value, tipoIdentificacion.value, numberIdentificacion.value, tipoSexo.value, nombreComercial.value, nombreFantasia.value, provincia.value, canton.value, distrito.value, direccion.value, telefono.value, lat, lng, contrasena);
     mostrarMensaje(response, contrasena);
+    mostrarMsg('alert_correct');
+    setTimeout(function () {
+        window.location.href = ("login.html");
+    }, 3000);
 }
 
 function mostrarMensaje(respuesta, contrasena) {

@@ -6,6 +6,25 @@ window.onload = function () {
     fillTable();
 }
 
+async function modificarIntercambio(e) {
+    var libro = e.target;
+    var id = libro.id;
+    var libroId = id.split("_");
+    var intercambio = document.getElementById(id).value;
+    console.log(intercambio +' '+libroId);
+
+    var data = {
+        usuarioId: sessionStorage.getItem("id"),
+        libroId: libroId[0],
+        intercambio: intercambio
+    };
+    await fetch('/usuarioCliente/modLibroIntercambio', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
+
 async function fillTable(){
 
     var response = await fetch('/libro/listar', {
@@ -36,11 +55,15 @@ async function fillTable(){
         var td = document.createElement("td");
         var libro = document.createElement('a');
         var cover = document.createElement('img');
-        for(var j=0;j<libros.length;j++){
-            if(libros[j]['_id'] == misLibros[i][0]['libro']){
+
+        var idLibro = null;
+
+        for (var j = 0; j < libros.length; j++) {
+            if (libros[j]['_id'] == misLibros[i][0]['libro']) {
                 libro.appendChild(document.createTextNode(libros[j]['nombre']));
                 libro.id = libros[j]['_id'];
                 cover.src = libros[j]['urlImg'];
+                idLibro = libros[j]['_id'];
             }
         }
         td.appendChild(cover);
@@ -53,22 +76,28 @@ async function fillTable(){
         tr.appendChild(td);
         
         var td = document.createElement("td");
-        var intercambio = document.createElement('select');
+        var intercambio = document.createElement('select')
 
         var opc = document.createElement("option");
         var textNode = document.createTextNode('Disponible');
+        opc.value = 'true';
         opc.appendChild(textNode);
 
         intercambio.appendChild(opc);
 
         var opc = document.createElement("option");
         var textNode = document.createTextNode('No disponible');
+        opc.value = 'false';
         opc.appendChild(textNode);
 
         intercambio.appendChild(opc);
+        intercambio.id = idLibro + '_select';
+        intercambio.addEventListener('change', modificarIntercambio);
 
-        if(misLibros[i][0]['intercambiable'] == false){
-            intercambio.value = 'No disponible';
+        if (misLibros[i][0]['intercambiable'] == false) {
+            intercambio.value = false;
+        } else {
+            intercambio.value = true;
         }
 
         //intercambio.addEventListener('change', mod);

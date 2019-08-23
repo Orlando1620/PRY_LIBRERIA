@@ -1,71 +1,71 @@
 // JavaScript Document
-if(sessionStorage.getItem("nombre") == null){
+if (sessionStorage.getItem("nombre") == null) {
   window.location.href = "login.html";
 }
 
 
 
-async function registroVirtual(){
-  try{
-    
+async function registroVirtual() {
+  try {
+
     var horaInicio = document.getElementById('horaInicio').value;
     var horaFinal = document.getElementById('horaFinal').value;
 
-    if(horaInicio < horaFinal){
+    if (horaInicio < horaFinal) {
       var data = {
         nombre: document.getElementById('nombre').value,
         genero: document.getElementById('genero').value,
         tipo: "Virtual",
-        dia: document.getElementById('dia').value,	
+        dia: document.getElementById('dia').value,
         horaInicio: horaInicio,
         horaFinalizacion: horaFinal,
         libro: document.getElementById('libro').value,
         descripcion: document.getElementById('desc').value,
         creador: sessionStorage.getItem("id")
       };
-      
-      var response  = await fetch('/clubes/addVirtual', {
+
+      var response = await fetch('/clubes/addVirtual', {
         method: 'POST',
         body: JSON.stringify(data),
-        headers:{'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
       });
 
       var result = await response.json();
-      
+
       msg = result['result'];
       console.log(msg);
-      switch(msg){
-          case 'repetido':
-              document.getElementById("alert").classList.remove("oculto");
-              document.getElementById("msg").innerHTML = "Un club de lectura con el mismo nombre ya fue registrado";
-              break;
-          case 'exito':
-              document.getElementById("alert").classList.add("oculto");
-              registrarBitacora(sessionStorage.getItem("correo"),'registro club de lectura: '+document.getElementById("nombre").value);
+      switch (msg) {
+        case 'repetido':
+          document.getElementById("alert").classList.remove("oculto");
+          document.getElementById("msg").innerHTML = "Un club de lectura con el mismo nombre ya fue registrado";
+          break;
+        case 'exito':
+          document.getElementById("alert").classList.add("oculto");
+          registrarBitacora(sessionStorage.getItem("correo"), 'registro club de lectura: ' + document.getElementById("nombre").value);
 
-              document.getElementById("alert-success").classList.remove("oculto");
-              document.getElementById("msg-success").innerHTML = "Club registrado";
-              setTimeout(function () {
-                switch(sessionStorage.getItem("tipo")){
-                  case "usuarioCliente":
-                      window.location.href = "listar-clubes-UC.html";
-                      break;
-                  case "AdminLib":
-                      window.location.href = "listar--clubes-adminLib.html";
-                      break;
-                  case "adminGlobal":
-                      window.location.href = "listar-clubes-adminGlobal.html";
-                      break;
-                }
-                
-              }, 2000);
-              break;
+          document.getElementById("alert-success").classList.remove("oculto");
+          document.getElementById("msg-success").innerHTML = "Club registrado";
+          setTimeout(function () {
+            switch (sessionStorage.getItem("tipo")) {
+              case "usuarioCliente":
+                window.location.href = "listar-clubes-UC.html";
+                break;
+              case "AdminLib":
+                window.location.href = "listar-clubes-adminLib.html";
+                break;
+              case "adminGlobal":
+                window.location.href = "listar-clubes-adminGlobal.html";
+                break;
+            }
+
+          }, 2000);
+          break;
       }
     } else {
       document.getElementById("alert").classList.remove("oculto");
       document.getElementById("msg").innerHTML = "La hora de final debe ser despues de la hora de inicio";
     }
-  } catch(err) {
+  } catch (err) {
     console.log('Ocurrió un error con la ejecución', err);
   }
 }
@@ -115,7 +115,7 @@ async function registroFisico(){
                       window.location.href = "listar-clubes-UC.html";
                       break;
                   case "AdminLib":
-                      window.location.href = "listar--clubes-adminLib.html";
+                      window.location.href = "listar-clubes-adminLib.html";
                       break;
                   case "adminGlobal":
                       window.location.href = "listar-clubes-adminGlobal.html";
@@ -134,32 +134,154 @@ async function registroFisico(){
   }
 }
 
-function nuevoClub(e){
+function nuevoClub(e) {
   window.location.href = "registrar-club.html";
 }
 
-function registrarBitacora(correo,accion){
+function registrarBitacora(correo, accion) {
   var data = {
-      correo: correo,
-      accion: accion,
-      fecha: new Date()
+    correo: correo,
+    accion: accion,
+    fecha: new Date()
   };
   fetch('/bitacora/add', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers:{'Content-Type': 'application/json'}
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
   })
-  .then(
-      function(response) {
-      if (response.status != 200)
+    .then(
+      function (response) {
+        if (response.status != 200)
           console.log('Ocurrió un error con el servicio: ' + response.status);
-      else
+        else
           return response.json();
       }
-  )
-  .catch(
-      function(err) {
-      console.log('Ocurrió un error con la ejecución', err);
+    )
+    .catch(
+      function (err) {
+        console.log('Ocurrió un error con la ejecución', err);
       }
-  );
-  }
+    );
+}
+
+var varAccion;
+
+function popDel(accion){
+  varAccion = accion;
+  document.getElementById("pop-up").classList.remove("oculto");
+  document.getElementById("msg-pop").innerHTML = "¿Desea eliminar esta club?";
+}
+
+function aceptar(){
+  document.getElementById("pop-up").classList.add("oculto");
+  eliminarClub();
+}
+
+function cancelar(){
+  document.getElementById("pop-up").classList.add("oculto");
+}
+
+function eliminarClub() {
+  var cl = varAccion.target;
+  var club = cl.id;
+  var ids = club.split("_");
+  var id = ids[0];
+
+  var data = {
+    id: id
+  };
+
+
+  fetch('/clubes/eliminarClub', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  var list = document.getElementById('table');
+  removeElements(list);
+  listarClubesAll();
+
+
+}
+
+function modificarClub(e) {
+  var cl = e.target;
+  var club = cl.id;
+  var ids = club.split("_");
+  var id = ids[0];
+
+  var nombre = document.getElementById(id + '_' + 'nombre');
+  var genero = document.getElementById(id + '_' + 'genero');
+  var tipo = document.getElementById(id + '_' + 'tipo');
+  nombre.classList.remove("inputActualizar");
+  nombre.classList.add("inputActualizando");
+  genero.classList.remove("inputActualizar");
+  genero.classList.add("inputActualizando");
+  tipo.classList.remove("inputActualizar");
+  tipo.classList.add("inputActualizando");
+  nombre.removeAttribute('readonly');
+  genero.removeAttribute('readonly');
+  tipo.removeAttribute('readonly');
+
+  var botonActualizar = document.getElementById(club);
+  botonActualizar.classList.remove("fa-pencil-alt");
+  botonActualizar.classList.add('fa-save');
+  botonActualizar.removeAttribute("onclick");
+  botonActualizar.addEventListener('click', actualizarClub);
+
+}
+
+function actualizarClub(e) {
+
+  var cl = e.target;
+  var club = cl.id;
+  var ids = club.split("_");
+  var id = ids[0];
+
+  var nombre = document.getElementById(id + '_' + 'nombre').value;
+  var genero = document.getElementById(id + '_' + 'genero').value;
+  var tipo = document.getElementById(id + '_' + 'tipo').value;
+
+  var data = {
+    id: id,
+    nombre: nombre,
+    genero: genero,
+    tipo: tipo
+  };
+
+  fetch('/clubes/modificarClub', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(
+      function (response) {
+        if (response.status != 200)
+          console.log('Ocurrió un error con el servicio: ' + response.status);
+        else
+          return response.json();
+      }
+    )
+    .then(
+      function (json) {
+        if (json.result == "exito") {
+        } else {
+          
+          document.getElementById("msg-pop-info").innerHTML = "Ocurrió un error no se pudo actualizar";
+          document.getElementById("msgInfo").classList.remove("oculto");
+        }
+        var list = document.getElementById('table');
+        removeElements(list);
+        listarClubesAll();
+        
+
+      }
+    )
+    .catch(
+      function (err) {
+        console.log('Ocurrió un error con la ejecución', err);
+      }
+    );
+
+}

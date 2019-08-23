@@ -1,119 +1,133 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="./css/adminGlobal/estilo-perfil-adminGlobal.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/estiloNav.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css"/>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    </head>
 
-    <body class="font">
-        <nav>
-                <div class="wrapper-nav1">
-                    <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img"/></a></div>
-                    <div class="usuario-nav">
-                        <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
-    
-                        <div class="dropdown" id="dropdown">
-                            <button class="dropbtn" >
-                                <label id="usrName"></label> 
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <a href="#" id="perfil">Perfil</a>
-                                <a href="#" id="admin" class="oculto">Administrar</a>
-                                <a href="#" id="c-r">Cerrar Sesión</a>
-                            </div>
-                        </div> 
-    
-                        <div class="wrapper-nav2">
-                            <div><a id="nav-libros">Libros</a></div>
-                            <div><a id="nav-autores">Autores</a></div>
-                            <div><a id="nav-librerias">Librerías</a></div>
-                            <div><a id="nav-club">Clubes de Lectura</a></div>
-                            <div><a id="nav-promo">Promociones</a></div>
-                            
-                        </div>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/adminGlobal/estilo-perfil-adminGlobal.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloNav.css" />
+    <link rel="stylesheet" type="text/css" href="./css/adminGlobal/estilo-parametros.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloFooter.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estiloAlerts.css" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+<body class="font">
+    <nav>
+        <div class="wrapper-nav1">
+            <div class="logo-nav"><a id="home"><img src="../img/logoLeeBlanco.png" class="logo-nav-img" /></a></div>
+            <div class="usuario-nav">
+                <div class="login" id="login"><a id="nav-login">Iniciar Sesión</a></div>
+
+                <div class="dropdown" id="dropdown">
+                    <button class="dropbtn">
+                        <label id="usrName"></label>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="perfil">Perfil</a>
+                        <a href="#" id="admin" class="oculto">Administrar</a>
+                        <a href="#" id="c-r">Cerrar Sesión</a>
                     </div>
                 </div>
-    
-                
-    
-                <div class="select-nav">
-                    <select id="select-nav">
-                        <option>Más</option>
-                        <option value="1">Libros</option>
-                        <option value="2">Autores</option>
-                        <option value="3">Librerías</option>
-                        <option value="4">Clubes de Lectura</option>
-                        <option value="5">Promociones</option>
-                    </select>
+
+                <div class="wrapper-nav2">
+                    <div><a id="nav-libros">Libros</a></div>
+                    <div><a id="nav-autores">Autores</a></div>
+                    <div><a id="nav-librerias">Librerías</a></div>
+                    <div><a id="nav-club">Clubes de Lectura</a></div>
+                    <div><a id="nav-promo">Promociones</a></div>
+
                 </div>
-        </nav>
-
-        <div class="main-wrapper">
-
-            <div class="wrapper-cont">
-                <h1 class="main-title">Mi perfil</h1>
-                
-                <table>
-                    <tr>
-                        <td class="tdmenu">Nombre</td>
-                        <td class="table-data" id="nombre"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdmenu">Apellidos</td>
-                        <td class="table-data" id="apellidos"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdmenu">Identificación</td>
-                        <td class="table-data" id="identificacion"></td>
-                    </tr>
-                    <tr>
-                        <td class="tdmenu">Correo electrónico</td>
-                        <td class="table-data" id="correo"></td>
-                    </tr>
-                </table>
-                    
-                
-
-
             </div>
         </div>
 
-        <footer>
-            <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo"/></a></div>
-            <div class="footer-cont">
-                <h4></h4>
-                <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png" class="logo"/></a><br>
-                <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png" class="logo"/></a><br>
-            </div>
-            <div class="footer-cont">
-                <h4>Compañia</h4>
-                <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
-                <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
-                <i class="fab fa-instagram fa-lg"></i>
-                <i class="fab fa-facebook-square fa-lg"></i>
-                <i class="fab fa-twitter-square fa-lg"></i>
-            </div>
-
-            <div class="footer-cont">
-                <h4>Soporte</h4>
-                <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
-                <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
-            </div>
-
-            <div class="footer-cont">
-                
-            </div>
-            
-        </footer>
 
 
-        <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-        <script src="js/adminGlob/perfil-adminGlobal.js"></script>
-        <script src="js/log-nav.js"></script>
-        
-    </body>
+        <div class="select-nav">
+            <select id="select-nav">
+                <option>Más</option>
+                <option value="1">Libros</option>
+                <option value="2">Autores</option>
+                <option value="3">Librerías</option>
+                <option value="4">Clubes de Lectura</option>
+                <option value="5">Promociones</option>
+            </select>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+
+        <div class="wrapper-cont">
+            <h1 class="main-title">Mi perfil</h1>
+
+            <table>
+                <tr>
+                    <td class="tdmenu">Nombre</td>
+                    <td class="table-data"><input type="text" id="nombre" readonly></td>
+                </tr>
+                <tr>
+                    <td class="tdmenu">Apellidos</td>
+                    <td class="table-data">
+                        <input type="text" id="primerApellido" readonly>
+                        <input type="text" id="segundoApellido" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdmenu">Identificación</td>
+                    <td class="table-data"><input type="text" id="identificacion" readonly></td>
+                </tr>
+                <tr>
+                    <td class="tdmenu">Correo electrónico</td>
+                    <td class="table-data"><input type="email" id="correo" readonly></td>
+                </tr>
+
+            </table>
+            <input id="tipoIdentificacion" hidden>
+
+            <div class="form-full"><input type="button" class="submit" onclick="mostrarModificar(event)"
+                    value="Modificar" id="guardarPerfilAG"></input></div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-cont"><a href="#"><img src="../img/logo.png" class="logo" /></a></div>
+        <div class="footer-cont">
+            <h4></h4>
+            <a href="https://www.barnesandnoble.com/" target="_blank"><img src="../img/Barnes_&_Noble_logo.png"
+                    class="logo" /></a><br>
+            <a href="https://www.booksforkids.org/" target="_blank"><img src="../img/bfk-logo-clear.png"
+                    class="logo" /></a><br>
+        </div>
+        <div class="footer-cont">
+            <h4>Compañia</h4>
+            <a href="#"><i class="fas fa-paper-plane"></i>Contacto</a><br>
+            <a href="#"><i class="fas fa-file-invoice"></i>Términos de uso</a><br>
+            <i class="fab fa-instagram fa-lg"></i>
+            <i class="fab fa-facebook-square fa-lg"></i>
+            <i class="fab fa-twitter-square fa-lg"></i>
+        </div>
+
+        <div class="footer-cont">
+            <h4>Soporte</h4>
+            <a href="#"><i class="fas fa-headset"></i>Ayuda</a><br>
+            <a href="#"><i class="fas fa-question-circle"></i>Preguntas frecuentes</a><br>
+        </div>
+
+        <div class="footer-cont">
+
+        </div>
+
+    </footer>
+
+
+    <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
+    <script src="js/adminGlob/perfil-adminGlobal.js"></script>
+
+    <script src="js/log-nav.js"></script>
+
+</body>
 
 </html>

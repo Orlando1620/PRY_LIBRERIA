@@ -1,3 +1,4 @@
+      document.getElementById("msg").innerHTML = "Favor rellenar el espacio.";
 async function modificarImpuesto() {
 
 

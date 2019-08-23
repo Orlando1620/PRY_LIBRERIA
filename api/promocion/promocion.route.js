@@ -12,11 +12,20 @@ router.post('/localUploadImg', function (req, res){
 })
 
 router.get('/listar', function(req, res){
-promocionApi.listarPromo(req, res);
+  promocionApi.listarPromo(req, res);
+})
+
+router.post('/listarBySuc', function(req, res){
+  promocionApi.listarBySuc(req, res);
 })
 
 router.get('/listarTodo', function (req, res){
   promocionApi.listarTodo(req,res);
 })
 
+router.post('/eliminar', function (req, res){
+  promocionApi.eliminar(req,res);
+})
+
 module.exports = router;
+

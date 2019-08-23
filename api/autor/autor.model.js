@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var autorSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId, 
+  _id: mongoose.Schema.Types.ObjectId,  
   nombre: String,
   apellido1: String,
   apellido2: String,

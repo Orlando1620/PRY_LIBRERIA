@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var libreriaApi = require('./libreria.api');
+var AdminLib = require('../adminLib/adminLib.model');
 var sucursalesApi = require('../sucursal/sucursal.api');
 
 /**
@@ -22,6 +23,10 @@ router.post('/obtener_libreria', function(req, res) {
     libreriaApi.obtener_libreria(req,res);
 })
 
+router.post('/filtrarLibreria', function(req, res){
+    libreriaApi.filtrarLibreria(req, res);
+})
+
 router.put('/modificar', function(req, res){
     libreriaApi.modificarLibreria(req, res); 
 })
@@ -30,4 +35,15 @@ router.post('/eliminar', function(req, res){
     libreriaApi.eliminarLibreria(req, res); 
 })
 
+router.post('/obtener', function(req, res){
+    sucursalesApi.listarSucursal(req, res);
+})
+
+router.post('/listarSolicitudes', function(req, res){
+    libreriaApi.listarLibreriasSolicitudRegistro(req, res);
+})
+
+router.put('/actualizarSolicitud', function(req, res){
+    libreriaApi.actualizarSolicitud(req, res);
+})
 module.exports = router;

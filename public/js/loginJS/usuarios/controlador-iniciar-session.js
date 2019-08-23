@@ -13,6 +13,9 @@
 var id_alert_error = "alert";
 var id_alert_long = "alert_long";
 var id_alert_cred = "alert_cred";
+var id_alert_NotSoli = "alert_NotSoli";
+var id_alert_denegate = "alert_denegate";
+var user;
 
 async function login() {
     //debugger;
@@ -20,31 +23,54 @@ async function login() {
     var contrasena = document.getElementById('contraseNa').value;
 
     if (correo != "" && contrasena != "") {
-            //debugger;
-            let user = await iniciar_sesion(correo, contrasena);
+        //debugger;
+        user = await iniciar_sesion(correo, contrasena);
 
-            if (user !== null) {
-                sessionStorage.setItem("correo", user.correo);
-                sessionStorage.setItem("tipo", user.tipo);
-                sessionStorage.setItem("nombre", user.nombre);
-                sessionStorage.setItem("id", user._id);
-                localStorage.setItem('carrito','');
+        if (user !== null) {
+            sessionStorage.setItem("correo", user.correo);
+            sessionStorage.setItem("tipo", user.tipo);
+            sessionStorage.setItem("nombre", user.nombre);
+            sessionStorage.setItem("id", user._id);
+            localStorage.setItem('carrito', '');
 
-                switch(sessionStorage.getItem("tipo")){
-                    case "usuarioCliente":
+            switch (sessionStorage.getItem("tipo")) {
+                case "usuarioCliente":
+                    if (user.changePassword) {
                         window.location.href = ("homePage.html");
-                        break;
-                    case "AdminLib":
-                        window.location.href = ("perfil-lib-admin.html");
-                        break;
-                    case "adminGlobal":
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
+
+                case "AdminLib":
+                    if (user.estado == 0) {
+                        mostrarMsg('alert_NotSoli');
+                    } else {
+                        if (user.estado == 2) {
+                            mostrarMsg('alert_Denegate');
+                        } else {
+                            if (user.changePassword) {
+                                window.location.href = ("perfil-lib-admin.html");
+                            } else {
+                                window.location.href = ("modificar-contraseNa.html");
+                            }
+                        }
+
+                    }
+                    break;
+
+                case "adminGlobal":
+                    if (user.changePassword) {
                         window.location.href = ("listar-usuarios.html");
-                        break;
-                }
-                
-            } else {
-                mostrarMsg(id_alert_cred);
+                    } else {
+                        window.location.href = ("modificar-contraseNa.html");
+                    }
+                    break;
             }
+
+        } else {
+            mostrarMsg(id_alert_cred);
+        }
     } else {
         validaCorreo(document.getElementById('correo'));
         validaContrasena(document.getElementById('contraseNa'));
@@ -52,8 +78,8 @@ async function login() {
     }
 }
 
-function registro(){
-    window.location.href= ("registrarUC.html");
+function registro() {
+    window.location.href = ("registrarUC.html");
 }
 
 function validaCorreo(event) {

@@ -1,0 +1,141 @@
+.main-title{
+    padding-left: 9.5%;
+    color: #022600;
+}
+
+.nombre{
+    text-align: center;
+    color: #022600;
+}
+
+/*content*/
+.main-wrapper{
+    overflow: auto;
+}
+
+.wrapper-cont{
+    overflow: auto;
+    float: left;
+    width: 100%;
+}
+
+.ppic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.ppic-cont{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.filtros{
+    overflow: auto;
+    padding: 0 9.5%;
+}
+
+.search-box{
+    float: left;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+    box-sizing: border-box;
+}
+
+.select-filtro{
+    float: left;
+    width: 48%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    margin-left: 2%; 
+    font-size: 1rem;
+    border: none;
+    background-color: #48725231;
+    box-sizing: border-box;
+}
+
+.table-cont{
+    margin: 10px 9.5% 50px 9.5%;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.lista-suc{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-suc td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+.lista-suc select{
+    padding: 10px;
+    width: 130px;
+    border: none;
+    background-color: #48725231;
+}
+
+.lista-suc img{
+    width: 50px;
+}
+
+
+.table-titles{
+    background-color: #487252; 
+    border-bottom: solid 1px silver;
+    color: white;
+}
+
+.table-titles td{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+
+.submit{
+    text-align: center;
+    padding: 10px 30px;
+    background-color: #48725231;
+    color: black;
+    border: none;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.submit:hover{
+    background-color: #487252;
+    color: white;
+}
+
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
+}
+
+.icons{
+    text-align: center;
+}
+
+.fav-icon{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}

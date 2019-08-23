@@ -9,10 +9,20 @@ if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem(
 
 document.getElementById("usrName").innerHTML = sessionStorage.getItem("correo");
 
+
+window.onload = function () {
+  fillPerfil(sessionStorage.getItem("idLibro"));
+  fillSucursales();
+  document.getElementById('select-opciones').value = "1";
+}
+
 var autores = [];
 var califs = [];
 var sucursales = [];
 var promociones = [];
+var usuarios = [];
+var libros = [];
+var idUsuarioItercambio;
 
 async function fillPerfil(id){
 
@@ -96,6 +106,10 @@ async function fillPerfil(id){
             document.getElementById('genero').innerHTML += json['genero']; 
             document.getElementById('categoria').innerHTML += json['categoria'];
             document.getElementById('desc').innerHTML += json['descripcion']; 
+
+            document.getElementById('select-opciones').classList.remove('oculto');
+              
+            fillIntercambios(id);
             fillInventario(id);
             resenas(id);
           }
@@ -225,12 +239,200 @@ async function fillInventario(id){
       );
 }
 
+async function fillIntercambios(id){
+  var response = await fetch('/usuario/listar', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  usuarios = await response.json();
+  var resultados = 0;
+  for(var i= 0;i<usuarios.length;i++){
+    var data = {
+      id: usuarios[i]['_id']
+    };
+  
+    var response = await fetch('/usuarioCliente/perfil', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+    });
+    var usuario = await response.json();
+    misLibros = usuario['libros'];
+
+    if(usuario['_id'] != sessionStorage.getItem('id')){
+      for(var j= 0;j<misLibros.length;j++){
+        var idLibro = misLibros[j][0]['libro'];
+        var intercambiable = misLibros[j][0]['intercambiable'];
+        var cantidad = misLibros[j][0]['cantidad'];
+        if(idLibro == id && intercambiable == true && cantidad > 0){
+          resultados++;
+          var tr = document.createElement("tr");
+          var td = document.createElement("td");
+          
+          var a = document.createElement('a');
+          var textNode = document.createTextNode(usuario['nombre']+' '+usuario['apellido1']+' '+usuario['apellido2']);
+          a.id = usuario['_id'];
+          a.appendChild(textNode);
+          a.href = "#";
+          a.addEventListener('click', perfil); 
+          td.appendChild(a);
+          tr.appendChild(td);
+
+          var td = document.createElement("td");
+          td.style.textAlign = 'right';
+          var btn = document.createElement('button');
+          btn.innerHTML = 'Solicitar intercambio';
+          btn.id = usuario['_id'];
+          btn.addEventListener('click', intercambio);
+          btn.classList.add('submit');
+          td.appendChild(btn);
+          tr.appendChild(td);
+
+          document.getElementById("intercambios").appendChild(tr);
+        }
+      }
+    }
+  }
+  if(resultados == 0){
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    var text = document.createTextNode("Este libro no está disponible");
+    td.colSpan = 3;
+    td.appendChild(text);
+    td.style.textAlign = 'center'; 
+    tr.appendChild(td);
+    document.getElementById("intercambios").appendChild(tr);
+  }
+
+  
+}
+
+function opciones(){
+  var opc = document.getElementById('select-opciones').value;
+  switch(opc){
+    case "1":
+      document.getElementById('intercambios').classList.add('oculto');
+      document.getElementById('opciones').classList.remove('oculto');
+      break;
+    case "2":
+      document.getElementById('opciones').classList.add('oculto');
+      document.getElementById('intercambios').classList.remove('oculto');
+      break;
+  }
+}
+
+async function fillSucursales(){
+  var response = await fetch('/sucursal/listarTodo', {
+    method: 'GET',
+    headers:{'Content-Type': 'application/json'}
+  });
+  var sucursales = await response.json();
+
+  for(var i=0;i<sucursales.length;i++){
+    var opc = document.createElement("option");
+    var textNode = document.createTextNode(sucursales[i]['nombreSucursal']);
+    opc.value = sucursales[i]['_id'];
+    opc.appendChild(textNode);
+
+    document.getElementById("sucursales").appendChild(opc);
+  }
+
+}
+
+function intercambio(e){
+  document.getElementById('pop-up-intercambio').classList.remove('oculto');
+  var a = e.target;
+  idUsuarioItercambio = a.id;
+}
+
+async function aceptarIntercambio(e){
+  try{
+    var esValido = validarCamposFormulario("form");
+    if (esValido == false || validarForm() == false) {
+        validarForm();
+        document.getElementById("alert-intercambio").classList.remove("oculto");
+        document.getElementById("msg-intercambio").innerHTML = "Complete los espacios requeridos";
+        return false;
+    }
+    e.preventDefault();
+    if(validarFecha()){
+      document.getElementById("alert-intercambio").classList.add("oculto");
+      var data = {
+        libro: sessionStorage.getItem("idLibro"),
+        sucursal: document.getElementById('sucursales').value,
+        fecha: document.getElementById('fecha-intercambio').value,
+        hora: document.getElementById('hora-intercambio').value,
+        usuario1: sessionStorage.getItem('id'),
+        usuario2: idUsuarioItercambio
+      };
+      
+      var response  = await fetch('/intercambio/add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}
+      });
+
+      var result = await response.json();
+      
+      msg = result['result'];
+      switch(msg){
+        case 'repetido':
+              document.getElementById("alert-intercambio").classList.remove("oculto");
+              document.getElementById("msg-intercambio").innerHTML = "Ya envió una solicitud por este libro";
+              break;
+          case 'exito':
+              document.getElementById("alert").classList.add("oculto");
+              registrarBitacora(sessionStorage.getItem("correo"),'envío de solicitud de intercambio: '+document.getElementById("titulo").value);
+              document.getElementById("alert-intercambio-success").classList.remove("oculto");
+              document.getElementById("msg-intercambio-success").innerHTML = "Solicitud enviada";
+              setTimeout(function () {
+                document.getElementById('pop-up-intercambio').classList.add('oculto');
+              }, 2000);
+              break;
+      }
+    } else {
+      document.getElementById("alert-intercambio").classList.remove("oculto");
+      document.getElementById("msg-intercambio").innerHTML = "La fecha del intercambio debe ser en el futuro";
+    }
+  } catch(err) {
+    console.log('Ocurrió un error con la ejecución', err);
+  }
+}
+
+function validarFecha(){
+  var fecha = new Date(document.getElementById('fecha-intercambio').value);
+  var hoy = new Date();
+      if (hoy >= fecha) {
+          return false;
+      } else {
+          return true;
+      }
+}
+
+function validarForm(){
+  var sucursal = document.getElementById('sucursales').value;
+
+  if(sucursal == "Seleccione una sucursal"){
+    document.getElementById('sucursales').classList.add('invalid');
+    return false;
+  } else {
+    document.getElementById('sucursales').classList.remove('invalid');
+    return true;
+  }
+}
+
+function cancelarIntercambio(){
+  document.getElementById("form").reset();
+  document.getElementById("alert-intercambio").classList.add("oculto");
+  document.getElementById('sucursales').classList.remove('invalid');
+  document.getElementById('fecha-intercambio').classList.remove('invalid');
+  document.getElementById('hora-intercambio').classList.remove('invalid');
+  document.getElementById('pop-up-intercambio').classList.add('oculto');
+}
+
 function modificar(){
   window.location.href = "modificar-libro.html";
 }
-
-fillPerfil(sessionStorage.getItem("idLibro"));
-
 
 function addCart(e){
   if(sessionStorage.getItem("nombre") == null){
@@ -401,4 +603,37 @@ async function resenas(id){
     }
     
     
+}
+
+function perfil(e){
+  var a = e.target;
+  var id = a.id;
+  localStorage.setItem("idUsuario",id);
+  window.location.href = "perfil-uc-pub.html";
+}
+
+function registrarBitacora(correo,accion){
+  var data = {
+      correo: correo,
+      accion: accion,
+      fecha: new Date()
+  };
+  fetch('/bitacora/add', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{'Content-Type': 'application/json'}
+  })
+  .then(
+      function(response) {
+      if (response.status != 200)
+          console.log('Ocurrió un error con el servicio: ' + response.status);
+      else
+          return response.json();
+      }
+  )
+  .catch(
+      function(err) {
+      console.log('Ocurrió un error con la ejecución', err);
+      }
+  );
 }

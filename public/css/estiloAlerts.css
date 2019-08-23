@@ -9,6 +9,25 @@
     margin: 0 30% 20px 30%;
 }
 
+
+.alert-success-carrito {
+    padding: 20px;
+    background-color: #487252; 
+    color: white;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.alert-carrito {
+    padding: 20px;
+    background-color: #f44336; 
+    color: white;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .alert {
     padding: 20px;
     overflow: auto;
@@ -18,6 +37,26 @@
     box-sizing: border-box;
     width: 40%;
     margin: 0 30% 20px 30%;
+}
+
+.alert-intercambio{
+    padding: 20px;
+    overflow: auto;
+    background-color: #f44336; 
+    color: white;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.alert-intercambio-success{
+    padding: 20px;
+    overflow: auto;
+    background-color: #487252; 
+    color: white;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .alert-inv {
@@ -130,4 +169,9 @@
 .text-cont select{
     width: 100%;
     padding: 5px;
+}
+
+.alertInfoElim {
+    width: 100%;
+    margin: 0;
 }

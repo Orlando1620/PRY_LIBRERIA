@@ -163,4 +163,3 @@ fetch('https://ubicaciones.paginasweb.cr/provincias.json')
 
 
 
-

@@ -125,13 +125,28 @@
 .lista-suc i{
     padding-right: 5px;
     padding-bottom: 10px;
-    color: #487252;
 }
 
 .table-cont{
     margin: 10px 9.5% 50px 9.5%;
     height: 400px;
     overflow: scroll;
+}
+
+.fa-trash{
+    color: rgb(223, 80, 80);
+}
+
+.fa-pencil-alt{
+    color: #487252;
+}
+
+.fa-ban{
+    color: rgb(223, 80, 80);
+}
+
+.fa-check-circle{
+    color: #487252;
 }
 
 .lista-suc{
@@ -153,6 +168,18 @@
 .table-titles td{
     padding: 10px;
     border-bottom: 1px solid silver;
+}
+
+.calif-true{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252;
+}
+
+.calif-false{
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: #487252b2;
 }
 
 @media(max-width: 920px){

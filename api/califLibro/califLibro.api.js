@@ -47,6 +47,21 @@ module.exports.listar = function(req, res) {
   );
 }
 
+
+module.exports.listarTodo = function(req, res) {
+  Calif.find().exec()
+  .then(
+    function(result){
+      res.send(result);
+    }
+  )
+  .catch(
+    function(err){
+      console.log(err);
+    }
+  );
+}
+
 module.exports.listarById = function(req, res) {
   var libro = req.body.libro;
   var usuario = req.body.usuario;

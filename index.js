@@ -43,8 +43,11 @@ app.use('/impuesto', require('./api/impuesto/impuesto.route'));
 app.use('/compra', require('./api/compra/compra.route'));
 app.use('/venta', require('./api/venta/venta.route'));
 app.use('/califLibro', require('./api/califLibro/califLibro.route'));
+app.use('/califUsuario', require('./api/califUsuario/califUsuario.route'));
+app.use('/intercambio', require('./api/intercambio/intercambio.route'));
 
 
 app.listen(8080, function() {
   console.log('Servidor corriendo en puerto 8080...')
 });
+

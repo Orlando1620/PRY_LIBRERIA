@@ -56,7 +56,19 @@ async function listarSucursal() {
 
                     document.getElementById("lista-suc").appendChild(tr);
                 }
+                if(json.length == 0){
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    var text = document.createTextNode("Aún no hay sucursales registradas");
+                    td.colSpan = 5;
+                    td.appendChild(text);
+                    td.style.textAlign = 'center'; 
+                    tr.appendChild(td);
+                    document.getElementById("lista-suc").appendChild(tr);
+                  }
             }
+
+            
         )
         .catch(
             function (err) {
@@ -81,33 +93,33 @@ async function filtrar() {
             if (nombreSucursales.includes(nombreReq)) {
                 resultados++;
                 var tr = document.createElement("tr");
-                var td1 = document.createElement("td");
-                var td2 = document.createElement("td");
-                var td3 = document.createElement("td");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
 
 
-                var a = document.createElement("a");
+                    var a = document.createElement("a");
 
-                var textTd1 = document.createTextNode(sucursales[i]['nombreSucursal']);
-                a.appendChild(textTd1);
-                a.href = "#";
-                a.id = json[i]['_id'];
-                a.addEventListener('click', perfil);
+                    var textTd1 = document.createTextNode(sucursales[i]['nombreSucursal']);
+                    a.appendChild(textTd1);
+                    a.href = "#";
+                    a.id = sucursales[i]['_id'];
+                    a.addEventListener('click', perfil);
 
-                var textTd2 = document.createTextNode(sucursales[i]['provincia'] + ", " + sucursales[i]['canton'] + ", " + sucursales[i]['distrito']);
-                var textTd3 = document.createTextNode(sucursales[i]['telefono']);
+                    var textTd2 = document.createTextNode(sucursales[i]['provincia'] + ", " + sucursales[i]['canton'] + ", " + sucursales[i]['distrito']);
+                    var textTd3 = document.createTextNode(sucursales[i]['telefono']);
 
-                td1.appendChild(a);
-                td2.appendChild(textTd2);
-                td3.appendChild(textTd3);
+                    td1.appendChild(a);
+                    td2.appendChild(textTd2);
+                    td3.appendChild(textTd3);
 
-                td2.colSpan = 2;
+                    td2.colSpan = 2;
 
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
 
-                document.getElementById("lista-suc").appendChild(tr);
+                    document.getElementById("lista-suc").appendChild(tr);
 
 
             }
