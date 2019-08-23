@@ -1,17 +1,11 @@
 var Inventario = require('./inventario.model');
 var mongoose = require('mongoose');
 
-
-
-/**
- * Extrae todos los autores de la base de datos
- */
 module.exports.listarInventario = function(req, res) {
-  var nombreSuc = req.body.nombreSuc;
-  Inventario.find({nombreSuc: nombreSuc}).sort({libro: 'asc'})
+  var sucursal = req.body.sucursal;
+  Inventario.find({sucursal: sucursal}).sort({libro: 'asc'})
     .then(
       function(result){
-        console.log(result);
         res.send(result);
       }
     )
@@ -22,21 +16,16 @@ module.exports.listarInventario = function(req, res) {
     );
 }
   
-/**
- * Registra un nuevo autor en la base de datos
- */
 module.exports.registrarInventario = function(req, res) {
-  var nombreSuc = req.body.nombreSuc;
-  var isbn = req.body.isbn;
-  var libro = req.body.libro;
+  var idSuc = req.body.idSuc;
+  var idLibro = req.body.libro;
   var cantidad = req.body.cantidad;
   var precio = req.body.precio;
   
   var nuevoInventario = new Inventario({
       _id: new mongoose.Types.ObjectId(),
-      nombreSuc: nombreSuc,
-      isbn: isbn,
-      libro: libro,
+      sucursal: idSuc,
+      libro: idLibro,
       cantidad: cantidad,
       precio: precio,
       fechaReg: new Date()
@@ -55,10 +44,48 @@ module.exports.registrarInventario = function(req, res) {
       }
   );
 }
+
+module.exports.modificarInventario = function(req, res) {
+
+  var idSuc = req.body.idSuc;
+  var idLibro = req.body.libro;
+  var cantidad = req.body.cantidad;
+  var precio = req.body.precio;
+  Inventario.updateOne(
+    { sucursal: idSuc, libro: idLibro },
+    {
+      $set: { 
+        sucursal: idSuc,
+        libro: idLibro,
+        cantidad: cantidad,
+        precio: precio
+      },
+      $currentDate: { lastModified: true }
+    }
+  )
+  .then(
+      function(result){
+      res.json(result);
+      }
+  )
+  .catch(
+      function(err){
+      console.log(err);
+      }
+  );
+}
+
+module.exports.eliminarInventario = async function(req, res) {
+  
+  await Inventario.deleteOne(
+    { sucursal: req.body.idSuc, libro: req.body.idLibro }
+  )
+  res.json({result: "exito"});
+}
   
 module.exports.listarPerfilLibro = function(req, res) {
-  var isbn = req.body.isbn;
-  Inventario.find({isbn: isbn}).exec()
+  var libro = req.body.libro;
+  Inventario.find({libro: libro}).exec()
     .then(
       function(result){
         console.log(result);
@@ -70,4 +97,11 @@ module.exports.listarPerfilLibro = function(req, res) {
         console.log(err);
       }
     );
+}
+
+module.exports.eliminarInventarioTodo = async function(req, res) {
+  await Inventario.deleteMany(
+    { nombreSuc: req.body.nombreSuc }
+  );
+  res.json({result: "exito"});
 }

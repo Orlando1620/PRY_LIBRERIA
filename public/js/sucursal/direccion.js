@@ -35,6 +35,15 @@ function llenarDistritos(){
     var keyCanton = findKey(provincias,provincia);
 
     var canton = document.getElementById('cantones').value;
+    if(provincia == "Seleccione una provincia" || canton == "Seleccione un cantón"){
+        removeOptions('distritos');
+        var opc = document.createElement("option");
+        var textNode = document.createTextNode("Seleccione un distrito");
+        opc.appendChild(textNode);
+
+        document.getElementById("distritos").appendChild(opc);
+        return;
+    }
     var keyDist = findKey(cantones,canton);
     //Fetch para popular el select de distritos
     fetch('https://ubicaciones.paginasweb.cr/provincia/'+keyCanton+'/canton/'+keyDist+'/distritos.json')
@@ -49,6 +58,11 @@ function llenarDistritos(){
     .then(
         function(json){
             removeOptions('distritos');
+            var opc = document.createElement("option");
+            var textNode = document.createTextNode("Seleccione un distrito");
+            opc.appendChild(textNode);
+
+            document.getElementById("distritos").appendChild(opc);
             for(i in json){
                 var opc = document.createElement("option");
                 var textNode = document.createTextNode(json[i]);
@@ -68,6 +82,16 @@ function llenarDistritos(){
 //Llena el select de cantones con los valores respectivos
 function llenarCantones(){
     var provincia = document.getElementById('provincias').value;
+    if(provincia == "Seleccione una provincia"){
+        removeOptions('cantones');
+        var opc = document.createElement("option");
+        var textNode = document.createTextNode("Seleccione un cantón");
+        opc.appendChild(textNode);
+
+        document.getElementById("cantones").appendChild(opc);
+        llenarDistritos();
+        return;
+    }
     var key = findKey(provincias,provincia);
     //Fetch para popular el select de cantones
     fetch('https://ubicaciones.paginasweb.cr/provincia/'+key+'/cantones.json')
@@ -82,6 +106,11 @@ function llenarCantones(){
     .then(
         function(json){
             removeOptions('cantones');
+            var opc = document.createElement("option");
+            var textNode = document.createTextNode("Seleccione un cantón");
+            opc.appendChild(textNode);
+
+            document.getElementById("cantones").appendChild(opc);
             for(i in json){
                 var opc = document.createElement("option");
                 var textNode = document.createTextNode(json[i]);
@@ -107,7 +136,7 @@ fetch('https://ubicaciones.paginasweb.cr/provincias.json')
         if (response.status != 200)
         console.log('Ocurrió un error con el servicio: ' + response.status);
         else
-
+        
         return response.json();
     }
     )
@@ -121,7 +150,7 @@ fetch('https://ubicaciones.paginasweb.cr/provincias.json')
                 document.getElementById("provincias").appendChild(opc);
             }
             provincias = json;
-            llenarCantones(json);
+            //llenarCantones(json);
         }
     )
     .catch(
@@ -129,3 +158,9 @@ fetch('https://ubicaciones.paginasweb.cr/provincias.json')
         console.log('Ocurrió un error con la ejecución', err);
     }
     );
+
+
+
+
+
+
