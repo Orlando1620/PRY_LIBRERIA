@@ -28,7 +28,7 @@
 
 
 .top-cont{
-    background-image: url(../../img/libros-unsplash\ -\ copia.jpg);
+    background: url(../../img/fondolanding.jpg)  no-repeat center center fixed;
     background-size: cover;
     background-repeat: no-repeat;
     overflow: auto;

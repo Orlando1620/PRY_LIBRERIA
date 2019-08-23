@@ -174,7 +174,7 @@ function mod(e){
     for(var i=0;i<carrito.length;i++){
         if(carrito[i]['inventario'] == id){
             var cantidad = document.getElementById(id).value;
-            if(cantidad > document.getElementById(id).max){
+            if(parseInt(cantidad) > parseInt(document.getElementById(id).max)){
                 cantidad = document.getElementById(id).max;
                 document.getElementById(id).value = cantidad;
             }
