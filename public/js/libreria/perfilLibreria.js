@@ -2,6 +2,10 @@ if (sessionStorage.getItem("tipo") == "adminGlobal") {
   document.getElementById("nuevaSuc").classList.remove("oculto");
 }
 
+if(sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null){
+  document.getElementById("icons").classList.add("oculto");
+}
+
 var suc;
 
 window.onload = function () {
