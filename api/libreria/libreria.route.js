@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var libreriaApi = require('./libreria.api');
+var AdminLib = require('../adminLib/adminLib.model');
 var sucursalesApi = require('../sucursal/sucursal.api');
 
 /**
@@ -20,6 +21,10 @@ router.post('/buscar', function(req, res) {
 
 router.post('/obtener_libreria', function(req, res) {
     libreriaApi.obtener_libreria(req,res);
+})
+
+router.post('/filtrarLibreria', function(req, res){
+    libreriaApi.filtrarLibreria(req, res);
 })
 
 router.put('/modificar', function(req, res){

@@ -52,6 +52,30 @@ async function obtener_libreria(pnombre) {
     return librerias;
 };
 
+async function filtrarLibreria(datos) {
+
+    let librerias = {};
+
+    librerias = await fetch('/libreria/filtrarLibreria', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(function (response) {
+            if (response.status != 200)
+                console.log('Error en el servicio: ' + response.status);
+            else
+                return response.json();
+        })
+        .then(function (response) {
+            return response;
+        })
+        .catch(err => console.log('Error:', err));
+    return librerias;
+};
+
 async function listar_librerias_Solicitudes(pnombre) {
 
     let librerias = {};
@@ -129,4 +153,32 @@ async function actualizarSolicitud(id, estado) {
         })
         .catch(err => console.log('Error:', err));
     return msg;
+};
+
+async function obtenerDatosAdmin(id) {
+
+    let librerias = {};
+
+    let datos = {
+        id: id
+    }
+
+    librerias = await fetch('/usuario/obtenerDatosAdmin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(function (response) {
+            if (response.status != 200)
+                console.log('Error en el servicio: ' + response.status);
+            else
+                return response.json();
+        })
+        .then(function (response) {
+            return response;
+        })
+        .catch(err => console.log('Error:', err));
+    return librerias;
 };

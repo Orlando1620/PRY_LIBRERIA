@@ -278,7 +278,7 @@ module.exports.actualizarEstadoUsuario = async function (req, res) {
 
 
 
-module.exports.obtenerDatos = function (req, res) {
+module.exports.obtenerDatosAdmin = function (req, res) {
   var id = req.body.id;
   Usuario.findOne({ _id: id }).then(function (dato) {
     if (dato) {

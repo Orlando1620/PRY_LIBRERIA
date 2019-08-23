@@ -41,4 +41,9 @@ router.post('/actualizarEstadoUsuario', function (req, res) {
     usuarioApi.actualizarEstadoUsuario(req, res);
 });
 
+
+router.post('/obtenerDatosAdmin', function(req, res){
+    usuarioApi.obtenerDatosAdmin(req, res);
+})
+
 module.exports = router;

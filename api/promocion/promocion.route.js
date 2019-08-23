@@ -23,5 +23,9 @@ router.get('/listarTodo', function (req, res){
   promocionApi.listarTodo(req,res);
 })
 
+router.post('/eliminar', function (req, res){
+  promocionApi.eliminar(req,res);
+})
+
 module.exports = router;
 

@@ -165,9 +165,11 @@ module.exports.registrarLibroImpreso = function (req, res) {
 }
 
 module.exports.modificarLibroDigital = async function (req, res) {
-  var idLibro = req.body.idLibro;
+  try{
+    var idLibro = req.body.idLibro;
   var nombre = req.body.nombre;
   var isbn = req.body.isbn;
+  var isbnOrig = req.body.isbnOrig;
   var idioma = req.body.idioma;
   var autor = req.body.autor;
   var genero = req.body.genero;
@@ -179,17 +181,14 @@ module.exports.modificarLibroDigital = async function (req, res) {
   var pdf = req.body.pdf;
 
   var result = await Libro.find({ isbn: isbn }).exec();
-  // var nombreCompletoRes;
-  // if(result.length>0){
-  //   for(var i=0;i<result.length;i++){
-  //     nombreCompletoRes = result[i]["isbn"];
-  //     console.log(nombreCompletoRes);
-  //     if(nombreOrig != nombreCompletoRes){
-  //       res.json({result: 'repetido'});
-  //       return false;
-  //     }
-  //   }
-  // }
+   
+  if(result.length>0){
+    if(isbn == result[0]['isbn'] && isbnOrig != result[0]['isbn']){
+      res.json({result: 'repetido'});
+      return false;
+    }
+  }
+        
 
   if (portada && pdf) {
     var image = await cloudinary.uploader.upload(pathImg, { tags: 'basic_sample' });
@@ -229,6 +228,11 @@ module.exports.modificarLibroDigital = async function (req, res) {
     }
   );
   res.json({ result: 'exito' });
+
+  } catch(err) {
+    console.log(err);
+  }
+  
 }
 
 module.exports.modificarLibroImpreso = async function (req, res) {
@@ -236,6 +240,7 @@ module.exports.modificarLibroImpreso = async function (req, res) {
     var idLibro = req.body.idLibro;
     var nombre = req.body.nombre;
     var isbn = req.body.isbn;
+    var isbnOrig = req.body.isbnOrig;
     var idioma = req.body.idioma;
     var autor = req.body.autor;
     var genero = req.body.genero;
@@ -245,17 +250,13 @@ module.exports.modificarLibroImpreso = async function (req, res) {
     var portada = req.body.portada;
 
     var result = await Libro.find({ isbn: isbn }).exec();
-    // var nombreCompletoRes;
-    // if(result.length>0){
-    //   for(var i=0;i<result.length;i++){
-    //     nombreCompletoRes = result[i]["isbn"];
-    //     console.log(nombreCompletoRes);
-    //     if(nombreOrig != nombreCompletoRes){
-    //       res.json({result: 'repetido'});
-    //       return false;
-    //     }
-    //   }
-    // }
+    
+    if(result.length>0){
+      if(isbn == result[0]['isbn'] && isbnOrig != result[0]['isbn']){
+        res.json({result: 'repetido'});
+        return false;
+      }
+    }
 
 
     if (portada) {
@@ -402,7 +403,7 @@ module.exports.verificarAsociacionLibro = function (req, res) {
   var nombreLibro = req.body.nombreLibro;
   var idLibro = req.body.id;
 
-  ClubLectura.findOne({ libro: nombreLibro }).then(function (club) {
+  ClubLectura.findOne({ libro: idLibro }).then(function (club) {
     if (club) {
       res.send(true);
     } else {
