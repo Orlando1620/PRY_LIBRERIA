@@ -23,6 +23,9 @@ async function cargarDatos() {
     document.getElementById("tipo").innerHTML = club.tipo;
     document.getElementById("dia").innerHTML = club.dia;
     document.getElementById("libro").innerHTML = book.nombre;
+    if (club.tipo == "Virtual"){
+        document.getElementById('ContenedorSucursal').classList.add('oculto');
+    }
     document.getElementById("sucursal").innerHTML = suc.nombreSucursal;
     document.getElementById("descripcion").innerHTML = club.descripcion;
     validarUsuarioClub();
