@@ -12,20 +12,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .tamaNo_space_div{
     float: left;
     padding-left: 50px;
@@ -57,46 +43,58 @@ footer{
 
 .contenedor-titulo{
 padding:20px 125px;
+
 }
 .contenedor-titulo h1{
     font-weight: bolder;
-    color:#fff;
+    color:#487353;
+    background-color: rgba(240,255,224,0.3);
 }
 section{
 padding-left: 100px;
+
 }
 
 .contenedor-left{
     float: left;
-    padding-top: 22px;
+    padding: 22px;
     width: 326px;
     margin:33px;
     text-align:justify;
+    background-color: rgba(240,255,224,0.3);
+    height: 400px;
 }
 .contenedor-left h2{
 color: #fff;
+text-align: center;
 }
 
 .contenedor-center{
     float: left;
-    padding-top: 22px;
+    padding: 22px;
     width:326px; 
     margin:33px;
     text-align:justify;
+    background-color: rgba(240,255,224,0.3);
+    height: 400px;
 }
 .contenedor-center h2{
     color: #fff;
+    text-align: center;
 }
 
 .contenedor-right{
     float: left;
-    padding-top: 22px;
+    padding: 22px;
     width: 326px;
     margin:33px;
     text-align:justify;
+    background-color: rgba(240,255,224,0.3);
+    height: 400px;
 }
 .contenedor-right h2{
     color: #fff;
+    text-align: center;
 }
 .parrafo1{
     
@@ -116,10 +114,9 @@ color: #fff;
 
 .contenedor-left2{
     float: left;
-    padding-top: 22px;
-    width: 326px;
-    margin:33px;
+    padding: 54px 22px 22px 22px;
     text-align:justify;
+    width: 50%;
 }
 
 
@@ -129,14 +126,28 @@ color: #fff;
 
 .contenedor-right2{
     float: left;
-    padding-top: 22px;
-    width: 326px;
-    margin:33px;
+    padding: 54px 22px 22px 22px;
     text-align:justify;
+    width: 50%;
 }
+
+
 
 .parrafo6{
     font-size: 1.5rem;
 
 }
 
+
+.imgTitulo{
+    height: 134px;
+margin-bottom: 20px;
+}
+
+.videoUp{
+    display: inline-block;
+width: 100%;
+}
+.videoUp h1{
+    text-align: center;
+}
