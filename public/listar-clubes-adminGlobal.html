@@ -126,58 +126,58 @@
 
         <div class="wrapper-cont">
 
-            <h1 class="main-title">Clubes de lectura</h1>
-
-            <div class="filtros">
-
-                <input type="text" placeholder="Nombre del club" class="search-box" id="buscar"
-                    onkeyup="filtrarNombre()" />
-                <select id="generos" onChange="filtrarGenTipo()" class="selectFiltrar">
-                    <option value="Generos">Géneros</option>
-                </select>
-
-                <select id="tipo" onChange="filtrarGenTipo()" class="selectFiltrar">
-                    <option value="Tipo">Tipo</option>
-                    <option value="Físico">Físico</option>
-                    <option value="Virtual">Virtual</option>
-                </select>
-
-            </div>
-
-            <div class="table-cont">
-                <table class="lista-suc font" id="table">
-                    <tr id="mainTr" class="table-titles">
-                        <td colspan="1"><a>Nombre</a></td>
-                        <td colspan="1"><a>Género</a></td>
-                        <td colspan="1"><a>Tipo</a></td>
-                        <td colspan="1"><a>Eliminar</a></td>
-                        <td colspan="1"><a>Modificar</a></td>
-                    </tr>
-                </table>
-            </div>
-            <div id="alert" class="alert oculto">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <label id="msg"></label>
-            </div>
-
-            <div class="form-full"><button class="submit font" onclick="nuevoClub(event)">Nuevo Club</button></div>
-
-            <div id="alert" class="alert oculto">
+                <h1 class="main-title">Clubes de Lectura</h1>
+    
+                <div class="filtros">
+    
+                    <input type="text" placeholder="Nombre del club" class="search-box" id="buscar"
+                        onkeyup="filtrarNombre()" />
+                    <select id="generos" onChange="filtrarGenTipo()" class="selectFiltrar">
+                        <option value="Generos">Géneros</option>
+                    </select>
+    
+                    <select id="tipo" onChange="filtrarGenTipo()" class="selectFiltrar">
+                        <option value="Tipo">Tipo</option>
+                        <option value="Físico">Físico</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
+    
+                </div>
+    
+                <div class="table-cont">
+                    <table class="lista-suc font" id="table">
+                        <tr id="mainTr" class="table-titles">
+                            <td colspan="1"><a>Nombre</a></td>
+                            <td colspan="1"><a>Género</a></td>
+                            <td colspan="1"><a>Tipo</a></td>
+                            <td colspan="1"><a>Eliminar</a></td>
+                            <td colspan="1"><a>Modificar</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="alert" class="alert oculto">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                     <label id="msg"></label>
                 </div>
-                <div class="pop-up-cont oculto" id="pop-up">
-                    <div class="pop-up">
-                        <p id="msg-pop">¿Desea eliminar este libro?</p>
-                        <div class="btn-cont">
-                            <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
-                            <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
-                        </div>
+    
+                <div class="form-full"><button class="submit font" onclick="nuevoClub(event)">Nuevo Club</button></div>
+    
+                <div id="alert" class="alert oculto">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <label id="msg"></label>
                     </div>
-                    
-                </div>
-
-        </div>
+                    <div class="pop-up-cont oculto" id="pop-up">
+                        <div class="pop-up">
+                            <p id="msg-pop">¿Desea eliminar este libro?</p>
+                            <div class="btn-cont">
+                                <button class="pop-up-btn" onclick="aceptar()" id="aceptar">Aceptar</button>
+                                <button class="pop-up-btn" onclick="cancelar()">Cancelar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+    
+            </div>
     </div>
 
     <footer>
@@ -212,7 +212,7 @@
 
 
     <script src="https://kit.fontawesome.com/4f1a4c5e1e.js"></script>
-    <script src="./js/clubes/listarClubes.js"></script>
+    <script src="./js/clubes/listarClubesAdmin.js"></script>
     <script src="./js/clubes/clubController.js"></script>
     <script src="./js/log-nav.js"></script>
 

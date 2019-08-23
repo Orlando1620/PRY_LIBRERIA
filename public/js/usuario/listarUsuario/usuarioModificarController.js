@@ -104,7 +104,7 @@ function obtenerUsario(id) {
                     document.getElementById("fechaNaci_Admin").value = json.fechaNaci;
                     document.getElementById("tipo_identificacion").value = json.tipoIdentificacion;
                     document.getElementById("number_identificacion").value = json.identificacion;
-                    document.getElementById("sexo").value = json.tipoSexo;
+                    document.getElementById("sexo").value = json.sexo;
 
                 }
 

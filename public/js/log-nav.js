@@ -14,11 +14,12 @@ if(sessionStorage.getItem("nombre") == null){
     document.getElementById("usrName").innerHTML = sessionStorage.getItem("nombre");
     document.getElementById("c-r").addEventListener('click', cerrarSesion);
     document.getElementById("home").href = "homePage.html";
-
+    
 
     switch(sessionStorage.getItem("tipo")){
         case "usuarioCliente":
             document.getElementById("perfil").href = "perfil-uc.html";
+            document.getElementById("nav-cart").href = "carrito.html";
             break;
         case "AdminLib":
             document.getElementById("perfil").href = "perfil-adminLib.html";
