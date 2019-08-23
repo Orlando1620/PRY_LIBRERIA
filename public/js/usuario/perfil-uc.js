@@ -3,27 +3,62 @@ var usuarioId;
 var lati;
 var longi;
 var sexoBD = [];
+var generosArray = [];
+var generoArrayLength;
 
 var data = {
 	id: sessionStorage.getItem("id")
 };
 
-iniciarUC();
+cargarGen();
 
-function initMap() {
-    // LOCALIZACION
-    var location = {lat: 	9.934739, lng: 	-84.087502};
-    // MAPA
-    map = new google.maps.Map(
-    document.getElementById('map'), {zoom: 8, center: location}); 
-}
+function cargarGen() {
+    fetch('/genero/listar', {
+        method: 'GET',
+        headers:{'Content-Type': 'application/json'}
+      })
+      .then(
+        function(response) {
+          if (response.status != 200)
+            console.log('Ocurrió un error con el servicio: ' + response.status);
+          else
+            return response.json();
+        }
+      )
+      .then(
+          function(json){
+            console.log(json);
+              generoArrayLength = json.length;
+            for(var i=0;i<json.length;i++){
+                generosArray = json;
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.value = json[i]['nombre'];
+				checkbox.id ="genero"+i;
+				checkbox.disabled = true;
+                
+                var div = document.createElement("div");
+                div.classList.add("form-tercio");
+    
+                
+                var label = document.createElement("label");
+                var textNode = document.createTextNode(json[i]['nombre']);
+                label.appendChild(textNode);
+                
+    
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                document.getElementById("genero").appendChild(div);
+            }
+			iniciarUC();
+          }
+      )
+      .catch(
+        function(err) {
+          console.log('Ocurrió un error con la ejecución', err);
+        }
+      );
 
-function addMarker(coords){
-	var marker = new google.maps.Marker({position: coords, map: map});
-}
-
-function centerMap(coords){
-	map.setCenter(coords);
 }
 
 function iniciarUC() {
@@ -172,14 +207,16 @@ function cargarPerfilUC() {
 				console.log(coords);
 				addMarker(coords);
 
+				var genFavoritos = json['generosFav'];
 
-				var generos = json['generosFav'];
-				for (var j = 0; j < generos.length; j++) {
-					var opc = document.createElement('li');
-					var textNode = document.createTextNode(generos[j][0]);
-					opc.appendChild(textNode);
+				for (var i = 0; i < genFavoritos.length; i++) {
 
-					document.getElementById("generosul").appendChild(opc);
+					for (var j = 0; j < generosArray.length; j++) {
+
+						if (genFavoritos[i] == generosArray[j]['nombre']) {
+							document.getElementById("genero" + j).checked = true;
+						}
+					}
 				}
 
 			}
@@ -249,6 +286,10 @@ function mostrarModificarUC(e) {
 	provincia.classList.add('inputActualizando');
 	provincia.disabled = false;
 
+	for (var i = 0; i < generoArrayLength; i++) {
+			document.getElementById("genero" + i).disabled = false;
+	}
+
 
 	var boton = document.getElementById('guardarPerfilUC');
 	boton.value = "Guardar";
@@ -273,7 +314,7 @@ async function modificarUsuarioClienteBD() {
 	var latitud = lati;
 	var longitud = longi;
 
-	var generos = [];
+	/*var generos = [];
 	var j = 0;
 	for (var i = 0; i < generoLength; i++) {
 		idGenero = document.getElementById("genero" + i).checked;
@@ -281,12 +322,18 @@ async function modificarUsuarioClienteBD() {
 			generos[j] = arrayGeneros[i]['nombre'];
 			j++;
 		}
-	}
+	}*/
 	
 
 
 
-	var id = usuarioId;
+	/*var id = usuarioId;
+	var formData = new FormData(document.getElementById('form'));
+    await fetch('/usuarioCliente/localUploadImg', {
+    method: 'POST',
+    body: formData,
+    enctype: "multipart/form-data"
+    });*/
 	/*if (document.getElementById('foto').value != "") {
 		var formData = new FormData(document.getElementById('form'));
 
@@ -317,7 +364,7 @@ async function modificarUsuarioClienteBD() {
 	} else {*/
 
 	var data = {
-		id: id,
+		id: sessionStorage.getItem('id'),
 		nombre: nombre,
 		apellido1: apellido1,
 		apellido2: apellido2,
@@ -330,7 +377,6 @@ async function modificarUsuarioClienteBD() {
 		canton: canton,
 		distrito: distrito,
 		direccionExacta: direccionExacta,
-		generosFav: generos,
 		latitud: latitud,
 		longitud: longitud
 

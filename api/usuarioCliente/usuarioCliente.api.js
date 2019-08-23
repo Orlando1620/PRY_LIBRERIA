@@ -733,8 +733,6 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
     var direccionExacta = req.body.direccionExacta;
     var latitud = req.body.latitud;
     var longitud = req.body.longitud;
-    //var foto = req.body.foto;
-    var generosFav = req.body.generosFav;
 
 
     var result = await Usuario.find({ identificacion: identificacion }).exec();
@@ -768,7 +766,6 @@ module.exports.modificarUsuarioCliente = async function (req, res) {
           canton: canton,
           distrito: distrito,
           direccionExacta: direccionExacta,
-          // generosFav: generosFav,
           longitud: longitud,
           latitud: latitud
 
