@@ -12,4 +12,9 @@ router.post('/checkMetPago', function(req, res) {
   pagoApi.checkMetPago(req,res);
 })
 
+router.post('/modificar', function(req, res) {
+  pagoApi.modPago(req,res);
+})
+
+
 module.exports = router;
