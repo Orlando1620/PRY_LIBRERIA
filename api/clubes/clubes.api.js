@@ -266,9 +266,10 @@ module.exports.obtenerClub = function (req, res) {
 };
 
 module.exports.obtenerLibroClub = function (req, res) {
-  Libro.findOne({ _id: req.body.libro }).then(function (libro) {
-    if (libro) {
-      res.send(libro);
+  var libro =  req.body.libro;
+  Libro.findOne({ _id: libro }).then(function (book) {
+    if (book) {
+      res.send(book);
     } else {
       res.send(false);
     }
