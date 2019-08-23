@@ -29,6 +29,21 @@ module.exports.obtener_libreria = function (req, res) {
   })
 };
 
+module.exports.filtrarLibreria = function (req, res) {
+
+  var criterios = req.body;
+  if(criterios.nombreComercial){
+    criterios["nombreComercial"] = new RegExp(req.body.nombreComercial, "i");
+  }
+  Libreria.find(criterios).then(function (libreria) {
+    if (libreria) {
+      res.send(libreria);
+    } else {
+      res.send(false);
+    }
+  })
+};
+
 module.exports.libById = function (req, res) {
   var admin_id = req.body.admin_id;
   Libreria.findOne({ admin_id: admin_id }).exec()

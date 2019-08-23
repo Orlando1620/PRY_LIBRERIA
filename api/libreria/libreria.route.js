@@ -22,6 +22,10 @@ router.post('/obtener_libreria', function(req, res) {
     libreriaApi.obtener_libreria(req,res);
 })
 
+router.post('/filtrarLibreria', function(req, res){
+    libreriaApi.filtrarLibreria(req, res);
+})
+
 router.put('/modificar', function(req, res){
     libreriaApi.modificarLibreria(req, res); 
 })

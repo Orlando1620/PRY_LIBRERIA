@@ -76,7 +76,7 @@ async function marcador(pnombreLibreria) {
       }
     );
     return sucursales;
-};
+}
 
 async function delLib() {
   try {
@@ -88,9 +88,9 @@ async function delLib() {
       id = sucursales[i]["_id"];
 
       var dataInv = {
-        nombreSuc: sucursal
+        id: id
       }
-      var inv = await fetch('/inventario/eliminarTodo', {
+      await fetch('/inventario/eliminarTodo', {
         method: 'POST',
         body: JSON.stringify(dataInv),
         headers: { 'Content-Type': 'application/json' }
@@ -99,7 +99,16 @@ async function delLib() {
       var dataSuc = {
         id: id
       }
-      var suc = await fetch('/sucursal/eliminar', {
+      await fetch('/promocion/eliminar', {
+        method: 'POST',
+        body: JSON.stringify(dataSuc),
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      var dataSuc = {
+        id: id
+      }
+      await fetch('/sucursal/eliminar', {
         method: 'POST',
         body: JSON.stringify(dataSuc),
         headers: { 'Content-Type': 'application/json' }
