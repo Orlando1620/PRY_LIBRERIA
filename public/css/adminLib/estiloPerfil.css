@@ -31,7 +31,7 @@ table{
 }
 
 .main-title{
-    padding-left: 20px;
+    padding-left: 17.5% !important;
     color: #022600;
 }
 
@@ -41,7 +41,8 @@ table{
 }
 
 .wrapper-cont{
-    overflow: auto;
+    float: left;
+    width: 100% !important;
 }
 
 .wrapper-cont h1{
@@ -146,6 +147,14 @@ table{
     color: white;
     background-color: #487252;
     border-radius: 10px;
+}
+
+.btn-cont{
+    float: left;
+    width: 100%;
+    padding: 5px 45%;
+    font-size: 1.2rem;
+    box-sizing: border-box;
 }
 
 /*cambios para movil*/

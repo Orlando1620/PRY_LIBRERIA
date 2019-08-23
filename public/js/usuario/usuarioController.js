@@ -4,6 +4,7 @@
 async function addUsuario(e){
     var esValido = validarCamposFormulario("form");
     if (esValido == false || validarForm() == false) {
+        validarForm();
         document.getElementById("alert").classList.remove("oculto");
         document.getElementById("msg").innerHTML = "Complete los espacios requeridos";
         return false;

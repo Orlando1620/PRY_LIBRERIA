@@ -1,6 +1,7 @@
 'use strict';
 if (sessionStorage.getItem("tipo") == "usuarioCliente" || sessionStorage.getItem("nombre") == null) {
     document.getElementById("mod").classList.add("oculto");
+    document.getElementById("eliminar").classList.add("oculto");
 }
 
 window.onload = function () {

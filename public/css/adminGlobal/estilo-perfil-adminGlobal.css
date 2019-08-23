@@ -3,7 +3,7 @@
 }
 
 .main-title{
-    padding-left: 20%;
+    padding-left: 20% !important;
     color: #022600;
 }
 
@@ -14,7 +14,7 @@
 
 .wrapper-cont{
     float: left;
-    width: 100%;
+    width: 100% !important;
 }
 
 .wrapper-cont table{
@@ -44,6 +44,14 @@
 .submit:hover{
     background-color: #487252;
     color: white;
+}
+
+.btn-cont{
+    float: left;
+    width: 100%;
+    padding: 5px 45%;
+    font-size: 1.2rem;
+    box-sizing: border-box;
 }
 
 @media(max-width: 920px){
