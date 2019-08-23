@@ -287,6 +287,15 @@ module.exports.obtenerDatosAdmin = function (req, res) {
   })
 }
 
+module.exports.obtenerDatos = function (req, res) {
+  var id = req.body.id;
+  Usuario.findOne({ _id: id }).then(function (dato) {
+    if (dato) {
+      res.send(dato);
+    }
+  })
+}
+
 module.exports.guardar = function (req, res) {
   var id = req.body.id;
   var contrasena = req.body.contrasena;
